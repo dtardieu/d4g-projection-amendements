@@ -1,0 +1,16 @@
+{
+  "name": "pont-tisseuse",
+  "private": true,
+  "type": "module",
+  "description": "Pont d'évaluation : fait tourner l'analyseur de Tisseuse et le projecteur d'amendements de leximpact-legi-ui sur notre corpus.",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "@tricoteuses/tisseuse": "0.22.3",
+    "fs-extra": "^11.4.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}

@@ -1,0 +1,2686 @@
+{
+ "ecarts": [
+  {
+   "id": "DLR5L17N54227:commission|T0/4502|909",
+   "phrase_a": "« Il agit après avis ou sur proposition de l'autorité compétente de l'État en matière d'éducation, pour les motifs tirés de risques pour l'ordre public, pour la santé et la sécurité physique ou morale des mineurs que présentent les conditions de fonctionnement de l'établissement, et sur la proposition de cette autorité pour tout autre motif.",
+   "phrase_b": "« Il agit après avis ou sur proposition de l'autorité compétente de l'État en matière d'éducation, pour les motifs tirés de risques pour l'ordre public, la santé et la sécurité physique ou morale des mineurs que présentent les conditions de fonctionnement de l'établissement, et sur la proposition de cette autorité pour tout autre motif.",
+   "contexte_avant": "peut prononcer la fermeture définitive de l'établissement ou des classes concernées.\n« Il agit après avis ou sur proposition de l'autorité compétente de l'État en matière d'éducation, pour les motifs tirés de risques pour l'ordre public,",
+   "passage_a": "pour",
+   "passage_b": "",
+   "contexte_apres": "la santé et la sécurité physique ou morale des mineurs que présentent les conditions de fonctionnement de l'établissement, et sur la proposition de cette autorité pour tout autre motif.\n« Par dérogation aux dispositions de l'article L. 442-10, la",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.63,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.16,
+     "effet_different": 0.72,
+     "indetermine": 0.11
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.75,
+    "probabilites": {
+     "forme_seule": 0.04,
+     "meme_effet": 0.07,
+     "effet_different": 0.81,
+     "indetermine": 0.08
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51672:commission|AMANR5L17PO420120B1102P0D1N000463/78|9",
+   "phrase_a": "L'évolution de la mise en œuvre de la stratégie décennale des soins palliatifs et d'accompagnement peut faire l'objet d'un débat chaque année devant le Parlement avant l'examen du projet de loi de finances.",
+   "phrase_b": "L'évolution de la mise en œuvre de cette stratégie décennale des soins palliatifs et d'accompagnement peut faire l'objet d'un débat chaque année devant le Parlement avant l'examen du projet de loi de finances.",
+   "contexte_avant": "L'évolution de la mise en œuvre de",
+   "passage_a": "la",
+   "passage_b": "cette",
+   "contexte_apres": "stratégie décennale des soins palliatifs et d'accompagnement peut faire l'objet d'un débat chaque année devant le Parlement avant l'examen du projet de loi de finances.",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "indetermine",
+    "confiance": 0.52,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.26,
+     "effet_different": 0.08,
+     "indetermine": 0.64
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.47,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.23,
+     "effet_different": 0.6,
+     "indetermine": 0.14
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54085:seance|T0/32026|192",
+   "phrase_a": "Elle porte sur les filières agricoles viande bovine, avicole et sur les produits laitiers.",
+   "phrase_b": "Elle porte sur les filières agricoles de viande bovine, avicole et sur les produits laitiers.",
+   "contexte_avant": "« Les produits utilisant un label ou système de garantie de commerce équitable reconnu par l'État sont exclus du champ de cette obligation.\n« Cette interdiction s'applique à titre expérimental pour une durée de 5 ans. Elle porte sur les filières agricoles",
+   "passage_a": "",
+   "passage_b": "de",
+   "contexte_apres": "viande bovine, avicole et sur les produits laitiers.\n« II.-Un décret fixe les modalités de mise en œuvre du présent article.\n« Art. L. 121-2-2.-Dans des conditions fixées par décret en Conseil d",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.6,
+    "probabilites": {
+     "forme_seule": 0.05,
+     "meme_effet": 0.7,
+     "effet_different": 0.1,
+     "indetermine": 0.15
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.49,
+    "probabilites": {
+     "forme_seule": 0.05,
+     "meme_effet": 0.1,
+     "effet_different": 0.62,
+     "indetermine": 0.23
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N52985:commission|AMANR5L17PO420120B2115P0D1N000197/345|20",
+   "phrase_a": "Après l'article L. 114-22-2 du code de la sécurité sociale, il est complétée par un article L. 114-22-2-1 ainsi rédigé :",
+   "phrase_b": "Après l'article L. 114-22-2 du code de la sécurité sociale, il est inséré un article L. 114-22-2-1 ainsi rédigé :",
+   "contexte_avant": "Après l'article L. 114-22-2 du code de la sécurité sociale, il est",
+   "passage_a": "complétée par",
+   "passage_b": "inséré",
+   "contexte_apres": "un article L. 114-22-2-1 ainsi rédigé :\n« L.-114-22-2-1.-La Caisse nationale de l'assurance maladie peut, conjointement avec la Caisse centrale de la mutualité sociale agricole ou avec",
+   "regle": null,
+   "taille": 2,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.48,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.22,
+     "effet_different": 0.61,
+     "indetermine": 0.14
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.47,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.29,
+     "effet_different": 0.6,
+     "indetermine": 0.09
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51017:seance|T0/313|180",
+   "phrase_a": "-évaluer la formation des professionnels en contact avec les enfants, comme les enseignants, personnels de santé, éducateurs, policiers ou magistrats, pour détecter et signaler les cas d'inceste ;",
+   "phrase_b": "-évaluer la formation des professionnels en contact avec les enfants, comme les enseignants, personnels de santé, éducateurs, policiers ou les magistrats, pour détecter et signaler les cas d'inceste ;",
+   "contexte_avant": "accompagnement des victimes, avec un accent sur la réparation juridique et psychologique adaptée aux délais nécessaires à l'émergence de la parole ;\n-évaluer la formation des professionnels en contact avec les enfants, comme les enseignants, personnels de santé, éducateurs, policiers ou",
+   "passage_a": "",
+   "passage_b": "les",
+   "contexte_apres": "magistrats, pour détecter et signaler les cas d'inceste ;\n-formuler des recommandations pour améliorer l'accessibilité et l'efficacité des dispositifs d'écoute et de signalement, en particulier pour les enfants et jeunes adultes ;\n-définir une stratégie nationale",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.33,
+    "probabilites": {
+     "forme_seule": 0.44,
+     "meme_effet": 0.5,
+     "effet_different": 0.04,
+     "indetermine": 0.02
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.4,
+    "probabilites": {
+     "forme_seule": 0.06,
+     "meme_effet": 0.14,
+     "effet_different": 0.55,
+     "indetermine": 0.25
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51672:seance|AMANR5L17PO838901BTC1281P0D1N000763/309|25",
+   "phrase_a": "Dans les conditions prévues à l'article 38 de la Constitution, le Gouvernement est habilité à prendre par ordonnance, dans un délai d'un an à compter de la publication de la présente loi, les mesures relevant du domaine de la loi permettant :",
+   "phrase_b": "Dans les conditions prévues à l'article 38 de la Constitution, le Gouvernement est habilité à prendre par ordonnance, dans un délai de douze mois à compter de la publication de la présente loi, les mesures relevant du domaine de la loi permettant :",
+   "contexte_avant": "Dans les conditions prévues à l'article 38 de la Constitution, le Gouvernement est habilité à prendre par ordonnance, dans un délai",
+   "passage_a": "d'un an",
+   "passage_b": "de douze mois",
+   "contexte_apres": "à compter de la publication de la présente loi, les mesures relevant du domaine de la loi permettant :\n1° D'étendre et d'adapter en Nouvelle-Calédonie, en Polynésie française et à Wallis-et-Futuna, les dispositions de la",
+   "regle": null,
+   "taille": 4,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.75,
+    "probabilites": {
+     "forme_seule": 0.05,
+     "meme_effet": 0.81,
+     "effet_different": 0.11,
+     "indetermine": 0.03
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "meme_effet",
+    "confiance": 0.84,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.88,
+     "effet_different": 0.07,
+     "indetermine": 0.03
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51563:seance|T0/1745|1",
+   "phrase_a": "Le code de la consommation est ainsi modifié :",
+   "phrase_b": "Le titre II du livre II du code de la consommation est ainsi modifié :",
+   "contexte_avant": "Le",
+   "passage_a": "",
+   "passage_b": "titre II du livre II du",
+   "contexte_apres": "code de la consommation est ainsi modifié :\n1° Le premier alinéa de l'article L. 221-16 est complété par une phrase ainsi rédigée : « Si le consommateur s'oppose à la poursuite de la communication, le professionnel met fin à",
+   "regle": null,
+   "taille": 6,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.72,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.02,
+     "effet_different": 0.79,
+     "indetermine": 0.17
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.84,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.03,
+     "effet_different": 0.88,
+     "indetermine": 0.07
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51002:commission|AMANR5L17PO420120B0654P0D1N000036/76|3",
+   "phrase_a": "Le début du sixième alinéa de l'article L. 1411-11 du code de la santé publique est ainsi rédigé :",
+   "phrase_b": "Le début du dernier alinéa de l'article L. 1411-11 du code de la santé publique est ainsi rédigé :",
+   "contexte_avant": "Le début du",
+   "passage_a": "sixième",
+   "passage_b": "dernier",
+   "contexte_apres": "alinéa de l'article L. 1411-11 du code de la santé publique est ainsi rédigé :\n« L'ensemble des professionnels de santé ainsi... (le reste sans changement). »",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.43,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.02,
+     "effet_different": 0.57,
+     "indetermine": 0.39
+    }
+   },
+   "annotation": "different",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.75,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.04,
+     "effet_different": 0.81,
+     "indetermine": 0.13
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N52985:seance|T0/44835|347",
+   "phrase_a": "Ces sommes sont communiquées à l'organisme débiteur du revenu de remplacement par l'administration fiscale.",
+   "phrase_b": "Ces sommes sont communiquées par l'administration fiscale à l'organisme débiteur du revenu de remplacement par l'administration fiscale.",
+   "contexte_avant": "prévues au présent titre ne peuvent être cumulées, au titre d'une même période, avec des sommes soumises à l'impôt sur le revenu en application de l'article 1649 quater-0 B bis du code général des impôts. Ces sommes sont communiquées",
+   "passage_a": "",
+   "passage_b": "par l'administration fiscale",
+   "contexte_apres": "à l'organisme débiteur du revenu de remplacement par l'administration fiscale.\n« Il peut être procédé au réexamen de la situation du bénéficiaire lorsqu'interviennent des éléments nouveaux, dans un délai raisonnable à compter de leur découverte, notamment un jugement pénal définitif",
+   "regle": null,
+   "taille": 5,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.31,
+    "probabilites": {
+     "forme_seule": 0.05,
+     "meme_effet": 0.38,
+     "effet_different": 0.48,
+     "indetermine": 0.09
+    }
+   },
+   "annotation": "different",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.84,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.03,
+     "effet_different": 0.88,
+     "indetermine": 0.06
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51852:commission|AMANR5L17PO419610B1240P0D1N000044/103|43",
+   "phrase_a": "« permis de construire », sont insérés les mots :",
+   "phrase_b": "« construire », sont insérés les mots :",
+   "contexte_avant": "Au chapitre III du titre III du livre IV du code de l'urbanisme, de l'article L. 433-1 à l'article L.. 433-6, après chaque occurrence des mots : «",
+   "passage_a": "permis de",
+   "passage_b": "",
+   "contexte_apres": "construire », sont insérés les mots : « ou d'aménager » ;",
+   "regle": null,
+   "taille": 2,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.36,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.05,
+     "effet_different": 0.52,
+     "indetermine": 0.4
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.95,
+    "probabilites": {
+     "forme_seule": 0.0,
+     "meme_effet": 0.0,
+     "effet_different": 0.96,
+     "indetermine": 0.04
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54085:commission|T0/17434|129",
+   "phrase_a": "«, intégrant notamment un ou plusieurs indicateurs relatifs aux coûts pertinents de production en agriculture, » intégrant obligatoirement un ou plusieurs indicateurs relatifs aux coûts pertinents de production en agriculture, incluant notamment les coûts des matières premières agricoles, des intrants agricoles et les coûts énergétiques.",
+   "phrase_b": "«, intégrant notamment un ou plusieurs indicateurs relatifs aux coûts pertinents de production en agriculture, » sont remplacés par les mots : « obligatoirement un ou plusieurs indicateurs relatifs aux coûts pertinents de production en agriculture, incluant notamment les coûts des matières premières agricoles, des intrants agricoles et les coûts énergétiques.",
+   "contexte_avant": "» ;\n2° Après les mots « entre lesquelles », sont insérés les mots : « le prix est fixé et » ;\n3° Les mots : «, intégrant notamment un ou plusieurs indicateurs relatifs aux coûts pertinents de production en agriculture, »",
+   "passage_a": "intégrant",
+   "passage_b": "sont remplacés par les mots : «",
+   "contexte_apres": "obligatoirement un ou plusieurs indicateurs relatifs aux coûts pertinents de production en agriculture, incluant notamment les coûts des matières premières agricoles, des intrants agricoles et les coûts énergétiques. ;\n4° Est ajoutée une phrase ainsi rédigée : « La borne minimale ne peut être inférieure",
+   "regle": null,
+   "taille": 7,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.32,
+    "probabilites": {
+     "forme_seule": 0.07,
+     "meme_effet": 0.18,
+     "effet_different": 0.49,
+     "indetermine": 0.26
+    }
+   },
+   "annotation": "indetermine",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.41,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.05,
+     "effet_different": 0.56,
+     "indetermine": 0.37
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54149:commission|T0/763|55",
+   "phrase_a": "-Cette disposition n'est applicable qu'aux sommes venant en déduction de l'impôt dû.",
+   "phrase_b": "-Le I n'est applicable qu'aux sommes venant en déduction de l'impôt dû.",
+   "contexte_avant": "de recettes pour l'État est compensée à due concurrence par la création d'une taxe additionnelle à l'accise sur les tabacs prévue au chapitre IV du titre Ier du livre III du code des impositions sur les biens et services.\nII.-",
+   "passage_a": "Cette disposition",
+   "passage_b": "Le I",
+   "contexte_apres": "n'est applicable qu'aux sommes venant en déduction de l'impôt dû.",
+   "regle": null,
+   "taille": 2,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "indetermine",
+    "confiance": 0.63,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.03,
+     "effet_different": 0.23,
+     "indetermine": 0.72
+    }
+   },
+   "annotation": "different",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.28,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.11,
+     "effet_different": 0.46,
+     "indetermine": 0.41
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54372:seance|AMANR5L17PO838901BTC3018P0D1N000362/496|87",
+   "phrase_a": "-À la fin du troisième alinéa de l'article 7 du code de procédure pénale, les mots :",
+   "phrase_b": "-À la fin de l'avant-dernier alinéa de l'article 7 du code de procédure pénale, les mots :",
+   "contexte_avant": "du code de procédure pénale, l'action civile en réparation du dommage causé par ces infractions est également imprescriptible. L'action en responsabilité civile s'éteint au décès du responsable du dommage causé par ces infractions. »\nII.-À la fin",
+   "passage_a": "du troisième",
+   "passage_b": "de l'avant-dernier",
+   "contexte_apres": "alinéa de l'article 7 du code de procédure pénale, les mots : « lorsqu'ils sont commis sur des mineurs, se prescrit par trente années révolues à compter de la majorité de ces derniers ; toutefois, s'il s'agit d'",
+   "regle": null,
+   "taille": 6,
+   "etiquette": "effet absent",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.4,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.02,
+     "effet_different": 0.55,
+     "indetermine": 0.41
+    }
+   },
+   "annotation": "different",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.28,
+    "probabilites": {
+     "forme_seule": 0.04,
+     "meme_effet": 0.16,
+     "effet_different": 0.46,
+     "indetermine": 0.34
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N50731:commission|T0/24252|174",
+   "phrase_a": "3° Aux chapitres II et III du présent titre ;",
+   "phrase_b": "3° Au chapitre II et III du présent titre ;",
+   "contexte_avant": "avril 2019 relatif à l'ENISA (Agence de l'Union européenne pour la cybersécurité) et à la certification de cybersécurité des technologies de l'information et des communications, et abrogeant le règlement (UE) n° 526 / 2013 ;\n3°",
+   "passage_a": "Aux chapitres",
+   "passage_b": "Au chapitre",
+   "contexte_apres": "II et III du présent titre ;\n4° À l'article L. 100, aux III et IV de l'article L. 102 et à l'avant-dernier alinéa de l'article L. 103 du code des postes et des",
+   "regle": null,
+   "taille": 2,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.25,
+    "probabilites": {
+     "forme_seule": 0.08,
+     "meme_effet": 0.21,
+     "effet_different": 0.44,
+     "indetermine": 0.27
+    }
+   },
+   "annotation": "forme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.53,
+    "probabilites": {
+     "forme_seule": 0.05,
+     "meme_effet": 0.15,
+     "effet_different": 0.65,
+     "indetermine": 0.15
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N50731:commission|T0/1|2745",
+   "phrase_a": "été désigné par la Commission européenne comme entité critique d'importance européenne particulière il peut, sur demande motivée de la Commission européenne ou d'un ou de plusieurs des États membres auxquels ou dans lesquels le service essentiel est fourni et avec l'accord de l'autorité administrative compétente, faire l'objet d'une mission de conseil au titre de laquelle il doit garantir l'accès aux informations, systèmes et aux installations relatifs à la fourniture de ses services essentiels qui sont nécessaires à l'exécution de cette mission de conseil, dans le respect des secrets protégés par la loi.",
+   "phrase_b": "été désigné par la Commission européenne comme entité critique d'importance européenne particulière il peut, sur demande motivée de la Commission européenne ou d'un ou de plusieurs des États membres auxquels ou dans lesquels le service essentiel est fourni et avec l'accord de l'autorité administrative compétente, faire l'objet d'une mission de conseil au titre de laquelle il doit garantir l'accès aux informations, systèmes et installations relatifs à la fourniture de ses services essentiels qui sont nécessaires à l'exécution de cette mission de conseil, dans le respect des secrets protégés par la loi.",
+   "contexte_avant": "plusieurs des États membres auxquels ou dans lesquels le service essentiel est fourni et avec l'accord de l'autorité administrative compétente, faire l'objet d'une mission de conseil au titre de laquelle il doit garantir l'accès aux informations, systèmes et",
+   "passage_a": "aux",
+   "passage_b": "",
+   "contexte_apres": "installations relatifs à la fourniture de ses services essentiels qui sont nécessaires à l'exécution de cette mission de conseil, dans le respect des secrets protégés par la loi.\n« Sur le fondement des conclusions de la mission de conseil, l'opérateur se voit",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.47,
+    "probabilites": {
+     "forme_seule": 0.13,
+     "meme_effet": 0.25,
+     "effet_different": 0.6,
+     "indetermine": 0.02
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.91,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.02,
+     "effet_different": 0.93,
+     "indetermine": 0.02
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54372:seance|T0/41627|1169",
+   "phrase_a": "Le juge aux affaires familiales peut à tout moment, à la juridiction qui les a ordonnées ou de l'une des parties ou après avoir fait procéder à toute mesure d'instruction utile, après avoir invité chacune d'entre elles à s'exprimer, supprimer ou modifier tout ou partie des mesures énoncées dans l'ordonnance de protection de l'enfant, en décider de nouvelles, accorder à la personne défenderesse une dispense temporaire d'observer certaines des obligations qui lui ont été imposées ou rapporter l'",
+   "phrase_b": "Le juge aux affaires familiales peut à tout moment, à la demande du ministère public ou de l'une des parties ou après avoir fait procéder à toute mesure d'instruction utile, après avoir invité chacune d'entre elles à s'exprimer, supprimer ou modifier tout ou partie des mesures énoncées dans l'ordonnance de protection de l'enfant, en décider de nouvelles, accorder à la personne défenderesse une dispense temporaire d'observer certaines des obligations qui lui ont été imposées ou rapporter l'",
+   "contexte_avant": "procureur de la République.\n« Les mesures mentionnées aux 1° à 4° du présent article sont prises pour une durée maximale de douze mois à compter de la notification de l'ordonnance. Le juge aux affaires familiales peut à tout moment, à la",
+   "passage_a": "juridiction qui les a ordonnées",
+   "passage_b": "demande du ministère public",
+   "contexte_apres": "ou de l'une des parties ou après avoir fait procéder à toute mesure d'instruction utile, après avoir invité chacune d'entre elles à s'exprimer, supprimer ou modifier tout ou partie des mesures énoncées dans l'ordonnance de protection de l",
+   "regle": null,
+   "taille": 5,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.91,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.02,
+     "effet_different": 0.93,
+     "indetermine": 0.04
+    }
+   },
+   "annotation": "different",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.75,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.05,
+     "effet_different": 0.81,
+     "indetermine": 0.11
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N52985:seance|T0/4846|220",
+   "phrase_a": "-Lorsque le droit de communication prévu à la présente section est exercé à l'égard d'une personne, d'un établissement ou d'un organisme soumis à l'obligation prévue au premier alinéa de l'article 1649 A du code général des impôts, les agents des douanes compétents peuvent lui demander de répondre sous une forme dématérialisée, selon des modalités et dans un format déterminés par arrêté du ministre chargé des douanes.",
+   "phrase_b": "-Lorsque le droit de communication prévu à la présente section est exercé à l'égard d'une personne, d'un établissement ou d'un organisme soumis à l'obligation prévue au premier alinéa de l'article 1649 A du code général des impôts, les agents des douanes compétents peuvent lui demander de répondre sous une forme dématérialisée, selon les modalités et dans un format déterminés par arrêté du ministre chargé des douanes.",
+   "contexte_avant": "'une personne, d'un établissement ou d'un organisme soumis à l'obligation prévue au premier alinéa de l'article 1649 A du code général des impôts, les agents des douanes compétents peuvent lui demander de répondre sous une forme dématérialisée, selon",
+   "passage_a": "des",
+   "passage_b": "les",
+   "contexte_apres": "modalités et dans un format déterminés par arrêté du ministre chargé des douanes. »",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.56,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.23,
+     "effet_different": 0.67,
+     "indetermine": 0.07
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.33,
+    "probabilites": {
+     "forme_seule": 0.05,
+     "meme_effet": 0.19,
+     "effet_different": 0.5,
+     "indetermine": 0.26
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N52040:seance|AMANR5L17PO838901BTC1617P0D1N000151/577|302",
+   "phrase_a": "« Un décret en Conseil d'État détermine les modalités d'application du présent article, notamment la composition ainsi que les modalités d'organisation et de fonctionnement du conseil.",
+   "phrase_b": "« Un décret en Conseil d'État détermine les modalités d'application du présent article, notamment la composition, les modalités d'organisation et de fonctionnement du conseil.",
+   "contexte_avant": "« Le secrétariat du conseil est assuré par l'institution paritaire nationale mentionnée à l'article L. 6323-17-5-1.\n« Un décret en Conseil d'État détermine les modalités d'application du présent article, notamment la composition",
+   "passage_a": "ainsi que",
+   "passage_b": ",",
+   "contexte_apres": "les modalités d'organisation et de fonctionnement du conseil. »\nII.-Le présent article entre en vigueur au 1er janvier 2026.",
+   "regle": null,
+   "taille": 2,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.37,
+    "probabilites": {
+     "forme_seule": 0.16,
+     "meme_effet": 0.53,
+     "effet_different": 0.28,
+     "indetermine": 0.03
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.41,
+    "probabilites": {
+     "forme_seule": 0.13,
+     "meme_effet": 0.24,
+     "effet_different": 0.56,
+     "indetermine": 0.07
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51329:commission|T0/1351|24",
+   "phrase_a": "« deux tiers » sont remplacés par les mots :",
+   "phrase_b": "« d'au moins deux tiers » sont remplacés par les mots :",
+   "contexte_avant": "Aux premier, deuxième et dernier alinéas de l'article 815-5-1 du code civil, les mots : «",
+   "passage_a": "",
+   "passage_b": "d'au moins",
+   "contexte_apres": "deux tiers » sont remplacés par les mots : « plus de la moitié ».",
+   "regle": null,
+   "taille": 4,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.23,
+    "probabilites": {
+     "forme_seule": 0.05,
+     "meme_effet": 0.11,
+     "effet_different": 0.42,
+     "indetermine": 0.42
+    }
+   },
+   "annotation": "different",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.44,
+    "probabilites": {
+     "forme_seule": 0.08,
+     "meme_effet": 0.09,
+     "effet_different": 0.58,
+     "indetermine": 0.25
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51732:commission|AMANR5L17PO419604B1560P0D1N000206/325|63",
+   "phrase_a": "« L. 333-10 et L. 333-11 » sont remplacés par les références :",
+   "phrase_b": "« L. 333-10 et L. 333-11 » sont remplacées par les références :",
+   "contexte_avant": "encadrer l'influence commerciale et à lutter contre les dérives des influenceurs sur les réseaux sociaux est ainsi modifiée :\n1° Au 5° de l'article 3, les références : « L. 333-10 et L. 333-11 » sont",
+   "passage_a": "remplacés",
+   "passage_b": "remplacées",
+   "contexte_apres": "par les références : « L. 333-10, L. 333-11 et L. 333-13 »\n2° Après le VI de l'article 4, il est inséré un alinéa ainsi rédigé : « VI bis.-Est interdite",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.28,
+    "probabilites": {
+     "forme_seule": 0.1,
+     "meme_effet": 0.23,
+     "effet_different": 0.46,
+     "indetermine": 0.21
+    }
+   },
+   "annotation": "forme",
+   "jugement_fragment": {
+    "choix": "forme_seule",
+    "confiance": 0.2,
+    "probabilites": {
+     "forme_seule": 0.4,
+     "meme_effet": 0.28,
+     "effet_different": 0.17,
+     "indetermine": 0.15
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54083:commission|T0/3483|119",
+   "phrase_a": "-Lorsqu'un marché de défense ou de sécurité régi par les livres III ou V de la deuxième partie du code de la commande publique met à la charge de l'État des frais d'études, de recherche, de développement ou de fabrication de tout objet, logiciel, construction ou tout outillage, l'autorité administrative en obtient le remboursement total ou partiel sous forme de redevances mises à la charge du titulaire du marché quand celui-ci réalise l'un des actes suivants au profit d'un autre client que l'État :",
+   "phrase_b": "-Lorsqu'un marché de défense ou de sécurité régi par les livres III ou V de la deuxième partie du code de la commande publique met à la charge de l'État des frais d'études, de recherche, de développement ou de fabrication de tout objet, logiciel, construction ou outillage, l'autorité administrative en obtient le remboursement total ou partiel sous forme de redevances mises à la charge du titulaire du marché quand celui-ci réalise l'un des actes suivants au profit d'un autre client que l'État :",
+   "contexte_avant": "ou de sécurité régi par les livres III ou V de la deuxième partie du code de la commande publique met à la charge de l'État des frais d'études, de recherche, de développement ou de fabrication de tout objet, logiciel, construction ou",
+   "passage_a": "tout",
+   "passage_b": "",
+   "contexte_apres": "outillage, l'autorité administrative en obtient le remboursement total ou partiel sous forme de redevances mises à la charge du titulaire du marché quand celui-ci réalise l'un des actes suivants au profit d'un autre client que l'État :\n«",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.17,
+    "probabilites": {
+     "forme_seule": 0.23,
+     "meme_effet": 0.38,
+     "effet_different": 0.36,
+     "indetermine": 0.03
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.93,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.01,
+     "effet_different": 0.95,
+     "indetermine": 0.03
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51672:seance|T0/1|786",
+   "phrase_a": "« Elle se voit remettre un livret d'information, accessible aux personnes en situation de handicap visuel ou auditif et disponible sous le format « facile à lire et à comprendre », sur ses droits en matière d'accompagnement et de soins palliatifs mentionnés à l'article L. 1110-10 ;",
+   "phrase_b": "« Elle se voit remettre un livret d'information, accessible aux personnes en situation de handicap visuel ou auditif et disponible dans un format « facile à lire et à comprendre », sur ses droits en matière d'accompagnement et de soins palliatifs mentionnés à l'article L. 1110-10 ;",
+   "contexte_avant": "4° La troisième phrase du premier alinéa du I de l'article L. 1111-2 est remplacée par deux phrases ainsi rédigées : « Elle se voit remettre un livret d'information, accessible aux personnes en situation de handicap visuel ou auditif et disponible",
+   "passage_a": "sous le",
+   "passage_b": "dans un",
+   "contexte_apres": "format « facile à lire et à comprendre », sur ses droits en matière d'accompagnement et de soins palliatifs mentionnés à l'article L. 1110-10 ; elle est également informée de la possibilité de recevoir, lorsque son état de santé le permet",
+   "regle": null,
+   "taille": 2,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.84,
+    "probabilites": {
+     "forme_seule": 0.04,
+     "meme_effet": 0.88,
+     "effet_different": 0.05,
+     "indetermine": 0.03
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "indetermine",
+    "confiance": 0.21,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.17,
+     "effet_different": 0.4,
+     "indetermine": 0.41
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N50724:commission|T0/508|808",
+   "phrase_a": "c) Après la même phrase, les mots :",
+   "phrase_b": "c) À la même phrase, les mots :",
+   "contexte_avant": "« et sur l'activité de la mission « égalité et diversité », qui rend notamment compte des actions menées par l'université en matière de lutte contre l'antisémitisme et le racisme et des signalements recueillis. Il présente également » ;\nc)",
+   "passage_a": "Après",
+   "passage_b": "À",
+   "contexte_apres": "la même phrase, les mots : « ainsi qu'» sont supprimés.\n3° Le chapitre II du titre III du livre VII est complété par un article L. 732-4 ainsi rédigé :\n« Art. L. 732-4.",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "effet absent",
+   "jugement_phrase": {
+    "choix": "indetermine",
+    "confiance": 0.16,
+    "probabilites": {
+     "forme_seule": 0.06,
+     "meme_effet": 0.21,
+     "effet_different": 0.36,
+     "indetermine": 0.37
+    }
+   },
+   "annotation": "indetermine",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.41,
+    "probabilites": {
+     "forme_seule": 0.05,
+     "meme_effet": 0.13,
+     "effet_different": 0.56,
+     "indetermine": 0.26
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N52985:seance|T0/34771|1806",
+   "phrase_a": "« Les constatations établies à cette occasion font foi jusqu'à preuve du contraire, y compris lorsqu'ils constatent des abus, des fautes ou des fraudes intervenus en méconnaissance des obligations prévues au présent chapitre ou au code de la sécurité sociale.",
+   "phrase_b": "« Les constatations établies à cette occasion font foi jusqu'à preuve du contraire, y compris lorsqu'ils constatent des abus, des fautes ou des fraudes en méconnaissance des obligations prévues au présent chapitre ou au code de la sécurité sociale.",
+   "contexte_avant": "Les agents vérifient l'exactitude des déclarations, des attestations et des justificatifs de toute nature fournis.\n« Les constatations établies à cette occasion font foi jusqu'à preuve du contraire, y compris lorsqu'ils constatent des abus, des fautes ou des fraudes",
+   "passage_a": "intervenus",
+   "passage_b": "",
+   "contexte_apres": "en méconnaissance des obligations prévues au présent chapitre ou au code de la sécurité sociale. Les constatations sont communicables à un autre organisme de protection sociale afin que le directeur de cet organisme en tire éventuellement les conséquences, selon les procédures qui lui sont applicables et dans le",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.28,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.43,
+     "effet_different": 0.46,
+     "indetermine": 0.08
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.81,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.03,
+     "effet_different": 0.86,
+     "indetermine": 0.09
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N52985:seance|T0/39654|845",
+   "phrase_a": "du travail mentionnés à l'article L. 8112-1 du présent code peuvent être autorisés à être identifiés dans l'ensemble des opérations de contrôle et les actes de procédure subséquents, à défaut de ses nom et prénom, par un numéro d'immatriculation administrative, complété par sa qualité et sa direction d'affectation, lorsque la révélation de son identité est susceptible, compte tenu des conditions d'exercice de leur mission, de mettre en danger sa vie ou son intégrité physique ou celles de ses proches.",
+   "phrase_b": "du travail mentionnés à l'article L. 8112-1 du présent code peuvent être autorisés à être identifiés dans l'ensemble des opérations de contrôle et les actes de procédure subséquents, à défaut de ses nom et prénom, par un numéro d'immatriculation administrative, complété par sa qualité et sa direction d'affectation, lorsque la révélation de son identité est susceptible, compte tenu des conditions d'exercice de sa mission, de mettre en danger sa vie ou son intégrité physique ou celles de ses proches.",
+   "contexte_avant": "les actes de procédure subséquents, à défaut de ses nom et prénom, par un numéro d'immatriculation administrative, complété par sa qualité et sa direction d'affectation, lorsque la révélation de son identité est susceptible, compte tenu des conditions d'exercice de",
+   "passage_a": "leur",
+   "passage_b": "sa",
+   "contexte_apres": "mission, de mettre en danger sa vie ou son intégrité physique ou celles de ses proches..\n« Les modalités d'application du présent article sont définis par décret en Conseil d'État.\n« II.-Les juridictions administratives et judiciaires ont",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.56,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.1,
+     "effet_different": 0.67,
+     "indetermine": 0.21
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.52,
+    "probabilites": {
+     "forme_seule": 0.05,
+     "meme_effet": 0.18,
+     "effet_different": 0.64,
+     "indetermine": 0.13
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N52743:seance|AMANR5L17PO838901BTC2761P0D1N000003/15|94",
+   "phrase_a": "« La juridiction de l'application des peines peut décider, au regard du contenu desdites observations écrites de la victime mentionnées au III de l'article 712-16-1-1, de saisir le procureur de la République afin que soit attribué à cette victime un dispositif de téléprotection lui permettant d'alerter les autorités publiques, tel que prévu par l'article 41-3-1. »",
+   "phrase_b": "« La juridiction de l'application des peines peut décider, au regard du contenu desdites observations écrites de la victime mentionnées au II de l'article 712-16-1-1, de saisir le procureur de la République afin que soit attribué à cette victime un dispositif de téléprotection lui permettant d'alerter les autorités publiques, tel que prévu par l'article 41-3-1. »",
+   "contexte_avant": "1.-L'État peut autoriser, pour une durée maximum de trois ans, l'expérimentation suivante dans 3 régions :\n« La juridiction de l'application des peines peut décider, au regard du contenu desdites observations écrites de la victime mentionnées au",
+   "passage_a": "III",
+   "passage_b": "II",
+   "contexte_apres": "de l'article 712-16-1-1, de saisir le procureur de la République afin que soit attribué à cette victime un dispositif de téléprotection lui permettant d'alerter les autorités publiques, tel que prévu par l'article 41-3-",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.69,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.01,
+     "effet_different": 0.77,
+     "indetermine": 0.21
+    }
+   },
+   "annotation": "different",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.69,
+    "probabilites": {
+     "forme_seule": 0.2,
+     "meme_effet": 0.01,
+     "effet_different": 0.77,
+     "indetermine": 0.02
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N50640:commission|T0/2145|120",
+   "phrase_a": "a) Les collectivités territoriales, les établissements publics de coopération intercommunale ou des groupes de collectivités territoriales participant à l'expérimentation ;",
+   "phrase_b": "a) Les collectivités territoriales, les établissements publics de coopération intercommunale ou des groupements de collectivités territoriales participant à l'expérimentation ;",
+   "contexte_avant": "au sort sur le territoire de l'expérimentation où ils résident.\nSont également représentés au sein de ce parlement alimentaire, sur la base de leur volontariat, des personnes morales :\na) Les collectivités territoriales, les établissements publics de coopération intercommunale ou des",
+   "passage_a": "groupes",
+   "passage_b": "groupements",
+   "contexte_apres": "de collectivités territoriales participant à l'expérimentation ;\nb) Les centres communaux d'action sociale et les centres intercommunaux d'action sociale ;\nc) Les associations de protection des consommateurs ;\nd) Les associations de protection de l'environnement,",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.21,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.29,
+     "effet_different": 0.41,
+     "indetermine": 0.27
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.35,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.31,
+     "effet_different": 0.51,
+     "indetermine": 0.15
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N53785:commission|AMANR5L17PO419865B2740P0D1N000451/147|26",
+   "phrase_a": "-La perte de recettes pour l'établissement public local Société du Grand Projet du Sud-Ouest est compensée à due concurrence par la création d'une taxe additionnelle à l'accise sur les tabacs prévue au chapitre IV du titre I du livre III du code des impositions sur les biens et services.",
+   "phrase_b": "-La perte de recettes résultant du I pour l'établissement public local Société du Grand Projet du Sud-Ouest est compensée à due concurrence par la création d'une taxe additionnelle à l'accise sur les tabacs prévue au chapitre IV du titre I du livre III du code des impositions sur les biens et services.",
+   "contexte_avant": "I.-Les articles 1609 H et 1609 I du code général des impôts sont abrogés.\nII.-La perte de recettes",
+   "passage_a": "",
+   "passage_b": "résultant du I",
+   "contexte_apres": "pour l'établissement public local Société du Grand Projet du Sud-Ouest est compensée à due concurrence par la création d'une taxe additionnelle à l'accise sur les tabacs prévue au chapitre IV du titre I du livre III du code des impositions sur les",
+   "regle": null,
+   "taille": 3,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.67,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.01,
+     "effet_different": 0.75,
+     "indetermine": 0.23
+    }
+   },
+   "annotation": "different",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.85,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.04,
+     "effet_different": 0.89,
+     "indetermine": 0.06
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54085:seance|T0/1767|50",
+   "phrase_a": "« Sont interdits à l'introduction, à l'importation ou à la mise sur le marché national les denrées alimentaires, produits agricoles, produits horticoles ou aliments pour animaux ayant été produits à l'aide de substances actives phytopharmaceutiques ou de médicaments vétérinaires dont l'utilisation est interdite en France pour des motifs liés à la protection de la santé humaine, animale ou de l'environnement.",
+   "phrase_b": "« Sont interdits à l'introduction, à l'importation ou à la mise sur le marché national les denrées alimentaires, les produits agricoles, produits horticoles ou aliments pour animaux ayant été produits à l'aide de substances actives phytopharmaceutiques ou de médicaments vétérinaires dont l'utilisation est interdite en France pour des motifs liés à la protection de la santé humaine, animale ou de l'environnement.",
+   "contexte_avant": "Le dernier alinéa de l'article L. 236-1 A du code rural et de la pêche maritime est ainsi rédigé :\n« Sont interdits à l'introduction, à l'importation ou à la mise sur le marché national les denrées alimentaires,",
+   "passage_a": "",
+   "passage_b": "les",
+   "contexte_apres": "produits agricoles, produits horticoles ou aliments pour animaux ayant été produits à l'aide de substances actives phytopharmaceutiques ou de médicaments vétérinaires dont l'utilisation est interdite en France pour des motifs liés à la protection de la santé humaine, animale ou de l'environnement",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.47,
+    "probabilites": {
+     "forme_seule": 0.12,
+     "meme_effet": 0.6,
+     "effet_different": 0.21,
+     "indetermine": 0.07
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.27,
+    "probabilites": {
+     "forme_seule": 0.12,
+     "meme_effet": 0.22,
+     "effet_different": 0.45,
+     "indetermine": 0.21
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51132:seance|AMANR5L17PO838901BTC1462P0D1N000009/110|43",
+   "phrase_a": "« notamment en informant les salariés et les agents publics sur les autorisations d'absence dont ils peuvent bénéficier pour participer à des collectes, ».",
+   "phrase_b": "« notamment en informant les salariés et les agents publics des autorisations d'absence dont ils peuvent bénéficier pour participer à des collectes, ».",
+   "contexte_avant": "Au 2° de l'article L. 1222-1 du code de la santé publique, après le mot : « sang, », sont insérés les mots : « notamment en informant les salariés et les agents publics",
+   "passage_a": "sur les",
+   "passage_b": "des",
+   "contexte_apres": "autorisations d'absence dont ils peuvent bénéficier pour participer à des collectes, ».",
+   "regle": null,
+   "taille": 2,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.69,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.77,
+     "effet_different": 0.14,
+     "indetermine": 0.07
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.6,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.13,
+     "effet_different": 0.7,
+     "indetermine": 0.15
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N53785:commission|AMANR5L17PO419865B2740P0D1N000022/1115|446",
+   "phrase_a": "« 2° bis A Les modalités selon lesquelles SNCF Réseau participe à l'atteinte de l'objectif prévu à l'article 131 de la loi n° 2021-1104 du 22 août 2021 précitée ;",
+   "phrase_b": "« 2° bis A Les modalités selon lesquelles SNCF Réseau participe à l'atteinte de l'objectif inscrit à l'article 131 de la loi n° 2021-1104 du 22 août 2021 précitée ;",
+   "contexte_avant": "il est inséré le mot : « détaillées » ;\n9° Après le 2°, il est inséré un 2° bis A ainsi rédigé :\n« 2° bis A Les modalités selon lesquelles SNCF Réseau participe à l'atteinte de l'objectif",
+   "passage_a": "prévu",
+   "passage_b": "inscrit",
+   "contexte_apres": "à l'article 131 de la loi n° 2021-1104 du 22 août 2021 précitée ; »\n10° Au 2° bis, les mots : «, le cas échéant, » sont supprimés ;\n11° Après le 4°, sont",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.13,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.35,
+     "effet_different": 0.31,
+     "indetermine": 0.33
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "meme_effet",
+    "confiance": 0.21,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.41,
+     "effet_different": 0.33,
+     "indetermine": 0.24
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N53187:seance|AMANR5L17PO838901BTC2341P0D1N000065/211|43",
+   "phrase_a": "L'article 5 de la section 2 du chapitre II de la loi n° 2023-451 du 9 juin 2023 visant à encadrer l'influence commerciale et à lutter contre les dérives des influenceurs sur les réseaux sociaux est complétée par un V ainsi rédigé :",
+   "phrase_b": "L'article 5 de la section 2 du chapitre II de la loi n° 2023-451 du 9 juin 2023 visant à encadrer l'influence commerciale et à lutter contre les dérives des influenceurs sur les réseaux sociaux est complété par un V ainsi rédigé :",
+   "contexte_avant": "L'article 5 de la section 2 du chapitre II de la loi n° 2023-451 du 9 juin 2023 visant à encadrer l'influence commerciale et à lutter contre les dérives des influenceurs sur les réseaux sociaux est",
+   "passage_a": "complétée",
+   "passage_b": "complété",
+   "contexte_apres": "par un V ainsi rédigé :\n« V.-La promotion de services tels que les réseaux sociaux ou plateformes en ligne s'accompagne d'une mention « produits dangereux pour les moins de quinze ans ». Cette mention est claire, lisible et identifiable",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.27,
+    "probabilites": {
+     "forme_seule": 0.05,
+     "meme_effet": 0.29,
+     "effet_different": 0.45,
+     "indetermine": 0.21
+    }
+   },
+   "annotation": "forme",
+   "jugement_fragment": {
+    "choix": "forme_seule",
+    "confiance": 0.17,
+    "probabilites": {
+     "forme_seule": 0.38,
+     "meme_effet": 0.27,
+     "effet_different": 0.25,
+     "indetermine": 0.1
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54085:commission|T0/19089|137",
+   "phrase_a": "actes de l'autorité administrative qui conditionnent, même pour partie, la construction, la réalisation, la mise en service, l'exploitation, la modification ou l'extension de projets intervenant en matière d'énergie décarbonée, d'infrastructures de transport, d'agriculture, d'industrie, d'urbanisme et d'aménagement, dont le contentieux est régi par des dispositions spéciales en fonction de seuils et de critères définis par décret en Conseil d'État.",
+   "phrase_b": "actes de l'autorité administrative qui conditionnent, même pour partie, la construction, la réalisation, la mise en service, l'exploitation, la modification ou l'extension de projets intervenant en matière d'énergie décarbonée, d'infrastructures de transport, d'agriculture, d'industrie, d'urbanisme et d'aménagement, dont le contentieux est régi par des dispositions spéciales en fonction de seuils et critères définis par décret en Conseil d'État.",
+   "contexte_avant": "ou l'extension de projets intervenant en matière d'énergie décarbonée, d'infrastructures de transport, d'agriculture, d'industrie, d'urbanisme et d'aménagement, dont le contentieux est régi par des dispositions spéciales en fonction de seuils et",
+   "passage_a": "de",
+   "passage_b": "",
+   "contexte_apres": "critères définis par décret en Conseil d'État.\n« II.-Lorsque le droit de former un recours contre un acte relevant du I est mis en œuvre dans des conditions qui traduisent un comportement abusif de la part du requérant et qui causent un préjudice",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.27,
+    "probabilites": {
+     "forme_seule": 0.32,
+     "meme_effet": 0.45,
+     "effet_different": 0.19,
+     "indetermine": 0.04
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.75,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.04,
+     "effet_different": 0.81,
+     "indetermine": 0.13
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N50779:seance|T0/4257|117",
+   "phrase_a": "la Constitution et dans les collectivités d'outre-mer de Saint-Barthélemy, de Saint-Martin, de Saint-Pierre-et-Miquelon et de Wallis-et-Futuna, le fait, pour un groupe de distribution, de détenir une part de marché supérieure à un seuil fixé par le pouvoir réglementaire au regard des caractéristiques du secteur économique, du groupe et de la position dominante d'un ou de plusieurs acteurs sur le marché concerné.",
+   "phrase_b": "la Constitution et dans les collectivités d'outre-mer de Saint-Barthélemy, de Saint-Martin, de Saint-Pierre-et-Miquelon et de Wallis-et-Futuna, le fait, pour un groupe de distribution, de détenir une part de marché supérieure à un seuil fixé par le pouvoir réglementaire au regard des caractéristiques du secteur économique, du groupe et de la position dominante d'un ou plusieurs acteurs sur le marché concerné.",
+   "contexte_avant": "de Wallis-et-Futuna, le fait, pour un groupe de distribution, de détenir une part de marché supérieure à un seuil fixé par le pouvoir réglementaire au regard des caractéristiques du secteur économique, du groupe et de la position dominante d'un ou",
+   "passage_a": "de",
+   "passage_b": "",
+   "contexte_apres": "plusieurs acteurs sur le marché concerné. »",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.56,
+    "probabilites": {
+     "forme_seule": 0.11,
+     "meme_effet": 0.67,
+     "effet_different": 0.15,
+     "indetermine": 0.07
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.77,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.05,
+     "effet_different": 0.83,
+     "indetermine": 0.09
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51670:seance|T0/1701|478",
+   "phrase_a": "« 3° Lorsque la personne fait l'objet d'une mesure de protection juridique avec assistance ou représentation relative à la personne, informe la personne chargée de la mesure de protection et tient compte des observations qu'il communique au collège pluriprofessionnel lors de sa réunion ;",
+   "phrase_b": "« 3° Lorsque la personne fait l'objet d'une mesure de protection juridique avec assistance ou représentation relative à la personne, informe la personne chargée de la mesure de protection et tient compte des observations qu'elle formule ;",
+   "contexte_avant": "dans le traitement de la personne ;\n« 3° Lorsque la personne fait l'objet d'une mesure de protection juridique avec assistance ou représentation relative à la personne, informe la personne chargée de la mesure de protection et tient compte des observations qu'",
+   "passage_a": "il communique au collège pluriprofessionnel lors de sa réunion",
+   "passage_b": "elle formule",
+   "contexte_apres": ";\n« 4° Peut, à la demande de la personne, recueillir l'avis de la personne de confiance, lorsqu'elle a été désignée.\n« Lorsque la personne malade est atteinte d'une maladie neurodégénérative, l'évaluation de sa",
+   "regle": null,
+   "taille": 9,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.96,
+    "probabilites": {
+     "forme_seule": 0.0,
+     "meme_effet": 0.01,
+     "effet_different": 0.97,
+     "indetermine": 0.02
+    }
+   },
+   "annotation": "different",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.55,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.02,
+     "effet_different": 0.66,
+     "indetermine": 0.31
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54083:commission|T0/33778|19",
+   "phrase_a": "Au premier alinéa de l'article L. 4141-4 du code de la défense, après les mots :",
+   "phrase_b": "Au premier alinéa de l'article L. 4141-4 du code de la défense, après la référence :",
+   "contexte_avant": "Au premier alinéa de l'article L. 4141-4 du code de la défense, après",
+   "passage_a": "les mots",
+   "passage_b": "la référence",
+   "contexte_apres": ": « de l'article L. 4123-10 » sont insérés les mots : «, des a, c et f du 1° ».",
+   "regle": null,
+   "taille": 2,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.51,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.07,
+     "effet_different": 0.63,
+     "indetermine": 0.28
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.47,
+    "probabilites": {
+     "forme_seule": 0.04,
+     "meme_effet": 0.14,
+     "effet_different": 0.6,
+     "indetermine": 0.22
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N52985:seance|T0/1|8",
+   "phrase_a": "I.-Le chapitre III du titre XIII du livre IV du code de procédure pénale est complété par un article 706-1-3 ainsi rétabli :",
+   "phrase_b": "I.-Le chapitre III du titre III du livre IV du code de procédure pénale est complété par un article 706-1-3 ainsi rétabli :",
+   "contexte_avant": "I.-Le chapitre III du titre",
+   "passage_a": "XIII",
+   "passage_b": "III",
+   "contexte_apres": "du livre IV du code de procédure pénale est complété par un article 706-1-3 ainsi rétabli :\n« Art. 706-1-3.-Par dérogation à l'article 11, sur autorisation du procureur de la République les ayant requis",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.73,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.01,
+     "effet_different": 0.8,
+     "indetermine": 0.17
+    }
+   },
+   "annotation": "different",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.64,
+    "probabilites": {
+     "forme_seule": 0.15,
+     "meme_effet": 0.05,
+     "effet_different": 0.73,
+     "indetermine": 0.07
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N52985:commission|T0/51047|98",
+   "phrase_a": "«, soit par une sanction prononcée par le président du conseil départemental dans les conditions prévues à l'article L. 262-52 du code de l'action sociale et des familles ».\nII.-(Supprimé)",
+   "phrase_b": "«, soit par une sanction prononcée par le président du conseil départemental dans les conditions prévues à l'article L. 262-52 du code de l'action sociale et des familles ».",
+   "contexte_avant": "L'avant-dernier alinéa est complété par les mots : «, soit par une sanction prononcée par le président du conseil départemental dans les conditions prévues à l'article L. 262-52 du code de l'action sociale et des familles ».",
+   "passage_a": "II.-(Supprimé)",
+   "passage_b": "",
+   "contexte_apres": "",
+   "regle": null,
+   "taille": 7,
+   "etiquette": "mention",
+   "jugement_phrase": {
+    "choix": "forme_seule",
+    "confiance": 0.31,
+    "probabilites": {
+     "forme_seule": 0.48,
+     "meme_effet": 0.03,
+     "effet_different": 0.41,
+     "indetermine": 0.08
+    }
+   },
+   "annotation": "different",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.44,
+    "probabilites": {
+     "forme_seule": 0.08,
+     "meme_effet": 0.14,
+     "effet_different": 0.58,
+     "indetermine": 0.2
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N53159:commission|T0/4342|31",
+   "phrase_a": "« Cette confiscation est obligatoire et n'a pas à être motivée.",
+   "phrase_b": "« Cette confiscation est obligatoire et n'a pas motivée.",
+   "contexte_avant": "Le sixième alinéa de l'article 131-21 du code pénal est complété par deux phrases ainsi rédigées : « Cette confiscation est obligatoire et n'a pas",
+   "passage_a": "à être",
+   "passage_b": "",
+   "contexte_apres": "motivée. Toutefois, la juridiction peut, par une décision spécialement motivée, décider de ne pas prononcer la confiscation de tout ou partie des biens mentionnés au présent alinéa en considération des circonstances de l'infraction et de la personnalité de son auteur. »",
+   "regle": null,
+   "taille": 2,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.45,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.05,
+     "effet_different": 0.59,
+     "indetermine": 0.33
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.69,
+    "probabilites": {
+     "forme_seule": 0.04,
+     "meme_effet": 0.07,
+     "effet_different": 0.77,
+     "indetermine": 0.12
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54006:commission|AMANR5L17PO419865B2595P0D1N000001/268|146",
+   "phrase_a": "« et du conseil municipal de la commune ».",
+   "phrase_b": "« et du conseil municipal de la commune concernée par le biais d'une délibération ».",
+   "contexte_avant": "Après la première phrase, est insérée la phrase suivante : « Dans le cas d'une reconstruction, les caractéristiques principales de l'ancienne construction sont conservées » ;\n3° Il est complété par les mots : « et du conseil municipal de la commune",
+   "passage_a": "",
+   "passage_b": "concernée par le biais d'une délibération",
+   "contexte_apres": "».",
+   "regle": null,
+   "taille": 8,
+   "etiquette": "effet absent",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.69,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.03,
+     "effet_different": 0.77,
+     "indetermine": 0.18
+    }
+   },
+   "annotation": "indetermine",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.68,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.03,
+     "effet_different": 0.76,
+     "indetermine": 0.18
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51672:commission|AMANR5L17PO420120B1102P0D1N000089/272|54",
+   "phrase_a": "Dans un délai de six mois à compter de la promulgation de la présente loi, le Gouvernement remet au Parlement un rapport évaluant l'opportunité de permettre à une équipe soignante de prescrire à toute personne atteinte d'une maladie grave, bénéficiant de soins palliatifs hospitalisée dans un établissement de soins ou à domicile, des rencontres avec un biographe hospitalier si elle y consent.",
+   "phrase_b": "Dans un délai de six mois à compter de la promulgation de la présente loi, le Gouvernement remet au Parlement un rapport évaluant l'opportunité de permettre à une équipe soignante de prescrire à toute personne atteinte d'une maladie grave, bénéficiant de soins palliatifs hospitalisée dans un établissement de soin ou à domicile, des rencontres avec un biographe hospitalier si elle y consent.",
+   "contexte_avant": "six mois à compter de la promulgation de la présente loi, le Gouvernement remet au Parlement un rapport évaluant l'opportunité de permettre à une équipe soignante de prescrire à toute personne atteinte d'une maladie grave, bénéficiant de soins palliatifs hospitalisée dans un établissement de",
+   "passage_a": "soins",
+   "passage_b": "soin",
+   "contexte_apres": "ou à domicile, des rencontres avec un biographe hospitalier si elle y consent. L'objet de ces rencontres est d'établir le récit de la vie de la personne atteinte d'une maladie grave. Ce récit est ensuite livré, à titre gracieux,",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.19,
+    "probabilites": {
+     "forme_seule": 0.18,
+     "meme_effet": 0.33,
+     "effet_different": 0.39,
+     "indetermine": 0.1
+    }
+   },
+   "annotation": "forme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.35,
+    "probabilites": {
+     "forme_seule": 0.07,
+     "meme_effet": 0.3,
+     "effet_different": 0.51,
+     "indetermine": 0.12
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54372:seance|T0/55246|86",
+   "phrase_a": "132-6-2.-Par dérogation aux articles 132-3 à 132-5, les peines prononcées pour les crimes prévus à la section 1 du chapitre Ier du titre II du livre II, au paragraphe 1 de la section 1 et à la section 3 du chapitre II du titre II du livre II, lorsqu'ils sont commis en concours sur un ou sur plusieurs mineurs de 15 ans, se cumulent entre elles sans limitation de quantum et sans possibilité de confusion.",
+   "phrase_b": "132-6-2.-Par dérogation aux articles 132-3 à 132-5, les peines prononcées pour les crimes prévus à la section 1 du chapitre Ier du titre II du livre II, au paragraphe 1 de la section 1 et à la section 3 du chapitre II du même titre II du livre II, lorsqu'ils sont commis en concours sur un ou sur plusieurs mineurs de 15 ans, se cumulent entre elles sans limitation de quantum et sans possibilité de confusion.",
+   "contexte_avant": "-Par dérogation aux articles 132-3 à 132-5, les peines prononcées pour les crimes prévus à la section 1 du chapitre Ier du titre II du livre II, au paragraphe 1 de la section 1 et à la section 3 du chapitre II du",
+   "passage_a": "",
+   "passage_b": "même",
+   "contexte_apres": "titre II du livre II, lorsqu'ils sont commis en concours sur un ou sur plusieurs mineurs de 15 ans, se cumulent entre elles sans limitation de quantum et sans possibilité de confusion.\n« La dernière juridiction appelée à statuer sur l'une des",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.13,
+    "probabilites": {
+     "forme_seule": 0.13,
+     "meme_effet": 0.35,
+     "effet_different": 0.22,
+     "indetermine": 0.3
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.47,
+    "probabilites": {
+     "forme_seule": 0.04,
+     "meme_effet": 0.08,
+     "effet_different": 0.6,
+     "indetermine": 0.28
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N53785:commission|AMANR5L17PO419865B2740P0D1N000035/228|98",
+   "phrase_a": "«, les organismes privés et les acteurs de l'économie sociale et solidaire dont les associations et notamment celles qui œuvrent dans le champ de la mobilité solidaire ».",
+   "phrase_b": "«, privés et les acteurs de l'économie sociale et solidaire dont les associations et notamment celles qui œuvrent dans le champ de la mobilité solidaire ».",
+   "contexte_avant": "et solidaire dont les associations et notamment celles qui œuvrent dans le champ de la mobilité solidaire » ;\n2° Au troisième alinéa de l'article L. 1215-4, les mots : « et privés » sont remplacés par les mots : «,",
+   "passage_a": "les organismes",
+   "passage_b": "",
+   "contexte_apres": "privés et les acteurs de l'économie sociale et solidaire dont les associations et notamment celles qui œuvrent dans le champ de la mobilité solidaire ».",
+   "regle": null,
+   "taille": 2,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.76,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.04,
+     "effet_different": 0.82,
+     "indetermine": 0.12
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.77,
+    "probabilites": {
+     "forme_seule": 0.04,
+     "meme_effet": 0.06,
+     "effet_different": 0.83,
+     "indetermine": 0.07
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51670:seance|T0/6937|328",
+   "phrase_a": "« Lorsque, à l'issue du contrôle mentionné au 1° du présent I, la commission estime que des faits commis à l'occasion de la mise en œuvre, par des professionnels de santé, des dispositions des sous-sections 2 à 4 de la présente section sont susceptibles de constituer un manquement aux règles déontologiques ou professionnelles, elle saisit la chambre disciplinaire de l'ordre compétent.",
+   "phrase_b": "« Lorsque, à l'issue du contrôle mentionné au 1° du présent I, la commission estime que des faits commis à l'occasion de la mise en œuvre, par des professionnels de santé, des sous-sections 2 à 4 de la présente section sont susceptibles de constituer un manquement aux règles déontologiques ou professionnelles, elle saisit la chambre disciplinaire de l'ordre compétent.",
+   "contexte_avant": "nationale de l'informatique et des libertés.\n« Lorsque, à l'issue du contrôle mentionné au 1° du présent I, la commission estime que des faits commis à l'occasion de la mise en œuvre, par des professionnels de santé,",
+   "passage_a": "des dispositions",
+   "passage_b": "",
+   "contexte_apres": "des sous-sections 2 à 4 de la présente section sont susceptibles de constituer un manquement aux règles déontologiques ou professionnelles, elle saisit la chambre disciplinaire de l'ordre compétent.\n« Lorsque la commission estime que les faits sont susceptibles de constituer un crime ou",
+   "regle": null,
+   "taille": 2,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "forme_seule",
+    "confiance": 0.81,
+    "probabilites": {
+     "forme_seule": 0.86,
+     "meme_effet": 0.1,
+     "effet_different": 0.03,
+     "indetermine": 0.01
+    }
+   },
+   "annotation": "different",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.95,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.01,
+     "effet_different": 0.96,
+     "indetermine": 0.02
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51518:seance|T0/545|29",
+   "phrase_a": "Le paragraphe 3 de la sous-section 3 de la section 1 du chapitre IV du titre II du livre VII du code de la sécurité intérieure est complété par un article L. 724-13-1 ainsi rédigé :",
+   "phrase_b": "Le paragraphe 3 de la sous-section 3 de la section 1 du chapitre IV du titre II du livre VII du code de la sécurité intérieure est complétée par un article L. 724-13-1 ainsi rédigé :",
+   "contexte_avant": "Le paragraphe 3 de la sous-section 3 de la section 1 du chapitre IV du titre II du livre VII du code de la sécurité intérieure est",
+   "passage_a": "complété",
+   "passage_b": "complétée",
+   "contexte_apres": "par un article L. 724-13-1 ainsi rédigé :\n« Art. L 724-13-1.-La reconnaissance par la Nation de l'engagement citoyen en qualité de réserviste de sécurité civile se traduit notamment sous forme de récompenses et",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.24,
+    "probabilites": {
+     "forme_seule": 0.06,
+     "meme_effet": 0.28,
+     "effet_different": 0.43,
+     "indetermine": 0.23
+    }
+   },
+   "annotation": "forme",
+   "jugement_fragment": {
+    "choix": "meme_effet",
+    "confiance": 0.28,
+    "probabilites": {
+     "forme_seule": 0.28,
+     "meme_effet": 0.46,
+     "effet_different": 0.15,
+     "indetermine": 0.11
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51732:seance|T0/18972|304",
+   "phrase_a": "« sur leur contribution au développement du sport professionnel féminin, ».",
+   "phrase_b": "«, leur contribution au développement du sport professionnel féminin, ».",
+   "contexte_avant": "a) Après le mot : « par », sont insérés les mots : « la fédération ou, le cas échéant, par » ;\na bis) Après la seconde occurrence du mot : « sociétés, », sont insérés les mots : «",
+   "passage_a": "sur",
+   "passage_b": ",",
+   "contexte_apres": "leur contribution au développement du sport professionnel féminin, ».",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.21,
+    "probabilites": {
+     "forme_seule": 0.07,
+     "meme_effet": 0.15,
+     "effet_different": 0.41,
+     "indetermine": 0.37
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.2,
+    "probabilites": {
+     "forme_seule": 0.22,
+     "meme_effet": 0.11,
+     "effet_different": 0.4,
+     "indetermine": 0.27
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51732:commission|T0/8767|265",
+   "phrase_a": "« la fédération ou, le cas échéant, par » ;",
+   "phrase_b": "« la fédération ou, le cas échéant, » ;",
+   "contexte_avant": "principe de solidarité entre les clubs professionnels évoluant dans des divisions différentes. » ;\n2° Le dernier alinéa est ainsi modifié :\na) Après le mot : « par », sont insérés les mots : « la fédération ou, le cas échéant,",
+   "passage_a": "par",
+   "passage_b": "",
+   "contexte_apres": "» ;\nb) Sont ajoutées deux phrases ainsi rédigées : « La fédération définit un écart maximal de distribution des produits audiovisuels entre les sociétés sportives participant à une même compétition. Cet écart est au maximum de un à trois. »",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.27,
+    "probabilites": {
+     "forme_seule": 0.05,
+     "meme_effet": 0.07,
+     "effet_different": 0.45,
+     "indetermine": 0.43
+    }
+   },
+   "annotation": "indetermine",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.97,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.01,
+     "effet_different": 0.98,
+     "indetermine": 0.0
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51732:commission|AMANR5L17PO419604B1560P0D1N000051/767|351",
+   "phrase_a": "« 3° Au livre VI du code de commerce ou, dans le régime antérieur à la loi n° 2005-845 du 26 juillet 2005 de sauvegarde des entreprises, en application du titre VI de la loi n° 85-98 du 25 janvier 1985 relative au redressement et à la liquidation judiciaires des entreprises ou, dans le régime antérieur à cette loi, en application du titre II de la loi n° 67-563 du 13 juillet 1967 sur le règlement judiciaire, la liquidation des biens, la faillite personnelle et les banqueroutes.",
+   "phrase_b": "« 3° Au livre VI du code de commerce ou, dans le régime antérieur à la loi n° 2005-845 du 26 juillet 2005 de sauvegarde des entreprises, en application du titre VI de la loi n° 85-98 du 25 janvier 1985 relative au redressement et à la liquidation judiciaires des entreprises ou, dans le régime antérieur à cette même loi, en application du titre II de la loi n° 67-563 du 13 juillet 1967 sur le règlement judiciaire, la liquidation des biens, la faillite personnelle et les banqueroutes.",
+   "contexte_avant": "loi n° 2005-845 du 26 juillet 2005 de sauvegarde des entreprises, en application du titre VI de la loi n° 85-98 du 25 janvier 1985 relative au redressement et à la liquidation judiciaires des entreprises ou, dans le régime antérieur à cette",
+   "passage_a": "",
+   "passage_b": "même",
+   "contexte_apres": "loi, en application du titre II de la loi n° 67-563 du 13 juillet 1967 sur le règlement judiciaire, la liquidation des biens, la faillite personnelle et les banqueroutes.\n« En outre, nul ne peut exercer l'activité d'",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.41,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.56,
+     "effet_different": 0.27,
+     "indetermine": 0.16
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.25,
+    "probabilites": {
+     "forme_seule": 0.05,
+     "meme_effet": 0.22,
+     "effet_different": 0.44,
+     "indetermine": 0.29
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51670:seance|T0/409|67",
+   "phrase_a": "« Ce droit comprend la possibilité d'accéder à l'aide à mourir dans les conditions prévues à la section 2 bis du chapitre Ier du présent titre et de recevoir une information, délivrée sous une forme compréhensible par tous, concernant cette aide.",
+   "phrase_b": "« Ce droit comprend la possibilité d'accéder à l'aide à mourir dans les conditions prévues à la section 2 bis du chapitre Ier du présent titre et de recevoir une information, délivrée sous une forme compréhensible de tous, concernant cette aide.",
+   "contexte_avant": "publique est complété par une phrase ainsi rédigée : « Ce droit comprend la possibilité d'accéder à l'aide à mourir dans les conditions prévues à la section 2 bis du chapitre Ier du présent titre et de recevoir une information, délivrée sous une forme compréhensible",
+   "passage_a": "par",
+   "passage_b": "de",
+   "contexte_apres": "tous, concernant cette aide. »",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.71,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.78,
+     "effet_different": 0.12,
+     "indetermine": 0.07
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.29,
+    "probabilites": {
+     "forme_seule": 0.08,
+     "meme_effet": 0.23,
+     "effet_different": 0.47,
+     "indetermine": 0.22
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54083:commission|T0/34089|15",
+   "phrase_a": "L'article L. 755-1 du code de l'éducation est ainsi rédigé :",
+   "phrase_b": "L'article L. 755-1 du code de l'éducation est remplacé par les dispositions suivantes :",
+   "contexte_avant": "L'article L. 755-1 du code de l'éducation est",
+   "passage_a": "ainsi rédigé",
+   "passage_b": "remplacé par les dispositions suivantes",
+   "contexte_apres": ":\n« Art. L. 755-1.-L'Ecole polytechnique constitue un établissement public de l'État jouissant de la personnalité morale et de l'autonomie pédagogique et scientifique, administrative et financière, placé sous la tutelle du ministre de la",
+   "regle": null,
+   "taille": 5,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.36,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.21,
+     "effet_different": 0.52,
+     "indetermine": 0.24
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.61,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.04,
+     "effet_different": 0.71,
+     "indetermine": 0.24
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N52958:commission|T0/678|35",
+   "phrase_a": "1° L'article 447 est complété par deux alinéas ainsi rédigés :",
+   "phrase_b": "1° L'article 447 est complété par trois alinéas ainsi rédigés :",
+   "contexte_avant": "La sous-section 3 de la section 4 du chapitre II du titre XI du livre Ier du code civil est ainsi modifiée :\n1° L'article 447 est complété par",
+   "passage_a": "deux",
+   "passage_b": "trois",
+   "contexte_apres": "alinéas ainsi rédigés :\n« Le juge peut également, dans le jugement d'ouverture ou ultérieurement, en considération de la situation de la personne protégée, désigner les personnes susceptibles d'exercer la mesure de protection en cas de décès des personnes désignées en premier",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.96,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.01,
+     "effet_different": 0.97,
+     "indetermine": 0.01
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.97,
+    "probabilites": {
+     "forme_seule": 0.0,
+     "meme_effet": 0.01,
+     "effet_different": 0.98,
+     "indetermine": 0.01
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N53785:commission|T0/4096|185",
+   "phrase_a": "II.-(Supprimé)\nIII.",
+   "phrase_b": "III.",
+   "contexte_avant": "à l'autre pour l'accomplissement des missions de cette dernière. Le cas échéant, cette attribution emporte transfert des subventions attachées aux actifs concernés.\n« Les modalités de changement d'attribution sont déterminées par décret en Conseil d'État. »",
+   "passage_a": "II.-(Supprimé)",
+   "passage_b": "",
+   "contexte_apres": "III.-Les attributions et les transferts prévus au III de l'article L. 2111-20-2 du code des transports du présent article ne donnent lieu au paiement d'aucun impôt, droit ou taxe, ni d'aucune contribution, ni",
+   "regle": null,
+   "taille": 7,
+   "etiquette": "mention",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.24,
+    "probabilites": {
+     "forme_seule": 0.17,
+     "meme_effet": 0.14,
+     "effet_different": 0.43,
+     "indetermine": 0.26
+    }
+   },
+   "annotation": "indetermine",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.84,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.03,
+     "effet_different": 0.88,
+     "indetermine": 0.06
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54372:commission|T0/1556|472",
+   "phrase_a": "-Après l'article L. 221-2-6 du code de l'action sociale et des familles, sont insérés des articles ainsi rédigés :",
+   "phrase_b": "-Après l'article L. 221-2-6 du code de l'action sociale et des familles, sont insérés deux articles ainsi rédigés :",
+   "contexte_avant": "délaissement a été déclaré, par dérogation aux articles 205 à 207, sauf disposition contraire spécialement motivée du jugement. »\nII.-Après l'article L. 221-2-6 du code de l'action sociale et des familles, sont insérés",
+   "passage_a": "des",
+   "passage_b": "deux",
+   "contexte_apres": "articles ainsi rédigés :\n« Art. L. 221-2-7. ‒ Les enfants de moins de trois ans confiés depuis au moins six mois à l'aide sociale à l'enfance en application du 3° de l'article 375-",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.45,
+    "probabilites": {
+     "forme_seule": 0.04,
+     "meme_effet": 0.05,
+     "effet_different": 0.59,
+     "indetermine": 0.32
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.52,
+    "probabilites": {
+     "forme_seule": 0.04,
+     "meme_effet": 0.15,
+     "effet_different": 0.64,
+     "indetermine": 0.17
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51504:seance|AMANR5L17PO838901BTC1104P0D1N000037/773|277",
+   "phrase_a": "« b) Un coefficient multiplicateur maximal par filière, entre le prix des fournisseurs de produits agricoles ou des produits alimentaires comportant un ou plusieurs produits agricoles, et le prix de vente final des denrées alimentaires ou produits agricoles vendus dans le commerce de détail et de gros à prédominance alimentaire.",
+   "phrase_b": "« b) Un coefficient multiplicateur maximum par filière, entre le prix des fournisseurs de produits agricoles ou des produits alimentaires comportant un ou plusieurs produits agricoles, et le prix de vente final des denrées alimentaires ou produits agricoles vendus dans le commerce de détail et de gros à prédominance alimentaire.",
+   "contexte_avant": "taxes, le cas échéant consolidé ou combiné en application de l'article L. 233-16 du code de commerce, réalisé au cours du dernier exercice clos, est supérieur ou égal à 350 millions d'euros ;\n« b) Un coefficient multiplicateur",
+   "passage_a": "maximal",
+   "passage_b": "maximum",
+   "contexte_apres": "par filière, entre le prix des fournisseurs de produits agricoles ou des produits alimentaires comportant un ou plusieurs produits agricoles, et le prix de vente final des denrées alimentaires ou produits agricoles vendus dans le commerce de détail et de gros à prédominance alimentaire. La présente disposition",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.57,
+    "probabilites": {
+     "forme_seule": 0.18,
+     "meme_effet": 0.68,
+     "effet_different": 0.09,
+     "indetermine": 0.05
+    }
+   },
+   "annotation": "forme",
+   "jugement_fragment": {
+    "choix": "meme_effet",
+    "confiance": 0.83,
+    "probabilites": {
+     "forme_seule": 0.04,
+     "meme_effet": 0.87,
+     "effet_different": 0.05,
+     "indetermine": 0.04
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N50910:commission|T0/258|277",
+   "phrase_a": "« Les faits mentionnés aux premier et deuxième alinéas du présent article sont punis de deux ans d'emprisonnement et de 45 000 euros d'amende lorsque les activités concernées sont assujetties au respect de prescriptions sanitaires prévues par le droit de l'Union européenne, par la loi ou le règlement et que l'introduction dans le lieu présente un risque sanitaire pour l'homme, pour les animaux ou pour l'environnement.",
+   "phrase_b": "« Les faits mentionnés aux premier et deuxième alinéas du présent article sont punis de deux ans d'emprisonnement et de 45 000 euros d'amende lorsque les activités concernées sont assujetties au respect de prescriptions sanitaires prévues par le droit de l'Union européenne, la loi ou le règlement et que l'introduction dans le lieu présente un risque sanitaire pour l'homme, pour les animaux ou pour l'environnement.",
+   "contexte_avant": "« Les faits mentionnés aux premier et deuxième alinéas du présent article sont punis de deux ans d'emprisonnement et de 45 000 euros d'amende lorsque les activités concernées sont assujetties au respect de prescriptions sanitaires prévues par le droit de l'Union européenne,",
+   "passage_a": "par",
+   "passage_b": "",
+   "contexte_apres": "la loi ou le règlement et que l'introduction dans le lieu présente un risque sanitaire pour l'homme, pour les animaux ou pour l'environnement.",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.49,
+    "probabilites": {
+     "forme_seule": 0.06,
+     "meme_effet": 0.27,
+     "effet_different": 0.62,
+     "indetermine": 0.05
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.81,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.04,
+     "effet_different": 0.86,
+     "indetermine": 0.07
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N53284:commission|T0/7244|34",
+   "phrase_a": "1° À la fin de la première phrase, les mots :",
+   "phrase_b": "1° À la première phrase, les mots :",
+   "contexte_avant": "L'article L. 742-7 du code de l'entrée et du séjour des étrangers et du droit d'asile est ainsi modifié :\n1° À la",
+   "passage_a": "fin de la",
+   "passage_b": "",
+   "contexte_apres": "première phrase, les mots : « conditions prévues à l'article L742-5 » sont remplacés par les mots : « cas prévus aux 2° et 3° de l'article L. 742-4 » ;\n2° La seconde phrase est",
+   "regle": null,
+   "taille": 3,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.35,
+    "probabilites": {
+     "forme_seule": 0.04,
+     "meme_effet": 0.06,
+     "effet_different": 0.51,
+     "indetermine": 0.39
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.73,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.05,
+     "effet_different": 0.8,
+     "indetermine": 0.12
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54083:commission|T0/877|2",
+   "phrase_a": "Le tableau du deuxième alinéa de l'article 5 de la loi n° 2023-703 du 1er août 2023 est remplacé par le tableau suivant :",
+   "phrase_b": "Le tableau figurant au deuxième alinéa de l'article 5 de la loi n° 2023-703 du 1er août 2023 est remplacé par le tableau suivant :",
+   "contexte_avant": "Le tableau",
+   "passage_a": "du",
+   "passage_b": "figurant au",
+   "contexte_apres": "deuxième alinéa de l'article 5 de la loi n° 2023-703 du 1er août 2023 est remplacé par le tableau suivant :\n«\n(Crédits de paiement, en millions d'euros courant)\n2024\n2025\n2026\n2027",
+   "regle": null,
+   "taille": 2,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.89,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.92,
+     "effet_different": 0.03,
+     "indetermine": 0.02
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.71,
+    "probabilites": {
+     "forme_seule": 0.0,
+     "meme_effet": 0.09,
+     "effet_different": 0.78,
+     "indetermine": 0.13
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N53159:commission|AMANR5L17PO59051B2349P0D1N000035/116|45",
+   "phrase_a": "706-164-1.-Lorsqu'une juridiction condamne l'auteur d'une infraction à verser des dommages et intérêts à la partie civile, elle informe cette dernière des dispositions de l'article 706-164.",
+   "phrase_b": "706-164-1.-Lorsqu'une juridiction condamne l'auteur à verser des dommages et intérêts à la partie civile, elle informe cette dernière des dispositions de l'article 706-164.",
+   "contexte_avant": "Après l'article 706-164 du code de procédure pénale, il est inséré un article 706-164-1 ainsi rédigé :\n« Art. 706-164-1.-Lorsqu'une juridiction condamne l'auteur",
+   "passage_a": "d'une infraction",
+   "passage_b": "",
+   "contexte_apres": "à verser des dommages et intérêts à la partie civile, elle informe cette dernière des dispositions de l'article 706-164. »",
+   "regle": null,
+   "taille": 4,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.47,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.29,
+     "effet_different": 0.6,
+     "indetermine": 0.08
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.91,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.01,
+     "effet_different": 0.93,
+     "indetermine": 0.05
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51655:seance|T0/1683|202",
+   "phrase_a": ", le juge aux affaires familiales est alors dessaisi des compétences qu'il exerce en application des articles 373-2-6 et 373-3. »",
+   "phrase_b": ", le juge aux affaires familiales est alors dessaisi des compétences qu'il exerce en application des articles 373-2-6 et 373-3. »\nII.-(Supprimé)",
+   "contexte_avant": "de visite et d'hébergement des parents des enfants bénéficiant d'une mesure d'assistance éducative., le juge aux affaires familiales est alors dessaisi des compétences qu'il exerce en application des articles 373-2-6 et 373-3. »",
+   "passage_a": "",
+   "passage_b": "II.-(Supprimé)",
+   "contexte_apres": "",
+   "regle": null,
+   "taille": 7,
+   "etiquette": "mention",
+   "jugement_phrase": {
+    "choix": "forme_seule",
+    "confiance": 0.19,
+    "probabilites": {
+     "forme_seule": 0.39,
+     "meme_effet": 0.14,
+     "effet_different": 0.29,
+     "indetermine": 0.18
+    }
+   },
+   "annotation": "different",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.57,
+    "probabilites": {
+     "forme_seule": 0.05,
+     "meme_effet": 0.08,
+     "effet_different": 0.68,
+     "indetermine": 0.19
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54085:seance|T0/20337|1635",
+   "phrase_a": "L. 427-1-1.-Le représentant de l'État dans le département peut définir, dans un arrêté applicable pour une durée maximale de trois ans et soumis à participation du public en application de l'article L. 123-19-1, les conditions, zones et modalités d'intervention des lieutenants de louveterie.",
+   "phrase_b": "L. 427-1-1.-Le représentant de l'État dans le département peut définir, dans un arrêté applicable pour une durée maximale de trois ans et soumis à participation du public en application de l'article L. 123-19-1, les conditions, zones et les modalités d'intervention des lieutenants de louveterie.",
+   "contexte_avant": ".-Le représentant de l'État dans le département peut définir, dans un arrêté applicable pour une durée maximale de trois ans et soumis à participation du public en application de l'article L. 123-19-1, les conditions, zones et",
+   "passage_a": "",
+   "passage_b": "les",
+   "contexte_apres": "modalités d'intervention des lieutenants de louveterie. Les dispositions des articles L. 123-19-1 et L. 123-19-2 ne s'appliquent pas aux décisions administratives adoptées en application de cet arrêté qui visent à prévenir des dommages graves aux",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.63,
+    "probabilites": {
+     "forme_seule": 0.16,
+     "meme_effet": 0.72,
+     "effet_different": 0.1,
+     "indetermine": 0.02
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.39,
+    "probabilites": {
+     "forme_seule": 0.05,
+     "meme_effet": 0.17,
+     "effet_different": 0.54,
+     "indetermine": 0.24
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51985:commission|AMANR5L17PO59051B1470P0D1N000450/137|71",
+   "phrase_a": "L'agence régionale de santé de Mayotte élabore, d'ici à la fin de l'année 2026, en complément du schéma régional de santé, un schéma organisant l'offre de médicaments et les circuits de distribution afin de placer les pharmacies d'officine au centre du dispositif et de réduire la part des médicaments distribués au sein des centres médicaux de référence et du centre hospitalier.",
+   "phrase_b": "L'agence régionale de santé de Mayotte élabore, d'ici à la fin de l'année 2026, en complément du schéma régional de santé, un schéma organisant l'offre de médicaments et les circuits de distribution afin de placer les pharmacies d'officine au centre du dispositif et de réduire la part des médicaments distribués au sein des centres médicaux de référence et le centre hospitalier.",
+   "contexte_avant": ", en complément du schéma régional de santé, un schéma organisant l'offre de médicaments et les circuits de distribution afin de placer les pharmacies d'officine au centre du dispositif et de réduire la part des médicaments distribués au sein des centres médicaux de référence et",
+   "passage_a": "du",
+   "passage_b": "le",
+   "contexte_apres": "centre hospitalier.",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.93,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.02,
+     "effet_different": 0.95,
+     "indetermine": 0.02
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.55,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.21,
+     "effet_different": 0.66,
+     "indetermine": 0.1
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N50686:seance|T0/518|142",
+   "phrase_a": "Il inclut une analyse pluriannuelle et interministérielle, précise le nombre d'élèves en attente d'un accompagnement ou d'une place en établissement médico-social, les délais d'affectation des accompagnants d'élèves en situation de handicap, ainsi que les moyens humains et financiers mobilisés par académie.",
+   "phrase_b": "Ce rapport inclut une analyse pluriannuelle et interministérielle, précise le nombre d'élèves en attente d'un accompagnement ou d'une place en établissement médico-social, les délais d'affectation des accompagnants d'élèves en situation de handicap, ainsi que les moyens humains et financiers mobilisés par académie.",
+   "contexte_avant": "rapport s'appuie sur des données quantitatives et qualitatives. Il analyse notamment les parcours de scolarisation, de formation et d'insertion professionnelle, recense les écarts territoriaux dans l'accès aux dispositifs d'inclusion scolaire et mesure l'effectivité des réponses apportées.",
+   "passage_a": "Il",
+   "passage_b": "Ce rapport",
+   "contexte_apres": "inclut une analyse pluriannuelle et interministérielle, précise le nombre d'élèves en attente d'un accompagnement ou d'une place en établissement médico-social, les délais d'affectation des accompagnants d'élèves en situation de handicap, ainsi que les moyens humains",
+   "regle": null,
+   "taille": 2,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.32,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.49,
+     "effet_different": 0.45,
+     "indetermine": 0.04
+    }
+   },
+   "annotation": "different",
+   "jugement_fragment": {
+    "choix": "meme_effet",
+    "confiance": 0.4,
+    "probabilites": {
+     "forme_seule": 0.05,
+     "meme_effet": 0.55,
+     "effet_different": 0.18,
+     "indetermine": 0.22
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54085:commission|AMANR5L17PO419865B2632P0D1N000090/111|43",
+   "phrase_a": "« 8° La réduction de moitié, sous la responsabilité du préfet de département, d'ici 2036, du nombre de captages dépassant les valeurs limites de pollution.",
+   "phrase_b": "« 8° La réduction de moitié, sous la responsabilité du représentant de département, d'ici 2036, du nombre de captages dépassant les valeurs limites de pollution.",
+   "contexte_avant": "Après le 7° du I de l'article L. 211-1 du code de l'environnement, il est inséré un alinéa ainsi rédigé :\n« 8° La réduction de moitié, sous la responsabilité du",
+   "passage_a": "préfet",
+   "passage_b": "représentant",
+   "contexte_apres": "de département, d'ici 2036, du nombre de captages dépassant les valeurs limites de pollution. »",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "indetermine",
+    "confiance": 0.47,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.02,
+     "effet_different": 0.37,
+     "indetermine": 0.6
+    }
+   },
+   "annotation": "different",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.79,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.04,
+     "effet_different": 0.84,
+     "indetermine": 0.11
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N53715:commission|AMANR5L17PO419610B2440P0D1N000023/5|87",
+   "phrase_a": "« Dès qu'elle a connaissance d'un projet ou d'un document d'aménagement ou d'urbanisme ayant pour conséquence une réduction des surfaces affectées à des productions bénéficiant d'un signe d'identification de la qualité et de l'origine, la chambre en informe l'organisme de défense et de gestion mentionné à l'article L. 642-17 sans délai ».",
+   "phrase_b": "« Dès qu'elle a connaissance d'un projet ou d'un document d'aménagement ou d'urbanisme ayant pour conséquence une réduction de surfaces affectées à des productions bénéficiant d'un signe d'identification de la qualité et de l'origine, la chambre en informe l'organisme de défense et de gestion mentionné à l'article L. 642-17 sans délai ».",
+   "contexte_avant": "liaison avec les organisations professionnelles intéressées. »\nCompléter le second alinéa de cet amendement par la phrase suivante :\n« Dès qu'elle a connaissance d'un projet ou d'un document d'aménagement ou d'urbanisme ayant pour conséquence une réduction",
+   "passage_a": "des",
+   "passage_b": "de",
+   "contexte_apres": "surfaces affectées à des productions bénéficiant d'un signe d'identification de la qualité et de l'origine, la chambre en informe l'organisme de défense et de gestion mentionné à l'article L. 642-17 sans délai ».",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.49,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.28,
+     "effet_different": 0.62,
+     "indetermine": 0.07
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.39,
+    "probabilites": {
+     "forme_seule": 0.05,
+     "meme_effet": 0.22,
+     "effet_different": 0.54,
+     "indetermine": 0.19
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N50779:commission|T0/1|562",
+   "phrase_a": "« Pour chaque produit figurant sur la liste mentionnée au I et exposée à la vente au détail, un balisage d'identification est apposé de manière permanente à proximité immédiate de celui-ci.",
+   "phrase_b": "« Pour chaque produit composant la liste mentionnée au I et exposée à la vente au détail, un balisage d'identification est apposé de manière permanente à proximité immédiate de celui-ci.",
+   "contexte_avant": "article L. 112-1 du code de la consommation, de manière lisible et visible à l'entrée de la surface de vente par le moyen d'un support d'une superficie au moins égal à un mètre carré.\n« Pour chaque produit",
+   "passage_a": "figurant sur",
+   "passage_b": "composant",
+   "contexte_apres": "la liste mentionnée au I et exposée à la vente au détail, un balisage d'identification est apposé de manière permanente à proximité immédiate de celui-ci. »\n4° Le III est complété par une phrase ainsi rédigée : « Les produits faisant l",
+   "regle": null,
+   "taille": 2,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "indetermine",
+    "confiance": 0.24,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.14,
+     "effet_different": 0.42,
+     "indetermine": 0.43
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.55,
+    "probabilites": {
+     "forme_seule": 0.04,
+     "meme_effet": 0.12,
+     "effet_different": 0.66,
+     "indetermine": 0.18
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N52749:seance|AMANR5L17PO838901BTC2199P0D1N000030/226|110",
+   "phrase_a": "Ce rapport évalue l'opportunité de reverser de manière rétroactive aux personnes étrangères qui y sont éligibles, l'ensemble des aides et prestations sociales non perçues du fait d'un délai de traitement de la demande de renouvellement de titre de séjour excessif, c'est-à-dire excédant trois mois.",
+   "phrase_b": "Ce rapport évalue l'opportunité de reverser de manière rétroactive aux personnes étrangères qui y sont éligibles, l'ensemble des aides et prestations sociales non perçues du fait d'un délai de traitement de la demande de renouvellement de titre de séjour, c'est-à-dire excédant trois mois.",
+   "contexte_avant": "de trois mois. Ce rapport évalue l'opportunité de reverser de manière rétroactive aux personnes étrangères qui y sont éligibles, l'ensemble des aides et prestations sociales non perçues du fait d'un délai de traitement de la demande de renouvellement de titre de séjour",
+   "passage_a": "excessif",
+   "passage_b": "",
+   "contexte_apres": ", c'est-à-dire excédant trois mois.",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.87,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.02,
+     "effet_different": 0.9,
+     "indetermine": 0.06
+    }
+   },
+   "annotation": "different",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.52,
+    "probabilites": {
+     "forme_seule": 0.05,
+     "meme_effet": 0.13,
+     "effet_different": 0.64,
+     "indetermine": 0.18
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N50796:commission|T0/78415|1888",
+   "phrase_a": "8° À l'article L. 5522-1 est ainsi modifié :",
+   "phrase_b": "8° À l'article L. 5522-1 :",
+   "contexte_avant": "1, la référence : « 24° » est remplacée par la référence : « 25° » et la référence : « 20° » est remplacée par la référence : « 21° » ;\n8° À l'article L. 5522-1",
+   "passage_a": "est ainsi modifié",
+   "passage_b": "",
+   "contexte_apres": ":\na) Au deuxième alinéa, la référence : « L. 5211-6, » est supprimée ;\nb) Après le deuxième alinéa, il est inséré un alinéa ainsi rédigé :\n« Les articles L. 5211-5-1 et",
+   "regle": null,
+   "taille": 3,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "indetermine",
+    "confiance": 0.33,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.11,
+     "effet_different": 0.36,
+     "indetermine": 0.5
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.53,
+    "probabilites": {
+     "forme_seule": 0.04,
+     "meme_effet": 0.12,
+     "effet_different": 0.65,
+     "indetermine": 0.19
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54777:commission|AMANR5L17PO884839B3107P0D1N000008/184|24",
+   "phrase_a": "Les magistrats soumis à l'obligation de formation aux violences sexuelles et sexistes prévue au troisième alinéa de l'article 14 de l'ordonnance n° 58-1270 du 22 décembre 1958 précitée, dans sa rédaction résultant de la présente loi organique, et déjà installés dans leurs fonctions à la date de promulgation de la présente loi organique, suivent cette formation avant le 31 décembre 2029.",
+   "phrase_b": "Toutefois, les magistrats soumis à l'obligation de formation aux violences sexuelles et sexistes prévue au troisième alinéa de l'article 14 de l'ordonnance n° 58-1270 du 22 décembre 1958 précitée, dans sa rédaction résultant de la présente loi organique, et déjà installés dans leurs fonctions à la date de promulgation de la présente loi organique, suivent cette formation avant le 31 décembre 2029.",
+   "contexte_avant": "La présente loi organique entre en vigueur à une date déterminée par décret et au plus tard douze mois après sa promulgation.",
+   "passage_a": "Les",
+   "passage_b": "Toutefois, les",
+   "contexte_apres": "magistrats soumis à l'obligation de formation aux violences sexuelles et sexistes prévue au troisième alinéa de l'article 14 de l'ordonnance n° 58-1270 du 22 décembre 1958 précitée, dans sa rédaction résultant de la présente loi organique, et déjà installés",
+   "regle": null,
+   "taille": 3,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.35,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.19,
+     "effet_different": 0.51,
+     "indetermine": 0.27
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.39,
+    "probabilites": {
+     "forme_seule": 0.06,
+     "meme_effet": 0.21,
+     "effet_different": 0.54,
+     "indetermine": 0.19
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N52100:commission|AMANR5L17PO419865B1641P0D1N000042/431|203",
+   "phrase_a": "2° Un plan de déploiement d'infrastructures de recharge électrique adaptées aux autocars, bus et véhicules partagés, intégrées aux gares et pôles multimodaux desservant les sites des Jeux ;",
+   "phrase_b": "2° Un plan de déploiement d'infrastructures de recharge électrique adaptées aux autocars, bus et aux véhicules partagés, intégrées aux gares et pôles multimodaux desservant les sites des Jeux ;",
+   "contexte_avant": "de renforcement de l'offre ferroviaire, portant sur l'augmentation des capacités de transport, l'amélioration de la desserte et la modernisation du matériel roulant ;\n2° Un plan de déploiement d'infrastructures de recharge électrique adaptées aux autocars, bus et",
+   "passage_a": "",
+   "passage_b": "aux",
+   "contexte_apres": "véhicules partagés, intégrées aux gares et pôles multimodaux desservant les sites des Jeux ;\n3° Un plan d'acquisition de bus électriques et de véhicules à faibles émissions destinés au transport collectif des spectateurs, bénévoles et personnels accrédités.",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.73,
+    "probabilites": {
+     "forme_seule": 0.13,
+     "meme_effet": 0.8,
+     "effet_different": 0.05,
+     "indetermine": 0.02
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.48,
+    "probabilites": {
+     "forme_seule": 0.04,
+     "meme_effet": 0.16,
+     "effet_different": 0.61,
+     "indetermine": 0.19
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54372:seance|T0/49686|399",
+   "phrase_a": "« ou d'éducation ».",
+   "phrase_b": "« ou d'éducation en milieu ouvert ».",
+   "contexte_avant": "article 375-2 est ainsi modifié :\na) Le premier alinéa est ainsi modifié :\n-à la deuxième phrase, les mots : « d'éducation ou de rééducation en milieu ouvert » sont remplacés par les mots : « ou d'éducation",
+   "passage_a": "",
+   "passage_b": "en milieu ouvert",
+   "contexte_apres": "».\n-la dernière phrase est remplacée par huit phrases ainsi rédigées : « Si la situation le nécessite, le juge peut décider que cet accompagnement est renforcé ou intensifié et peut inclure un hébergement exceptionnel ou périodique, à condition que le service désigné soit autorisé",
+   "regle": null,
+   "taille": 3,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.59,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.04,
+     "effet_different": 0.69,
+     "indetermine": 0.25
+    }
+   },
+   "annotation": "different",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.57,
+    "probabilites": {
+     "forme_seule": 0.05,
+     "meme_effet": 0.13,
+     "effet_different": 0.68,
+     "indetermine": 0.14
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N50796:commission|T0/53627|2362",
+   "phrase_a": "«-le contenu et les modalités de transmission des données relatives à la consommation énergétique finale des organismes publics ;",
+   "phrase_b": "«-le contenu et les modalités de transmission de données relatives à la consommation énergétique finale des organismes publics ;",
+   "contexte_avant": ":\n«-le service de l'État ou l'organisme désigné pour recevoir les données définies au III ;\n«-les modalités de calcul de l'objectif de réduction fixé au I ;\n«-le contenu et les modalités de transmission",
+   "passage_a": "des",
+   "passage_b": "de",
+   "contexte_apres": "données relatives à la consommation énergétique finale des organismes publics ;\n«-les modalités selon lesquelles l'évaluation et le constat du respect de l'objectif de réduction des consommations d'énergie finale sont établis chaque année.\n« Art. L. 235",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.29,
+    "probabilites": {
+     "forme_seule": 0.06,
+     "meme_effet": 0.35,
+     "effet_different": 0.47,
+     "indetermine": 0.12
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.35,
+    "probabilites": {
+     "forme_seule": 0.06,
+     "meme_effet": 0.28,
+     "effet_different": 0.51,
+     "indetermine": 0.15
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54085:seance|AMANR5L17PO838901BTC2765P0D1N002187/111|45",
+   "phrase_a": "« Le rapport annuel de la commission locale de l'eau sur ses travaux et orientations et sur les résultats et perspectives de la gestion des eaux dans son périmètre d'action est rendu public.",
+   "phrase_b": "« Le rapport annuel de la commission locale de l'eau sur ses travaux et orientations et sur les résultats et les perspectives de la gestion des eaux dans son périmètre d'action est rendu public.",
+   "contexte_avant": "L'article L. 212-4 du code de l'environnement est complété par un alinéa ainsi rédigé :\n« Le rapport annuel de la commission locale de l'eau sur ses travaux et orientations et sur les résultats et",
+   "passage_a": "",
+   "passage_b": "les",
+   "contexte_apres": "perspectives de la gestion des eaux dans son périmètre d'action est rendu public. »",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.48,
+    "probabilites": {
+     "forme_seule": 0.11,
+     "meme_effet": 0.61,
+     "effet_different": 0.2,
+     "indetermine": 0.08
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.52,
+    "probabilites": {
+     "forme_seule": 0.08,
+     "meme_effet": 0.1,
+     "effet_different": 0.64,
+     "indetermine": 0.18
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N50731:commission|T0/12023|111",
+   "phrase_a": "Le Premier ministre peut désigner un organisme autre que l'autorité nationale de sécurité des systèmes d'information mentionnée au premier alinéa pour exercer à l'égard de certaines entités, à raison de leur activité dans le domaine de la défense, certaines des responsabilités de cette autorité prévues au présent titre.",
+   "phrase_b": "Le Premier ministre peut désigner un organisme autre que l'autorité nationale de sécurité des systèmes d'information mentionnée au premier alinéa pour exercer à l'égard de certaines entités, à raison de leur activité dans le domaine de la défense, certaines des responsabilités de cette autorité prévues par le présent titre.",
+   "contexte_avant": "peut désigner un organisme autre que l'autorité nationale de sécurité des systèmes d'information mentionnée au premier alinéa pour exercer à l'égard de certaines entités, à raison de leur activité dans le domaine de la défense, certaines des responsabilités de cette autorité prévues",
+   "passage_a": "au",
+   "passage_b": "par le",
+   "contexte_apres": "présent titre.\nLes missions de l'autorité nationale de sécurité des systèmes d'information et des organismes désignés par le Premier ministre ainsi que leurs conditions d'exercice sont précisées par décret en Conseil d'État. Ces missions comprennent notamment l'accompagnement",
+   "regle": null,
+   "taille": 2,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "meme_effet",
+    "confiance": 0.59,
+    "probabilites": {
+     "forme_seule": 0.04,
+     "meme_effet": 0.69,
+     "effet_different": 0.15,
+     "indetermine": 0.12
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.24,
+    "probabilites": {
+     "forme_seule": 0.06,
+     "meme_effet": 0.23,
+     "effet_different": 0.43,
+     "indetermine": 0.28
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51672:commission|T0/3454|70",
+   "phrase_a": "Selon l'évaluation prévue à l'article L. 1110-9 du code de la santé publique, ces crédits peuvent être réévalués afin de garantir un accès équitable des malades à un accompagnement et à des soins palliatifs.",
+   "phrase_b": "Selon l'évaluation prévue à l'article L. 1110-9 du code de la santé publique, ces crédits peuvent être réévalués afin de garantir un accès équitable des malades à un accompagnement et aux soins palliatifs.",
+   "contexte_avant": "de 2024 à 2034 en application du tableau du deuxième alinéa. Selon l'évaluation prévue à l'article L. 1110-9 du code de la santé publique, ces crédits peuvent être réévalués afin de garantir un accès équitable des malades à un accompagnement et",
+   "passage_a": "à des",
+   "passage_b": "aux",
+   "contexte_apres": "soins palliatifs.\nCrédits de paiement et plafonds des taxes allouées aux Mesures nouvelles891069796949775105100122111 prévues par la stratégie décennale\n(En millions d'euros)\nAnnée\n2024\n2025\n2026\n2027\n2028\n2029\n2030\n2031\n2032\n2033",
+   "regle": null,
+   "taille": 2,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.33,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.35,
+     "effet_different": 0.5,
+     "indetermine": 0.13
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.53,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.28,
+     "effet_different": 0.65,
+     "indetermine": 0.05
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54083:commission|AMANR5L17PO59046B2630P0D1N000083/8|75",
+   "phrase_a": "Le directeur général de l'Agence des participations de l'État présente chaque année, devant la commission de la défense nationale et des forces armées, ainsi que devant la commission des finances, de l'économie générale et du contrôle budgétaire de l'Assemblée nationale, et devant la commission des finances et la commission des affaires étrangères, de la défense et des forces armées du Sénat, un rapport sur la stratégie et les résultats de ses investissements dans les entreprises relevant du secteur de la défense nationale.",
+   "phrase_b": "Le directeur général de l'Agence des participations de l'État présente chaque année, devant la commission de la défense nationale et des forces armées, ainsi que devant la commission des finances, de l'économie générale et du contrôle budgétaire de l'Assemblée nationale, et devant la commission des finances et la commission des affaires étrangères, de la défense et des forces armées du Sénat, de la stratégie et les résultats de ses investissements dans les entreprises relevant du secteur de la défense nationale.",
+   "contexte_avant": "des forces armées, ainsi que devant la commission des finances, de l'économie générale et du contrôle budgétaire de l'Assemblée nationale, et devant la commission des finances et la commission des affaires étrangères, de la défense et des forces armées du Sénat,",
+   "passage_a": "un rapport sur",
+   "passage_b": "de",
+   "contexte_apres": "la stratégie et les résultats de ses investissements dans les entreprises relevant du secteur de la défense nationale.\nSubstituer au mot :\n« présente »\nles mots :\n« vient rendre compte »\net supprimer les mots :\n« un rapport »",
+   "regle": null,
+   "taille": 3,
+   "etiquette": "effet absent",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.93,
+    "probabilites": {
+     "forme_seule": 0.0,
+     "meme_effet": 0.02,
+     "effet_different": 0.95,
+     "indetermine": 0.03
+    }
+   },
+   "annotation": "indetermine",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.55,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.11,
+     "effet_different": 0.66,
+     "indetermine": 0.2
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N50631:commission|AMANR5L17PO59051B0374P0D1N000050/160|55",
+   "phrase_a": "b) Les mots :",
+   "phrase_b": "b) La première phrase est ainsi modifiée :\n-les trois occurrences des mots : « un an » sont remplacées par les mots : « deux ans » ;\n-les mots :",
+   "contexte_avant": "'article 723-15 du code de procédure pénale est ainsi modifié :\n1° La première phrase est ainsi modifiée :\na) Chaque occurrence des mots : « un an » est remplacée par les mots : « deux ans » ;\nb)",
+   "passage_a": "Les",
+   "passage_b": "La première phrase est ainsi modifiée :\n-les trois occurrences des mots : « un an » sont remplacées par les mots : « deux ans » ;\n-les",
+   "contexte_apres": "mots : « bénéficient, dans la mesure du possible et » sont remplacés par les mots : « peuvent bénéficier, » ;\n2° La seconde phrase est supprimée.",
+   "regle": null,
+   "taille": 33,
+   "etiquette": "effet absent",
+   "jugement_phrase": {
+    "choix": "indetermine",
+    "confiance": 0.51,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.04,
+     "effet_different": 0.3,
+     "indetermine": 0.63
+    }
+   },
+   "annotation": "different",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.2,
+    "probabilites": {
+     "forme_seule": 0.06,
+     "meme_effet": 0.15,
+     "effet_different": 0.4,
+     "indetermine": 0.39
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N51732:commission|T0/17578|4",
+   "phrase_a": "I.-Le code du sport est ainsi modifié :",
+   "phrase_b": "I.-Le titre II du livre IV du code du sport est ainsi modifié :",
+   "contexte_avant": "I.-Le",
+   "passage_a": "",
+   "passage_b": "titre II du livre IV du",
+   "contexte_apres": "code du sport est ainsi modifié :\n1° L'article L. 423-1 est complété par un alinéa ainsi rédigé :\n« Sont également applicables dans les îles Wallis et Futuna les articles L. 333-10 à L. 333-15",
+   "regle": null,
+   "taille": 6,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.73,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.01,
+     "effet_different": 0.8,
+     "indetermine": 0.18
+    }
+   },
+   "annotation": "different",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.79,
+    "probabilites": {
+     "forme_seule": 0.02,
+     "meme_effet": 0.02,
+     "effet_different": 0.84,
+     "indetermine": 0.12
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N54085:seance|T0/25075|390",
+   "phrase_a": "4° Les autorités compétentes, les compétences et les modalités d'exercice de la police administrative et judiciaire de ces activités ainsi que les sanctions administratives et pénales applicables en cas de manquements ou d'infraction ;",
+   "phrase_b": "4° Les autorités compétentes, les compétences et les modalités d'exercice de la police administrative et judiciaire de ces activités ainsi que les sanctions administratives et pénales applicables en cas de manquements ou d'infractions ;",
+   "contexte_avant": "y sont soumises, les nécessitent ou en sont exclues ;\n4° Les autorités compétentes, les compétences et les modalités d'exercice de la police administrative et judiciaire de ces activités ainsi que les sanctions administratives et pénales applicables en cas de manquements ou d'",
+   "passage_a": "infraction",
+   "passage_b": "infractions",
+   "contexte_apres": ";\n5° Les conditions dans lesquelles le juge administratif peut être saisi d'un recours à l'encontre des actes pris dans ces régimes ainsi que ses pouvoirs lorsqu'il est saisi d'un tel recours ;\n6° Les dispositions transitoires et",
+   "regle": null,
+   "taille": 1,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.63,
+    "probabilites": {
+     "forme_seule": 0.04,
+     "meme_effet": 0.19,
+     "effet_different": 0.72,
+     "indetermine": 0.05
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.19,
+    "probabilites": {
+     "forme_seule": 0.16,
+     "meme_effet": 0.38,
+     "effet_different": 0.39,
+     "indetermine": 0.07
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N52208:commission|T0/202|103",
+   "phrase_a": "«, ou de navires à propulsion principale vélique au sens de l'article L. 5000-2-3 » sont supprimés trente-six mois après l'entrée en vigueur de la présente loi.",
+   "phrase_b": "«, ou de navires à propulsion principale vélique au sens de l'article L. 5000-2-3 » sont supprimés trente-six mois après la promulgation de la présente loi.",
+   "contexte_avant": "Au deuxième alinéa de l'article L. 5553-11 du code des transports, les mots : «, ou de navires à propulsion principale vélique au sens de l'article L. 5000-2-3 » sont supprimés trente-six mois après",
+   "passage_a": "l'entrée en vigueur",
+   "passage_b": "la promulgation",
+   "contexte_apres": "de la présente loi.",
+   "regle": null,
+   "taille": 5,
+   "etiquette": "retouche",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.96,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.01,
+     "effet_different": 0.97,
+     "indetermine": 0.01
+    }
+   },
+   "annotation": "different",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.97,
+    "probabilites": {
+     "forme_seule": 0.0,
+     "meme_effet": 0.01,
+     "effet_different": 0.98,
+     "indetermine": 0.01
+    }
+   }
+  },
+  {
+   "id": "DLR5L17N52958:commission|T0/4901|21",
+   "phrase_a": "Au second alinéa du I de l'article L. 3844-2 du code de la santé publique, les mots :",
+   "phrase_b": "Au second alinéa du I de l'article L. 3844-2 du code de la santé publique, la référence :",
+   "contexte_avant": "Au second alinéa du I de l'article L. 3844-2 du code de la santé publique,",
+   "passage_a": "les mots",
+   "passage_b": "la référence",
+   "contexte_apres": ": « de la loi n° 2023-1059 du 20 novembre 2023 d'orientation et de programmation du ministère de la justice 2023-2027 » sont remplacés par les mots : « de la loi n° du visant à moderniser et à simplifier la protection",
+   "regle": null,
+   "taille": 2,
+   "etiquette": "hors amendement",
+   "jugement_phrase": {
+    "choix": "effet_different",
+    "confiance": 0.36,
+    "probabilites": {
+     "forme_seule": 0.01,
+     "meme_effet": 0.02,
+     "effet_different": 0.52,
+     "indetermine": 0.45
+    }
+   },
+   "annotation": "meme",
+   "jugement_fragment": {
+    "choix": "effet_different",
+    "confiance": 0.41,
+    "probabilites": {
+     "forme_seule": 0.03,
+     "meme_effet": 0.1,
+     "effet_different": 0.56,
+     "indetermine": 0.31
+    }
+   }
+  }
+ ],
+ "injections": {
+  "mot changé": {
+   "cas": 30,
+   "modèle seul à 0.5": 29,
+   "modèle seul à 0.7": 29,
+   "modèle seul à 0.8": 29,
+   "modèle seul à 0.9": 29,
+   "modèle seul à 0.95": 29,
+   "modèle seul à 0.99": 30,
+   "avec règles à 0.9": 30
+  },
+  "tronqué": {
+   "cas": 30,
+   "modèle seul à 0.5": 30,
+   "modèle seul à 0.7": 30,
+   "modèle seul à 0.8": 30,
+   "modèle seul à 0.9": 30,
+   "modèle seul à 0.95": 30,
+   "modèle seul à 0.99": 30,
+   "avec règles à 0.9": 30
+  },
+  "déplacé": {
+   "cas": 30,
+   "modèle seul à 0.5": 30,
+   "modèle seul à 0.7": 30,
+   "modèle seul à 0.8": 30,
+   "modèle seul à 0.9": 30,
+   "modèle seul à 0.95": 30,
+   "modèle seul à 0.99": 30,
+   "avec règles à 0.9": 30
+  },
+  "remplacé": {
+   "cas": 30,
+   "modèle seul à 0.5": 30,
+   "modèle seul à 0.7": 30,
+   "modèle seul à 0.8": 30,
+   "modèle seul à 0.9": 30,
+   "modèle seul à 0.95": 30,
+   "modèle seul à 0.99": 30,
+   "avec règles à 0.9": 30
+  }
+ }
+}

@@ -1,0 +1,12 @@
+{
+ "adopté": {
+  "affiché": 4060,
+  "cible introuvable": 580,
+  "non analysé": 120
+ },
+ "non adopté": {
+  "affiché": 11705,
+  "non analysé": 1198,
+  "cible introuvable": 999
+ }
+}

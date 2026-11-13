@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Texte projeté</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,700&family=Poppins:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:wght@400;600&display=swap">
+<style>
+/* Jetons repris des maquettes Figma Democracy Watch (demos/textes/common.css, DSFR). */
+:root {
+  --blue-france: #000091;
+  --blue-france-975: #f5f5fe;
+  --blue-france-low: #e3e3fd;
+  --blue-france-low-active: #adadf9;
+  --text-inverted: #f5f5fe;
+  --text-title: #161616;
+  --text-default: #3a3a3a;
+  --text-mention: #666;
+  --text-disabled: #929292;
+  --bg-contrast: #eee;
+  --border-default: #ddd;
+  --border-plain: #3a3a3a;
+  --header-bg: #fafee8;
+  --logo-bg: #eafc84;
+  --logo-fg: #bd7704;
+  --page-bg: #f8f8f6;
+  --del-bg: #f9dedc;
+  --del-fg: #b3261e;
+  --ins-bg: #b8fec9;
+  --ins-fg: #18753c;
+  --barre: 64px; /* hauteur de la barre d'article collante */
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page-bg); color: var(--text-title); font: 16px/24px Poppins, system-ui, sans-serif; }
+button, input, select { font: inherit; }
+[hidden] { display: none !important; }
+
+/* ---- En-tête (maquette « Mes textes de loi ») ---- */
+header { background: var(--header-bg); }
+.top { display: flex; gap: 24px; align-items: center; padding: 16px 48px; }
+.logo { display: flex; gap: 8px; align-items: center; padding: 8px; border-radius: 8px; background: var(--logo-bg); text-decoration: none;
+  font: italic 700 15px/22px "IBM Plex Sans", sans-serif; color: var(--logo-fg); white-space: nowrap; }
+.searchbar { display: flex; flex: 1; min-width: 0; }
+.searchbar input { flex: 1; min-width: 0; height: 48px; padding: 12px 24px; border: 0; border-radius: 8px 0 0 8px; background: var(--bg-contrast);
+  font: italic 16px/24px Poppins, sans-serif; color: var(--text-default); }
+.btn { display: inline-flex; gap: 8px; align-items: center; justify-content: center; border: 0; border-radius: 8px; cursor: pointer;
+  background: var(--blue-france); color: var(--text-inverted); font-weight: 500; text-decoration: none; white-space: nowrap; }
+.btn:hover { background: #1212ff; }
+.searchbar .btn { padding: 10px 24px 10px 18px; font-size: 18px; line-height: 28px; border-radius: 0 8px 8px 0; }
+nav.tabs { display: flex; gap: 24px; max-width: 1232px; margin: 0 auto; }
+nav.tabs a { padding: 16px; color: var(--text-title); text-decoration: none; line-height: normal; white-space: nowrap; }
+nav.tabs a[aria-current="page"] { color: var(--blue-france); padding-bottom: 14px; border-bottom: 2px solid var(--blue-france); }
+
+/* ---- Tête de page ---- */
+.page-head { padding: 20px 32px 16px; }
+.breadcrumb { margin: 0 0 4px; font: 13px/normal "IBM Plex Sans", sans-serif; color: var(--text-mention); }
+.page-head h1 { margin: 0 0 8px; font-size: 22px; font-weight: 500; line-height: 30px; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font: 13px/normal "IBM Plex Sans", sans-serif; color: var(--text-mention); }
+.chip { display: inline-flex; align-items: center; height: 24px; padding: 2px 10px; border-radius: 12px; background: var(--bg-contrast);
+  font: 600 12px/normal "IBM Plex Sans", sans-serif; color: #3f4654; white-space: nowrap; }
+.chip.ok { background: var(--ins-bg); color: var(--ins-fg); }
+.chip.ko { background: var(--del-bg); color: var(--del-fg); }
+.chip.info { background: var(--blue-france-low); color: var(--blue-france); }
+
+/* ---- Barre d'article : sommaire compact, collant ---- */
+.barre { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; min-height: var(--barre);
+  padding: 12px 32px; background: #fff; border-top: 1px solid var(--border-default); border-bottom: 1px solid var(--border-default); }
+.sommaire { display: flex; gap: 8px; align-items: center; }
+.sommaire select { height: 40px; min-width: 240px; padding: 0 8px 0 12px; border: 1px solid var(--border-default); border-radius: 8px;
+  background: #fff; font: 600 16px/normal Poppins, sans-serif; color: var(--blue-france); cursor: pointer; }
+.icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid var(--border-default);
+  border-radius: 8px; background: #fff; cursor: pointer; }
+.icon-btn:hover:not(:disabled) { background: var(--blue-france-975); }
+.icon-btn:disabled { opacity: .35; cursor: default; }
+.prec img { transform: rotate(-90deg); }
+.suiv img { transform: rotate(90deg); }
+.bas img { transform: rotate(180deg); }
+.toggle { display: flex; gap: 6px; align-items: center; font-size: 13px; color: var(--text-default); cursor: pointer; white-space: nowrap; }
+.toggle input { accent-color: var(--blue-france); width: 16px; height: 16px; }
+.espace { flex: 1; }
+.seg { display: inline-flex; padding: 2px; border-radius: 8px; background: var(--bg-contrast); }
+.seg button { padding: 4px 12px; border: 0; border-radius: 6px; background: none; font-size: 13px; color: var(--text-default); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: #fff; color: var(--blue-france); font-weight: 500; box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+
+/* ---- Zone de travail : deux textes + panneau des amendements ---- */
+/* min-height : le panneau collant ne remonte pas sous la barre quand l'article est court. */
+.zone { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 380px; gap: 20px; align-items: start; padding: 20px 32px 48px;
+  min-height: calc(100vh - var(--barre)); }
+.card { background: #fff; border: 1px solid var(--border-default); border-bottom: 0; border-radius: 8px 8px 0 0; box-shadow: 0 4px 0 var(--border-plain); min-width: 0; }
+.card-head { display: flex; gap: 12px; align-items: center; justify-content: space-between; min-height: 52px; padding: 10px 20px;
+  border-bottom: 1px solid var(--border-default); }
+.card-head h2 { margin: 0; font-size: 15px; font-weight: 600; }
+.card-head .chip { font-weight: 500; }
+.projete-card { background: #fffdf6; }
+.texte { position: relative; padding: 16px 20px 24px; font: 16px/28px "Source Serif 4", Georgia, serif; color: var(--text-title); }
+.texte.avec-nav { padding-right: 64px; }
+.alinea { display: grid; grid-template-columns: 30px 1fr; margin: 0 0 10px; }
+.num { font: 11px/28px "IBM Plex Sans", sans-serif; color: var(--text-disabled); }
+.vide { margin: 0; font: italic 14px/22px Poppins, sans-serif; color: var(--text-mention); }
+del, ins { border-radius: 3px; padding: 1px 0; box-decoration-break: clone; -webkit-box-decoration-break: clone; cursor: pointer; }
+del { background: var(--del-bg); color: var(--del-fg); text-decoration-thickness: 1px; }
+ins { background: var(--ins-bg); color: var(--ins-fg); text-decoration: none; }
+.propre del { display: none; }
+.propre ins { background: none; color: inherit; cursor: auto; }
+.propre .alinea.retire { display: none; }
+.focus { outline: 2px solid var(--blue-france); outline-offset: 1px; }
+.dim del:not(.focus), .dim ins:not(.focus) { opacity: .35; }
+.modif-nav { position: sticky; top: calc(var(--barre) + 12px); float: right; margin: 0 -52px 0 8px; display: flex; flex-direction: column; gap: 6px;
+  align-items: center; font: 11px/14px "IBM Plex Sans", sans-serif; color: var(--text-mention); text-align: center; }
+.modif-nav .icon-btn { width: 34px; height: 34px; }
+
+/* ---- Panneau des amendements ---- */
+.panneau { position: sticky; top: calc(var(--barre) + 12px); max-height: calc(100vh - var(--barre) - 88px); display: flex; flex-direction: column; }
+.panneau .liste { overflow-y: auto; padding: 8px; }
+.am { border: 1px solid transparent; border-radius: 8px; }
+.am + .am { margin-top: 4px; }
+.am-tete { display: flex; flex-direction: column; gap: 4px; width: 100%; padding: 10px 12px; border: 0; border-radius: 8px; background: none;
+  text-align: left; cursor: pointer; color: inherit; }
+.am-tete:hover { background: var(--blue-france-975); }
+.am[aria-expanded="true"] { border-color: var(--blue-france); background: var(--blue-france-975); }
+.am-ligne { display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+.am-num { font: 600 14px/normal "IBM Plex Sans", sans-serif; color: var(--blue-france); }
+.am-auteur { overflow: hidden; font-size: 12px; line-height: 18px; color: var(--text-default); text-overflow: ellipsis; white-space: nowrap; }
+.am-touche { width: 6px; height: 6px; border-radius: 50%; background: var(--ins-fg); flex: none; }
+.am-corps { padding: 0 12px 12px; }
+.am-corps h3 { margin: 8px 0 4px; font: 600 11px/normal "IBM Plex Sans", sans-serif; letter-spacing: .04em; text-transform: uppercase; color: var(--text-mention); }
+.dispositif { padding: 10px 12px; border-left: 3px solid var(--blue-france-low-active); background: #fff;
+  font: 14px/22px "Source Serif 4", Georgia, serif; color: var(--text-title); }
+.dispositif p { margin: 0 0 6px; }
+.dispositif p:last-child { margin: 0; }
+.am-detail { font: 12px/17px "IBM Plex Sans", sans-serif; color: var(--text-mention); overflow-wrap: anywhere; }
+.am-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+
+/* ---- États ---- */
+.etat { padding: 64px 48px; text-align: center; color: var(--text-default); }
+.etat h2 { margin: 0 0 8px; font-size: 22px; font-weight: 600; color: var(--text-title); }
+.exemples { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 16px; }
+.exemples button { padding: 8px 16px; border: 1px solid var(--blue-france); border-radius: 8px; background: #fff; color: var(--blue-france); cursor: pointer; }
+.erreur { color: var(--del-fg); }
+.spinner { width: 32px; height: 32px; margin: 0 auto 16px; border: 3px solid var(--blue-france-low); border-top-color: var(--blue-france);
+  border-radius: 50%; animation: tourne 1s linear infinite; }
+@keyframes tourne { to { transform: rotate(360deg); } }
+
+/* Écran moyen : le panneau passe sous les deux textes. */
+@media (max-width: 1280px) {
+  .zone { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .panneau { grid-column: 1 / -1; position: static; max-height: none; }
+}
+@media (max-width: 800px) {
+  .top { flex-wrap: wrap; padding: 16px; }
+  .searchbar { flex-basis: 100%; }
+  .searchbar input { padding: 12px 16px; }
+  .searchbar .btn { padding: 10px 16px; font-size: 16px; }
+  nav.tabs { overflow-x: auto; gap: 0; }
+  .page-head, .barre { padding-left: 16px; padding-right: 16px; }
+  .barre { position: static; }
+  .sommaire select { min-width: 0; flex: 1; }
+  .sommaire { flex: 1 1 100%; }
+  .zone { grid-template-columns: 1fr; padding: 16px; }
+  .modif-nav { top: 12px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <a class="logo" href="./">
+      <img src="static/assets/logo-assemblee.svg" width="54" height="36" alt="">
+      Democracy Watch
+    </a>
+    <form class="searchbar" role="search" id="form">
+      <input id="uid" placeholder="Identifiant du texte, ex. PRJLANR5L17BTC2233" aria-label="Identifiant du texte" autocomplete="off" spellcheck="false">
+      <button class="btn" type="submit"><img src="static/assets/icone-recherche.svg" width="24" height="24" alt="">Projeter</button>
+    </form>
+  </div>
+  <nav class="tabs">
+    <a href="#">Overview</a>
+    <a href="#">Mes textes de loi</a>
+    <a href="#">Mes amendements suivis</a>
+    <a href="./" aria-current="page">Texte projeté</a>
+  </nav>
+</header>
+
+<section class="etat" id="accueil">
+  <h2>Projeter les amendements sur un texte</h2>
+  <p>Le texte et ses amendements viennent de Tricoteuses ; le moteur rejoue les votes dans l’ordre et montre le texte qui en résulte.</p>
+  <div class="exemples">
+    <button type="button" data-uid="PIONANR5L17B0822">PPL n° 822 · vignes abandonnées</button>
+    <button type="button" data-uid="PRJLANR5L17BTC2233">Texte de commission · JO 2030</button>
+  </div>
+</section>
+<section class="etat" id="chargement" hidden><div class="spinner"></div><p>Projection en cours… un long texte demande quelques secondes.</p></section>
+<section class="etat erreur" id="erreur" hidden></section>
+
+<div id="vue" hidden>
+  <div class="page-head">
+    <p class="breadcrumb">Mes textes de loi › <span id="fil"></span></p>
+    <h1 id="titre"></h1>
+    <div class="meta" id="resume"></div>
+  </div>
+
+  <div class="barre">
+    <div class="sommaire">
+      <button class="icon-btn prec" id="prec" type="button" aria-label="Article précédent"><img src="static/assets/chevron.svg" width="16" height="16" alt=""></button>
+      <select id="article" aria-label="Sommaire : choisir un article"></select>
+      <button class="icon-btn suiv" id="suiv" type="button" aria-label="Article suivant"><img src="static/assets/chevron.svg" width="16" height="16" alt=""></button>
+    </div>
+    <label class="toggle"><input type="checkbox" id="filtre"> articles modifiés seulement</label>
+    <span class="espace"></span>
+    <div class="seg" role="group" aria-label="Affichage du texte projeté">
+      <button type="button" id="vue-modifs" aria-pressed="true">Modifications</button>
+      <button type="button" id="vue-propre" aria-pressed="false">Version propre</button>
+    </div>
+  </div>
+
+  <div class="zone">
+    <section class="card">
+      <div class="card-head"><h2>Texte examiné</h2><span class="chip" id="ref-depart"></span></div>
+      <div class="texte" id="depart"></div>
+    </section>
+    <section class="card projete-card">
+      <div class="card-head"><h2>Texte projeté</h2><span class="chip info">après les votes</span></div>
+      <div class="texte avec-nav" id="projete"></div>
+    </section>
+    <aside class="card panneau">
+      <div class="card-head"><h2 id="am-titre">Amendements</h2></div>
+      <div class="liste" id="am-list"></div>
+    </aside>
+  </div>
+</div>
+
+<script>
+const ETATS = {
+  applique: ["Appliqué", "ok"], identique: ["Identique, déjà appliqué", "ok"], sous_amendement: ["Sous-amendement", "info"],
+  non_analyse: ["Non analysé", "ko"], pendant: ["Cible introuvable", "ko"], ambigu: ["Cible ambiguë", "ko"],
+  predit_tombe: ["Tombé (prédit)", "ko"], predit_vivant: ["Vivant (prédit)", "info"], indetermine: ["Indéterminé", ""],
+  ignore: ["Non voté", ""],
+};
+const ORDRE_ETATS = Object.keys(ETATS);
+const ETIQUETTES_ARTICLE = { modifie: "modifié", nouveau: "nouveau", supprime: "supprimé" };
+const CHEVRON = "static/assets/chevron.svg";
+
+const $ = (id) => document.getElementById(id);
+function el(tag, attrs = {}, ...enfants) {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (v === null || v === undefined || v === false) continue;
+    if (k === "class") n.className = v; else if (k.startsWith("on")) n.addEventListener(k.slice(2), v); else n.setAttribute(k, v);
+  }
+  n.append(...enfants.flat().filter((e) => e !== null && e !== undefined));
+  return n;
+}
+
+let donnees = null, rang = 0, amendementActif = null, modifCourante = -1;
+
+function titreArticle(a) {
+  if (a.numero === "TITRE") return "Titre";
+  // « 8 BIS A » → « 8 bis A » : les suffixes latins en minuscules, une lettre seule en capitale.
+  const n = a.numero === "PREMIER" ? "1er" : a.numero === "UNIQUE" ? "unique"
+    : a.numero.split(" ").map((m) => m.length > 1 ? m.toLowerCase() : m).join(" ");
+  return `Article ${n}`;
+}
+
+function afficher(section) {
+  for (const id of ["accueil", "chargement", "erreur", "vue"]) $(id).hidden = id !== section;
+}
+
+async function charger(uid, articleVoulu) {
+  uid = uid.trim().toUpperCase();
+  if (!uid) return;
+  $("uid").value = uid;
+  afficher("chargement");
+  try {
+    const r = await fetch(`textes/${encodeURIComponent(uid)}/projection`);
+    const corps = await r.json();
+    if (!r.ok) throw new Error(corps.erreur || `erreur ${r.status}`);
+    donnees = corps;
+  } catch (e) {
+    $("erreur").replaceChildren(el("h2", {}, "Projection impossible"), el("p", {}, e.message));
+    afficher("erreur");
+    return;
+  }
+  const i = donnees.articles.findIndex((a) => a.numero === articleVoulu);
+  const premierModifie = donnees.articles.findIndex((a) => a.etat !== "inchange");
+  rang = i >= 0 ? i : Math.max(premierModifie, 0);
+  enTete();
+  sommaire();
+  article();
+  afficher("vue");
+}
+
+function enTete() {
+  $("fil").textContent = donnees.texte;
+  $("titre").textContent = donnees.titre;
+  document.title = `Texte projeté · ${donnees.texte}`;
+  const chips = ORDRE_ETATS.filter((e) => donnees.resume[e]).map((e) =>
+    el("span", { class: `chip ${ETATS[e][1]}` }, `${donnees.resume[e]} ${ETATS[e][0].toLowerCase()}`));
+  const modifies = donnees.articles.filter((a) => a.etat !== "inchange").length;
+  $("resume").replaceChildren(el("span", {}, `${donnees.articles.length} articles, ${modifies} touchés · source Tricoteuses ·`), ...chips);
+}
+
+/** Rangs des articles proposés par le sommaire (tous, ou seulement ceux qui changent). */
+function rangsVisibles() {
+  const seulement = $("filtre").checked;
+  return donnees.articles.map((a, i) => i).filter((i) => !seulement || donnees.articles[i].etat !== "inchange" || i === rang);
+}
+
+function sommaire() {
+  $("article").replaceChildren(...rangsVisibles().map((i) => {
+    const a = donnees.articles[i];
+    const marque = ETIQUETTES_ARTICLE[a.etat] ? ` · ${ETIQUETTES_ARTICLE[a.etat]}` : "";
+    return el("option", { value: i, selected: i === rang ? "" : null }, titreArticle(a) + marque);
+  }));
+}
+
+function aller(pas) {
+  const rangs = rangsVisibles();
+  const j = rangs.indexOf(rang) + pas;
+  if (j >= 0 && j < rangs.length) { rang = rangs[j]; sommaire(); article(); }
+}
+
+function article() {
+  const a = donnees.articles[rang];
+  amendementActif = null;
+  modifCourante = -1;
+  history.replaceState(null, "", `?texte=${encodeURIComponent(donnees.texte)}&article=${encodeURIComponent(a.numero)}`);
+  $("article").value = String(rang);
+  const rangs = rangsVisibles();
+  $("prec").disabled = rangs.indexOf(rang) <= 0;
+  $("suiv").disabled = rangs.indexOf(rang) >= rangs.length - 1;
+
+  $("ref-depart").textContent = a.numero_depart ? titreArticle({ numero: a.numero_depart }).toLowerCase() : "absent";
+  $("depart").replaceChildren(...(a.depart.length
+    ? a.depart.map((ligne, i) => el("p", { class: "alinea" }, el("span", { class: "num" }, `(${i + 1})`), el("span", {}, ligne)))
+    : [el("p", { class: "vide" }, a.numero_depart ? "Article supprimé dans le texte examiné." : "Article additionnel : il n’existe pas dans le texte examiné.")]));
+
+  const alineas = a.alineas.map((al) => el("p", { class: `alinea${al.numero === null ? " retire" : ""}` },
+    el("span", { class: "num" }, al.numero === null ? "" : `(${al.numero})`),
+    el("span", {}, al.segments.map((s) => s.type === "eq" ? s.texte
+      : el(s.type, { "data-am": s.amendement || "", title: libelleAmendement(s.amendement, s.type) }, s.texte)))));
+  const nav = el("div", { class: "modif-nav" },
+    el("button", { class: "icon-btn", type: "button", "aria-label": "Modification précédente", onclick: () => allerModif(-1) },
+      el("img", { src: CHEVRON, width: 16, height: 16, alt: "" })),
+    el("span", { id: "modif-pos" }),
+    el("button", { class: "icon-btn bas", type: "button", "aria-label": "Modification suivante", onclick: () => allerModif(1) },
+      el("img", { src: CHEVRON, width: 16, height: 16, alt: "" })));
+  $("projete").replaceChildren(nav, ...(alineas.length ? alineas : [el("p", { class: "vide" }, "Article supprimé.")]));
+  majModifs();
+  panneau(a);
+}
+
+function touche(uid) {
+  return Boolean($("projete").querySelector(`[data-am="${CSS.escape(uid)}"]`));
+}
+
+function panneau(a) {
+  // D'abord ceux qui modifient le texte affiché, puis par état (appliqué, prédit…).
+  const uids = [...a.amendements].sort((x, y) => (touche(y) - touche(x))
+    || ORDRE_ETATS.indexOf(donnees.amendements[x].etat) - ORDRE_ETATS.indexOf(donnees.amendements[y].etat));
+  $("am-titre").textContent = uids.length ? `Amendements (${uids.length})` : "Aucun amendement";
+  $("am-list").replaceChildren(...(uids.length ? uids.map(carte)
+    : [el("p", { class: "vide", style: "padding: 8px 12px" }, "Aucun amendement n’a été déposé sur cet article.")]));
+}
+
+function carte(uid) {
+  const am = donnees.amendements[uid];
+  const [libelle, classe] = ETATS[am.etat] || [am.etat, ""];
+  return el("div", { class: "am", "data-uid": uid, "aria-expanded": "false" },
+    el("button", { class: "am-tete", type: "button", onclick: () => choisir(uid) },
+      el("span", { class: "am-ligne" },
+        el("span", { class: "am-ligne" }, touche(uid) ? el("span", { class: "am-touche", title: "Modifie le texte affiché" }) : null,
+          el("span", { class: "am-num" }, `n° ${am.numero}`)),
+        el("span", { class: `chip ${classe}` }, libelle)),
+      am.auteur ? el("span", { class: "am-auteur", title: am.auteur }, am.auteur) : null),
+    el("div", { class: "am-corps", hidden: "" },
+      el("div", { class: "am-tags" }, am.sort ? el("span", { class: "chip" }, am.sort) : null,
+        am.article_vise ? el("span", { class: "chip" }, am.article_vise) : null),
+      el("h3", {}, "Dispositif"),
+      el("div", { class: "dispositif" }, am.dispositif.length ? am.dispositif.map((p) => el("p", {}, p)) : el("p", {}, "—")),
+      am.detail ? [el("h3", {}, "Moteur"), el("div", { class: "am-detail" }, am.detail)] : null));
+}
+
+function libelleAmendement(uid, type) {
+  const verbe = type === "ins" ? "Inséré" : "Supprimé";
+  const am = uid && donnees.amendements[uid];
+  return am ? `${verbe} par l’amendement n° ${am.numero}${am.auteur ? ` (${am.auteur.split(",")[0]}…)` : ""}` : verbe;
+}
+
+function marques() {
+  const propre = $("projete").classList.contains("propre");
+  const tout = [...$("projete").querySelectorAll(propre ? "ins" : "ins, del")];
+  const visibles = amendementActif ? tout.filter((m) => m.dataset.am === amendementActif) : tout;
+  // Une suppression suivie de son remplacement, collés l'un à l'autre, forment une seule modification.
+  return visibles.filter((m) => !visibles.includes(m.previousSibling));
+}
+
+function majModifs() {
+  const n = marques().length;
+  $("modif-pos").replaceChildren(el("span", {}, "modif."), el("br"), n ? `${modifCourante >= 0 ? modifCourante + 1 : "–"}/${n}` : "0");
+  for (const b of $("projete").querySelectorAll(".modif-nav .icon-btn")) b.disabled = n === 0;
+}
+
+function allerModif(pas) {
+  const liste = marques();
+  if (!liste.length) return;
+  modifCourante = modifCourante < 0 && pas < 0 ? liste.length - 1 : (modifCourante + pas + liste.length) % liste.length;
+  for (const m of $("projete").querySelectorAll(".focus")) m.classList.remove("focus");
+  if (!amendementActif) liste[modifCourante].classList.add("focus");
+  else for (const m of liste) m.classList.add("focus");
+  liste[modifCourante].scrollIntoView({ block: "center", behavior: "smooth" });
+  majModifs();
+}
+
+/** Ouvre l'amendement dans le panneau et surligne ce qu'il change ; un second clic referme. */
+function choisir(uid, depuisTexte = false) {
+  amendementActif = amendementActif === uid && !depuisTexte ? null : uid;
+  modifCourante = -1;
+  for (const c of $("am-list").querySelectorAll(".am")) {
+    const ouvert = c.dataset.uid === amendementActif;
+    c.setAttribute("aria-expanded", String(ouvert));
+    c.querySelector(".am-corps").hidden = !ouvert;
+    if (ouvert) c.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }
+  const projete = $("projete");
+  projete.classList.toggle("dim", Boolean(amendementActif));
+  for (const m of projete.querySelectorAll("ins, del")) m.classList.toggle("focus", Boolean(amendementActif) && m.dataset.am === amendementActif);
+  const premier = amendementActif && projete.querySelector(`[data-am="${CSS.escape(amendementActif)}"]`);
+  if (premier) {
+    modifCourante = 0;
+    if (!depuisTexte) premier.scrollIntoView({ block: "center", behavior: "smooth" });
+  }
+  majModifs();
+}
+
+function modeAffichage(propre) {
+  $("projete").classList.toggle("propre", propre);
+  $("vue-propre").setAttribute("aria-pressed", String(propre));
+  $("vue-modifs").setAttribute("aria-pressed", String(!propre));
+  modifCourante = -1;
+  majModifs();
+}
+
+$("form").addEventListener("submit", (e) => { e.preventDefault(); charger($("uid").value); });
+for (const b of document.querySelectorAll(".exemples button")) b.addEventListener("click", () => charger(b.dataset.uid));
+$("article").addEventListener("change", () => { rang = Number($("article").value); article(); });
+$("filtre").addEventListener("change", () => { sommaire(); article(); });
+$("prec").addEventListener("click", () => aller(-1));
+$("suiv").addEventListener("click", () => aller(1));
+$("vue-modifs").addEventListener("click", () => modeAffichage(false));
+$("vue-propre").addEventListener("click", () => modeAffichage(true));
+// Un clic sur un passage modifié ouvre l'amendement qui l'a écrit.
+$("projete").addEventListener("click", (e) => {
+  const m = e.target.closest("ins, del");
+  if (m && m.dataset.am && !$("projete").classList.contains("propre")) choisir(m.dataset.am, true);
+});
+document.addEventListener("keydown", (e) => {
+  if (!donnees || e.target.matches("input, select")) return;
+  if (e.key === "ArrowLeft") aller(-1);
+  if (e.key === "ArrowRight") aller(1);
+});
+
+const params = new URLSearchParams(location.search);
+if (params.get("texte")) charger(params.get("texte"), params.get("article"));
+</script>
+</body>
+</html>

@@ -1,0 +1,1763 @@
+{
+ "version": "V0-noop",
+ "split": "dev",
+ "commit": "70ed197",
+ "date": "2026-11-12T11:34:20",
+ "corpus": "c6d41f776d64f55751bb320487005f2ee53421c6570823852d359e4a082bbebe",
+ "consolidation": {
+  "touches": 1865,
+  "exacts_%": 0.0,
+  "exacts_indulgents_%": 1.0,
+  "f1_ajouts_%": 0.0,
+  "f1_retraits_%": 0.0
+ },
+ "strates": {
+  "famille : hors finances": {
+   "touches": 1334,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 1.3,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  "longueur : 1-4 alinéas": {
+   "touches": 578,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 2.1,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  "longueur : 20+ alinéas": {
+   "touches": 175,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  "longueur : 5-19 alinéas": {
+   "touches": 581,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 1.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  "étape : commission": {
+   "touches": 756,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.9,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  "étape : seance": {
+   "touches": 578,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 1.9,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  }
+ },
+ "echecs": {
+  "non appliqué": 1076,
+  "article manquant": 533,
+  "hors amendement": 174,
+  "typographie": 57,
+  "article en trop": 17,
+  "guillemets ou alinéas": 7,
+  "renumérotation": 3
+ },
+ "ecarts_par_etiquette": {
+  "hors amendement": 15893,
+  "typographie": 1337,
+  "mention": 251,
+  "guillemets ou alinéas": 250,
+  "renumérotation": 181
+ },
+ "etats": {},
+ "tombes": {
+  "f1_%": null,
+  "vp": 0,
+  "fp": 0,
+  "fn": 0
+ },
+ "textes": [
+  {
+   "id": "DLR5L17N50370:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50370:seance",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50413:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50453:commission",
+   "touches": 10,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50604:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": null
+  },
+  {
+   "id": "DLR5L17N50627:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50631:commission",
+   "touches": 5,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50631:seance",
+   "touches": 5,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50636:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50636:seance",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50640:commission",
+   "touches": 5,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50662:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50667:commission",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50686:commission",
+   "touches": 5,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50686:seance",
+   "touches": 15,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50690:commission",
+   "touches": 10,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50690:seance",
+   "touches": 9,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 11.1,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50724:commission",
+   "touches": 8,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50724:seance",
+   "touches": 7,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50731:commission",
+   "touches": 73,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50775:commission",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50775:seance",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50776:commission",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50778:commission",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50778:seance",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50779:commission",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50779:seance",
+   "touches": 9,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50796:commission",
+   "touches": 42,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50796:seance",
+   "touches": 34,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50854:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50879:commission",
+   "touches": 8,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50910:commission",
+   "touches": 6,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50915:commission",
+   "touches": 6,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N50915:seance",
+   "touches": 6,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51002:commission",
+   "touches": 5,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51002:seance",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 25.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51007:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51017:commission",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51017:seance",
+   "touches": 5,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51033:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51039:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51039:seance",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51052:commission",
+   "touches": 6,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51052:seance",
+   "touches": 6,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51132:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51132:seance",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51151:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": null
+  },
+  {
+   "id": "DLR5L17N51163:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51215:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51216:commission",
+   "touches": 5,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51217:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51218:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51255:commission",
+   "touches": 11,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 9.1,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51312:commission",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 25.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51312:seance",
+   "touches": 7,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51313:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51329:commission",
+   "touches": 7,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51329:seance",
+   "touches": 6,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51330:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51330:seance",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51344:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51346:commission",
+   "touches": 9,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51346:seance",
+   "touches": 7,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51349:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51349:seance",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51453:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51453:seance",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51504:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51504:seance",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51516:commission",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51516:seance",
+   "touches": 5,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51518:commission",
+   "touches": 9,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51518:seance",
+   "touches": 8,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51563:commission",
+   "touches": 8,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51563:seance",
+   "touches": 8,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51655:commission",
+   "touches": 11,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51655:seance",
+   "touches": 7,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51670:commission",
+   "touches": 16,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51670:seance",
+   "touches": 17,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 5.9,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51672:commission",
+   "touches": 33,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51672:seance",
+   "touches": 33,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51702:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51711:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51711:seance",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51713:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51713:seance",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51716:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51716:seance",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51732:commission",
+   "touches": 37,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51732:seance",
+   "touches": 43,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 2.3,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51775:seance",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": null,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51849:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51849:seance",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51852:commission",
+   "touches": 7,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51852:seance",
+   "touches": 24,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51955:commission",
+   "touches": 9,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51955:seance",
+   "touches": 7,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 14.3,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51962:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51962:seance",
+   "touches": 5,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51973:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51973:seance",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51981:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51981:seance",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51984:seance",
+   "touches": 5,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51985:commission",
+   "touches": 42,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N51985:seance",
+   "touches": 58,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 1.7,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52040:commission",
+   "touches": 10,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52040:seance",
+   "touches": 11,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52081:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52082:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52084:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52100:commission",
+   "touches": 43,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 2.3,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52100:seance",
+   "touches": 39,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52208:commission",
+   "touches": 8,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52208:seance",
+   "touches": 7,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52230:seance",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52392:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52498:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52517:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52635:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52635:seance",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52743:commission",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52743:seance",
+   "touches": 7,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52744:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52744:seance",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52746:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52746:seance",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52749:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52749:seance",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": null
+  },
+  {
+   "id": "DLR5L17N52787:commission",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52924:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52924:seance",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52958:commission",
+   "touches": 9,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52970:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52972:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52976:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52976:seance",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52985:commission",
+   "touches": 108,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.9,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N52985:seance",
+   "touches": 133,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 1.5,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53053:commission",
+   "touches": 5,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53053:seance",
+   "touches": 6,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53058:commission",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53058:seance",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53067:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53067:seance",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53069:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53069:seance",
+   "touches": 5,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53159:commission",
+   "touches": 13,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53159:seance",
+   "touches": 10,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 10.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53171:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53171:seance",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53187:commission",
+   "touches": 9,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53187:seance",
+   "touches": 7,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53192:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53266:commission",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53276:commission",
+   "touches": 7,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53276:seance",
+   "touches": 9,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53284:commission",
+   "touches": 9,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53284:seance",
+   "touches": 10,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 10.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53331:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53401:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53401:seance",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53418:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 100.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53424:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53425:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53426:commission",
+   "touches": 7,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53426:seance",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53427:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53427:seance",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53429:commission",
+   "touches": 7,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53456:commission",
+   "touches": 15,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53672:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53715:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53717:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53717:seance",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53720:commission",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53720:seance",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53770:commission",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53771:commission",
+   "touches": 5,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53772:commission",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53773:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53774:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53775:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53775:seance",
+   "touches": 6,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53785:commission",
+   "touches": 47,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53878:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53879:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53942:commission",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N53942:seance",
+   "touches": 3,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N54006:commission",
+   "touches": 13,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N54006:seance",
+   "touches": 17,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N54083:commission",
+   "touches": 43,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N54085:commission",
+   "touches": 45,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N54085:seance",
+   "touches": 57,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 1.8,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N54148:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N54148:seance",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": null
+  },
+  {
+   "id": "DLR5L17N54149:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N54227:commission",
+   "touches": 11,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N54227:seance",
+   "touches": 13,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N54248:commission",
+   "touches": 6,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N54298:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N54310:commission",
+   "touches": 2,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N54313:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N54372:commission",
+   "touches": 31,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N54372:seance",
+   "touches": 43,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N54445:commission",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 25.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N54445:seance",
+   "touches": 4,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N54608:commission",
+   "touches": 14,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 7.1,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N54777:commission",
+   "touches": 5,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  },
+  {
+   "id": "DLR5L17N54901:commission",
+   "touches": 1,
+   "exacts_%": 0.0,
+   "exacts_indulgents_%": 0.0,
+   "f1_ajouts_%": 0.0,
+   "f1_retraits_%": 0.0
+  }
+ ]
+}

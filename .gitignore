@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+node_modules/
+dist/
+*.jsonl
+evals/moteur/donnees/textes/
+evals/moteur/donnees/cache_llm/
+evals/moteur/donnees/cache_decisions/

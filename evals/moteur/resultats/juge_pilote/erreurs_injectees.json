@@ -1,0 +1,3616 @@
+{
+ "bilan": {
+  "mot changé": {
+   "cas": 30,
+   "modèle seul à 0.5": 30,
+   "modèle seul à 0.7": 30,
+   "modèle seul à 0.8": 30,
+   "modèle seul à 0.9": 30,
+   "modèle seul à 0.95": 30,
+   "modèle seul à 0.99": 30,
+   "avec règles à 0.9": 30
+  },
+  "tronqué": {
+   "cas": 30,
+   "modèle seul à 0.5": 30,
+   "modèle seul à 0.7": 30,
+   "modèle seul à 0.8": 30,
+   "modèle seul à 0.9": 30,
+   "modèle seul à 0.95": 30,
+   "modèle seul à 0.99": 30,
+   "avec règles à 0.9": 30
+  },
+  "déplacé": {
+   "cas": 30,
+   "modèle seul à 0.5": 30,
+   "modèle seul à 0.7": 30,
+   "modèle seul à 0.8": 30,
+   "modèle seul à 0.9": 30,
+   "modèle seul à 0.95": 30,
+   "modèle seul à 0.99": 30,
+   "avec règles à 0.9": 30
+  },
+  "remplacé": {
+   "cas": 30,
+   "modèle seul à 0.5": 30,
+   "modèle seul à 0.7": 30,
+   "modèle seul à 0.8": 30,
+   "modèle seul à 0.9": 30,
+   "modèle seul à 0.95": 30,
+   "modèle seul à 0.99": 30,
+   "avec règles à 0.9": 30
+  }
+ },
+ "cas": [
+  {
+   "mutation": "mot changé",
+   "taille": "4-9 mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N51349:seance|T0/534|85",
+     "contexte_avant": "évalue notamment ces effets, d'une part, sur la proportion de plaintes déposées par rapport au nombre total d'agressions sexuelles et, d'autre part, sur la proportion des agressions sexuelles faisant l'objet d'une condamnation. Il est actualisé",
+     "passage_a": "trois",
+     "passage_b": "notamment",
+     "contexte_apres": "ans après sa publication.",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.84,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.02,
+       "effet_different": 0.88,
+       "indetermine": 0.08
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N54777:commission|AMANR5L17PO884839B3107P0D1N000007/195|31",
+     "contexte_avant": "La seconde phrase du neuvième alinéa de l'article 3-1 de l'ordonnance n° 58-1270 du 22 décembre 1958 portant loi organique relative au",
+     "passage_a": "premier",
+     "passage_b": "statut",
+     "contexte_apres": "de la magistrature est ainsi modifiée :\n1° Après le mot : « détention, », sont insérés les mots : « premier vice-président chargé des fonctions de juge des violences sexuelles et intrafamiliales, » ;\n2° Après la seconde occurrence du",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.51,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.05,
+       "effet_different": 0.63,
+       "indetermine": 0.29
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N50453:commission|AMANR5L17PO420120B0284P0D1N000007/96|46",
+     "contexte_avant": "Dans un délai de six mois à compter de la promulgation de la présente loi, le Gouvernement remet au Parlement un rapport visant à qualifier le rôle, l'importance et la pérennité du paritarisme dans le cadre des réformes successives liées à la",
+     "passage_a": "liées",
+     "passage_b": "réforme",
+     "contexte_apres": "des retraites.",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.52,
+      "probabilites": {
+       "forme_seule": 0.06,
+       "meme_effet": 0.15,
+       "effet_different": 0.64,
+       "indetermine": 0.15
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N51672:commission|AMANR5L17PO420120B1102P0D1N000269/229|53",
+     "contexte_avant": "article L. 1110-5-3 du code de la santé publique, il est inséré un article L. 1110-5-4 ainsi rédigé :\n« Art. L. 1110-5-4.-La Haute Autorité de santé élabore un",
+     "passage_a": "annuelle",
+     "passage_b": "référentiel",
+     "contexte_apres": "de bonnes pratiques pour les professionnels de santé afin de prévenir les pratiques d'obstination déraisonnable. Ce référentiel est accompagné d'un ensemble d'indicateurs destinés aux établissements de santé qu'ils renseignent de manière annuelle auprès des agences régionales de santé.\n«",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.64,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.03,
+       "effet_different": 0.73,
+       "indetermine": 0.22
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N51985:commission|AMANR5L17PO59051B1470P0D1N000024/54|22",
+     "contexte_avant": "Le 4° de l'article L. 761-8 du code de l'entrée et du séjour des",
+     "passage_a": "abrogé",
+     "passage_b": "étrangers",
+     "contexte_apres": "et du droit d'asile est abrogé.",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.91,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.02,
+       "effet_different": 0.93,
+       "indetermine": 0.04
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N52972:commission|AMANR5L17PO420120B1958P0D1N000002/144|23",
+     "contexte_avant": "I.-Chaque année, les agences régionales de santé remettent au ministre chargé de la santé un rapport sur l'",
+     "passage_a": "stationnement",
+     "passage_b": "application",
+     "contexte_apres": "de l'article 1er de la présente loi.\nII.-La transparence dans la gestion des infrastructures de stationnement est assurée par la publication d'un rapport annuel soumis à l'approbation du conseil de surveillance de l'établissement public de santé et",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.8,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.02,
+       "effet_different": 0.85,
+       "indetermine": 0.12
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N50724:commission|AMANR5L17PO419604B1009P0D1N000034/80|23",
+     "contexte_avant": "Dans un délai de six mois à compter de la promulgation de la présente loi, le Gouvernement remet au Parlement un rapport",
+     "passage_a": "évaluant",
+     "passage_b": "promulgation",
+     "contexte_apres": "le fonctionnement des commissions disciplinaires dans les établissements publics à caractère scientifique, culturel et professionnel.",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.8,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.04,
+       "effet_different": 0.85,
+       "indetermine": 0.09
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N51216:commission|AMANR5L17PO420120B0769P0D1N000019/136|7",
+     "contexte_avant": "Dans un délai de six mois à",
+     "passage_a": "dynamique",
+     "passage_b": "compter",
+     "contexte_apres": "de la promulgation de la présente loi, le Gouvernement remet au Parlement un rapport sur les effets de l'extension des obligations de revitalisation et de recherche de repreneur sur l'investissement des entreprises et sur la dynamique de l'emploi. Ce rapport analyse également",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.35,
+      "probabilites": {
+       "forme_seule": 0.05,
+       "meme_effet": 0.18,
+       "effet_different": 0.51,
+       "indetermine": 0.26
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N51349:commission|AMANR5L17PO59051B0842P0D1N000021/106|21",
+     "contexte_avant": "Dans un délai d'un an à compter de la promulgation de la présente loi, le Gouvernement remet au",
+     "passage_a": "jusqu",
+     "passage_b": "Parlement",
+     "contexte_apres": "un rapport évaluant les effets de la redéfinition pénale des infractions d'agression sexuelle et de viol sur le traitement judiciaire des violences sexuelles, du dépôt de plainte jusqu'au délibéré.",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.56,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.03,
+       "effet_different": 0.67,
+       "indetermine": 0.28
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N52100:seance|AMANR5L17PO838901BTC2233P0D1N000001/329|44",
+     "contexte_avant": "La section 3 du chapitre II du titre II du livre Ier du code du sport est complétée par un article L. 122-20 ainsi rédigé :\n« Art. L. 122-20.-Les associations et sociétés",
+     "passage_a": "fixées",
+     "passage_b": "sportives",
+     "contexte_apres": "mentionnées aux articles L. 122-2 et L. 122-12 sont tenues de mettre à disposition leurs sportifs de nationalité française lorsque ces derniers font l'objet d'une convocation ayant pour but leur participation aux jeux Olympiques et Paralympiques.\n« Les",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.53,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.05,
+       "effet_different": 0.65,
+       "indetermine": 0.28
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N54085:seance|AMANR5L17PO838901BTC2765P0D1N002065/128|18",
+     "contexte_avant": "Le I de l'article L. 212-5-1 du code de l'",
+     "passage_a": "environnement",
+     "passage_b": "rédigé",
+     "contexte_apres": "est complété par un 5° ainsi rédigé :\n« 5° Comporter des orientations stratégiques relatives à l'efficience des usages de l'eau et au stockage de la ressource en eau, dans le respect du 5° bis du I de l'article",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.57,
+      "probabilites": {
+       "forme_seule": 0.04,
+       "meme_effet": 0.15,
+       "effet_different": 0.68,
+       "indetermine": 0.13
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N54372:commission|AMANR5L17PO883517B2841P0D1N001024/320|20",
+     "contexte_avant": "Après l'article L. 223-1-3 du code de l'action sociale et des",
+     "passage_a": "familles",
+     "passage_b": "respect",
+     "contexte_apres": ", il est inséré un article L. 223-1-4 ainsi rédigé :\n« Art. L. 223-1-4.-Dans le cadre d'une mesure de protection de l'enfance, le service d'aide sociale à",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.67,
+      "probabilites": {
+       "forme_seule": 0.05,
+       "meme_effet": 0.06,
+       "effet_different": 0.75,
+       "indetermine": 0.14
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N51985:seance|T0/436|122",
+     "contexte_avant": "l'article 1er de la loi n° 2025-176 du 24 février 2025 d'urgence pour Mayotte.\nUn décret en Conseil d'État détermine les modalités d'application du présent article. Ce décret précise en particulier la programmation de chacun des",
+     "passage_a": "thèmes",
+     "passage_b": "mentionné",
+     "contexte_apres": "figurant dans le rapport annexé.",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.45,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.05,
+       "effet_different": 0.59,
+       "indetermine": 0.33
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N53429:commission|AMANR5L17PO59051B2312P0D1N000039/228|50",
+     "contexte_avant": "Après l'article 16-8-1 du code civil, il est inséré un article 16-8-2 ainsi rédigé :\n« Art. 16-8-2.-Le principe d'anonymat du don ne fait pas obstacle à la",
+     "passage_a": "communication",
+     "passage_b": "article",
+     "contexte_apres": "à la personne née d'une assistance médicale à la procréation avec tiers donneur ayant procédé à un test génétique à visée généalogique, dans les conditions prévues à l'article 16-10-1, d'informations concernant ses ascendants. Il ne fait pas",
+     "regle": "effet_different",
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.8,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.03,
+       "effet_different": 0.85,
+       "indetermine": 0.11
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N51981:commission|T0/100|9",
+     "contexte_avant": "La perte de recettes pour les organismes de sécurité",
+     "passage_a": "sociale",
+     "passage_b": "titre",
+     "contexte_apres": "est compensée à due concurrence par la majoration de l'accise sur les tabacs prévue au chapitre IV du titre Ier du livre III du code des impositions sur les biens et services.",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.96,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.97,
+       "indetermine": 0.01
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N52958:commission|T0/241|65",
+     "contexte_avant": "'action sociale et des familles est complété par une phrase ainsi rédigée : « Il en est de même lorsque ces personnes communiquent à l'autorité judiciaire des informations concernant un majeur protégé ou qu'il y a lieu de protéger. »\nII.-",
+     "passage_a": "Après",
+     "passage_b": "sociale",
+     "contexte_apres": "le mot : « solliciter », la fin de la dernière phrase du dernier alinéa de l'article 431 du code civil est ainsi rédigée : « des informations complémentaires du tiers qui l'a saisi ou de tout service social chargé de l'accompagnement d",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "indetermine",
+      "confiance": 0.23,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.14,
+       "effet_different": 0.41,
+       "indetermine": 0.42
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N53331:commission|T0/82|32",
+     "contexte_avant": "Les articles 2261 et 2272 du code civil sont applicables dans les collectivités régies par l'article 73 de la Constitution ainsi qu'à Saint-Barthélemy et Saint-",
+     "passage_a": "Constitution",
+     "passage_b": "Martin",
+     "contexte_apres": ".",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.72,
+      "probabilites": {
+       "forme_seule": 0.04,
+       "meme_effet": 0.04,
+       "effet_different": 0.79,
+       "indetermine": 0.13
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N51670:commission|T0/5448|107",
+     "contexte_avant": "ainsi rédigé :\n« Art. L. 1111-12-10.-La décision du médecin se prononçant sur la demande d'aide à mourir ainsi que la décision de mettre fin à la procédure dans les conditions prévues au 2° de l'",
+     "passage_a": "peuvent",
+     "passage_b": "article",
+     "contexte_apres": "L. 1111-12-8 ne peuvent être contestées que par la personne ayant formé cette demande, devant la juridiction administrative, selon les dispositions de droit commun. »",
+     "regle": "effet_different",
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.41,
+      "probabilites": {
+       "forme_seule": 0.04,
+       "meme_effet": 0.07,
+       "effet_different": 0.56,
+       "indetermine": 0.33
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "4-9 mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N53720:seance|T0/1|19",
+     "contexte_avant": "Le Gouvernement remet aux commissions permanentes de l'Assemblée nationale et du Sénat chargées des finances un rapport",
+     "passage_a": "élevées",
+     "passage_b": "annuel",
+     "contexte_apres": "qui présente, pour chaque opérateur de l'État, une liste non nominative des dix rémunérations brutes les plus élevées.",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.51,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.04,
+       "effet_different": 0.63,
+       "indetermine": 0.31
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N51852:seance|AMANR5L17PO838901BTC1378P0D1N000098/186|66",
+     "contexte_avant": "L. 151-30 est complété par un alinéa ainsi rédigé :\n« Lorsque le règlement impose la réalisation d'aires de stationnement pour les véhicules motorisés, cette obligation est réduite à raison d'une aire de stationnement pour véhicule motorisé en contrepartie de la",
+     "passage_a": "abrogé",
+     "passage_b": "création",
+     "contexte_apres": "d'infrastructures ou de l'aménagement d'espaces permettant le stationnement sécurisé d'au moins six vélos par aire de stationnement. » ;\n2° L'article L. 152-6-1 est abrogé.",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.73,
+      "probabilites": {
+       "forme_seule": 0.04,
+       "meme_effet": 0.04,
+       "effet_different": 0.8,
+       "indetermine": 0.12
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N54372:seance|AMANR5L17PO838901BTC3018P0D1N000904/165|90",
+     "contexte_avant": "A.-Lorsqu'un enfant est confié à l'un de ses parents dans un contexte d'allégations de violences sexuelles, incestueuses ou intrafamiliales, le juge veille, sauf décision spécialement motivée contraire, au maintien de liens réguliers avec l'autre parent",
+     "passage_a": "comme",
+     "passage_b": "lorsque",
+     "contexte_apres": "celui-ci apparaît comme un parent protecteur. »",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.31,
+      "probabilites": {
+       "forme_seule": 0.04,
+       "meme_effet": 0.18,
+       "effet_different": 0.48,
+       "indetermine": 0.3
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "4-9 mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N52985:commission|T0/15034|31",
+     "contexte_avant": "Au 6° de l'article L. 8271-1-2 du code du travail, les mots : « de l'aviation civile commissionnés à cet",
+     "passage_a": "chargés",
+     "passage_b": "effet",
+     "contexte_apres": "» sont remplacés par les mots : « et administratifs de l'aviation civile chargés de la lutte contre le travail illégal ».",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.43,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.14,
+       "effet_different": 0.57,
+       "indetermine": 0.27
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N52985:seance|AMANR5L17PO838901BTC2250P0D1N000696/39|20",
+     "contexte_avant": "Les articles 41-1-2, 41-1-3 et 180-2 du code de",
+     "passage_a": "procédure",
+     "passage_b": "articles",
+     "contexte_apres": "pénale sont abrogés.",
+     "regle": "effet_different",
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.4,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.15,
+       "effet_different": 0.55,
+       "indetermine": 0.27
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N52985:seance|AMANR5L17PO838901BTC2250P0D1N000932/104|19",
+     "contexte_avant": "Au dernier alinéa de l'article 1758 du code général des impôts, après le mot : «",
+     "passage_a": "droits",
+     "passage_b": "alinéa",
+     "contexte_apres": "», sont insérés les mots : «, y compris de la contribution prévue au a du II de l'article L. 136-6 du code de la sécurité sociale, ».",
+     "regle": "effet_different",
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.57,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.04,
+       "effet_different": 0.68,
+       "indetermine": 0.25
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "4-9 mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N54085:seance|T0/37059|65",
+     "contexte_avant": ", le Gouvernement remet au Parlement un rapport relatif à l'opportunité et aux modalités de l'instauration d'une taxe sur la publicité comparative, au sens de l'article L. 122-1 du code de la consommation, et de l'",
+     "passage_a": "affectation",
+     "passage_b": "lutte",
+     "contexte_apres": "de son produit au financement des mesures de surveillance, de prévention et de lutte contre les dangers sanitaires pour les animaux et les végétaux.",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.69,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.02,
+       "effet_different": 0.77,
+       "indetermine": 0.2
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N50776:commission|AMANR5L17PO419610B0516P0D1N000006/175|70",
+     "contexte_avant": "inséré un article L. 211-2-2 ainsi rédigé :\n« Art. L. 211-2-2.-Les dispositifs d'aides publiques en faveur de la maîtrise de la demande en énergie et de la délivrance des certificats d'",
+     "passage_a": "modalités",
+     "passage_b": "économie",
+     "contexte_apres": "d'énergie doivent favoriser prioritairement les rénovations globales et performantes des logements par rapport aux gestes uniques.\n« Un décret fixe les modalités d'application du présent article. »",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.43,
+      "probabilites": {
+       "forme_seule": 0.05,
+       "meme_effet": 0.14,
+       "effet_different": 0.57,
+       "indetermine": 0.24
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N53284:seance|AMANR5L17PO838901BTC2468P0D1N000119/76|5",
+     "contexte_avant": "À la première phrase du",
+     "passage_a": "premier",
+     "passage_b": "première",
+     "contexte_apres": "alinéa de l'article L. 22-10-1 du code de la sécurité intérieure, la référence : « IX » est remplacée par la référence : « IX bis ».",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.48,
+      "probabilites": {
+       "forme_seule": 0.1,
+       "meme_effet": 0.21,
+       "effet_different": 0.61,
+       "indetermine": 0.08
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N52985:commission|T0/1508|60",
+     "contexte_avant": "114-12-1 du code de la sécurité sociale, il est inséré un 8° ainsi rédigé :\n« 8° Sous réserve d'être individuellement désignés et dûment habilités dans le cadre de leurs missions relatives à la lutte contre la fraude, les",
+     "passage_a": "inséré",
+     "passage_b": "agents",
+     "contexte_apres": "des services du représentant de l'État dans le département. »",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.59,
+      "probabilites": {
+       "forme_seule": 0.05,
+       "meme_effet": 0.08,
+       "effet_different": 0.69,
+       "indetermine": 0.18
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N52985:seance|T0/33985|44",
+     "contexte_avant": "Après le 7° ter du I de l'article L. 330-2 du code de la route, il est inséré un 7° quater ainsi rédigé :\n« 7° quater Aux agents habilités des organismes mentionnés aux",
+     "passage_a": "article",
+     "passage_b": "articles",
+     "contexte_apres": "L. 213-1 et L. 752-4 du code de la sécurité sociale et à l'article L. 723-2 du code rural et de la pêche maritime pour accomplir les actions de contrôle et de lutte contre la fraude mentionnées à l",
+     "regle": "effet_different",
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.53,
+      "probabilites": {
+       "forme_seule": 0.04,
+       "meme_effet": 0.15,
+       "effet_different": 0.65,
+       "indetermine": 0.16
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "mot changé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "mot changé|DLR5L17N51985:seance|AMANR5L17PO838901BTC1573P0D1N000336/289|153",
+     "contexte_avant": "concurrence, par la création d'une taxe additionnelle à l'accise sur les tabacs prévue au chapitre IV du titre Ier du livre III du code des impositions sur les biens et services.\nIV.-Le I n'est applicable qu'aux",
+     "passage_a": "déterminées",
+     "passage_b": "sommes",
+     "contexte_apres": "venant en déduction de l'impôt dû.",
+     "regle": null,
+     "taille": 1,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.53,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.03,
+       "effet_different": 0.65,
+       "indetermine": 0.3
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "4-9 mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N51349:seance|T0/534|86",
+     "contexte_avant": "notamment ces effets, d'une part, sur la proportion de plaintes déposées par rapport au nombre total d'agressions sexuelles et, d'autre part, sur la proportion des agressions sexuelles faisant l'objet d'une condamnation. Il est actualisé trois",
+     "passage_a": "ans après sa publication.",
+     "passage_b": "",
+     "contexte_apres": "",
+     "regle": null,
+     "taille": 5,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.96,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.97,
+       "indetermine": 0.01
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N54777:commission|AMANR5L17PO884839B3107P0D1N000007/195|19",
+     "contexte_avant": "La seconde phrase du neuvième alinéa de l'article 3-1 de l'ordonnance n°",
+     "passage_a": "58-1270 du 22 décembre 1958 portant loi organique relative au statut de la magistrature est ainsi modifiée :",
+     "passage_b": "",
+     "contexte_apres": "1° Après le mot : « détention, », sont insérés les mots : « premier vice-président chargé des fonctions de juge des violences sexuelles et intrafamiliales, » ;\n2° Après la seconde occurrence du mot : « adjoint, »,",
+     "regle": "effet_different",
+     "taille": 20,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.97,
+      "probabilites": {
+       "forme_seule": 0.0,
+       "meme_effet": 0.0,
+       "effet_different": 0.98,
+       "indetermine": 0.02
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N50453:commission|AMANR5L17PO420120B0284P0D1N000007/96|25",
+     "contexte_avant": "Dans un délai de six mois à compter de la promulgation de la présente loi, le Gouvernement remet au Parlement un rapport visant à",
+     "passage_a": "",
+     "passage_b": "qualifier le rôle, l'importance et la pérennité du paritarisme dans le cadre des réformes successives liées à la réforme des retraites.",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 25,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.95,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.96,
+       "indetermine": 0.02
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N51672:commission|AMANR5L17PO420120B1102P0D1N000269/229|117",
+     "contexte_avant": "d'obstination déraisonnable. Ce référentiel est accompagné d'un ensemble d'indicateurs destinés aux établissements de santé qu'ils renseignent de manière annuelle auprès des agences régionales de santé.\n« Ces indicateurs sont publiés par la Haute Autorité de santé, dans le",
+     "passage_a": "cadre de la publication des indicateurs de qualité et de sécurité des soins. »",
+     "passage_b": "",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 15,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.97,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.0,
+       "effet_different": 0.98,
+       "indetermine": 0.01
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N51985:commission|AMANR5L17PO59051B1470P0D1N000024/54|16",
+     "contexte_avant": "Le 4° de l'article L. 761-8 du code de l",
+     "passage_a": "",
+     "passage_b": "'entrée et du séjour des étrangers et du droit d'asile est abrogé.",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 16,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.49,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.02,
+       "effet_different": 0.62,
+       "indetermine": 0.33
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N52972:commission|AMANR5L17PO420120B1958P0D1N000002/144|57",
+     "contexte_avant": "agences régionales de santé remettent au ministre chargé de la santé un rapport sur l'application de l'article 1er de la présente loi.\nII.-La transparence dans la gestion des infrastructures de stationnement est assurée par la publication d'un rapport annuel",
+     "passage_a": "",
+     "passage_b": "soumis à l'approbation du conseil de surveillance de l'établissement public de santé et de la commission des usagers.",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 23,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.52,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.01,
+       "effet_different": 0.64,
+       "indetermine": 0.33
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N50724:commission|AMANR5L17PO419604B1009P0D1N000034/80|20",
+     "contexte_avant": "Dans un délai de six mois à compter de la promulgation de la présente loi, le Gouvernement remet au",
+     "passage_a": "",
+     "passage_b": "Parlement un rapport évaluant le fonctionnement des commissions disciplinaires dans les établissements publics à caractère scientifique, culturel et professionnel.",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 21,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.88,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.02,
+       "effet_different": 0.91,
+       "indetermine": 0.05
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N51216:commission|AMANR5L17PO420120B0769P0D1N000019/136|36",
+     "contexte_avant": "Dans un délai de six mois à compter de la promulgation de la présente loi, le Gouvernement remet au Parlement un rapport sur les effets de l'extension des obligations de revitalisation et de",
+     "passage_a": "",
+     "passage_b": "recherche de repreneur sur l'investissement des entreprises et sur la dynamique de l'emploi. Ce rapport analyse également les effets de la présente loi sur l'attractivité économique des territoires concernés.",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 37,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.89,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.02,
+       "effet_different": 0.92,
+       "indetermine": 0.04
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N51349:commission|AMANR5L17PO59051B0842P0D1N000021/106|28",
+     "contexte_avant": "Dans un délai d'un an à compter de la promulgation de la présente loi, le Gouvernement remet au Parlement un rapport évaluant les effets de",
+     "passage_a": "la redéfinition pénale des infractions d'agression sexuelle et de viol sur le traitement judiciaire des violences sexuelles, du dépôt de plainte jusqu'au délibéré.",
+     "passage_b": "",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 29,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.99,
+      "probabilites": {
+       "forme_seule": 0.0,
+       "meme_effet": 0.0,
+       "effet_different": 0.99,
+       "indetermine": 0.01
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N52100:seance|AMANR5L17PO838901BTC2233P0D1N000001/329|61",
+     "contexte_avant": "Ier du code du sport est complétée par un article L. 122-20 ainsi rédigé :\n« Art. L. 122-20.-Les associations et sociétés sportives mentionnées aux articles L. 122-2 et L. 122-12 sont tenues",
+     "passage_a": "",
+     "passage_b": "de mettre à disposition leurs sportifs de nationalité française lorsque ces derniers font l'objet d'une convocation ayant pour but leur participation aux jeux Olympiques et Paralympiques.",
+     "contexte_apres": "« Les fédérations sportives constatent et sanctionnent, le cas échéant, tout manquement à cette obligation dans les conditions prévues par leurs règlements.\n« Lorsque la fédération a confié l'organisation des compétitions ou manifestations sportives professionnelles à une ligue professionnelle créée en application de",
+     "regle": "effet_different",
+     "taille": 31,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.88,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.03,
+       "effet_different": 0.91,
+       "indetermine": 0.04
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N54085:seance|AMANR5L17PO838901BTC2765P0D1N002065/128|52",
+     "contexte_avant": "de l'article L. 212-5-1 du code de l'environnement est complété par un 5° ainsi rédigé :\n« 5° Comporter des orientations stratégiques relatives à l'efficience des usages de l'eau et au stockage de la",
+     "passage_a": "",
+     "passage_b": "ressource en eau, dans le respect du 5° bis du I de l'article L. 211-1. »",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 24,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.47,
+      "probabilites": {
+       "forme_seule": 0.04,
+       "meme_effet": 0.03,
+       "effet_different": 0.6,
+       "indetermine": 0.33
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N54372:commission|AMANR5L17PO883517B2841P0D1N001024/320|104",
+     "contexte_avant": "'une mesure de protection de l'enfance, le service d'aide sociale à l'enfance ou le service habilité peuvent proposer à la famille concernée la participation à une conférence familiale. Cette instance, animée par un coordinateur formé et indépendant, réunit les",
+     "passage_a": "titulaires de l'autorité parentale, les membres de la famille élargie, les proches de l'enfant ainsi que le mineur concerné, en fonction de son âge et de son degré de maturité, afin de rechercher de manière concertée des solutions répondant aux besoins de l'enfant et assurant sa protection, dans le respect de son intérêt supérieur.",
+     "passage_b": "",
+     "contexte_apres": "« Les modalités d'application du présent article sont déterminées par décret. »",
+     "regle": "effet_different",
+     "taille": 66,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.97,
+      "probabilites": {
+       "forme_seule": 0.0,
+       "meme_effet": 0.0,
+       "effet_different": 0.98,
+       "indetermine": 0.02
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N51985:seance|T0/436|120",
+     "contexte_avant": "mentionné à l'article 1er de la loi n° 2025-176 du 24 février 2025 d'urgence pour Mayotte.\nUn décret en Conseil d'État détermine les modalités d'application du présent article. Ce décret précise en particulier la programmation de",
+     "passage_a": "",
+     "passage_b": "chacun des thèmes figurant dans le rapport annexé.",
+     "contexte_apres": "",
+     "regle": null,
+     "taille": 9,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.77,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.02,
+       "effet_different": 0.83,
+       "indetermine": 0.13
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N53429:commission|AMANR5L17PO59051B2312P0D1N000039/228|80",
+     "contexte_avant": "16-8-2.-Le principe d'anonymat du don ne fait pas obstacle à la communication à la personne née d'une assistance médicale à la procréation avec tiers donneur ayant procédé à un test génétique à visée généalogique, dans les conditions prévues",
+     "passage_a": "",
+     "passage_b": "à l'article 16-10-1, d'informations concernant ses ascendants. Il ne fait pas non plus obstacle à la communication au tiers donneur ayant procédé à un test génétique à visée généalogique, dans les mêmes conditions, d'informations concernant ses descendants. »",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 53,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.84,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.01,
+       "effet_different": 0.88,
+       "indetermine": 0.09
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N51981:commission|T0/100|12",
+     "contexte_avant": "La perte de recettes pour les organismes de sécurité sociale est compensée",
+     "passage_a": "à due concurrence par la majoration de",
+     "passage_b": "",
+     "contexte_apres": "l'accise sur les tabacs prévue au chapitre IV du titre Ier du livre III du code des impositions sur les biens et services.",
+     "regle": null,
+     "taille": 7,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.97,
+      "probabilites": {
+       "forme_seule": 0.0,
+       "meme_effet": 0.01,
+       "effet_different": 0.98,
+       "indetermine": 0.01
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N52958:commission|T0/241|92",
+     "contexte_avant": "autorité judiciaire des informations concernant un majeur protégé ou qu'il y a lieu de protéger. »\nII.-Après le mot : « solliciter », la fin de la dernière phrase du dernier alinéa de l'article 431 du code civil est ainsi",
+     "passage_a": "rédigée : « des informations complémentaires du tiers qui l'a saisi ou de tout service social chargé de l'accompagnement d'une personne vulnérable. »",
+     "passage_b": "",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 30,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.87,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.9,
+       "indetermine": 0.08
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N53331:commission|T0/82|17",
+     "contexte_avant": "Les articles 2261 et 2272 du code civil sont applicables dans les collectivités régies par l'",
+     "passage_a": "article 73 de la Constitution ainsi qu'à Saint-Barthélemy et Saint-Martin.",
+     "passage_b": "",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 17,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.97,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.0,
+       "effet_different": 0.98,
+       "indetermine": 0.01
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N51670:commission|T0/5448|103",
+     "contexte_avant": "-12-10 ainsi rédigé :\n« Art. L. 1111-12-10.-La décision du médecin se prononçant sur la demande d'aide à mourir ainsi que la décision de mettre fin à la procédure dans les conditions prévues au 2",
+     "passage_a": "",
+     "passage_b": "° de l'article L. 1111-12-8 ne peuvent être contestées",
+     "contexte_apres": "que par la personne ayant formé cette demande, devant la juridiction administrative, selon les dispositions de droit commun. »",
+     "regle": "effet_different",
+     "taille": 16,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.59,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.03,
+       "effet_different": 0.69,
+       "indetermine": 0.25
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "4-9 mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N53720:seance|T0/1|19",
+     "contexte_avant": "Le Gouvernement remet aux commissions permanentes de l'Assemblée nationale et du Sénat chargées des finances un rapport",
+     "passage_a": "",
+     "passage_b": "annuel qui",
+     "contexte_apres": "présente, pour chaque opérateur de l'État, une liste non nominative des dix rémunérations brutes les plus élevées.",
+     "regle": null,
+     "taille": 2,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.69,
+      "probabilites": {
+       "forme_seule": 0.04,
+       "meme_effet": 0.05,
+       "effet_different": 0.77,
+       "indetermine": 0.14
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N51852:seance|AMANR5L17PO838901BTC1378P0D1N000098/186|103",
+     "contexte_avant": "d'une aire de stationnement pour véhicule motorisé en contrepartie de la création d'infrastructures ou de l'aménagement d'espaces permettant le stationnement sécurisé d'au moins six vélos par aire de stationnement. » ;\n2° L'article L.",
+     "passage_a": "",
+     "passage_b": "152-6-1 est abrogé.",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 8,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.67,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.75,
+       "indetermine": 0.23
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N54372:seance|AMANR5L17PO838901BTC3018P0D1N000904/165|14",
+     "contexte_avant": "Après l'article 373-2-9 du code civil, il",
+     "passage_a": "",
+     "passage_b": "est inséré un article 373-2-9-1 A ainsi rédigé :",
+     "contexte_apres": "« Art. 373-2-9-1 A.-Lorsqu'un enfant est confié à l'un de ses parents dans un contexte d'allégations de violences sexuelles, incestueuses ou intrafamiliales, le juge veille, sauf décision spécialement motivée contraire",
+     "regle": "effet_different",
+     "taille": 15,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.89,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.03,
+       "effet_different": 0.92,
+       "indetermine": 0.04
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "4-9 mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N52985:commission|T0/15034|30",
+     "contexte_avant": "Au 6° de l'article L. 8271-1-2 du code du travail, les mots : « de l'aviation civile commissionnés à",
+     "passage_a": "",
+     "passage_b": "cet effet",
+     "contexte_apres": "» sont remplacés par les mots : « et administratifs de l'aviation civile chargés de la lutte contre le travail illégal ».",
+     "regle": null,
+     "taille": 2,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.59,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.05,
+       "effet_different": 0.69,
+       "indetermine": 0.23
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N52985:seance|AMANR5L17PO838901BTC2250P0D1N000696/39|12",
+     "contexte_avant": "Les articles 41-1-2, 41-1-",
+     "passage_a": "3 et 180-2 du code de procédure pénale sont abrogés.",
+     "passage_b": "",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 13,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.92,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.94,
+       "indetermine": 0.04
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N52985:seance|AMANR5L17PO838901BTC2250P0D1N000932/104|28",
+     "contexte_avant": "Au dernier alinéa de l'article 1758 du code général des impôts, après le mot : « droits », sont insérés les mots : «",
+     "passage_a": "",
+     "passage_b": ", y compris de la contribution prévue au a du II de l'article L. 136-6 du code de la sécurité sociale, ».",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 29,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.49,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.02,
+       "effet_different": 0.62,
+       "indetermine": 0.33
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "4-9 mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N54085:seance|T0/37059|66",
+     "contexte_avant": "le Gouvernement remet au Parlement un rapport relatif à l'opportunité et aux modalités de l'instauration d'une taxe sur la publicité comparative, au sens de l'article L. 122-1 du code de la consommation, et de l'affectation",
+     "passage_a": "",
+     "passage_b": "de son produit",
+     "contexte_apres": "au financement des mesures de surveillance, de prévention et de lutte contre les dangers sanitaires pour les animaux et les végétaux.",
+     "regle": null,
+     "taille": 3,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.85,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.03,
+       "effet_different": 0.89,
+       "indetermine": 0.06
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N50776:commission|AMANR5L17PO419610B0516P0D1N000006/175|16",
+     "contexte_avant": "Après l'article L. 211-2-1 du code de l'",
+     "passage_a": "énergie, il est inséré un article L. 211-2-2 ainsi rédigé :",
+     "passage_b": "",
+     "contexte_apres": "« Art. L. 211-2-2.-Les dispositifs d'aides publiques en faveur de la maîtrise de la demande en énergie et de la délivrance des certificats d'économie d'énergie doivent favoriser prioritairement les rénovations globales et performantes des",
+     "regle": "effet_different",
+     "taille": 17,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.83,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.03,
+       "effet_different": 0.87,
+       "indetermine": 0.08
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N53284:seance|AMANR5L17PO838901BTC2468P0D1N000119/76|21",
+     "contexte_avant": "À la première phrase du premier alinéa de l'article L. 22-10-1 du code de",
+     "passage_a": "",
+     "passage_b": "la sécurité intérieure, la référence : « IX » est remplacée par la référence : « IX bis ».",
+     "contexte_apres": "",
+     "regle": null,
+     "taille": 21,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.83,
+      "probabilites": {
+       "forme_seule": 0.0,
+       "meme_effet": 0.01,
+       "effet_different": 0.87,
+       "indetermine": 0.12
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N52985:commission|T0/1508|53",
+     "contexte_avant": "° de l'article L. 114-12-1 du code de la sécurité sociale, il est inséré un 8° ainsi rédigé :\n« 8° Sous réserve d'être individuellement désignés et dûment habilités dans le cadre de leurs missions relatives à",
+     "passage_a": "la lutte contre la fraude, les agents des services du représentant de l'État dans le département. »",
+     "passage_b": "",
+     "contexte_apres": "",
+     "regle": null,
+     "taille": 21,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.97,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.0,
+       "effet_different": 0.98,
+       "indetermine": 0.01
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N52985:seance|T0/33985|49",
+     "contexte_avant": "Après le 7° ter du I de l'article L. 330-2 du code de la route, il est inséré un 7° quater ainsi rédigé :\n« 7° quater Aux agents habilités des organismes mentionnés aux articles L. 213-",
+     "passage_a": "",
+     "passage_b": "1 et L. 752-4",
+     "contexte_apres": "du code de la sécurité sociale et à l'article L. 723-2 du code rural et de la pêche maritime pour accomplir les actions de contrôle et de lutte contre la fraude mentionnées à l'article L. 114-9 du code de la",
+     "regle": "effet_different",
+     "taille": 7,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.85,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.02,
+       "effet_different": 0.89,
+       "indetermine": 0.07
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "tronqué",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "tronqué|DLR5L17N51985:seance|AMANR5L17PO838901BTC1573P0D1N000336/289|33",
+     "contexte_avant": "I.-À la deuxième phrase du premier alinéa du II de l'article 244 quater C du code général des impôts, après le mot : « croissance »,",
+     "passage_a": "",
+     "passage_b": "sont insérés les mots : « et, pour les années 2025, 2026 et 2027, à trois fois et demie le salaire minimum de croissance. Ce plafond est ».",
+     "contexte_apres": "II.-Les modalités d'application du I sont déterminées par décret.\nIII.-La perte de recettes résultant du présent article pour l'État est compensée, à due concurrence, par la création d'une taxe additionnelle à l'",
+     "regle": "effet_different",
+     "taille": 33,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.59,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.04,
+       "effet_different": 0.69,
+       "indetermine": 0.24
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "4-9 mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N51349:seance|T0/534|8",
+     "contexte_avant": "Dans un délai de dix-huit mois",
+     "passage_a": "",
+     "passage_b": "Il est actualisé trois ans après sa publication.",
+     "contexte_apres": "à compter de la promulgation de la présente loi, le Gouvernement remet au Parlement un rapport évaluant les effets de la présente loi. Ce rapport évalue notamment ces effets, d'une part, sur la proportion de plaintes déposées par rapport au nombre total d'",
+     "regle": null,
+     "taille": 9,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.79,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.02,
+       "effet_different": 0.84,
+       "indetermine": 0.12
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N51349:seance|T0/534|91",
+     "contexte_avant": ". Ce rapport évalue notamment ces effets, d'une part, sur la proportion de plaintes déposées par rapport au nombre total d'agressions sexuelles et, d'autre part, sur la proportion des agressions sexuelles faisant l'objet d'une condamnation.",
+     "passage_a": "Il est actualisé trois ans après sa publication.",
+     "passage_b": "",
+     "contexte_apres": "",
+     "regle": null,
+     "taille": 9,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.99,
+      "probabilites": {
+       "forme_seule": 0.0,
+       "meme_effet": 0.0,
+       "effet_different": 0.99,
+       "indetermine": 0.01
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N54777:commission|AMANR5L17PO884839B3107P0D1N000007/195|0",
+     "contexte_avant": "",
+     "passage_a": "1° Après le mot : « détention, », sont insérés les mots : « premier vice-président chargé des fonctions de juge des violences sexuelles et",
+     "passage_b": "",
+     "contexte_apres": "La seconde phrase du neuvième alinéa de l'article 3-1 de l'ordonnance n° 58-1270 du 22 décembre 1958 portant loi organique relative au statut de la magistrature est ainsi modifiée : intrafamiliales, » ;\n2° Après la seconde occurrence",
+     "regle": "effet_different",
+     "taille": 31,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.72,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.01,
+       "effet_different": 0.79,
+       "indetermine": 0.18
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N54777:commission|AMANR5L17PO884839B3107P0D1N000007/195|70",
+     "contexte_avant": "-président chargé des fonctions de juge des violences sexuelles et La seconde phrase du neuvième alinéa de l'article 3-1 de l'ordonnance n° 58-1270 du 22 décembre 1958 portant loi organique relative au statut de la magistrature est ainsi modifiée :",
+     "passage_a": "",
+     "passage_b": "1° Après le mot : « détention, », sont insérés les mots : « premier vice-président chargé des fonctions de juge des violences sexuelles et",
+     "contexte_apres": "intrafamiliales, » ;\n2° Après la seconde occurrence du mot : « adjoint, », sont insérés les mots : « procureur de la République adjoint chargé des violences sexuelles et intrafamiliales, ».",
+     "regle": "effet_different",
+     "taille": 31,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.93,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.95,
+       "indetermine": 0.03
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N51672:commission|AMANR5L17PO420120B1102P0D1N000269/229|17",
+     "contexte_avant": "Après l'article L. 1110-5-3 du code de la santé publique",
+     "passage_a": "",
+     "passage_b": "« Ces indicateurs sont publiés par la Haute Autorité de santé, dans le cadre de la publication des indicateurs de qualité et de sécurité des soins. »",
+     "contexte_apres": ", il est inséré un article L. 1110-5-4 ainsi rédigé :\n« Art. L. 1110-5-4.-La Haute Autorité de santé élabore un référentiel de bonnes pratiques pour les professionnels de santé afin de prévenir les pratiques",
+     "regle": "effet_different",
+     "taille": 29,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.95,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.96,
+       "indetermine": 0.02
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N51672:commission|AMANR5L17PO420120B1102P0D1N000269/229|132",
+     "contexte_avant": "référentiel de bonnes pratiques pour les professionnels de santé afin de prévenir les pratiques d'obstination déraisonnable. Ce référentiel est accompagné d'un ensemble d'indicateurs destinés aux établissements de santé qu'ils renseignent de manière annuelle auprès des agences régionales de santé.",
+     "passage_a": "« Ces indicateurs sont publiés par la Haute Autorité de santé, dans le cadre de la publication des indicateurs de qualité et de sécurité des soins. »",
+     "passage_b": "",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 29,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.97,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.0,
+       "effet_different": 0.98,
+       "indetermine": 0.01
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N52972:commission|AMANR5L17PO420120B1958P0D1N000002/144|0",
+     "contexte_avant": "",
+     "passage_a": "II.-La transparence dans la gestion des infrastructures de stationnement",
+     "passage_b": "",
+     "contexte_apres": "I.-Chaque année, les agences régionales de santé remettent au ministre chargé de la santé un rapport sur l'application de l'article 1er de la présente loi. est assurée par la publication d'un rapport annuel soumis à l'approbation du",
+     "regle": null,
+     "taille": 13,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.96,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.97,
+       "indetermine": 0.01
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N52972:commission|AMANR5L17PO420120B1958P0D1N000002/144|47",
+     "contexte_avant": "II.-La transparence dans la gestion des infrastructures de stationnement I.-Chaque année, les agences régionales de santé remettent au ministre chargé de la santé un rapport sur l'application de l'article 1er de la présente loi.",
+     "passage_a": "",
+     "passage_b": "II.-La transparence dans la gestion des infrastructures de stationnement",
+     "contexte_apres": "est assurée par la publication d'un rapport annuel soumis à l'approbation du conseil de surveillance de l'établissement public de santé et de la commission des usagers.",
+     "regle": null,
+     "taille": 13,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.88,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.03,
+       "effet_different": 0.91,
+       "indetermine": 0.03
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N52100:seance|AMANR5L17PO838901BTC2233P0D1N000001/329|59",
+     "contexte_avant": "du livre Ier du code du sport est complétée par un article L. 122-20 ainsi rédigé :\n« Art. L. 122-20.-Les associations et sociétés sportives mentionnées aux articles L. 122-2 et L. 122-12",
+     "passage_a": "",
+     "passage_b": "« Les fédérations sportives constatent et sanctionnent, le cas échéant, tout manquement à cette obligation dans les conditions prévues par leurs règlements.",
+     "contexte_apres": "sont tenues de mettre à disposition leurs sportifs de nationalité française lorsque ces derniers font l'objet d'une convocation ayant pour but leur participation aux jeux Olympiques et Paralympiques.\n\n« Lorsque la fédération a confié l'organisation des compétitions ou manifestations sportives professionnelles",
+     "regle": "effet_different",
+     "taille": 25,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.83,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.03,
+       "effet_different": 0.87,
+       "indetermine": 0.09
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N52100:seance|AMANR5L17PO838901BTC2233P0D1N000001/329|118",
+     "contexte_avant": "cas échéant, tout manquement à cette obligation dans les conditions prévues par leurs règlements. sont tenues de mettre à disposition leurs sportifs de nationalité française lorsque ces derniers font l'objet d'une convocation ayant pour but leur participation aux jeux Olympiques et Paralympiques.",
+     "passage_a": "",
+     "passage_b": "« Les fédérations sportives constatent et sanctionnent, le cas échéant, tout manquement à cette obligation dans les conditions prévues par leurs règlements.",
+     "contexte_apres": "« Lorsque la fédération a confié l'organisation des compétitions ou manifestations sportives professionnelles à une ligue professionnelle créée en application de l'article L. 132-1, les conditions de mise à disposition des joueurs mentionnées au premier alinéa du présent article sont fixées",
+     "regle": "effet_different",
+     "taille": 25,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 1.0,
+      "probabilites": {
+       "forme_seule": 0.0,
+       "meme_effet": 0.0,
+       "effet_different": 1.0,
+       "indetermine": 0.0
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N54085:seance|AMANR5L17PO838901BTC2765P0D1N002065/128|1",
+     "contexte_avant": "Le",
+     "passage_a": "I de l'article L. 212-5-1 du code de l'environnement est complété par un 5° ainsi rédigé :",
+     "passage_b": "",
+     "contexte_apres": "« 5° Comporter des orientations stratégiques relatives à l'efficience des usages de l'eau et au stockage de la ressource en eau, dans le respect du 5° bis du I de l'article L. 211-1. » I de l",
+     "regle": "effet_different",
+     "taille": 28,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.99,
+      "probabilites": {
+       "forme_seule": 0.0,
+       "meme_effet": 0.0,
+       "effet_different": 0.99,
+       "indetermine": 0.01
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N54085:seance|AMANR5L17PO838901BTC2765P0D1N002065/128|48",
+     "contexte_avant": "Le « 5° Comporter des orientations stratégiques relatives à l'efficience des usages de l'eau et au stockage de la ressource en eau, dans le respect du 5° bis du I de l'article L. 211-1. »",
+     "passage_a": "",
+     "passage_b": "I de l'article L. 212-5-1 du code de l'environnement est complété par un 5° ainsi rédigé :",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 28,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.43,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.03,
+       "effet_different": 0.57,
+       "indetermine": 0.38
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N54372:commission|AMANR5L17PO883517B2841P0D1N001024/320|27",
+     "contexte_avant": "Après l'article L. 223-1-3 du code de l'action sociale et des familles, il est inséré un article",
+     "passage_a": "« Les modalités d'application du présent article sont déterminées par décret. »",
+     "passage_b": "",
+     "contexte_apres": "L. 223-1-4 ainsi rédigé :\n« Art. L. 223-1-4.-Dans le cadre d'une mesure de protection de l'enfance, le service d'aide sociale à l'enfance ou le service",
+     "regle": "effet_different",
+     "taille": 15,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.97,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.0,
+       "effet_different": 0.98,
+       "indetermine": 0.01
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N54372:commission|AMANR5L17PO883517B2841P0D1N001024/320|186",
+     "contexte_avant": "l'enfant ainsi que le mineur concerné, en fonction de son âge et de son degré de maturité, afin de rechercher de manière concertée des solutions répondant aux besoins de l'enfant et assurant sa protection, dans le respect de son intérêt supérieur.",
+     "passage_a": "",
+     "passage_b": "« Les modalités d'application du présent article sont déterminées par décret. »",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 15,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.67,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.75,
+       "indetermine": 0.23
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N51985:seance|T0/436|7",
+     "contexte_avant": "Jusqu'au 31 décembre 2030,",
+     "passage_a": "",
+     "passage_b": "Ce décret précise en particulier la programmation de chacun des thèmes figurant dans le rapport annexé.",
+     "contexte_apres": "le représentant de l'État à Mayotte dirige l'action de l'ensemble des services et des établissements publics de l'État ayant un champ d'action territorial à Mayotte, qui sont placés pour emploi sous son autorité, à l'exclusion de",
+     "regle": "effet_different",
+     "taille": 17,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.83,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.04,
+       "effet_different": 0.87,
+       "indetermine": 0.07
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N51985:seance|T0/436|129",
+     "contexte_avant": "de coordonner les travaux de reconstruction de Mayotte mentionné à l'article 1er de la loi n° 2025-176 du 24 février 2025 d'urgence pour Mayotte.\nUn décret en Conseil d'État détermine les modalités d'application du présent article.",
+     "passage_a": "Ce décret précise en particulier la programmation de chacun des thèmes figurant dans le rapport annexé.",
+     "passage_b": "",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 17,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.99,
+      "probabilites": {
+       "forme_seule": 0.0,
+       "meme_effet": 0.0,
+       "effet_different": 0.99,
+       "indetermine": 0.01
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N53429:commission|AMANR5L17PO59051B2312P0D1N000039/228|0",
+     "contexte_avant": "",
+     "passage_a": "",
+     "passage_b": "Après l'article 16-8-1 du code civil, il est inséré un article 16-8-2 ainsi rédigé :",
+     "contexte_apres": "« Art. 16-8-2.-Le principe d'anonymat du don ne fait pas obstacle à la communication à la personne née d'une assistance médicale à la procréation avec tiers donneur ayant procédé à un test génétique à visée généalogique,",
+     "regle": "effet_different",
+     "taille": 26,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.8,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.04,
+       "effet_different": 0.85,
+       "indetermine": 0.08
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N53429:commission|AMANR5L17PO59051B2312P0D1N000039/228|97",
+     "contexte_avant": "visée généalogique, dans les conditions prévues à l'article 16-10-1, d'informations concernant ses ascendants. Il ne fait pas non plus obstacle à la communication au tiers donneur ayant procédé à un test génétique à visée généalogique, dans les mêmes",
+     "passage_a": "Après l'article 16-8-1 du code civil, il est inséré un article 16-8-2 ainsi rédigé :",
+     "passage_b": "",
+     "contexte_apres": "conditions, d'informations concernant ses descendants. »",
+     "regle": "effet_different",
+     "taille": 26,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.89,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.92,
+       "indetermine": 0.06
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N51981:commission|T0/100|5",
+     "contexte_avant": "La perte de recettes pour",
+     "passage_a": "les organismes de sécurité sociale est compensée à due concurrence par la majoration de",
+     "passage_b": "",
+     "contexte_apres": "l'accise sur les tabacs prévue au chapitre IV du titre Ier du livre III du code des impositions sur les organismes de sécurité sociale est compensée à due concurrence par la majoration de les biens et services.",
+     "regle": null,
+     "taille": 14,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.97,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.0,
+       "effet_different": 0.98,
+       "indetermine": 0.01
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N51981:commission|T0/100|27",
+     "contexte_avant": "La perte de recettes pour l'accise sur les tabacs prévue au chapitre IV du titre Ier du livre III du code des impositions sur les",
+     "passage_a": "",
+     "passage_b": "organismes de sécurité sociale est compensée à due concurrence par la majoration de les",
+     "contexte_apres": "biens et services.",
+     "regle": null,
+     "taille": 14,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.81,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.01,
+       "effet_different": 0.86,
+       "indetermine": 0.11
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N52958:commission|T0/241|2",
+     "contexte_avant": "I.",
+     "passage_a": "-L'article L. 411-3 du code de l'action sociale et des familles est complété par une phrase ainsi rédigée : « Il en est de même lorsque ces personnes communiquent à l'autorité judiciaire des informations concernant un majeur protégé ou qu'il y a lieu de protéger. »",
+     "passage_b": "",
+     "contexte_apres": "II.-Après le mot : « solliciter », la fin de la dernière phrase du dernier alinéa de l'article 431 du code civil est ainsi rédigée : « des informations complémentaires du tiers qui l'a saisi ou de tout service social chargé de",
+     "regle": "effet_different",
+     "taille": 60,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.73,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.02,
+       "effet_different": 0.8,
+       "indetermine": 0.16
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N52958:commission|T0/241|62",
+     "contexte_avant": ", la fin de la dernière phrase du dernier alinéa de l'article 431 du code civil est ainsi rédigée : « des informations complémentaires du tiers qui l'a saisi ou de tout service social chargé de l'accompagnement d'une personne vulnérable. »",
+     "passage_a": "",
+     "passage_b": "-L'article L. 411-3 du code de l'action sociale et des familles est complété par une phrase ainsi rédigée : « Il en est de même lorsque ces personnes communiquent à l'autorité judiciaire des informations concernant un majeur protégé ou qu'il y a lieu de protéger. »",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 60,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.84,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.01,
+       "effet_different": 0.88,
+       "indetermine": 0.09
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N51670:commission|T0/5448|4",
+     "contexte_avant": "La sous-section",
+     "passage_a": "ainsi que la décision de mettre fin à la procédure dans les conditions prévues au 2° de l'article L. 1111-12-8 ne peuvent être contestées",
+     "passage_b": "",
+     "contexte_apres": "3 de la section 2 bis du chapitre Ier du titre Ier du livre Ier de la première partie du code de la santé publique, telle qu'elle résulte des articles 5 à 11 de la présente loi, est complétée par un article L. 1111-",
+     "regle": "effet_different",
+     "taille": 32,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.99,
+      "probabilites": {
+       "forme_seule": 0.0,
+       "meme_effet": 0.0,
+       "effet_different": 0.99,
+       "indetermine": 0.01
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N51670:commission|T0/5448|119",
+     "contexte_avant": "5 à 11 de la présente loi, est complétée par un article L. 1111-12-10 ainsi rédigé :\n« Art. L. 1111-12-10.-La décision du médecin se prononçant sur la demande d'aide à mourir",
+     "passage_a": "ainsi que la décision de mettre fin à la procédure dans les conditions prévues au 2° de l'article L. 1111-12-8 ne peuvent être contestées",
+     "passage_b": "",
+     "contexte_apres": "que par la personne ayant formé cette demande, devant la juridiction administrative, selon les dispositions de droit commun. »",
+     "regle": "effet_different",
+     "taille": 32,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.97,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.0,
+       "effet_different": 0.98,
+       "indetermine": 0.01
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "4-9 mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N53720:seance|T0/1|17",
+     "contexte_avant": "Le Gouvernement remet aux commissions permanentes de l'Assemblée nationale et du Sénat chargées des finances",
+     "passage_a": "",
+     "passage_b": "un rapport annuel qui",
+     "contexte_apres": "présente, pour chaque opérateur de l'État un rapport annuel qui, une liste non nominative des dix rémunérations brutes les plus élevées.",
+     "regle": null,
+     "taille": 4,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.73,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.03,
+       "effet_different": 0.8,
+       "indetermine": 0.14
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N53720:seance|T0/1|26",
+     "contexte_avant": "Le Gouvernement remet aux commissions permanentes de l'Assemblée nationale et du Sénat chargées des finances présente, pour chaque opérateur de l'État",
+     "passage_a": "",
+     "passage_b": "un rapport annuel qui",
+     "contexte_apres": ", une liste non nominative des dix rémunérations brutes les plus élevées.",
+     "regle": null,
+     "taille": 4,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.77,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.03,
+       "effet_different": 0.83,
+       "indetermine": 0.11
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N51852:seance|AMANR5L17PO838901BTC1378P0D1N000098/186|8",
+     "contexte_avant": "Le code de l'urbanisme est ainsi",
+     "passage_a": "",
+     "passage_b": "modifié :\n1° L'article L. 151-30 est complété par un alinéa ainsi rédigé :",
+     "contexte_apres": "« Lorsque le règlement impose la réalisation d'aires de stationnement pour les véhicules motorisés, cette obligation est réduite à raison d'une aire de stationnement pour véhicule motorisé en contrepartie de la création d'infrastructures ou de l'aménagement d'espaces permettant le",
+     "regle": "effet_different",
+     "taille": 22,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.92,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.94,
+       "indetermine": 0.04
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N51852:seance|AMANR5L17PO838901BTC1378P0D1N000098/186|73",
+     "contexte_avant": "motorisés, cette obligation est réduite à raison d'une aire de stationnement pour véhicule motorisé en contrepartie de la création d'infrastructures ou de l'aménagement d'espaces permettant le stationnement sécurisé d'au moins six vélos par aire de stationnement. » ;",
+     "passage_a": "modifié :\n1° L'article L. 151-30 est complété par un alinéa ainsi rédigé :",
+     "passage_b": "",
+     "contexte_apres": "2° L'article L. 152-6-1 est abrogé.",
+     "regle": "effet_different",
+     "taille": 22,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.49,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.02,
+       "effet_different": 0.62,
+       "indetermine": 0.33
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N54372:seance|AMANR5L17PO838901BTC3018P0D1N000904/165|0",
+     "contexte_avant": "",
+     "passage_a": "Après l'article 373-2-9 du code civil, il est inséré un article 373-2-9-1 A ainsi rédigé :",
+     "passage_b": "",
+     "contexte_apres": "« Art. 373-2-9-1 A.-Lorsqu'un enfant est confié à l'un de ses parents dans un contexte d'allégations de violences sexuelles, incestueuses ou intrafamiliales, le juge veille, sauf décision spécialement motivée contraire",
+     "regle": "effet_different",
+     "taille": 29,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.93,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.95,
+       "indetermine": 0.03
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N54372:seance|AMANR5L17PO838901BTC3018P0D1N000904/165|50",
+     "contexte_avant": "« Art. 373-2-9-1 A.-Lorsqu'un enfant est confié à l'un de ses parents dans un contexte d'allégations de violences sexuelles, incestueuses ou intrafamiliales, le juge veille, sauf décision spécialement motivée contraire",
+     "passage_a": "",
+     "passage_b": "Après l'article 373-2-9 du code civil, il est inséré un article 373-2-9-1 A ainsi rédigé :",
+     "contexte_apres": ", au maintien de liens réguliers avec l'autre parent lorsque celui-ci apparaît comme un parent protecteur. »",
+     "regle": "effet_different",
+     "taille": 29,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.63,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.72,
+       "indetermine": 0.26
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "4-9 mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N52985:commission|T0/15034|5",
+     "contexte_avant": "Au 6° de l",
+     "passage_a": "",
+     "passage_b": "commissionnés à cet effet",
+     "contexte_apres": "'article L. 8271-1-2 du code du travail, les mots : « de l'aviation civile » sont remplacés par les mots : « et administratifs de l'aviation civile chargés de la lutte contre le travail illégal ».",
+     "regle": null,
+     "taille": 4,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.81,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.02,
+       "effet_different": 0.86,
+       "indetermine": 0.1
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N52985:commission|T0/15034|32",
+     "contexte_avant": "Au 6° de l commissionnés à cet effet'article L. 8271-1-2 du code du travail, les mots : « de l'aviation civile",
+     "passage_a": "",
+     "passage_b": "commissionnés à cet effet",
+     "contexte_apres": "» sont remplacés par les mots : « et administratifs de l'aviation civile chargés de la lutte contre le travail illégal ».",
+     "regle": null,
+     "taille": 4,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.71,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.05,
+       "effet_different": 0.78,
+       "indetermine": 0.14
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "4-9 mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N54085:seance|T0/37059|63",
+     "contexte_avant": "présente loi, le Gouvernement remet au Parlement un rapport relatif à l'opportunité et aux modalités de l'instauration d'une taxe sur la publicité comparative, au sens de l'article L. 122-1 du code de la consommation, et de",
+     "passage_a": "",
+     "passage_b": "l'affectation de son produit",
+     "contexte_apres": "au financement des mesures de surveillance, de prévention l'affectation de son produit et de lutte contre les dangers sanitaires pour les animaux et les végétaux.",
+     "regle": null,
+     "taille": 6,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.75,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.04,
+       "effet_different": 0.81,
+       "indetermine": 0.13
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N54085:seance|T0/37059|72",
+     "contexte_avant": "rapport relatif à l'opportunité et aux modalités de l'instauration d'une taxe sur la publicité comparative, au sens de l'article L. 122-1 du code de la consommation, et de au financement des mesures de surveillance, de prévention",
+     "passage_a": "l'affectation de son produit",
+     "passage_b": "",
+     "contexte_apres": "et de lutte contre les dangers sanitaires pour les animaux et les végétaux.",
+     "regle": null,
+     "taille": 6,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.95,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.96,
+       "indetermine": 0.02
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N50776:commission|AMANR5L17PO419610B0516P0D1N000006/175|0",
+     "contexte_avant": "",
+     "passage_a": "",
+     "passage_b": "Après l'article L. 211-2-1 du code de l'énergie, il est inséré un article L. 211-2-2 ainsi rédigé :",
+     "contexte_apres": "« Art. L. 211-2-2.-Les dispositifs d'aides publiques en faveur de la maîtrise de la demande en énergie et de la délivrance des certificats d'économie d'énergie doivent favoriser prioritairement les rénovations globales et performantes des",
+     "regle": "effet_different",
+     "taille": 33,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.83,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.03,
+       "effet_different": 0.87,
+       "indetermine": 0.08
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N50776:commission|AMANR5L17PO419610B0516P0D1N000006/175|56",
+     "contexte_avant": "211-2-2.-Les dispositifs d'aides publiques en faveur de la maîtrise de la demande en énergie et de la délivrance des certificats d'économie d'énergie doivent favoriser prioritairement les rénovations globales et performantes des logements par rapport aux gestes uniques",
+     "passage_a": "Après l'article L. 211-2-1 du code de l'énergie, il est inséré un article L. 211-2-2 ainsi rédigé :",
+     "passage_b": "",
+     "contexte_apres": ".\n« Un décret fixe les modalités d'application du présent article. »",
+     "regle": "effet_different",
+     "taille": 33,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.93,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.95,
+       "indetermine": 0.03
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N52985:commission|T0/1508|16",
+     "contexte_avant": "Après le 7° de l'article L. 114-12-1 du",
+     "passage_a": "",
+     "passage_b": "code de la sécurité sociale, il est inséré un 8° ainsi rédigé :",
+     "contexte_apres": "« 8° Sous réserve d'être individuellement désignés et dûment habilités dans le cadre de leurs missions relatives à la lutte contre la fraude, les agents des services du représentant de l'État dans le département. » code de la sécurité sociale, il est",
+     "regle": "effet_different",
+     "taille": 16,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.87,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.02,
+       "effet_different": 0.9,
+       "indetermine": 0.06
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N52985:commission|T0/1508|58",
+     "contexte_avant": "L. 114-12-1 du « 8° Sous réserve d'être individuellement désignés et dûment habilités dans le cadre de leurs missions relatives à la lutte contre la fraude, les agents des services du représentant de l'État dans le département. »",
+     "passage_a": "code de la sécurité sociale, il est inséré un 8° ainsi rédigé :",
+     "passage_b": "",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 16,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.91,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.93,
+       "indetermine": 0.05
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N52985:seance|T0/33985|43",
+     "contexte_avant": "Après le 7° ter du I de l'article L. 330-2 du code de la route, il est inséré un 7° quater ainsi rédigé :\n« 7° quater Aux agents habilités des organismes mentionnés",
+     "passage_a": "",
+     "passage_b": "aux articles L. 213-1 et L. 752-4",
+     "contexte_apres": "du code de la sécurité sociale et à l'article L. 723-2 du code rural et de la pêche maritime pour accomplir les actions de contrôle et de lutte contre la fraude mentionnées aux articles L. 213-1 et L. 752-4",
+     "regle": "effet_different",
+     "taille": 13,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.59,
+      "probabilites": {
+       "forme_seule": 0.05,
+       "meme_effet": 0.05,
+       "effet_different": 0.69,
+       "indetermine": 0.21
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N52985:seance|T0/33985|80",
+     "contexte_avant": "rédigé :\n« 7° quater Aux agents habilités des organismes mentionnés du code de la sécurité sociale et à l'article L. 723-2 du code rural et de la pêche maritime pour accomplir les actions de contrôle et de lutte contre la fraude mentionnées",
+     "passage_a": "aux articles L. 213-1 et L. 752-4",
+     "passage_b": "",
+     "contexte_apres": "à l'article L. 114-9 du code de la sécurité sociale ; ».",
+     "regle": "effet_different",
+     "taille": 13,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.93,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.95,
+       "indetermine": 0.03
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N51985:seance|AMANR5L17PO838901BTC1573P0D1N000336/289|100",
+     "contexte_avant": "à trois fois et demie le salaire minimum de croissance. Ce plafond est ».\nII.-Les modalités d'application du I sont déterminées par décret.\nIII.-La perte de recettes résultant du présent article pour l'État est compensée",
+     "passage_a": "",
+     "passage_b": "IV.-Le I n'est applicable qu'aux sommes venant en déduction de l'impôt dû.",
+     "contexte_apres": ", à due concurrence, par la création d'une taxe additionnelle à l'accise sur les tabacs prévue au chapitre IV du titre Ier du livre III du code des impositions sur les biens et services.",
+     "regle": "effet_different",
+     "taille": 22,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.92,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.94,
+       "indetermine": 0.04
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N51985:seance|AMANR5L17PO838901BTC1573P0D1N000336/289|163",
+     "contexte_avant": "venant en déduction de l'impôt dû., à due concurrence, par la création d'une taxe additionnelle à l'accise sur les tabacs prévue au chapitre IV du titre Ier du livre III du code des impositions sur les biens et services.",
+     "passage_a": "",
+     "passage_b": "IV.-Le I n'est applicable qu'aux sommes venant en déduction de l'impôt dû.",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 22,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.73,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.02,
+       "effet_different": 0.8,
+       "indetermine": 0.17
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N51985:seance|AMANR5L17PO838901BTC1573P0D1N000654/100|3",
+     "contexte_avant": "L'article",
+     "passage_a": "",
+     "passage_b": "L. 5723-1 du code des transports est complété par un alinéa ainsi rédigé :",
+     "contexte_apres": "« À Mayotte, les ports relevant de l'État auxquels s'applique le livre III de la présente partie figurent sur une liste fixée par décret en Conseil d'État. » L. 5723-1 du code des transports est complété par un alinéa",
+     "regle": "effet_different",
+     "taille": 18,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.52,
+      "probabilites": {
+       "forme_seule": 0.05,
+       "meme_effet": 0.04,
+       "effet_different": 0.64,
+       "indetermine": 0.27
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N51985:seance|AMANR5L17PO838901BTC1573P0D1N000654/100|39",
+     "contexte_avant": "L'article « À Mayotte, les ports relevant de l'État auxquels s'applique le livre III de la présente partie figurent sur une liste fixée par décret en Conseil d'État. »",
+     "passage_a": "",
+     "passage_b": "L. 5723-1 du code des transports est complété par un alinéa ainsi rédigé :",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 18,
+     "jugement": {
+      "choix": "indetermine",
+      "confiance": 0.35,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.47,
+       "indetermine": 0.51
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N54372:seance|T0/10126|60",
+     "contexte_avant": "code de l'action sociale et des familles, il est inséré un article L. 421-3-2 ainsi rédigé :\n« Art. L. 421-3-2.-Le référentiel national d'évaluation des demandes d'agrément des",
+     "passage_a": "assistants familiaux distingue les conditions matérielles d'accueil",
+     "passage_b": "",
+     "contexte_apres": "et de sécurité des compétences et des aptitudes, notamment éducatives, relationnelles et professionnelles, assistants familiaux distingue les conditions matérielles d'accueil des candidats, afin de garantir une appréciation globale de leur aptitude à accueillir durablement un enfant confié à l'aide sociale à l",
+     "regle": null,
+     "taille": 9,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.87,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.01,
+       "effet_different": 0.9,
+       "indetermine": 0.07
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N54372:seance|T0/10126|76",
+     "contexte_avant": ". 421-3-2 ainsi rédigé :\n« Art. L. 421-3-2.-Le référentiel national d'évaluation des demandes d'agrément des et de sécurité des compétences et des aptitudes, notamment éducatives, relationnelles et professionnelles,",
+     "passage_a": "",
+     "passage_b": "assistants familiaux distingue les conditions matérielles d'accueil",
+     "contexte_apres": "des candidats, afin de garantir une appréciation globale de leur aptitude à accueillir durablement un enfant confié à l'aide sociale à l'enfance.\n« Un décret précise les modalités d'application du présent article. »",
+     "regle": null,
+     "taille": 9,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.63,
+      "probabilites": {
+       "forme_seule": 0.04,
+       "meme_effet": 0.07,
+       "effet_different": 0.72,
+       "indetermine": 0.17
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N51672:commission|AMANR5L17PO420120B1102P0D1N000092/75|0",
+     "contexte_avant": "",
+     "passage_a": "",
+     "passage_b": "« 5° D'assurer un enseignement spécialisé sur l'éthique. »",
+     "contexte_apres": "Après le 4° de l'article L. 1415-1 du code de la santé publique, il est inséré un 5° ainsi rédigé :",
+     "regle": "effet_different",
+     "taille": 15,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.88,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.02,
+       "effet_different": 0.91,
+       "indetermine": 0.05
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N51672:commission|AMANR5L17PO420120B1102P0D1N000092/75|45",
+     "contexte_avant": "« 5° D'assurer un enseignement spécialisé sur l'éthique. » Après le 4° de l'article L. 1415-1 du code de la santé publique, il est inséré un 5° ainsi rédigé :",
+     "passage_a": "",
+     "passage_b": "« 5° D'assurer un enseignement spécialisé sur l'éthique. »",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 15,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.96,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.97,
+       "indetermine": 0.01
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N51672:commission|AMANR5L17PO420120B1102P0D1N000353/172|18",
+     "contexte_avant": "Après l'article L. 6114-1 du code de la santé publique, il est",
+     "passage_a": "",
+     "passage_b": "inséré un article L. 6114-1-1 A ainsi rédigé :",
+     "contexte_apres": "« Art. L. 6114-1-1 A.-Le contrat pluriannuel d'objectifs et de moyens mentionné à l'article L. 6114-1 intègre des objectifs, sous forme d'indicateurs, relatifs au développement, à la qualité de",
+     "regle": "effet_different",
+     "taille": 15,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.83,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.03,
+       "effet_different": 0.87,
+       "indetermine": 0.08
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N51672:commission|AMANR5L17PO420120B1102P0D1N000353/172|88",
+     "contexte_avant": "de moyens mentionné à l'article L. 6114-1 intègre des objectifs, sous forme d'indicateurs, relatifs au développement, à la qualité de prise en charge et à la formation du personnel en matière de soins palliatifs et d'accompagnement. »",
+     "passage_a": "",
+     "passage_b": "inséré un article L. 6114-1-1 A ainsi rédigé :",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 15,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.4,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.01,
+       "effet_different": 0.55,
+       "indetermine": 0.42
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N54372:seance|AMANR5L17PO838901BTC3018P0D1N000029/109|10",
+     "contexte_avant": "L'article 375-4-1 du code",
+     "passage_a": "civil est complété par un alinéa ainsi rédigé :",
+     "passage_b": "",
+     "contexte_apres": "« Lorsque le juge des enfants ordonne une mesure d'assistance éducative dans le cadre d'un conflit familial, il peut proposer aux parents une consultation familiale de nature à faciliter leur adhésion à la mesure. » civil est complété par un alinéa ainsi rédigé :",
+     "regle": "effet_different",
+     "taille": 10,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.72,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.03,
+       "effet_different": 0.79,
+       "indetermine": 0.15
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N54372:seance|AMANR5L17PO838901BTC3018P0D1N000029/109|51",
+     "contexte_avant": "'article 375-4-1 du code « Lorsque le juge des enfants ordonne une mesure d'assistance éducative dans le cadre d'un conflit familial, il peut proposer aux parents une consultation familiale de nature à faciliter leur adhésion à la mesure. »",
+     "passage_a": "civil est complété par un alinéa ainsi rédigé :",
+     "passage_b": "",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 10,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.55,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.03,
+       "effet_different": 0.66,
+       "indetermine": 0.29
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "4-9 mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N51672:seance|T0/5141|37",
+     "contexte_avant": "I.-À titre expérimental, pour une durée de trois ans à compter de la promulgation de la présente loi, l'État peut inclure une formation aux soins palliatifs dans les stages pratiques",
+     "passage_a": "",
+     "passage_b": "des étudiants en médecine",
+     "contexte_apres": "dans les unités de soins palliatifs et les équipes mobiles de soins palliatifs.\nII.-Les modalités et le champ d'application de l'expérimentation ainsi que les territoires concernés sont déterminés par décret en Conseil d'État.\nIII.-Au",
+     "regle": null,
+     "taille": 4,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.93,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.02,
+       "effet_different": 0.95,
+       "indetermine": 0.02
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N51672:seance|T0/5141|100",
+     "contexte_avant": ".\nII.-Les modalités et le champ d'application de l'expérimentation ainsi que les territoires concernés sont déterminés par décret en Conseil d'État.\nIII.-Au plus tard six mois avant la fin de l'expérimentation, le",
+     "passage_a": "des étudiants en médecine",
+     "passage_b": "",
+     "contexte_apres": "Gouvernement remet au Parlement un bilan de cette expérimentation évaluant notamment l'opportunité de généraliser celle-ci.",
+     "regle": null,
+     "taille": 4,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.96,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.0,
+       "effet_different": 0.97,
+       "indetermine": 0.02
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "4-9 mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N52985:seance|T0/60813|47",
+     "contexte_avant": "Le I de l'article L. 286 B du livre des procédures fiscales est ainsi modifié :\n1° Le premier alinéa est ainsi modifié :\na) Après le mot : « livre », sont insérés les mots : «,",
+     "passage_a": "des significations mentionnées à",
+     "passage_b": "",
+     "contexte_apres": "l'article L. 286 C ou de la mise en œuvre, aux fins de recouvrement des créances publiques, de mesures conservatoires ou de mesures d'exécution forcée prévues par le code des procédures civiles d'exécution » ;\nb) Après le mot",
+     "regle": null,
+     "taille": 4,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.97,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.0,
+       "effet_different": 0.98,
+       "indetermine": 0.01
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N52985:seance|T0/60813|124",
+     "contexte_avant": "mesures d'exécution forcée prévues par le code des procédures civiles d'exécution » ;\nb) Après le mot : « déterminée », sont insérés les mots : « ou lors d'une action coordonnée ministérielle ou interministérielle de lutte contre la fraude,",
+     "passage_a": "",
+     "passage_b": "des significations mentionnées à",
+     "contexte_apres": "» ;\n2° La dernière phrase du troisième alinéa est complétée par les mots : « ou l'action coordonnée ministérielle ou interministérielle de lutte contre la fraude à laquelle l'agent participe ».",
+     "regle": null,
+     "taille": 4,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.73,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.03,
+       "effet_different": 0.8,
+       "indetermine": 0.14
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N52985:commission|AMANR5L17PO59048B2115P0D1N000103/102|11",
+     "contexte_avant": "Le deuxième alinéa de l'article 1741 du code général",
+     "passage_a": "",
+     "passage_b": "2° Le mot : « double » est remplacé par le mot : « triple ».",
+     "contexte_apres": "des impôts est ainsi modifié :\n1° Le mot : « sept » est remplacé par le mot : « dix » ;",
+     "regle": "effet_different",
+     "taille": 18,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.75,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.01,
+       "effet_different": 0.81,
+       "indetermine": 0.16
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N52985:commission|AMANR5L17PO59048B2115P0D1N000103/102|55",
+     "contexte_avant": "'article 1741 du code général 2° Le mot : « double » est remplacé par le mot : « triple ». des impôts est ainsi modifié :\n1° Le mot : « sept » est remplacé par le mot : « dix » ;",
+     "passage_a": "2° Le mot : « double » est remplacé par le mot : « triple ».",
+     "passage_b": "",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 18,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 1.0,
+      "probabilites": {
+       "forme_seule": 0.0,
+       "meme_effet": 0.0,
+       "effet_different": 1.0,
+       "indetermine": 0.0
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "déplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "déplacé|DLR5L17N50779:seance|AMANR5L17PO838901BTC0698P0D1N000029/161|2",
+     "contexte_avant": "Après le",
+     "passage_a": "",
+     "passage_b": "deuxième alinéa du I de l'article L. 442-5 du code de commerce, il est inséré un alinéa ainsi rédigé :",
+     "contexte_apres": "« Dans les collectivités relevant de l'article 73 de la Constitution et dans les collectivités d'outre-mer de Saint-Martin, de Saint-Pierre-et-Miquelon et de Wallis-et-Futuna, le prix d'achat effectif n",
+     "regle": "effet_different",
+     "taille": 27,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.95,
+      "probabilites": {
+       "forme_seule": 0.0,
+       "meme_effet": 0.0,
+       "effet_different": 0.96,
+       "indetermine": 0.04
+      }
+     }
+    },
+    {
+     "id": "déplacé|DLR5L17N50779:seance|AMANR5L17PO838901BTC0698P0D1N000029/161|70",
+     "contexte_avant": "'outre-mer de Saint-Martin, de Saint-Pierre-et-Miquelon et de Wallis-et-Futuna, le prix d'achat effectif n'inclut pas le prix du transport, par dérogation au deuxième alinéa du présent I. »",
+     "passage_a": "",
+     "passage_b": "deuxième alinéa du I de l'article L. 442-5 du code de commerce, il est inséré un alinéa ainsi rédigé :",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 27,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.32,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.02,
+       "effet_different": 0.49,
+       "indetermine": 0.47
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "4-9 mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N51349:seance|T0/534|82",
+     "contexte_avant": ". Ce rapport évalue notamment ces effets, d'une part, sur la proportion de plaintes déposées par rapport au nombre total d'agressions sexuelles et, d'autre part, sur la proportion des agressions sexuelles faisant l'objet d'une condamnation.",
+     "passage_a": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8",
+     "passage_b": "Il est actualisé trois ans après sa publication.",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 9,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.87,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.02,
+       "effet_different": 0.9,
+       "indetermine": 0.07
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N54777:commission|AMANR5L17PO884839B3107P0D1N000007/195|40",
+     "contexte_avant": "La seconde phrase du neuvième alinéa de l'article 3-1 de l'ordonnance n° 58-1270 du 22 décembre 1958 portant loi organique relative au statut de la magistrature est ainsi modifiée :",
+     "passage_a": "1° Après le mot : « détention, », sont insérés les mots : « premier vice-président chargé des fonctions de juge des violences sexuelles et intrafamiliales, » ;",
+     "passage_b": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24 intrus25 intrus26 intrus27 intrus28 intrus29 intrus30 intrus31 intrus32 intrus33",
+     "contexte_apres": "2° Après la seconde occurrence du mot : « adjoint, », sont insérés les mots : « procureur de la République adjoint chargé des violences sexuelles et intrafamiliales, ».",
+     "regle": "effet_different",
+     "taille": 34,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.63,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.01,
+       "effet_different": 0.72,
+       "indetermine": 0.25
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N50453:commission|AMANR5L17PO420120B0284P0D1N000007/96|0",
+     "contexte_avant": "",
+     "passage_a": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24 intrus25 intrus26 intrus27 intrus28 intrus29 intrus30 intrus31 intrus32 intrus33 intrus34 intrus35 intrus36 intrus37 intrus38 intrus39 intrus40 intrus41 intrus42 intrus43 intrus44 intrus45 intrus46 intrus47 intrus48 intrus49",
+     "passage_b": "Dans un délai de six mois à compter de la promulgation de la présente loi, le Gouvernement remet au Parlement un rapport visant à qualifier le rôle, l'importance et la pérennité du paritarisme dans le cadre des réformes successives liées à la réforme des retraites.",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 50,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.83,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.02,
+       "effet_different": 0.87,
+       "indetermine": 0.09
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N51672:commission|AMANR5L17PO420120B1102P0D1N000269/229|103",
+     "contexte_avant": "référentiel de bonnes pratiques pour les professionnels de santé afin de prévenir les pratiques d'obstination déraisonnable. Ce référentiel est accompagné d'un ensemble d'indicateurs destinés aux établissements de santé qu'ils renseignent de manière annuelle auprès des agences régionales de santé.",
+     "passage_a": "« Ces indicateurs sont publiés par la Haute Autorité de santé, dans le cadre de la publication des indicateurs de qualité et de sécurité des soins. »",
+     "passage_b": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24 intrus25 intrus26 intrus27 intrus28",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 29,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.67,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.03,
+       "effet_different": 0.75,
+       "indetermine": 0.2
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N51985:commission|AMANR5L17PO59051B1470P0D1N000024/54|0",
+     "contexte_avant": "",
+     "passage_a": "Le 4° de l'article L. 761-8 du code de l'entrée et du séjour des étrangers et du droit d'asile est abrogé.",
+     "passage_b": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24 intrus25 intrus26 intrus27 intrus28 intrus29 intrus30 intrus31",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 32,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.79,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.02,
+       "effet_different": 0.84,
+       "indetermine": 0.12
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N52972:commission|AMANR5L17PO420120B1958P0D1N000002/144|0",
+     "contexte_avant": "",
+     "passage_a": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24 intrus25 intrus26 intrus27 intrus28 intrus29 intrus30 intrus31 intrus32 intrus33",
+     "passage_b": "I.-Chaque année, les agences régionales de santé remettent au ministre chargé de la santé un rapport sur l'application de l'article 1er de la présente loi.",
+     "contexte_apres": "II.-La transparence dans la gestion des infrastructures de stationnement est assurée par la publication d'un rapport annuel soumis à l'approbation du conseil de surveillance de l'établissement public de santé et de la commission des usagers.",
+     "regle": "effet_different",
+     "taille": 34,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.71,
+      "probabilites": {
+       "forme_seule": 0.04,
+       "meme_effet": 0.03,
+       "effet_different": 0.78,
+       "indetermine": 0.15
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N50724:commission|AMANR5L17PO419604B1009P0D1N000034/80|0",
+     "contexte_avant": "",
+     "passage_a": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24 intrus25 intrus26 intrus27 intrus28 intrus29 intrus30 intrus31 intrus32 intrus33 intrus34 intrus35 intrus36 intrus37 intrus38 intrus39 intrus40",
+     "passage_b": "Dans un délai de six mois à compter de la promulgation de la présente loi, le Gouvernement remet au Parlement un rapport évaluant le fonctionnement des commissions disciplinaires dans les établissements publics à caractère scientifique, culturel et professionnel.",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 41,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.73,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.02,
+       "effet_different": 0.8,
+       "indetermine": 0.16
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N51216:commission|AMANR5L17PO420120B0769P0D1N000019/136|0",
+     "contexte_avant": "",
+     "passage_a": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24 intrus25 intrus26 intrus27 intrus28 intrus29 intrus30 intrus31 intrus32 intrus33 intrus34 intrus35 intrus36 intrus37 intrus38 intrus39 intrus40 intrus41 intrus42 intrus43 intrus44 intrus45 intrus46 intrus47 intrus48 intrus49 intrus50 intrus51 intrus52 intrus53 intrus54 intrus55 intrus56 intrus57 intrus58 intrus59 intrus60 intrus61 intrus62 intrus63 intrus64 intrus65 intrus66 intrus67 intrus68 intrus69 intrus70 intrus71 intrus72",
+     "passage_b": "Dans un délai de six mois à compter de la promulgation de la présente loi, le Gouvernement remet au Parlement un rapport sur les effets de l'extension des obligations de revitalisation et de recherche de repreneur sur l'investissement des entreprises et sur la dynamique de l'emploi. Ce rapport analyse également les effets de la présente loi sur l'attractivité économique des territoires concernés.",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 73,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.64,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.02,
+       "effet_different": 0.73,
+       "indetermine": 0.22
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N51349:commission|AMANR5L17PO59051B0842P0D1N000021/106|0",
+     "contexte_avant": "",
+     "passage_a": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24 intrus25 intrus26 intrus27 intrus28 intrus29 intrus30 intrus31 intrus32 intrus33 intrus34 intrus35 intrus36 intrus37 intrus38 intrus39 intrus40 intrus41 intrus42 intrus43 intrus44 intrus45 intrus46 intrus47 intrus48 intrus49 intrus50 intrus51 intrus52 intrus53 intrus54 intrus55 intrus56",
+     "passage_b": "Dans un délai d'un an à compter de la promulgation de la présente loi, le Gouvernement remet au Parlement un rapport évaluant les effets de la redéfinition pénale des infractions d'agression sexuelle et de viol sur le traitement judiciaire des violences sexuelles, du dépôt de plainte jusqu'au délibéré.",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 57,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.68,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.02,
+       "effet_different": 0.76,
+       "indetermine": 0.2
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N52100:seance|AMANR5L17PO838901BTC2233P0D1N000001/329|119",
+     "contexte_avant": "française lorsque ces derniers font l'objet d'une convocation ayant pour but leur participation aux jeux Olympiques et Paralympiques.\n« Les fédérations sportives constatent et sanctionnent, le cas échéant, tout manquement à cette obligation dans les conditions prévues par leurs règlements.",
+     "passage_a": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24 intrus25 intrus26 intrus27 intrus28 intrus29 intrus30 intrus31 intrus32 intrus33 intrus34 intrus35 intrus36 intrus37 intrus38 intrus39 intrus40 intrus41 intrus42 intrus43 intrus44 intrus45 intrus46 intrus47 intrus48 intrus49 intrus50 intrus51 intrus52 intrus53 intrus54 intrus55 intrus56 intrus57 intrus58 intrus59 intrus60 intrus61 intrus62 intrus63 intrus64 intrus65",
+     "passage_b": "« Lorsque la fédération a confié l'organisation des compétitions ou manifestations sportives professionnelles à une ligue professionnelle créée en application de l'article L. 132-1, les conditions de mise à disposition des joueurs mentionnées au premier alinéa du présent article sont fixées par la convention de subdélégation mentionnée à l'article L. 131-14. »",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 66,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.77,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.03,
+       "effet_different": 0.83,
+       "indetermine": 0.11
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N54085:seance|AMANR5L17PO838901BTC2765P0D1N002065/128|0",
+     "contexte_avant": "",
+     "passage_a": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24 intrus25 intrus26 intrus27",
+     "passage_b": "Le I de l'article L. 212-5-1 du code de l'environnement est complété par un 5° ainsi rédigé :",
+     "contexte_apres": "« 5° Comporter des orientations stratégiques relatives à l'efficience des usages de l'eau et au stockage de la ressource en eau, dans le respect du 5° bis du I de l'article L. 211-1. »",
+     "regle": "effet_different",
+     "taille": 28,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.61,
+      "probabilites": {
+       "forme_seule": 0.04,
+       "meme_effet": 0.06,
+       "effet_different": 0.71,
+       "indetermine": 0.19
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N54372:commission|AMANR5L17PO883517B2841P0D1N001024/320|38",
+     "contexte_avant": "Après l'article L. 223-1-3 du code de l'action sociale et des familles, il est inséré un article L. 223-1-4 ainsi rédigé :",
+     "passage_a": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24 intrus25 intrus26 intrus27 intrus28 intrus29 intrus30 intrus31 intrus32 intrus33 intrus34 intrus35 intrus36 intrus37 intrus38 intrus39 intrus40 intrus41 intrus42 intrus43 intrus44 intrus45 intrus46 intrus47 intrus48 intrus49 intrus50 intrus51 intrus52 intrus53 intrus54 intrus55 intrus56 intrus57 intrus58 intrus59 intrus60 intrus61 intrus62 intrus63 intrus64 intrus65 intrus66 intrus67 intrus68 intrus69 intrus70 intrus71 intrus72 intrus73 intrus74 intrus75 intrus76 intrus77 intrus78 intrus79 intrus80 intrus81 intrus82 intrus83 intrus84 intrus85 intrus86 intrus87 intrus88 intrus89 intrus90 intrus91 intrus92 intrus93 intrus94 intrus95 intrus96 intrus97 intrus98 intrus99 intrus100 intrus101 intrus102 intrus103 intrus104 intrus105 intrus106 intrus107 intrus108 intrus109 intrus110 intrus111 intrus112 intrus113 intrus114 intrus115 intrus116 intrus117 intrus118 intrus119 intrus120 intrus121 intrus122 intrus123 intrus124 intrus125 intrus126 intrus127 intrus128 intrus129 intrus130 intrus131",
+     "passage_b": "« Art. L. 223-1-4.-Dans le cadre d'une mesure de protection de l'enfance, le service d'aide sociale à l'enfance ou le service habilité peuvent proposer à la famille concernée la participation à une conférence familiale. Cette instance, animée par un coordinateur formé et indépendant, réunit les titulaires de l'autorité parentale, les membres de la famille élargie, les proches de l'enfant ainsi que le mineur concerné, en fonction de son âge et de son degré de maturité, afin de rechercher de manière concertée des solutions répondant aux besoins de l'enfant et assurant sa protection, dans le respect de son intérêt supérieur.",
+     "contexte_apres": "« Les modalités d'application du présent article sont déterminées par décret. »",
+     "regle": "effet_different",
+     "taille": 132,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.72,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.79,
+       "indetermine": 0.19
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N51985:seance|T0/436|112",
+     "contexte_avant": "de coordonner les travaux de reconstruction de Mayotte mentionné à l'article 1er de la loi n° 2025-176 du 24 février 2025 d'urgence pour Mayotte.\nUn décret en Conseil d'État détermine les modalités d'application du présent article.",
+     "passage_a": "Ce décret précise en particulier la programmation de chacun des thèmes figurant dans le rapport annexé.",
+     "passage_b": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 17,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.8,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.02,
+       "effet_different": 0.85,
+       "indetermine": 0.11
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N53429:commission|AMANR5L17PO59051B2312P0D1N000039/228|27",
+     "contexte_avant": "Après l'article 16-8-1 du code civil, il est inséré un article 16-8-2 ainsi rédigé :",
+     "passage_a": "« Art. 16-8-2.-Le principe d'anonymat du don ne fait pas obstacle à la communication à la personne née d'une assistance médicale à la procréation avec tiers donneur ayant procédé à un test génétique à visée généalogique, dans les conditions prévues à l'article 16-10-1, d'informations concernant ses ascendants. Il ne fait pas non plus obstacle à la communication au tiers donneur ayant procédé à un test génétique à visée généalogique, dans les mêmes conditions, d'informations concernant ses descendants. »",
+     "passage_b": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24 intrus25 intrus26 intrus27 intrus28 intrus29 intrus30 intrus31 intrus32 intrus33 intrus34 intrus35 intrus36 intrus37 intrus38 intrus39 intrus40 intrus41 intrus42 intrus43 intrus44 intrus45 intrus46 intrus47 intrus48 intrus49 intrus50 intrus51 intrus52 intrus53 intrus54 intrus55 intrus56 intrus57 intrus58 intrus59 intrus60 intrus61 intrus62 intrus63 intrus64 intrus65 intrus66 intrus67 intrus68 intrus69 intrus70 intrus71 intrus72 intrus73 intrus74 intrus75 intrus76 intrus77 intrus78 intrus79 intrus80 intrus81 intrus82 intrus83 intrus84 intrus85 intrus86 intrus87 intrus88 intrus89 intrus90 intrus91 intrus92 intrus93 intrus94 intrus95 intrus96 intrus97 intrus98 intrus99 intrus100 intrus101 intrus102 intrus103 intrus104 intrus105",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 106,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.79,
+      "probabilites": {
+       "forme_seule": 0.04,
+       "meme_effet": 0.02,
+       "effet_different": 0.84,
+       "indetermine": 0.1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N51981:commission|T0/100|5",
+     "contexte_avant": "La perte de recettes pour",
+     "passage_a": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13",
+     "passage_b": "les organismes de sécurité sociale est compensée à due concurrence par la majoration de",
+     "contexte_apres": "l'accise sur les tabacs prévue au chapitre IV du titre Ier du livre III du code des impositions sur les biens et services.",
+     "regle": "effet_different",
+     "taille": 14,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.41,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.02,
+       "effet_different": 0.56,
+       "indetermine": 0.4
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N52958:commission|T0/241|62",
+     "contexte_avant": "code de l'action sociale et des familles est complété par une phrase ainsi rédigée : « Il en est de même lorsque ces personnes communiquent à l'autorité judiciaire des informations concernant un majeur protégé ou qu'il y a lieu de protéger. »",
+     "passage_a": "II.-Après le mot : « solliciter », la fin de la dernière phrase du dernier alinéa de l'article 431 du code civil est ainsi rédigée : « des informations complémentaires du tiers qui l'a saisi ou de tout service social chargé de l'accompagnement d'une personne vulnérable. »",
+     "passage_b": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24 intrus25 intrus26 intrus27 intrus28 intrus29 intrus30 intrus31 intrus32 intrus33 intrus34 intrus35 intrus36 intrus37 intrus38 intrus39 intrus40 intrus41 intrus42 intrus43 intrus44 intrus45 intrus46 intrus47 intrus48 intrus49 intrus50 intrus51 intrus52 intrus53 intrus54 intrus55 intrus56 intrus57 intrus58 intrus59",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 60,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.67,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.01,
+       "effet_different": 0.75,
+       "indetermine": 0.22
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N53331:commission|T0/82|0",
+     "contexte_avant": "",
+     "passage_a": "Les articles 2261 et 2272 du code civil sont applicables dans les collectivités régies par l'article 73 de la Constitution ainsi qu'à Saint-Barthélemy et Saint-Martin.",
+     "passage_b": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24 intrus25 intrus26 intrus27 intrus28 intrus29 intrus30 intrus31 intrus32 intrus33",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 34,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.72,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.79,
+       "indetermine": 0.19
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N51670:commission|T0/5448|87",
+     "contexte_avant": "5 à 11 de la présente loi, est complétée par un article L. 1111-12-10 ainsi rédigé :\n« Art. L. 1111-12-10.-La décision du médecin se prononçant sur la demande d'aide à mourir",
+     "passage_a": "ainsi que la décision de mettre fin à la procédure dans les conditions prévues au 2° de l'article L. 1111-12-8 ne peuvent être contestées",
+     "passage_b": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24 intrus25 intrus26 intrus27 intrus28 intrus29 intrus30 intrus31",
+     "contexte_apres": "que par la personne ayant formé cette demande, devant la juridiction administrative, selon les dispositions de droit commun. »",
+     "regle": "effet_different",
+     "taille": 32,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.89,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.92,
+       "indetermine": 0.06
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "4-9 mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N53720:seance|T0/1|17",
+     "contexte_avant": "Le Gouvernement remet aux commissions permanentes de l'Assemblée nationale et du Sénat chargées des finances",
+     "passage_a": "intrus0 intrus1 intrus2 intrus3",
+     "passage_b": "un rapport annuel qui",
+     "contexte_apres": "présente, pour chaque opérateur de l'État, une liste non nominative des dix rémunérations brutes les plus élevées.",
+     "regle": "effet_different",
+     "taille": 4,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.43,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.03,
+       "effet_different": 0.57,
+       "indetermine": 0.38
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N51852:seance|AMANR5L17PO838901BTC1378P0D1N000098/186|11",
+     "contexte_avant": "Le code de l'urbanisme est ainsi modifié :",
+     "passage_a": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17",
+     "passage_b": "1° L'article L. 151-30 est complété par un alinéa ainsi rédigé :",
+     "contexte_apres": "« Lorsque le règlement impose la réalisation d'aires de stationnement pour les véhicules motorisés, cette obligation est réduite à raison d'une aire de stationnement pour véhicule motorisé en contrepartie de la création d'infrastructures ou de l'aménagement d'espaces permettant",
+     "regle": "effet_different",
+     "taille": 18,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.72,
+      "probabilites": {
+       "forme_seule": 0.04,
+       "meme_effet": 0.03,
+       "effet_different": 0.79,
+       "indetermine": 0.14
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N54372:seance|AMANR5L17PO838901BTC3018P0D1N000904/165|0",
+     "contexte_avant": "",
+     "passage_a": "Après l'article 373-2-9 du code civil, il est inséré un article 373-2-9-1 A ainsi rédigé :",
+     "passage_b": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24 intrus25 intrus26 intrus27 intrus28",
+     "contexte_apres": "« Art. 373-2-9-1 A.-Lorsqu'un enfant est confié à l'un de ses parents dans un contexte d'allégations de violences sexuelles, incestueuses ou intrafamiliales, le juge veille, sauf décision spécialement motivée contraire",
+     "regle": "effet_different",
+     "taille": 29,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.76,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.01,
+       "effet_different": 0.82,
+       "indetermine": 0.15
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "4-9 mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N52985:commission|T0/15034|28",
+     "contexte_avant": "Au 6° de l'article L. 8271-1-2 du code du travail, les mots : « de l'aviation civile",
+     "passage_a": "commissionnés à cet effet",
+     "passage_b": "intrus0 intrus1 intrus2 intrus3",
+     "contexte_apres": "» sont remplacés par les mots : « et administratifs de l'aviation civile chargés de la lutte contre le travail illégal ».",
+     "regle": "effet_different",
+     "taille": 4,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.85,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.89,
+       "indetermine": 0.09
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N52985:seance|AMANR5L17PO838901BTC2250P0D1N000696/39|0",
+     "contexte_avant": "",
+     "passage_a": "Les articles 41-1-2, 41-1-3 et 180-2 du code de procédure pénale sont abrogés.",
+     "passage_b": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 25,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.89,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.92,
+       "indetermine": 0.06
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N52985:seance|AMANR5L17PO838901BTC2250P0D1N000932/104|0",
+     "contexte_avant": "",
+     "passage_a": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24 intrus25 intrus26 intrus27 intrus28 intrus29 intrus30 intrus31 intrus32 intrus33 intrus34 intrus35 intrus36 intrus37 intrus38 intrus39 intrus40 intrus41 intrus42 intrus43 intrus44 intrus45 intrus46 intrus47 intrus48 intrus49 intrus50 intrus51 intrus52 intrus53 intrus54 intrus55 intrus56",
+     "passage_b": "Au dernier alinéa de l'article 1758 du code général des impôts, après le mot : « droits », sont insérés les mots : «, y compris de la contribution prévue au a du II de l'article L. 136-6 du code de la sécurité sociale, ».",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 57,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.72,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.02,
+       "effet_different": 0.79,
+       "indetermine": 0.17
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "4-9 mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N54085:seance|T0/37059|63",
+     "contexte_avant": "présente loi, le Gouvernement remet au Parlement un rapport relatif à l'opportunité et aux modalités de l'instauration d'une taxe sur la publicité comparative, au sens de l'article L. 122-1 du code de la consommation, et de",
+     "passage_a": "l'affectation de son produit",
+     "passage_b": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5",
+     "contexte_apres": "au financement des mesures de surveillance, de prévention et de lutte contre les dangers sanitaires pour les animaux et les végétaux.",
+     "regle": "effet_different",
+     "taille": 6,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.61,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.02,
+       "effet_different": 0.71,
+       "indetermine": 0.25
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N50776:commission|AMANR5L17PO419610B0516P0D1N000006/175|34",
+     "contexte_avant": "Après l'article L. 211-2-1 du code de l'énergie, il est inséré un article L. 211-2-2 ainsi rédigé :",
+     "passage_a": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24 intrus25 intrus26 intrus27 intrus28 intrus29 intrus30 intrus31 intrus32 intrus33 intrus34 intrus35 intrus36 intrus37 intrus38 intrus39 intrus40 intrus41 intrus42 intrus43 intrus44 intrus45 intrus46 intrus47 intrus48 intrus49 intrus50 intrus51 intrus52 intrus53 intrus54 intrus55",
+     "passage_b": "« Art. L. 211-2-2.-Les dispositifs d'aides publiques en faveur de la maîtrise de la demande en énergie et de la délivrance des certificats d'économie d'énergie doivent favoriser prioritairement les rénovations globales et performantes des logements par rapport aux gestes uniques.",
+     "contexte_apres": "« Un décret fixe les modalités d'application du présent article. »",
+     "regle": "effet_different",
+     "taille": 56,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.81,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.02,
+       "effet_different": 0.86,
+       "indetermine": 0.11
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N53284:seance|AMANR5L17PO838901BTC2468P0D1N000119/76|0",
+     "contexte_avant": "",
+     "passage_a": "À la première phrase du premier alinéa de l'article L. 22-10-1 du code de la sécurité intérieure, la référence : « IX » est remplacée par la référence : « IX bis ».",
+     "passage_b": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24 intrus25 intrus26 intrus27 intrus28 intrus29 intrus30 intrus31 intrus32 intrus33 intrus34 intrus35 intrus36 intrus37 intrus38 intrus39 intrus40 intrus41",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 42,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.61,
+      "probabilites": {
+       "forme_seule": 0.03,
+       "meme_effet": 0.02,
+       "effet_different": 0.71,
+       "indetermine": 0.24
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N52985:commission|T0/1508|32",
+     "contexte_avant": "Après le 7° de l'article L. 114-12-1 du code de la sécurité sociale, il est inséré un 8° ainsi rédigé :",
+     "passage_a": "« 8° Sous réserve d'être individuellement désignés et dûment habilités dans le cadre de leurs missions relatives à la lutte contre la fraude, les agents des services du représentant de l'État dans le département. »",
+     "passage_b": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21 intrus22 intrus23 intrus24 intrus25 intrus26 intrus27 intrus28 intrus29 intrus30 intrus31 intrus32 intrus33 intrus34 intrus35 intrus36 intrus37 intrus38 intrus39 intrus40 intrus41",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 42,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.81,
+      "probabilites": {
+       "forme_seule": 0.01,
+       "meme_effet": 0.01,
+       "effet_different": 0.86,
+       "indetermine": 0.12
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N52985:seance|T0/33985|43",
+     "contexte_avant": "Après le 7° ter du I de l'article L. 330-2 du code de la route, il est inséré un 7° quater ainsi rédigé :\n« 7° quater Aux agents habilités des organismes mentionnés",
+     "passage_a": "aux articles L. 213-1 et L. 752-4",
+     "passage_b": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12",
+     "contexte_apres": "du code de la sécurité sociale et à l'article L. 723-2 du code rural et de la pêche maritime pour accomplir les actions de contrôle et de lutte contre la fraude mentionnées à l'article L. 114-9 du code de la",
+     "regle": "effet_different",
+     "taille": 13,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.84,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.01,
+       "effet_different": 0.88,
+       "indetermine": 0.09
+      }
+     }
+    }
+   ]
+  },
+  {
+   "mutation": "remplacé",
+   "taille": "10+ mots",
+   "differences": [
+    {
+     "id": "remplacé|DLR5L17N51985:seance|AMANR5L17PO838901BTC1573P0D1N000336/289|141",
+     "contexte_avant": "du présent article pour l'État est compensée, à due concurrence, par la création d'une taxe additionnelle à l'accise sur les tabacs prévue au chapitre IV du titre Ier du livre III du code des impositions sur les biens et services.",
+     "passage_a": "intrus0 intrus1 intrus2 intrus3 intrus4 intrus5 intrus6 intrus7 intrus8 intrus9 intrus10 intrus11 intrus12 intrus13 intrus14 intrus15 intrus16 intrus17 intrus18 intrus19 intrus20 intrus21",
+     "passage_b": "IV.-Le I n'est applicable qu'aux sommes venant en déduction de l'impôt dû.",
+     "contexte_apres": "",
+     "regle": "effet_different",
+     "taille": 22,
+     "jugement": {
+      "choix": "effet_different",
+      "confiance": 0.47,
+      "probabilites": {
+       "forme_seule": 0.02,
+       "meme_effet": 0.02,
+       "effet_different": 0.6,
+       "indetermine": 0.36
+      }
+     }
+    }
+   ]
+  }
+ ]
+}
