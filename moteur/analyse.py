@@ -258,7 +258,7 @@ def analyser_par_grammaire(instruction, portee, precedente=None, operation_prece
     return None
 
 
-GRAMMAIRE = Path(__file__).with_name("grammaire.lark")
+GRAMMAIRES = Path(__file__).with_name("grammaires")
 ANNONCE_CITATION = re.compile(r"(rédigée?s?|suivante?s?)[\s\u00a0\u202f]*:$")
 BLANCS = "   "
 
@@ -267,9 +267,14 @@ class _Rejet(Exception):
     """La formule est reconnue mais incohérente (renvoi sans antécédent, nombre d'alinéas faux)."""
 
 
+def texte_grammaire(nom):
+    """Texte Lark de grammaires/<nom>.lark, précédé de grammaires/commun.lark (voir l'en-tête de commun.lark)."""
+    return "\n".join((GRAMMAIRES / f"{n}.lark").read_text(encoding="utf-8") for n in ("commun", nom))
+
+
 @cache
 def _parser():
-    return Lark(GRAMMAIRE.read_text(encoding="utf-8"), start=["en_ligne", "bloc"], parser="earley",
+    return Lark(texte_grammaire("amendements"), start=["en_ligne", "bloc"], parser="earley",
                 ambiguity="explicit")
 
 
@@ -289,7 +294,7 @@ def _arbre(texte, start):
 
 @v_args(inline=True)
 class _VersOperations(Transformer):
-    """Arbre de grammaire.lark → Operation, une méthode par alias, des feuilles vers la racine.
+    """Arbre de grammaires/amendements.lark → Operation, une méthode par alias, des feuilles vers la racine.
 
     Les désignations deviennent des Cible ; une action en ligne devient une fonction qui attend la cible
     du préfixe (« À la fin de l'alinéa 3, … »), que seule la règle en_ligne connaît.

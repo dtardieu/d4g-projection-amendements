@@ -9,7 +9,8 @@ from http.server import ThreadingHTTPServer
 import pytest
 import requests
 
-from serveur import app, tricoteuses
+from serveur import app
+from datasources import tricoteuses
 
 DOCUMENT = {
     "uid": "PIONTEST",
@@ -65,9 +66,10 @@ def api(monkeypatch):
 
     def get(chemin, params=None):
         appels.append((chemin, params))
-        if chemin.startswith("/v2/documents/PIONTEST"):
+        if chemin == "/documents/PIONTEST":
+            assert params == {"include": "subdivisions,alineas"}
             return Reponse(DOCUMENT)
-        if chemin.startswith("/v2/documents/"):
+        if chemin.startswith("/documents/"):
             raise tricoteuses.TexteIntrouvable(chemin)
         if chemin == "/amendements/json":
             retire = dict(AMENDEMENT, uid="AM2", sortAmendement="Retiré")
@@ -112,6 +114,51 @@ def test_amendements_lit_toutes_les_pages(api):
     amendements = tricoteuses.amendements_du_texte("PIONTEST")
     assert [a.uid for a in amendements] == ["AM1", "AM3", "AM2"]
     assert [p["page"] for c, p in api if c == "/amendements/json"] == [1, 2]
+
+
+def test_numero_ordre_du_depot():
+    assert tricoteuses.amendement_depuis(dict(AMENDEMENT, numeroOrdreDepot="393")).numero_ordre == 393
+    assert tricoteuses.amendement_depuis(dict(AMENDEMENT, numeroOrdreDepot=393)).numero_ordre == 393
+    assert tricoteuses.amendement_depuis(AMENDEMENT).numero_ordre is None
+
+
+def test_articles_depuis_document():
+    articles = tricoteuses.articles_depuis_document(DOCUMENT)
+    assert articles == (
+        tricoteuses.Article("PREMIER", ("Le premier alinéa.", "Le second alinéa.")),
+        tricoteuses.Article("2", (), supprime=True),
+    )
+
+
+def test_lire_texte(api):
+    texte = tricoteuses.lire_texte("PIONTEST")
+    assert (texte.uid, texte.titre) == ("PIONTEST", "Proposition de loi de test")
+    assert [a.numero for a in texte.articles] == ["PREMIER", "2"]
+
+
+def test_tableau_aplati_reste_un_alinea():
+    tableau = {"articleRefHash": "h1", "numero": 3, "texte": "«\tPopulation\tTaux\t\t\n\tMoins de 500\t28,1\t\t\n"}
+    articles = tricoteuses.articles_depuis_document(dict(DOCUMENT, alineas=DOCUMENT["alineas"] + [tableau]))
+    assert articles[0].lignes[-1] == "« Population Taux Moins de 500 28,1"
+
+
+def test_textes_de_premiere_lecture(monkeypatch):
+    actes = {
+        "AN1-DEPOT": [{"dossierRefUid": "DL1", "texteAssocieRefUid": "PIONB1"}],
+        "AN1-COM-FOND-RAPPORT": [{"dossierRefUid": "DL1", "texteAdopteRefUid": "PIONBTC1"},
+                                 {"dossierRefUid": "DL2", "texteAdopteRefUid": None}],
+        # La décision en séance peut viser un TAP : seul le BTA est le texte adopté.
+        "AN1-DEBATS-DEC": [{"dossierRefUid": "DL1", "texteAssocieRefUid": "PIONTAP1"},
+                           {"dossierRefUid": "DL1", "texteAssocieRefUid": "PIONBTA1"}],
+    }
+
+    def get(chemin, params=None):
+        assert chemin == "/actesLegislatifs/json" and params["legislature"] == 17
+        return Reponse(actes[params["codeActe"]])
+
+    monkeypatch.setattr(tricoteuses, "get", get)
+    assert tricoteuses.textes_de_premiere_lecture(17) == [
+        tricoteuses.PremiereLecture("DL1", depose="PIONB1", commission="PIONBTC1", adopte="PIONBTA1")]
 
 
 def lisible(alinea):

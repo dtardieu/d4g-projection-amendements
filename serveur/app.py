@@ -23,7 +23,8 @@ import requests
 from moteur.analyse import nettoyer_dispositif
 from moteur.consolidation import consolider
 
-from serveur import tricoteuses, vue
+from serveur import vue
+from datasources import tricoteuses
 
 ROUTE = re.compile(r"^/textes/([A-Za-z0-9_-]+)/projection/?$")
 STATIQUE = Path(__file__).parent / "static"

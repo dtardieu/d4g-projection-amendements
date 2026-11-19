@@ -233,7 +233,7 @@ def mesurer(entree, predit, officiel):
     reels, predits = changements(entree, officiel), changements(entree, predit)
     if not reels and not predits:
         return {"exact": exact, "indulgent": indulgent, "touche": False}
-    mesure = {"exact": exact, "indulgent": indulgent, "touche": True}
+    mesure = {"exact": exact, "indulgent": indulgent, "touche": True, "officiel": bool(reels), "predit": bool(predits)}
     communs = reels & predits
     for signe in "+-":
         mesure[signe] = tuple(sum(n for (s, _), n in c.items() if s == signe) for c in (communs, predits, reels))
@@ -241,10 +241,14 @@ def mesurer(entree, predit, officiel):
 
 
 class Compteur:
-    """Une ligne du tableau. Tout se mesure sur les articles touchés : les articles inchangés gonfleraient le score."""
+    """Une ligne du tableau. Tout se mesure sur les articles touchés : les articles inchangés gonfleraient le score.
+
+    Les taux d'exacts se rapportent aux articles que le texte officiel modifie : le même ensemble pour toutes les
+    versions d'un corpus. Les articles que le moteur modifie à tort (« abîmés ») sont comptés à part.
+    """
 
     def __init__(self):
-        self.touches = self.exacts = self.indulgents = 0
+        self.touches = self.officiels = self.predits = self.communs = self.exacts = self.indulgents = 0
         self.mots = {"+": [0, 0, 0], "-": [0, 0, 0]}  # mots communs, prédits, réels
 
     def ajouter(self, entree, predit, officiel):
@@ -254,18 +258,28 @@ class Compteur:
         if not m["touche"]:
             return
         self.touches += 1
-        self.exacts += m["exact"]
-        self.indulgents += m["indulgent"]
+        self.officiels += m["officiel"]
+        self.predits += m["predit"]
+        self.communs += m["officiel"] and m["predit"]
+        self.exacts += m["officiel"] and m["exact"]
+        self.indulgents += m["officiel"] and m["indulgent"]
         for signe, total in self.mots.items():
             for i, n in enumerate(m[signe]):
                 total[i] += n
 
     def resume(self):
-        return {
-            "touches": self.touches, "exacts_%": pct(self.exacts, self.touches),
-            "exacts_indulgents_%": pct(self.indulgents, self.touches),
-            "f1_ajouts_%": f1(*self.mots["+"]), "f1_retraits_%": f1(*self.mots["-"]),
+        resume = {
+            "touches": self.touches, "officiels": self.officiels, "abimes": self.predits - self.communs,
+            "exacts_%": pct(self.exacts, self.officiels),
+            "exacts_indulgents_%": pct(self.indulgents, self.officiels),
+            "articles_precision_%": pct(self.communs, self.predits),
+            "articles_rappel_%": pct(self.communs, self.officiels),
         }
+        for signe, nom in (("+", "ajouts"), ("-", "retraits")):
+            communs, predits, reels = self.mots[signe]
+            resume |= {f"f1_{nom}_%": f1(communs, predits, reels), f"precision_{nom}_%": pct(communs, predits),
+                       f"rappel_{nom}_%": pct(communs, reels)}
+        return resume
 
 
 def strate_longueur(n):
@@ -400,11 +414,12 @@ def _exact_dans_l_autre_ordre(resultat, article, officiel):
 
 
 def tableau(scores):
-    colonnes = ["exacts_%", "exacts_indulgents_%", "f1_ajouts_%", "f1_retraits_%"]
-    lignes = ["| version | touches | " + " | ".join(colonnes) + " | f1_tombés_% |", "|---" * (len(colonnes) + 3) + "|"]
+    colonnes = ["officiels", "abimes", "exacts_%", "exacts_indulgents_%", "articles_precision_%", "f1_ajouts_%",
+                "f1_retraits_%"]
+    lignes = ["| version | " + " | ".join(colonnes) + " | f1_tombés_% |", "|---" * (len(colonnes) + 2) + "|"]
     for s in scores:
         c = s["consolidation"]
-        lignes.append(f"| {s['version']} | {c['touches']} | " + " | ".join(str(c[k]) for k in colonnes) + f" | {s['tombes']['f1_%']} |")
+        lignes.append(f"| {s['version']} | " + " | ".join(str(c[k]) for k in colonnes) + f" | {s['tombes']['f1_%']} |")
     return "\n".join(lignes)
 
 

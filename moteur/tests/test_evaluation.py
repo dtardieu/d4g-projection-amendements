@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from evals.moteur.corpus import etapes_du_dossier, lire_texte_html, numeros_d_en_tete, split_de
+from evals.moteur.corpus import split_de
 from evals.moteur.run import executer
 from evals.moteur.score import (Compteur, apparier, categorie_article, changements, classer_ecarts, mots_officiels,
                                 sans_mentions)
@@ -23,53 +23,6 @@ FIXTURES = Path(__file__).parent / "fixtures"
 AMENDEMENTS = json.loads((FIXTURES / "ppl822_amendements.json").read_text(encoding="utf-8"))
 TEXTES = json.loads((FIXTURES / "ppl822_textes.json").read_text(encoding="utf-8"))
 COMMISSION, ADOPTE = "PIONANR5L17BTC1003", "PIONANR5L17BTA0062"
-
-
-@pytest.mark.parametrize("en_tete, attendu", [
-    ("Article 1er", ["PREMIER"]),
-    ("Article unique", ["UNIQUE"]),
-    ("Article 6 bis (nouveau)", ["6 BIS"]),
-    ("Articles 2 à 6 (nouveaux) (Supprimés)", ["2", "3", "4", "5", "6"]),
-    ("Articles 8 ter et 8 quater", ["8 TER", "8 QUATER"]),
-    ("Articles 2 bis à 2 quater (Supprimés)", ["2 BIS", "2 TER", "2 QUATER"]),
-    ("Articles 2 bis, 2 ter et 2 quater", ["2 BIS", "2 TER", "2 QUATER"]),
-])
-def test_numeros_d_en_tete(en_tete, attendu):
-    assert numeros_d_en_tete(en_tete) == attendu
-
-
-def test_lecture_d_un_texte_de_l_an():
-    contenu = """
-    <p class="assnat4TitreNum">TITRE IER</p>
-    <p class="assnat9ArticleNum">Article 1<span>er</span></p>
-    <p class="assnatLoiTexte"><img src="x"/>Le code est ainsi modifié :</p>
-    <p class="assnat5ChapitreNum">« Chapitre VIII</p>
-    <p class="assnatLoiTexte">« Art. L. 1. – Texte. »</p>
-    <p class="assnat4TitreNum">TITRE II</p>
-    <p class="assnatLoiTexte">Hors de tout article.</p>
-    <p class="assnat9ArticleNum">Articles 2 à 3</p>
-    <p class="assnatMentionsousarticle">(Supprimés)</p>
-    <p class="assnat9ArticleNum">Article 4</p>
-    <p class="assnatLoiTexte">(Non modifié)</p>
-    <p class="assnatLoiTexte">3° (Supprimé)</p>
-    """
-    assert lire_texte_html(contenu) == [
-        {"numero": "PREMIER", "lignes": ["Le code est ainsi modifié :", "« Chapitre VIII", "« Art. L. 1. – Texte. »"],
-         "supprime": False},
-        {"numero": "2", "lignes": [], "supprime": True},
-        {"numero": "3", "lignes": [], "supprime": True},
-        {"numero": "4", "lignes": ["3° (Supprimé)"], "supprime": False},
-    ]
-
-
-def test_etapes_du_dossier():
-    source = {"actesLegislatifs": {"acteLegislatif": [{"codeActe": "AN1", "actesLegislatifs": {"acteLegislatif": [
-        {"codeActe": "AN1-DEPOT", "texteAssocie": "B1"},
-        {"codeActe": "AN1-COM-FOND-RAPPORT", "texteAdopte": "BTC1"},
-        {"codeActe": "AN1-DEBATS-DEC", "textesAssocies": {"texteAssocie": [
-            {"typeTexte": "TAP", "refTexteAssocie": "T"}, {"typeTexte": "BTA", "refTexteAssocie": "BTA1"}]}},
-    ]}}]}}
-    assert etapes_du_dossier(source) == ("B1", "BTC1", "BTA1")
 
 
 def test_ppl_822_ni_en_developpement_ni_en_test():
@@ -107,9 +60,14 @@ def test_les_cinq_metriques():
     compteur.ajouter(["a", "b"], ["a", "c"], ["a", "d"])  # b retiré trouvé ; c ajouté à tort, d manqué
     compteur.ajouter(["a"], ["a", "É", ","], ["a", "e"])  # mêmes lettres : exact seulement pour la mesure indulgente
     compteur.ajouter(["a"], ["a"], ["a"])                 # inchangé : ne compte pas
+    compteur.ajouter(["x"], ["x", "y"], ["x"])            # modifié à tort : abîmé, hors du dénominateur des exacts
     resume = compteur.resume()
-    assert (resume["touches"], resume["exacts_%"], resume["exacts_indulgents_%"]) == (2, 0.0, 50.0)
+    assert (resume["touches"], resume["officiels"], resume["abimes"]) == (3, 2, 1)
+    assert (resume["exacts_%"], resume["exacts_indulgents_%"]) == (0.0, 50.0)
+    assert (resume["articles_precision_%"], resume["articles_rappel_%"]) == (66.7, 100.0)
     assert (resume["f1_ajouts_%"], resume["f1_retraits_%"]) == (0.0, 100.0)
+    assert (resume["precision_ajouts_%"], resume["rappel_ajouts_%"]) == (0.0, 0.0)
+    assert (resume["precision_retraits_%"], resume["rappel_retraits_%"]) == (100.0, 100.0)
     assert changements(["a"], ["a"]) == {}
 
 
@@ -453,33 +411,3 @@ def test_tisseuse_reponse_du_pont_au_format_du_score():
     # La série dont le premier membre a échoué échoue en entier.
     assert resultat["statuts"]["b"]["etat"] == "pendant"
 
-
-def test_rapport_annexe_rattache_a_l_article_qui_l_approuve():
-    contenu = """
-    <p class="assnat9ArticleNum">Article 1<span>er</span></p>
-    <p class="assnatLoiTexte">Le rapport annexé à la présente loi est approuvé.</p>
-    <p class="assnat9ArticleNum">Article 2</p>
-    <p class="assnatLoiTexte">Texte de l'article 2.</p>
-    <p style="text-align:center"><span style="font-weight:bold">RAPPORT ANNEXÉ</span></p>
-    <p class="assnatLoiTexte"><img src="x"/>INTRODUCTION</p>
-    <p>Premier paragraphe.</p>
-    <table><tr><td><p>Thème</p></td><td><p>2026</p></td></tr><tr><td><p>Santé</p></td><td><p>12</p></td></tr></table>
-    <p class="assnatLoiTexte">Après le tableau.</p>
-    """
-    articles = lire_texte_html(contenu)
-    assert [a["numero"] for a in articles] == ["PREMIER", "2"]
-    assert articles[0]["lignes"] == ["INTRODUCTION", "Premier paragraphe.", "Thème | 2026 | Santé | 12", "Après le tableau."]
-    assert articles[1]["lignes"] == ["Texte de l'article 2."]   # l'annexe ne déborde pas sur le dernier article
-
-
-def test_sans_rapport_annexe_rien_ne_change():
-    contenu = """<p class="assnat9ArticleNum">Article 1<span>er</span></p>
-    <p class="assnatLoiTexte">Le rapport annexé à la présente loi est approuvé.</p>"""
-    assert lire_texte_html(contenu)[0]["lignes"] == ["Le rapport annexé à la présente loi est approuvé."]
-
-
-def test_rapport_annexe_approuve_en_tete_de_phrase():
-    contenu = """<p class="assnat9ArticleNum">Article 1<span>er</span></p>
-    <p class="assnatLoiTexte">Est approuvé le rapport annexé à la présente loi.</p>
-    <p class="assnat4TitreNum">RAPPORT ANNEXÉ</p><p class="assnatLoiTexte">Un.</p>"""
-    assert lire_texte_html(contenu)[0]["lignes"] == ["Un."]

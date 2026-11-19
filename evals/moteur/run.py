@@ -14,12 +14,12 @@ import time
 from datetime import datetime
 from pathlib import Path
 
-from evals.moteur.corpus import CORPUS, MANIFESTE
+from evals.moteur.corpus import CORPUS, MANIFESTE, NOM
 from evals.moteur.versions import APPEL_LLM, MODELE_LLM, VERSIONS
 from moteur.analyse import AmendementBrut
 from moteur.texte import creer_version, est_blanc, normaliser, numeros
 
-RESULTATS = Path(__file__).parent / "resultats"
+RESULTATS = Path(__file__).parent / "resultats" / NOM
 CHAMPS = {f.name for f in dataclasses.fields(AmendementBrut)} | {"numero_ordre"}
 MAX_PAIRES_COMMUTATION = 300
 
@@ -101,7 +101,7 @@ def main():
     with provisoire.open("w", encoding="utf-8") as sortie:
         sortie.write(json.dumps({"entete": True, "version": args.version, "split": args.split, "commit": commit(),
                                  "date": datetime.now().isoformat(timespec="seconds"),
-                                 "corpus_sha256": manifeste["sha256"],
+                                 "corpus": NOM, "corpus_sha256": manifeste["sha256"],
                                  "modele": MODELE_LLM if "llm" in args.version else None}) + "\n")
         for etape in etapes_du_split(args.split):
             sortie.write(json.dumps(executer(etape, args.version), ensure_ascii=False) + "\n")
