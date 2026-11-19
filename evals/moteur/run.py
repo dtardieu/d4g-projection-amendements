@@ -42,7 +42,7 @@ def version_d_entree(etape):
         dataclasses.replace(a, supprime=drapeaux[a.numero]) for a in version.articles))
 
 
-def article_sortie(article, vue):
+def article_sortie(article, view):
     """Le texte produit, en mots, avec pour chaque mot s'il vient d'un amendement (¶ sépare les alinéas)."""
     mots, auteurs = [], []
     for rang, alinea in enumerate(article.alineas):
@@ -53,7 +53,7 @@ def article_sortie(article, vue):
             if not est_blanc(jeton):
                 mots.append(normaliser(jeton.texte))
                 auteurs.append(0 if jeton.origine == "T0" else 1)
-    return {"id": article.id, "numero": vue[article.id], "numero_depart": article.numero, "supprime": article.supprime,
+    return {"id": article.id, "numero": view[article.id], "numero_depart": article.numero, "supprime": article.supprime,
             "mots": mots, "amendement": auteurs,
             "origines": sorted({j.origine for a in article.alineas for j in a.jetons} - {"T0"})}
 
@@ -63,11 +63,11 @@ def executer(etape, nom):
     amendements = amendements_de(etape)
     debut = time.time()
     resultat = VERSIONS[nom](depart, amendements)
-    vue = numeros(resultat.version)
+    view = numeros(resultat.version)
     return {
         "id": etape["id"],
         "duree": round(time.time() - debut, 3),
-        "articles": [article_sortie(a, vue) for a in resultat.version.articles],
+        "articles": [article_sortie(a, view) for a in resultat.version.articles],
         "statuts": {u: {"numero": s.numero, "sort": s.sort, "etat": s.etat, "detail": s.detail[:160]}
                     for u, s in resultat.statuts.items()},
     }

@@ -20,16 +20,16 @@ from moteur.analyse import AmendementBrut
 from moteur.texte import creer_version
 
 URL = "https://parlement.tricoteuses.fr"
-DELAI = 120  # secondes : un texte long pèse plusieurs Mo
-PAR_PAGE = 100
+TIMEOUT = 120  # secondes : un texte long pèse plusieurs Mo
+PER_PAGE = 100
 MENTION = re.compile(
     r"\((non modifié|supprimés?|suppression maintenue|suppression conforme|conforme)\)\.?", re.I
 )
-PLAGE = re.compile(r"^(\d+) À (\d+)$")
+RANGE = re.compile(r"^(\d+) À (\d+)$")
 
 
 @dataclasses.dataclass
-class Amendement(AmendementBrut):
+class Amendment(AmendementBrut):
     """AmendementBrut et ce que l'interface affiche en plus."""
 
     auteur: str | None = None
@@ -46,14 +46,14 @@ class Article:
 
 
 @dataclasses.dataclass(frozen=True)
-class Texte:
+class Text:
     uid: str
     titre: str
     articles: tuple[Article, ...]
 
 
 @dataclasses.dataclass(frozen=True)
-class PremiereLecture:
+class FirstReading:
     """Textes de la première lecture à l'Assemblée d'un dossier ; None quand l'acte manque."""
 
     dossier: str
@@ -62,18 +62,18 @@ class PremiereLecture:
     adopte: str | None = None  # le BTA, jamais le TAP
 
 
-class TexteIntrouvable(Exception):
+class TextNotFound(Exception):
     """Le texte demandé n'existe pas chez Tricoteuses, ou n'a aucun article."""
 
 
 def get(chemin, params=None):
     """GET sur l'API, renvoie la réponse (lève requests.HTTPError si le statut n'est pas 2xx)."""
-    reponse = requests.get(f"{URL}{chemin}", params=params, timeout=DELAI)
+    reponse = requests.get(f"{URL}{chemin}", params=params, timeout=TIMEOUT)
     reponse.raise_for_status()
     return reponse
 
 
-def numeros_du_titre(titre):
+def numbers_from_title(titre):
     """Numéros d'un titre d'article.
 
     « Article 1er » → [PREMIER] ; « Article 5 bis (nouveau) » → [5 BIS] ;
@@ -82,14 +82,14 @@ def numeros_du_titre(titre):
     corps = re.sub(r"\(.*?\)", "", titre).replace("\xa0", " ")
     corps = re.sub(r"^\s*Articles?\s+", "", corps, flags=re.I)
     corps = re.sub(r"\s+", " ", corps).strip().upper()
-    plage = PLAGE.match(corps)
-    if plage:
-        return [str(n) for n in range(int(plage[1]), int(plage[2]) + 1)]
+    range_ = RANGE.match(corps)
+    if range_:
+        return [str(n) for n in range(int(range_[1]), int(range_[2]) + 1)]
     morceaux = [m.strip() for m in re.split(r",| ET ", corps) if m.strip()]
     return ["PREMIER" if re.fullmatch(r"1 ?ER|PREMIER", m) else m for m in morceaux]
 
 
-def articles_depuis_document(document):
+def articles_from_document(document):
     """Réponse de /documents/{uid} (avec subdivisions et alinéas) → les Article, dans l'ordre du texte."""
     alineas = {}
     for alinea in document.get("alineas") or []:
@@ -108,31 +108,31 @@ def articles_depuis_document(document):
                 supprime = supprime or "suppr" in texte.lower()
             elif texte:
                 lignes.append(texte)
-        for numero in numeros_du_titre(subdivision["titre"]):
+        for numero in numbers_from_title(subdivision["titre"]):
             articles.append(Article(numero, tuple(lignes), supprime))
     if not articles:
-        raise TexteIntrouvable(f"{document.get('uid')} : aucun article")
+        raise TextNotFound(f"{document.get('uid')} : aucun article")
     return tuple(articles)
 
 
-def version_depuis_document(document):
+def version_from_document(document):
     """Réponse de /documents/{uid} (avec subdivisions et alinéas) → Version du moteur (articles dans l'ordre du texte)."""
-    articles = articles_depuis_document(document)
-    supprimes = {a.numero for a in articles if a.supprime}
+    articles = articles_from_document(document)
+    deleted = {a.numero for a in articles if a.supprime}
     version = creer_version([(a.numero, "\n".join(a.lignes)) for a in articles])
     return dataclasses.replace(
         version,
         articles=tuple(
-            dataclasses.replace(a, supprime=a.numero in supprimes) for a in version.articles
+            dataclasses.replace(a, supprime=a.numero in deleted) for a in version.articles
         ),
     )
 
 
-def amendement_depuis(donnees):
+def amendment_from(donnees):
     """Un amendement de /amendements/json → Amendement."""
-    identique = donnees.get("idDiscussionIdentique")
+    identical = donnees.get("idDiscussionIdentique")
     date_sort = donnees.get("dateSort")
-    return Amendement(
+    return Amendment(
         uid=donnees["uid"],
         numero=donnees.get("numeroLong") or "",
         texte_ref=donnees.get("documentRefUid") or "",
@@ -145,7 +145,7 @@ def amendement_depuis(donnees):
         # Seul l'ordre compte : on garde l'heure UTC, sans millisecondes ni fuseau.
         date_sort=date_sort[:19] if date_sort else None,
         sort=donnees.get("sortAmendement"),
-        id_identique=str(identique) if identique is not None else None,
+        id_identique=str(identical) if identical is not None else None,
         # Les noms arrivent parfois avec des entités HTML (« Barth&#232;s »).
         auteur=html.unescape(donnees.get("signatairesLibelle") or "") or None,
         # Arrive en texte ou en entier selon les amendements.
@@ -159,54 +159,54 @@ def document(uid):
         reponse = get(f"/documents/{uid}", {"include": "subdivisions,alineas"})
     except requests.HTTPError as erreur:
         if erreur.response is not None and erreur.response.status_code == 404:
-            raise TexteIntrouvable(uid) from erreur
+            raise TextNotFound(uid) from erreur
         raise
     return reponse.json().get("data") or {}
 
 
-def titre_du_document(donnees):
+def document_title(donnees):
     return donnees.get("titrePrincipal") or donnees.get("uid")
 
 
 def lire_texte(uid):
     """Le Texte uid, découpé en articles (lève TexteIntrouvable s'il n'existe pas ou n'a aucun article)."""
     donnees = document(uid)
-    return Texte(uid, titre_du_document(donnees), articles_depuis_document(donnees))
+    return Text(uid, document_title(donnees), articles_from_document(donnees))
 
 
 def texte(uid):
     """(titre, Version) du texte uid."""
     donnees = document(uid)
-    return titre_du_document(donnees), version_depuis_document(donnees)
+    return document_title(donnees), version_from_document(donnees)
 
 
-def toutes_les_pages(chemin, params):
+def all_pages(chemin, params):
     """Tous les éléments d'une liste paginée de l'API."""
     page, pages = 1, 1
     while page <= pages:
-        reponse = get(chemin, {**params, "page": page, "perPage": PAR_PAGE})
+        reponse = get(chemin, {**params, "page": page, "perPage": PER_PAGE})
         yield from reponse.json().get("data") or []
         pages = int(reponse.headers.get("total-page") or 1)
         page += 1
 
 
-def amendements_du_texte(uid):
+def text_amendments(uid):
     """Tous les amendements déposés sur le texte, toutes pages lues."""
-    return [amendement_depuis(a) for a in toutes_les_pages("/amendements/json", {"documentRefUid": uid})]
+    return [amendment_from(a) for a in all_pages("/amendements/json", {"documentRefUid": uid})]
 
 
-def textes_de_premiere_lecture(legislature):
+def first_reading_texts(legislature):
     """Les PremiereLecture des dossiers de la législature, triées par dossier.
 
     Pour la décision en séance, `texteAssocieRefUid` donne le texte adopté (BTA) ; `documentRefUid` donnerait le TAP.
     """
     dossiers = {}
-    actes = (("depose", "AN1-DEPOT", "texteAssocieRefUid"),
+    acts = (("depose", "AN1-DEPOT", "texteAssocieRefUid"),
              ("commission", "AN1-COM-FOND-RAPPORT", "texteAdopteRefUid"),
              ("adopte", "AN1-DEBATS-DEC", "texteAssocieRefUid"))
-    for cle, code, champ in actes:
-        for acte in toutes_les_pages("/actesLegislatifs/json", {"codeActe": code, "legislature": legislature}):
-            ref = acte.get(champ)
-            if acte.get("dossierRefUid") and ref and (cle != "adopte" or "BTA" in ref):
-                dossiers.setdefault(acte["dossierRefUid"], {})[cle] = ref
-    return [PremiereLecture(dossier, **textes) for dossier, textes in sorted(dossiers.items())]
+    for cle, code, field in acts:
+        for act in all_pages("/actesLegislatifs/json", {"codeActe": code, "legislature": legislature}):
+            ref = act.get(field)
+            if act.get("dossierRefUid") and ref and (cle != "adopte" or "BTA" in ref):
+                dossiers.setdefault(act["dossierRefUid"], {})[cle] = ref
+    return [FirstReading(dossier, **textes) for dossier, textes in sorted(dossiers.items())]

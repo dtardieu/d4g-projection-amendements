@@ -10,36 +10,36 @@ effets des amendements adoptés (ce qu'ils écrivent : jeton, alinéa ou article
 from moteur.analyse import analyser_portee
 from moteur.texte import cle_numero, lignes_de, numeros
 
-ORIGINE_DEPART = "T0"
+START_ORIGIN = "T0"
 
 
-def articles(depart, projete, effets, amendements, statuts):
+def articles(depart, projected, effets, amendements, statuts):
     """[{numero, numero_depart, etat, depart, alineas, amendements}], dans l'ordre projeté."""
     anciens = {a.id: a for a in depart.articles}
-    auteurs = _auteurs_des_ecritures(effets)
-    vises = _amendements_par_article(amendements)
-    vue = numeros(projete)
+    auteurs = _writing_authors(effets)
+    vises = _amendments_by_article(amendements)
+    view = numeros(projected)
     resultat = []
-    for article in projete.articles:
+    for article in projected.articles:
         ancien = anciens.get(article.id)
-        alineas = _alineas(ancien, article, auteurs)
+        alineas = _paragraphs(ancien, article, auteurs)
         touches = {s["amendement"] for a in alineas for s in a["segments"] if s["amendement"]}
         cle = cle_numero(ancien.numero) if ancien and ancien.numero else None
-        lies = touches | set(vises.get(cle, []))
+        linked = touches | set(vises.get(cle, []))
         resultat.append(
             {
-                "numero": vue[article.id],
+                "numero": view[article.id],
                 "numero_depart": ancien.numero if ancien else None,
-                "etat": _etat(ancien, article, alineas),
+                "etat": _state(ancien, article, alineas),
                 "depart": [] if ancien is None or ancien.supprime else lignes_de(ancien),
                 "alineas": alineas,
-                "amendements": [a.uid for a in amendements if a.uid in lies and a.uid in statuts],
+                "amendements": [a.uid for a in amendements if a.uid in linked and a.uid in statuts],
             }
         )
     return resultat
 
 
-def _etat(ancien, article, alineas):
+def _state(ancien, article, alineas):
     if ancien is None:
         return "nouveau"
     if article.supprime and not ancien.supprime:
@@ -49,7 +49,7 @@ def _etat(ancien, article, alineas):
     return "inchange"
 
 
-def _auteurs_des_ecritures(effets):
+def _writing_authors(effets):
     """{identifiant écrit (jeton, alinéa, article) : uid de l'amendement adopté qui l'écrit}."""
     auteurs = {}
     for uid, effet in effets.items():
@@ -58,7 +58,7 @@ def _auteurs_des_ecritures(effets):
     return auteurs
 
 
-def _amendements_par_article(amendements):
+def _amendments_by_article(amendements):
     """{clé du numéro d'article visé : [uid]}, « APRÈS ART. 3 » compris dans l'article 3."""
     vises = {}
     for amendement in amendements:
@@ -71,69 +71,69 @@ def _amendements_par_article(amendements):
     return vises
 
 
-def _alineas(ancien, article, auteurs):
+def _paragraphs(ancien, article, auteurs):
     """Alinéas affichés : [{numero, segments}] ; un alinéa supprimé en entier n'a pas de numéro."""
     if article.supprime:
         if ancien is None or ancien.supprime:
             return []
-        return [_alinea_supprime(a, ancien, auteurs) for a in ancien.alineas]
-    vivants = {j.id for a in article.alineas for j in a.jetons}
-    avant, apres, fin = _suppressions(ancien, vivants, auteurs) if ancien else ({}, {}, [])
+        return [_deleted_paragraph(a, ancien, auteurs) for a in ancien.alineas]
+    alive = {j.id for a in article.alineas for j in a.jetons}
+    avant, apres, fin = _deletions(ancien, alive, auteurs) if ancien else ({}, {}, [])
     resultat = []
     for numero, alinea in enumerate(article.alineas, 1):
         segments = []
         for jeton in alinea.jetons:
-            alineas_retires, mots_retires = avant.pop(jeton.id, ([], []))
-            resultat += alineas_retires
+            removed_paragraphs, removed_words = avant.pop(jeton.id, ([], []))
+            resultat += removed_paragraphs
             # Le texte retiré se lit avant ce qui le remplace : on le place devant les insertions
             # qui précèdent immédiatement ce jeton.
             debut = len(segments)
             while debut and segments[debut - 1]["type"] == "ins":
                 debut -= 1
-            segments[debut:debut] = mots_retires
-            if jeton.origine == ORIGINE_DEPART:
+            segments[debut:debut] = removed_words
+            if jeton.origine == START_ORIGIN:
                 segments.append(_segment("eq", jeton.texte, None))
             else:
                 segments.append(_segment("ins", jeton.texte, jeton.origine))
             segments += apres.pop(jeton.id, [])
-        resultat.append({"numero": numero, "segments": _fusionner(segments)})
+        resultat.append({"numero": numero, "segments": _merge(segments)})
     if ancien and len(fin) == len(ancien.alineas):
         return fin + resultat  # article réécrit en entier : l'ancien texte d'abord, puis le nouveau
     return resultat + fin
 
 
-def _suppressions(ancien, vivants, auteurs):
+def _deletions(ancien, alive, auteurs):
     """Place les jetons supprimés du départ dans le texte projeté.
 
     avant[id] : (alinéas supprimés en entier, mots supprimés) à montrer avant le jeton vivant id ;
     apres[id] : mots supprimés en fin d'alinéa, après le dernier jeton vivant ;
     fin : alinéas supprimés après le dernier jeton vivant de l'article.
     """
-    avant, apres, alineas_retires = {}, {}, []
+    avant, apres, removed_paragraphs = {}, {}, []
     for alinea in ancien.alineas:
-        if not any(j.id in vivants for j in alinea.jetons):
-            alineas_retires.append(_alinea_supprime(alinea, ancien, auteurs))
+        if not any(j.id in alive for j in alinea.jetons):
+            removed_paragraphs.append(_deleted_paragraph(alinea, ancien, auteurs))
             continue
         mots, dernier = [], None
         for jeton in alinea.jetons:
-            if jeton.id not in vivants:
-                mots.append(_supprime(jeton, alinea, ancien, auteurs))
+            if jeton.id not in alive:
+                mots.append(_deleted(jeton, alinea, ancien, auteurs))
             else:
-                if mots or alineas_retires:
-                    avant[jeton.id] = (alineas_retires, mots)
-                    mots, alineas_retires = [], []
+                if mots or removed_paragraphs:
+                    avant[jeton.id] = (removed_paragraphs, mots)
+                    mots, removed_paragraphs = [], []
                 dernier = jeton.id
         if mots:
             apres[dernier] = mots
-    return avant, apres, alineas_retires
+    return avant, apres, removed_paragraphs
 
 
-def _alinea_supprime(alinea, article, auteurs):
-    segments = [_supprime(j, alinea, article, auteurs) for j in alinea.jetons]
-    return {"numero": None, "segments": _fusionner(segments)}
+def _deleted_paragraph(alinea, article, auteurs):
+    segments = [_deleted(j, alinea, article, auteurs) for j in alinea.jetons]
+    return {"numero": None, "segments": _merge(segments)}
 
 
-def _supprime(jeton, alinea, article, auteurs):
+def _deleted(jeton, alinea, article, auteurs):
     auteur = auteurs.get(jeton.id) or auteurs.get(alinea.id) or auteurs.get(article.id)
     return _segment("del", jeton.texte, auteur)
 
@@ -142,7 +142,7 @@ def _segment(type_, texte, amendement):
     return {"type": type_, "texte": texte, "amendement": amendement}
 
 
-def _fusionner(segments):
+def _merge(segments):
     """Fusionne les segments voisins de même type et de même amendement.
 
     Une espace supprimée n'est écrite par aucun amendement : elle rejoint le mot supprimé qu'elle
@@ -150,8 +150,8 @@ def _fusionner(segments):
     """
     fusion = []
     for s in segments:
-        meme_type = fusion and fusion[-1]["type"] == s["type"]
-        if meme_type and (fusion[-1]["amendement"] == s["amendement"] or not s["texte"].strip()):
+        same_type = fusion and fusion[-1]["type"] == s["type"]
+        if same_type and (fusion[-1]["amendement"] == s["amendement"] or not s["texte"].strip()):
             fusion[-1]["texte"] += s["texte"]
         else:
             fusion.append(dict(s))

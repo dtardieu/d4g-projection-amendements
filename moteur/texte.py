@@ -145,25 +145,25 @@ def numeros(version):
     Un article unique qui reçoit des articles additionnels devient l'article 1er, et les suivants 2, 3… ;
     ailleurs un additionnel prend le numéro de son voisin plus un suffixe (6 bis, 6 ter).
     """
-    vue = {}
+    view = {}
     if len(version.articles) > 1 and version.articles[0].numero == "UNIQUE":
         return {a.id: ("PREMIER" if i == 0 else str(i + 1)) for i, a in enumerate(version.articles)}
     base, rang = None, 0
     for article in version.articles:
         if article.numero is not None:
             base, rang = article.numero, 0
-            vue[article.id] = article.numero
+            view[article.id] = article.numero
         else:
             suffixe = SUFFIXES[rang] if rang < len(SUFFIXES) else f"#{rang + 1}"
-            vue[article.id] = f"{base} {suffixe}".upper() if base else suffixe.upper()
+            view[article.id] = f"{base} {suffixe}".upper() if base else suffixe.upper()
             rang += 1
-    return vue
+    return view
 
 
 def rendre(version):
     """Le texte d'une version : [(numéro, [lignes])], un article supprimé n'ayant pas de ligne."""
-    vue = numeros(version)
-    return [(vue[a.id], [] if a.supprime else lignes_de(a)) for a in version.articles]
+    view = numeros(version)
+    return [(view[a.id], [] if a.supprime else lignes_de(a)) for a in version.articles]
 
 
 def empreinte(version):
@@ -283,7 +283,7 @@ def diff_mots(avant, apres):
 
 def diff_versions(avant, apres):
     """Différence entre deux versions, article par article : {numéro affiché dans apres : changements}."""
-    vue, changements = numeros(apres), {}
+    view, changements = numeros(apres), {}
     anciens = {a.id: a for a in avant.articles}
     if avant.titre is not None and apres.titre is not None and lignes_de(avant.titre) != lignes_de(apres.titre):
         changements["TITRE"] = diff_mots(lignes_de(avant.titre), lignes_de(apres.titre))
@@ -292,5 +292,5 @@ def diff_versions(avant, apres):
         lignes_avant = lignes_de(ancien) if ancien and not ancien.supprime else []
         lignes_apres = [] if article.supprime else lignes_de(article)
         if lignes_avant != lignes_apres:
-            changements[vue[article.id]] = diff_mots(lignes_avant, lignes_apres)
+            changements[view[article.id]] = diff_mots(lignes_avant, lignes_apres)
     return changements

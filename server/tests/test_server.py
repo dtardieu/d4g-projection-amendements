@@ -9,7 +9,7 @@ from http.server import ThreadingHTTPServer
 import pytest
 import requests
 
-from serveur import app
+from server import app
 from datasources import tricoteuses
 
 DOCUMENT = {
@@ -27,7 +27,7 @@ DOCUMENT = {
         {"articleRefHash": "hx", "numero": 0, "texte": "Mesdames, Messieurs,"},
     ],
 }
-AMENDEMENT = {
+AMENDMENT = {
     "uid": "AM1",
     "numeroLong": "CE1",
     "documentRefUid": "PIONTEST",
@@ -42,8 +42,8 @@ AMENDEMENT = {
     "idDiscussionIdentique": None,
     "signatairesLibelle": "Mme Barth&#232;s",
 }
-SUPPRESSION = dict(
-    AMENDEMENT,
+DELETION = dict(
+    AMENDMENT,
     uid="AM3",
     numeroLong="CE3",
     dispositifHtml="<p>Supprimer l’alinéa 1.</p>",
@@ -51,7 +51,7 @@ SUPPRESSION = dict(
 )
 
 
-class Reponse:
+class Response:
     def __init__(self, donnees, pages=1):
         self.donnees, self.headers = donnees, {"total-page": str(pages)}
 
@@ -68,13 +68,13 @@ def api(monkeypatch):
         appels.append((chemin, params))
         if chemin == "/documents/PIONTEST":
             assert params == {"include": "subdivisions,alineas"}
-            return Reponse(DOCUMENT)
+            return Response(DOCUMENT)
         if chemin.startswith("/documents/"):
-            raise tricoteuses.TexteIntrouvable(chemin)
+            raise tricoteuses.TextNotFound(chemin)
         if chemin == "/amendements/json":
-            retire = dict(AMENDEMENT, uid="AM2", sortAmendement="Retiré")
-            page = [AMENDEMENT, SUPPRESSION] if params["page"] == 1 else [retire]
-            return Reponse(page, pages=2)
+            removed = dict(AMENDMENT, uid="AM2", sortAmendement="Retiré")
+            page = [AMENDMENT, DELETION] if params["page"] == 1 else [removed]
+            return Response(page, pages=2)
         raise AssertionError(chemin)
 
     monkeypatch.setattr(tricoteuses, "get", get)
@@ -82,16 +82,16 @@ def api(monkeypatch):
     return appels
 
 
-def test_numeros_du_titre():
-    assert tricoteuses.numeros_du_titre("Article 1er") == ["PREMIER"]
-    assert tricoteuses.numeros_du_titre("Article unique") == ["UNIQUE"]
-    assert tricoteuses.numeros_du_titre("Article 5 bis (nouveau)") == ["5 BIS"]
-    assert tricoteuses.numeros_du_titre("Articles 12") == ["12"]
-    assert tricoteuses.numeros_du_titre("Articles 2 à 4 (Supprimés)") == ["2", "3", "4"]
-    assert tricoteuses.numeros_du_titre("Articles 8 ter et 8 quater") == ["8 TER", "8 QUATER"]
+def test_numbers_from_title():
+    assert tricoteuses.numbers_from_title("Article 1er") == ["PREMIER"]
+    assert tricoteuses.numbers_from_title("Article unique") == ["UNIQUE"]
+    assert tricoteuses.numbers_from_title("Article 5 bis (nouveau)") == ["5 BIS"]
+    assert tricoteuses.numbers_from_title("Articles 12") == ["12"]
+    assert tricoteuses.numbers_from_title("Articles 2 à 4 (Supprimés)") == ["2", "3", "4"]
+    assert tricoteuses.numbers_from_title("Articles 8 ter et 8 quater") == ["8 TER", "8 QUATER"]
 
 
-def test_version_ecarte_les_mentions_et_suit_l_ordre(api):
+def test_version_drops_mentions_and_keeps_order(api):
     titre, version = tricoteuses.texte("PIONTEST")
     assert titre == "Proposition de loi de test"
     assert [a.numero for a in version.articles] == ["PREMIER", "2"]
@@ -101,8 +101,8 @@ def test_version_ecarte_les_mentions_et_suit_l_ordre(api):
     assert textes == ["Le premier alinéa.", "Le second alinéa."]
 
 
-def test_amendement_depuis():
-    amendement = tricoteuses.amendement_depuis(dict(AMENDEMENT, idDiscussionIdentique=42))
+def test_amendment_from():
+    amendement = tricoteuses.amendment_from(dict(AMENDMENT, idDiscussionIdentique=42))
     assert amendement.article_vise == "ART. PREMIER"
     assert amendement.dispositif.startswith("<p>")
     assert amendement.date_sort == "2025-02-19T14:21:18"
@@ -110,40 +110,40 @@ def test_amendement_depuis():
     assert amendement.auteur == "Mme Barthès"
 
 
-def test_amendements_lit_toutes_les_pages(api):
-    amendements = tricoteuses.amendements_du_texte("PIONTEST")
+def test_amendments_reads_all_pages(api):
+    amendements = tricoteuses.text_amendments("PIONTEST")
     assert [a.uid for a in amendements] == ["AM1", "AM3", "AM2"]
     assert [p["page"] for c, p in api if c == "/amendements/json"] == [1, 2]
 
 
-def test_numero_ordre_du_depot():
-    assert tricoteuses.amendement_depuis(dict(AMENDEMENT, numeroOrdreDepot="393")).numero_ordre == 393
-    assert tricoteuses.amendement_depuis(dict(AMENDEMENT, numeroOrdreDepot=393)).numero_ordre == 393
-    assert tricoteuses.amendement_depuis(AMENDEMENT).numero_ordre is None
+def test_deposit_order_number():
+    assert tricoteuses.amendment_from(dict(AMENDMENT, numeroOrdreDepot="393")).numero_ordre == 393
+    assert tricoteuses.amendment_from(dict(AMENDMENT, numeroOrdreDepot=393)).numero_ordre == 393
+    assert tricoteuses.amendment_from(AMENDMENT).numero_ordre is None
 
 
-def test_articles_depuis_document():
-    articles = tricoteuses.articles_depuis_document(DOCUMENT)
+def test_articles_from_document():
+    articles = tricoteuses.articles_from_document(DOCUMENT)
     assert articles == (
         tricoteuses.Article("PREMIER", ("Le premier alinéa.", "Le second alinéa.")),
         tricoteuses.Article("2", (), supprime=True),
     )
 
 
-def test_lire_texte(api):
+def test_read_text(api):
     texte = tricoteuses.lire_texte("PIONTEST")
     assert (texte.uid, texte.titre) == ("PIONTEST", "Proposition de loi de test")
     assert [a.numero for a in texte.articles] == ["PREMIER", "2"]
 
 
-def test_tableau_aplati_reste_un_alinea():
+def test_flattened_table_stays_one_paragraph():
     tableau = {"articleRefHash": "h1", "numero": 3, "texte": "«\tPopulation\tTaux\t\t\n\tMoins de 500\t28,1\t\t\n"}
-    articles = tricoteuses.articles_depuis_document(dict(DOCUMENT, alineas=DOCUMENT["alineas"] + [tableau]))
+    articles = tricoteuses.articles_from_document(dict(DOCUMENT, alineas=DOCUMENT["alineas"] + [tableau]))
     assert articles[0].lignes[-1] == "« Population Taux Moins de 500 28,1"
 
 
-def test_textes_de_premiere_lecture(monkeypatch):
-    actes = {
+def test_first_reading_texts(monkeypatch):
+    acts = {
         "AN1-DEPOT": [{"dossierRefUid": "DL1", "texteAssocieRefUid": "PIONB1"}],
         "AN1-COM-FOND-RAPPORT": [{"dossierRefUid": "DL1", "texteAdopteRefUid": "PIONBTC1"},
                                  {"dossierRefUid": "DL2", "texteAdopteRefUid": None}],
@@ -154,35 +154,35 @@ def test_textes_de_premiere_lecture(monkeypatch):
 
     def get(chemin, params=None):
         assert chemin == "/actesLegislatifs/json" and params["legislature"] == 17
-        return Reponse(actes[params["codeActe"]])
+        return Response(acts[params["codeActe"]])
 
     monkeypatch.setattr(tricoteuses, "get", get)
-    assert tricoteuses.textes_de_premiere_lecture(17) == [
-        tricoteuses.PremiereLecture("DL1", depose="PIONB1", commission="PIONBTC1", adopte="PIONBTA1")]
+    assert tricoteuses.first_reading_texts(17) == [
+        tricoteuses.FirstReading("DL1", depose="PIONB1", commission="PIONBTC1", adopte="PIONBTA1")]
 
 
-def lisible(alinea):
+def readable(alinea):
     """Un alinéa en texte : [-supprimé-] et {+inséré+}, suivis de l'amendement."""
-    marques = {"eq": "{}", "del": "[-{}-]", "ins": "{{+{}+}}"}
+    marks = {"eq": "{}", "del": "[-{}-]", "ins": "{{+{}+}}"}
     return "".join(
-        marques[s["type"]].format(s["texte"]) + (f"@{s['amendement']}" if s["amendement"] else "")
+        marks[s["type"]].format(s["texte"]) + (f"@{s['amendement']}" if s["amendement"] else "")
         for s in alinea["segments"]
     )
 
 
-def test_projection_segments_attribues(api):
+def test_projection_attributed_segments(api):
     resultat = app.projection("PIONTEST")
     assert resultat["titre"] == "Proposition de loi de test"
-    premier, deuxieme = resultat["articles"]
+    premier, second = resultat["articles"]
     assert premier["etat"] == "modifie"
     assert premier["depart"] == ["Le premier alinéa.", "Le second alinéa."]
     assert [a["numero"] for a in premier["alineas"]] == [None, 1]
-    assert [lisible(a) for a in premier["alineas"]] == [
+    assert [readable(a) for a in premier["alineas"]] == [
         "[-Le premier alinéa.-]@AM3",
         "Le [-second-]@AM1{+dernier+}@AM1 alinéa.",
     ]
     assert set(premier["amendements"]) == {"AM1", "AM2", "AM3"}
-    assert deuxieme == {
+    assert second == {
         "numero": "2",
         "numero_depart": "2",
         "etat": "inchange",
@@ -197,11 +197,11 @@ def test_projection_segments_attribues(api):
 
 
 @pytest.fixture
-def serveur(api):
-    serveur = ThreadingHTTPServer(("127.0.0.1", 0), app.Handler)
-    threading.Thread(target=serveur.serve_forever, daemon=True).start()
-    yield f"http://127.0.0.1:{serveur.server_port}"
-    serveur.shutdown()
+def server(api):
+    server = ThreadingHTTPServer(("127.0.0.1", 0), app.Handler)
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    yield f"http://127.0.0.1:{server.server_port}"
+    server.shutdown()
 
 
 def lire(url):
@@ -212,30 +212,30 @@ def lire(url):
         return erreur.code, json.load(erreur)
 
 
-def test_route_projection(serveur):
-    statut, corps = lire(f"{serveur}/textes/PIONTEST/projection")
+def test_route_projection(server):
+    statut, corps = lire(f"{server}/textes/PIONTEST/projection")
     assert statut == 200
     assert corps["resume"] == {"applique": 2, "ignore": 1}
 
 
-def test_interface_et_fichiers_statiques(serveur):
-    with urllib.request.urlopen(f"{serveur}/") as reponse:
+def test_interface_and_static_files(server):
+    with urllib.request.urlopen(f"{server}/") as reponse:
         assert reponse.headers["Content-Type"].startswith("text/html")
         assert b"Texte projet" in reponse.read()
-    with urllib.request.urlopen(f"{serveur}/static/assets/chevron.svg") as reponse:
+    with urllib.request.urlopen(f"{server}/static/assets/chevron.svg") as reponse:
         assert reponse.headers["Content-Type"] == "image/svg+xml"
-    assert lire(f"{serveur}/static/../app.py")[0] == 404
-    assert lire(f"{serveur}/static/absent.css")[0] == 404
+    assert lire(f"{server}/static/../app.py")[0] == 404
+    assert lire(f"{server}/static/absent.css")[0] == 404
 
 
-def test_texte_introuvable_et_route_inconnue(serveur):
-    assert lire(f"{serveur}/textes/INCONNU/projection")[0] == 404
-    assert lire(f"{serveur}/autre")[0] == 404
+def test_text_not_found_and_unknown_route(server):
+    assert lire(f"{server}/textes/INCONNU/projection")[0] == 404
+    assert lire(f"{server}/autre")[0] == 404
 
 
-def test_tricoteuses_injoignable(serveur, monkeypatch):
-    def panne(chemin, params=None):
+def test_tricoteuses_unreachable(server, monkeypatch):
+    def outage(chemin, params=None):
         raise requests.ConnectionError("hors ligne")
 
-    monkeypatch.setattr(tricoteuses, "get", panne)
-    assert lire(f"{serveur}/textes/PIONTEST/projection")[0] == 502
+    monkeypatch.setattr(tricoteuses, "get", outage)
+    assert lire(f"{server}/textes/PIONTEST/projection")[0] == 502

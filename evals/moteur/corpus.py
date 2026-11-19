@@ -66,7 +66,7 @@ def texte(ref):
     def lire():
         try:
             return dataclasses.asdict(tricoteuses.lire_texte(ref))
-        except tricoteuses.TexteIntrouvable:
+        except tricoteuses.TextNotFound:
             return None
     return en_cache(f"textes/{ref}", lire)
 
@@ -74,7 +74,7 @@ def texte(ref):
 def amendements(ref):
     """Amendements déposés sur le texte, au format du corpus (sans l'auteur, inutile à l'évaluation)."""
     def lire():
-        return [{c: getattr(a, c) for c in CHAMPS} for a in tricoteuses.amendements_du_texte(ref)]
+        return [{c: getattr(a, c) for c in CHAMPS} for a in tricoteuses.text_amendments(ref)]
     return en_cache(f"amendements/{ref}", lire)
 
 
@@ -109,8 +109,8 @@ def etapes_du_dossier(lecture, exclus):
 def construire():
     exclus, etapes = Counter(), []
     lectures = en_cache(f"premiere_lecture_{LEGISLATURE}", lambda: [
-        dataclasses.asdict(lecture) for lecture in tricoteuses.textes_de_premiere_lecture(LEGISLATURE)])
-    for lecture in (tricoteuses.PremiereLecture(**d) for d in lectures):
+        dataclasses.asdict(lecture) for lecture in tricoteuses.first_reading_texts(LEGISLATURE)])
+    for lecture in (tricoteuses.FirstReading(**d) for d in lectures):
         etapes += etapes_du_dossier(lecture, exclus)
         print(f"{lecture.dossier} : {len(etapes)} étapes retenues", flush=True)
     return etapes, exclus
