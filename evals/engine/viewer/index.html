@@ -242,7 +242,7 @@ async function choisirEtape(id) {
   afficherAmendements();
   $("articles").replaceChildren(el("li", {class: "note", text: "Calcul…"}));
   const jeton = ++etat.jeton;
-  const d = await api("/api/etape", {version: $("version").value, etape: id});
+  const d = await api("/api/etape", {version: $("version").value, step: id});
   if (jeton !== etat.jeton) return;
   etat.articles = d.articles;
   const presentes = [...new Set(d.articles.map(libelleArticle))].sort();
@@ -323,7 +323,7 @@ async function choisirArticle(id) {
   afficherArticles();
   $("detail").replaceChildren(el("p", {class: "note", text: "Calcul…"}));
   const jeton = ++etat.jeton;
-  const a = await api("/api/article", {version: $("version").value, etape: etat.etape, article: id});
+  const a = await api("/api/article", {version: $("version").value, step: etat.etape, article: id});
   if (jeton !== etat.jeton) return;  // un autre clic a suivi : on n'écrase pas sa réponse
   etat.amendements = a.amendements;
   afficherAmendements();
@@ -339,7 +339,7 @@ async function choisirAmendement(uid) {
   afficherAmendements();
   $("detail").replaceChildren(el("p", {class: "note", text: "Calcul…"}));
   const jeton = ++etat.jeton;
-  const params = {version: $("version").value, etape: etat.etape, uid};
+  const params = {version: $("version").value, step: etat.etape, uid};
   if (etat.article) params.article = etat.article;
   const x = await api("/api/amendement", params);
   if (jeton !== etat.jeton) return;

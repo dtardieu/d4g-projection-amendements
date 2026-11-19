@@ -17,15 +17,15 @@ def articles(initial, projected, effects, amendments, statuses):
     """[{numero, numero_depart, etat, depart, alineas, amendements}], dans l'ordre projeté."""
     old_items = {a.id: a for a in initial.articles}
     authors = _writing_authors(effects)
-    vises = _amendments_by_article(amendments)
+    targeted_amendments = _amendments_by_article(amendments)
     view = numbers(projected)
     result = []
     for article in projected.articles:
         old = old_items.get(article.id)
         paragraphs = _paragraphs(old, article, authors)
-        touches = {s["amendement"] for a in paragraphs for s in a["segments"] if s["amendement"]}
+        touched = {s["amendement"] for a in paragraphs for s in a["segments"] if s["amendement"]}
         key = number_key(old.numero) if old and old.numero else None
-        linked = touches | set(vises.get(key, []))
+        linked = touched | set(targeted_amendments.get(key, []))
         result.append(
             {
                 "numero": view[article.id],
@@ -53,22 +53,22 @@ def _writing_authors(effects):
     """{identifiant écrit (jeton, alinéa, article) : uid de l'amendement adopté qui l'écrit}."""
     authors = {}
     for uid, effect in effects.items():
-        for identifiant in effect.writings:
-            authors.setdefault(identifiant, uid)
+        for identifier in effect.writings:
+            authors.setdefault(identifier, uid)
     return authors
 
 
 def _amendments_by_article(amendments):
     """{clé du numéro d'article visé : [uid]}, « APRÈS ART. 3 » compris dans l'article 3."""
-    vises = {}
+    targeted_amendments = {}
     for amendment in amendments:
         try:
             article = analyze_scope(amendment.article_vise).article
         except ValueError:
             continue
         if article:
-            vises.setdefault(number_key(article), []).append(amendment.uid)
-    return vises
+            targeted_amendments.setdefault(number_key(article), []).append(amendment.uid)
+    return targeted_amendments
 
 
 def _paragraphs(old, article, authors):

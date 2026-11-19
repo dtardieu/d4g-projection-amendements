@@ -25,123 +25,123 @@ from pathlib import Path
 from engine.analysis import RawAmendment
 from datasources import tricoteuses
 
-ICI = Path(__file__).parent
-DONNEES = ICI / "donnees"
-NOM = "an_premiere_lecture"  # le périmètre : la première lecture à l'Assemblée
-CORPUS = DONNEES / f"{NOM}.jsonl"
-MANIFESTE = ICI / f"{NOM}_manifeste.json"
-CACHE = DONNEES / "tricoteuses"
+HERE = Path(__file__).parent
+DATA = HERE / "donnees"
+NAME = "an_premiere_lecture"  # le périmètre : la première lecture à l'Assemblée
+CORPUS = DATA / f"{NAME}.jsonl"
+MANIFEST = HERE / f"{NAME}_manifeste.json"
+CACHE = DATA / "tricoteuses"
 LEGISLATURE = 17
-CHAMPS = [f.name for f in dataclasses.fields(RawAmendment)] + ["numero_ordre"]
-PART_DEV = 70
-SEL = "moteur-v1"
+FIELDS = [f.name for f in dataclasses.fields(RawAmendment)] + ["numero_ordre"]
+DEV_SHARE = 70
+SALT = "moteur-v1"
 # Dossiers vus pendant la construction du moteur (exemples, fixtures, tests) : ni développement ni test.
-DOSSIERS_EXCLUS = {"DLR5L17N51328": "PPL n° 822, tombée en test alors qu'elle a servi à construire le moteur"}
+EXCLUDED_DOSSIERS = {"DLR5L17N51328": "PPL n° 822, tombée en test alors qu'elle a servi à construire le moteur"}
 
 
 def split_de(dossier):
-    if dossier in DOSSIERS_EXCLUS:
+    if dossier in EXCLUDED_DOSSIERS:
         return "exclu"
-    return "dev" if int(hashlib.sha256(f"{SEL}:{dossier}".encode()).hexdigest(), 16) % 100 < PART_DEV else "test"
+    return "dev" if int(hashlib.sha256(f"{SALT}:{dossier}".encode()).hexdigest(), 16) % 100 < DEV_SHARE else "test"
 
 
-def est_finances(titre):
+def is_finance(titre):
     return bool(re.search(r"finances|financement de la sécurité sociale", titre or "", re.I))
 
 
-def en_cache(name, calcul):
+def cached(name, computation):
     """Résultat JSON de calcul(), lu dans le cache s'il y est, sinon calculé puis gardé."""
-    chemin = CACHE / f"{name}.json"
-    if chemin.exists():
-        return json.loads(chemin.read_text(encoding="utf-8"))
-    valeur = calcul()
-    chemin.parent.mkdir(parents=True, exist_ok=True)
-    chemin.write_text(json.dumps(valeur, ensure_ascii=False), encoding="utf-8")
-    return valeur
+    path = CACHE / f"{name}.json"
+    if path.exists():
+        return json.loads(path.read_text(encoding="utf-8"))
+    value = computation()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(value, ensure_ascii=False), encoding="utf-8")
+    return value
 
 
 def text(ref):
     """{uid, titre, articles} (un tricoteuses.Texte en JSON), ou None quand Tricoteuses n'a pas le texte ou qu'il
     n'a aucun article."""
-    def lire():
+    def read():
         try:
             return dataclasses.asdict(tricoteuses.read_text(ref))
         except tricoteuses.TextNotFound:
             return None
-    return en_cache(f"textes/{ref}", lire)
+    return cached(f"textes/{ref}", read)
 
 
 def amendments(ref):
     """Amendements déposés sur le texte, au format du corpus (sans l'auteur, inutile à l'évaluation)."""
-    def lire():
-        return [{c: getattr(a, c) for c in CHAMPS} for a in tricoteuses.text_amendments(ref)]
-    return en_cache(f"amendements/{ref}", lire)
+    def read():
+        return [{c: getattr(a, c) for c in FIELDS} for a in tricoteuses.text_amendments(ref)]
+    return cached(f"amendements/{ref}", read)
 
 
-def etapes_du_dossier(reading, excluded):
+def dossier_steps(reading, excluded):
     """Les étapes retenues d'une PremiereLecture ; chaque étape écartée est comptée dans exclus, avec sa raison."""
     steps, dossier = [], reading.dossier
-    for name, entree, output in (("commission", reading.depose, reading.commission),
+    for name, input_, output in (("commission", reading.depose, reading.commission),
                                 ("seance", reading.commission, reading.adopte)):
-        if not entree or not output:
+        if not input_ or not output:
             excluded["acte manquant"] += 1
             continue
-        deposes = amendments(entree)
-        if not any(a["sort"] == "Adopté" for a in deposes):
+        deposited = amendments(input_)
+        if not any(a["sort"] == "Adopté" for a in deposited):
             excluded["aucun amendement adopté"] += 1
             continue
-        texte_entree, texte_sortie = text(entree), text(output)
-        if texte_entree is None:
+        input_text, output_text = text(input_), text(output)
+        if input_text is None:
             excluded["texte d'entrée introuvable"] += 1
             continue
-        if texte_sortie is None:
+        if output_text is None:
             excluded["texte de sortie introuvable"] += 1
             continue
-        titre = texte_entree["titre"]
+        titre = input_text["titre"]
         steps.append({
             "id": f"{dossier}:{name}", "dossier": dossier, "titre": titre, "etape": name, "split": split_de(dossier),
-            "finances": est_finances(titre), "entree": {"ref": entree, "articles": texte_entree["articles"]},
-            "sortie": {"ref": output, "articles": texte_sortie["articles"]}, "amendements": deposes,
+            "finances": is_finance(titre), "entree": {"ref": input_, "articles": input_text["articles"]},
+            "sortie": {"ref": output, "articles": output_text["articles"]}, "amendements": deposited,
         })
     return steps
 
 
-def construire():
+def build():
     excluded, steps = Counter(), []
-    readings = en_cache(f"premiere_lecture_{LEGISLATURE}", lambda: [
+    readings = cached(f"premiere_lecture_{LEGISLATURE}", lambda: [
         dataclasses.asdict(reading) for reading in tricoteuses.first_reading_texts(LEGISLATURE)])
     for reading in (tricoteuses.FirstReading(**d) for d in readings):
-        steps += etapes_du_dossier(reading, excluded)
+        steps += dossier_steps(reading, excluded)
         print(f"{reading.dossier} : {len(steps)} étapes retenues", flush=True)
     return steps, excluded
 
 
 def main():
-    steps, excluded = construire()
-    write(steps, excluded, CORPUS, MANIFESTE, source=tricoteuses.URL)
+    steps, excluded = build()
+    write(steps, excluded, CORPUS, MANIFEST, source=tricoteuses.URL)
 
 
-def write(steps, excluded, corpus, manifeste, source=None):
+def write(steps, excluded, corpus, manifest, source=None):
     """Écrit le corpus (une étape par ligne, triées) et son manifeste, qui le fige par son empreinte."""
     steps.sort(key=lambda e: e["id"])
     body = "".join(json.dumps(e, ensure_ascii=False, sort_keys=True) + "\n" for e in steps)
     corpus.write_text(body, encoding="utf-8")
-    compte = Counter((e["etape"], e["split"]) for e in steps)
-    manifeste.write_text(json.dumps({
-        "nom": NOM,
+    counted = Counter((e["etape"], e["split"]) for e in steps)
+    manifest.write_text(json.dumps({
+        "nom": NAME,
         **({"source": source} if source else {}),
         "date": date.today().isoformat(),
         "sha256": hashlib.sha256(body.encode("utf-8")).hexdigest(),
         "etapes": len(steps),
-        "par_etape_et_split": {f"{k[0]}/{k[1]}": v for k, v in sorted(compte.items())},
+        "par_etape_et_split": {f"{k[0]}/{k[1]}": v for k, v in sorted(counted.items())},
         "amendements_adoptes": sum(a["sort"] == "Adopté" for e in steps for a in e["amendements"]),
         "exclus": dict(excluded),
-        "dossiers_exclus": DOSSIERS_EXCLUS,
-        "sel_split": SEL,
+        "dossiers_exclus": EXCLUDED_DOSSIERS,
+        "sel_split": SALT,
         "ids": {"dev": [e["id"] for e in steps if e["split"] == "dev"],
                 "test": [e["id"] for e in steps if e["split"] == "test"]},
     }, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(manifeste.read_text(encoding="utf-8")[:400])
+    print(manifest.read_text(encoding="utf-8")[:400])
 
 
 if __name__ == "__main__":

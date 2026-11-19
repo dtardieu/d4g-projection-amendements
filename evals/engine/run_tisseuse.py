@@ -20,26 +20,26 @@ from datetime import datetime
 from pathlib import Path
 
 from evals.engine import run
-from evals.engine.corpus import MANIFESTE
-from evals.engine.score import mots_officiels
+from evals.engine.corpus import MANIFEST
+from evals.engine.score import official_words
 from engine.analysis import analyze_scope
 from engine.consolidation import VOTED_OUTCOMES, call_order
 from engine.text import number_key
 
 VERSION = "V4-tisseuse-legi-ui"
-PONT = Path(__file__).parent / "tisseuse"
+BRIDGE = Path(__file__).parent / "tisseuse"
 POSITIONS = {None: "on_article", "apres": "after_article", "avant": "before_article"}
 
 
 def prepare(step):
     """(étape pour le pont, statuts déjà connus, {uid d'une série : uid de celui qui est envoyé pour elle})."""
     articles = {number_key(a["numero"]): i for i, a in enumerate(step["entree"]["articles"])}
-    envoyes, statuses, series, followers = [], {}, {}, {}
+    sent, statuses, series, followers = [], {}, {}, {}
 
     def status(a, etat, detail=""):
         statuses[a.uid] = {"numero": a.numero, "sort": a.sort, "etat": etat, "detail": detail}
 
-    for a in call_order(run.amendements_de(step)):
+    for a in call_order(run.amendments_of(step)):
         if a.sort != "Adopté":
             status(a, "ignore", "non adopté : cette chaîne ne prédit rien" if a.sort in VOTED_OUTCOMES else "")
         elif a.parent_uid:
@@ -58,7 +58,7 @@ def prepare(step):
                 status(a, "pendant", f"article {scope.article} absent du texte d'entrée")
                 continue
             numero = re.search(r"\d+", a.alinea or "")
-            envoyes.append({
+            sent.append({
                 "uid": a.uid, "numero": a.numero, "article": rank, "article_libelle": f"Article {scope.article}",
                 "position": POSITIONS[scope.before_after], "alinea": int(numero.group()) if numero else None,
                 "alinea_libelle": a.alinea, "dispositif": a.dispositif or "",
@@ -66,21 +66,21 @@ def prepare(step):
             status(a, "applique")  # remplacé par la réponse du pont
             if a.id_identique:
                 series[a.id_identique] = a.uid
-    return {"id": step["id"], "articles": step["entree"]["articles"], "amendements": envoyes}, statuses, followers
+    return {"id": step["id"], "articles": step["entree"]["articles"], "amendements": sent}, statuses, followers
 
 
-def convertir(step, output, statuses, followers):
+def convert(step, output, statuses, followers):
     """Réponse du pont → résultat au format de run.executer. Un mot vient d'un amendement s'il n'était pas dans l'entrée."""
     for uid, s in output["statuts"].items():
         statuses[uid].update(etat=s["etat"], detail=s["detail"][:160])
-    for uid, meneur in followers.items():
-        if statuses[meneur]["etat"] != "applique":  # la série a échoué : ses membres aussi
-            statuses[uid].update(etat=statuses[meneur]["etat"], detail=statuses[meneur]["detail"])
+    for uid, leader in followers.items():
+        if statuses[leader]["etat"] != "applique":  # la série a échoué : ses membres aussi
+            statuses[uid].update(etat=statuses[leader]["etat"], detail=statuses[leader]["detail"])
     articles = []
     for rank, a in enumerate(output["articles"]):
         initial = step["entree"]["articles"][a["depart"]] if a["depart"] is not None else None
-        words = mots_officiels(a["lignes"])
-        before = mots_officiels(initial["lignes"]) if initial else []
+        words = official_words(a["lignes"])
+        before = official_words(initial["lignes"]) if initial else []
         written_items = [1] * len(words)
         for tag, _, _, j1, j2 in difflib.SequenceMatcher(None, before, words, autojunk=False).get_opcodes():
             if tag == "equal":
@@ -93,18 +93,18 @@ def convertir(step, output, statuses, followers):
     return {"id": step["id"], "duree": None, "articles": articles, "statuts": statuses}
 
 
-def appeler_pont(steps):
+def call_bridge(steps):
     """Un seul appel de Node pour tout le lot : {id d'étape : réponse}."""
-    if not (PONT / "dist" / "pont.mjs").exists():
-        raise SystemExit(f"pont non construit : cd {PONT} && npm install --ignore-scripts && npm run build")
+    if not (BRIDGE / "dist" / "pont.mjs").exists():
+        raise SystemExit(f"pont non construit : cd {BRIDGE} && npm install --ignore-scripts && npm run build")
     with tempfile.TemporaryDirectory() as dossier:
-        entree, output = Path(dossier) / "entree.jsonl", Path(dossier) / "sortie.jsonl"
-        entree.write_text("".join(json.dumps(e, ensure_ascii=False) + "\n" for e in steps), encoding="utf-8")
-        subprocess.run(["node", "--no-warnings", str(PONT / "dist" / "pont.mjs"), str(entree), str(output)], check=True)
+        input_, output = Path(dossier) / "entree.jsonl", Path(dossier) / "sortie.jsonl"
+        input_.write_text("".join(json.dumps(e, ensure_ascii=False) + "\n" for e in steps), encoding="utf-8")
+        subprocess.run(["node", "--no-warnings", str(BRIDGE / "dist" / "pont.mjs"), str(input_), str(output)], check=True)
         return {r["id"]: r for r in map(json.loads, output.read_text(encoding="utf-8").splitlines())}
 
 
-def version_git(dossier):
+def git_version(dossier):
     return subprocess.run(["git", "-C", str(dossier), "rev-parse", "--short", "HEAD"], capture_output=True,
                           text=True).stdout.strip() or None
 
@@ -113,25 +113,25 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--split", default="dev", choices=["dev", "test"])
     args = parser.parse_args()
-    steps = list(run.etapes_du_split(args.split))
-    prepares = [prepare(e) for e in steps]
-    reponses = appeler_pont([p[0] for p in prepares])
-    dossier = run.RESULTATS / VERSION
+    steps = list(run.split_steps(args.split))
+    prepared = [prepare(e) for e in steps]
+    responses = call_bridge([p[0] for p in prepared])
+    dossier = run.RESULTS / VERSION
     dossier.mkdir(parents=True, exist_ok=True)
-    chemin = dossier / f"{args.split}.jsonl"
-    provisoire = chemin.with_suffix(".en_cours")
-    paquet = json.loads((PONT / "node_modules" / "@tricoteuses" / "tisseuse" / "package.json").read_text(encoding="utf-8"))
-    with provisoire.open("w", encoding="utf-8") as f:
+    path = dossier / f"{args.split}.jsonl"
+    temporary = path.with_suffix(".en_cours")
+    batch = json.loads((BRIDGE / "node_modules" / "@tricoteuses" / "tisseuse" / "package.json").read_text(encoding="utf-8"))
+    with temporary.open("w", encoding="utf-8") as f:
         f.write(json.dumps({
             "entete": True, "version": VERSION, "split": args.split, "commit": run.commit(),
             "date": datetime.now().isoformat(timespec="seconds"),
-            "corpus_sha256": json.loads(MANIFESTE.read_text(encoding="utf-8"))["sha256"], "modele": None,
-            "tisseuse": paquet["version"], "legi_ui": version_git(PONT.parents[4] / "other_srcs" / "leximpact-legi-ui"),
+            "corpus_sha256": json.loads(MANIFEST.read_text(encoding="utf-8"))["sha256"], "modele": None,
+            "tisseuse": batch["version"], "legi_ui": git_version(BRIDGE.parents[4] / "other_srcs" / "leximpact-legi-ui"),
         }) + "\n")
-        for step, (_, statuses, followers) in zip(steps, prepares, strict=True):
-            f.write(json.dumps(convertir(step, reponses[step["id"]], statuses, followers), ensure_ascii=False) + "\n")
-    provisoire.replace(chemin)
-    print(f"{VERSION} {args.split} : {len(steps)} étapes → {chemin}")
+        for step, (_, statuses, followers) in zip(steps, prepared, strict=True):
+            f.write(json.dumps(convert(step, responses[step["id"]], statuses, followers), ensure_ascii=False) + "\n")
+    temporary.replace(path)
+    print(f"{VERSION} {args.split} : {len(steps)} étapes → {path}")
 
 
 if __name__ == "__main__":

@@ -52,11 +52,11 @@ DELETION = dict(
 
 
 class Response:
-    def __init__(self, donnees, pages=1):
-        self.donnees, self.headers = donnees, {"total-page": str(pages)}
+    def __init__(self, data, pages=1):
+        self.data, self.headers = data, {"total-page": str(pages)}
 
     def json(self):
-        return {"data": self.donnees}
+        return {"data": self.data}
 
 
 @pytest.fixture
@@ -64,18 +64,18 @@ def api(monkeypatch):
     """Remplace l'API : le document de test, et ses amendements sur deux pages."""
     calls = []
 
-    def get(chemin, params=None):
-        calls.append((chemin, params))
-        if chemin == "/documents/PIONTEST":
+    def get(path, params=None):
+        calls.append((path, params))
+        if path == "/documents/PIONTEST":
             assert params == {"include": "subdivisions,alineas"}
             return Response(DOCUMENT)
-        if chemin.startswith("/documents/"):
-            raise tricoteuses.TextNotFound(chemin)
-        if chemin == "/amendements/json":
+        if path.startswith("/documents/"):
+            raise tricoteuses.TextNotFound(path)
+        if path == "/amendements/json":
             removed = dict(AMENDMENT, uid="AM2", sortAmendement="Retiré")
             page = [AMENDMENT, DELETION] if params["page"] == 1 else [removed]
             return Response(page, pages=2)
-        raise AssertionError(chemin)
+        raise AssertionError(path)
 
     monkeypatch.setattr(tricoteuses, "get", get)
     app.projection.cache_clear()
@@ -137,8 +137,8 @@ def test_read_text(api):
 
 
 def test_flattened_table_stays_one_paragraph():
-    tableau = {"articleRefHash": "h1", "numero": 3, "texte": "«\tPopulation\tTaux\t\t\n\tMoins de 500\t28,1\t\t\n"}
-    articles = tricoteuses.articles_from_document(dict(DOCUMENT, alineas=DOCUMENT["alineas"] + [tableau]))
+    table = {"articleRefHash": "h1", "numero": 3, "texte": "«\tPopulation\tTaux\t\t\n\tMoins de 500\t28,1\t\t\n"}
+    articles = tricoteuses.articles_from_document(dict(DOCUMENT, alineas=DOCUMENT["alineas"] + [table]))
     assert articles[0].lignes[-1] == "« Population Taux Moins de 500 28,1"
 
 
@@ -152,8 +152,8 @@ def test_first_reading_texts(monkeypatch):
                            {"dossierRefUid": "DL1", "texteAssocieRefUid": "PIONBTA1"}],
     }
 
-    def get(chemin, params=None):
-        assert chemin == "/actesLegislatifs/json" and params["legislature"] == 17
+    def get(path, params=None):
+        assert path == "/actesLegislatifs/json" and params["legislature"] == 17
         return Response(acts[params["codeActe"]])
 
     monkeypatch.setattr(tricoteuses, "get", get)
@@ -190,8 +190,8 @@ def test_projection_attributed_segments(api):
         "alineas": [],
         "amendements": [],
     }
-    etats = {uid: s["etat"] for uid, s in result["amendements"].items()}
-    assert etats == {"AM1": "applique", "AM3": "applique", "AM2": "ignore"}
+    states = {uid: s["etat"] for uid, s in result["amendements"].items()}
+    assert states == {"AM1": "applique", "AM3": "applique", "AM2": "ignore"}
     assert result["amendements"]["AM1"]["auteur"] == "Mme Barthès"
     assert result["amendements"]["AM3"]["dispositif"] == ["Supprimer l’alinéa 1."]
 
@@ -204,7 +204,7 @@ def server(api):
     server.shutdown()
 
 
-def lire(url):
+def read(url):
     try:
         with urllib.request.urlopen(url) as response:
             return response.status, json.load(response)
@@ -213,7 +213,7 @@ def lire(url):
 
 
 def test_route_projection(server):
-    status, body = lire(f"{server}/textes/PIONTEST/projection")
+    status, body = read(f"{server}/textes/PIONTEST/projection")
     assert status == 200
     assert body["resume"] == {"applique": 2, "ignore": 1}
 
@@ -224,18 +224,18 @@ def test_interface_and_static_files(server):
         assert b"Texte projet" in response.read()
     with urllib.request.urlopen(f"{server}/static/assets/chevron.svg") as response:
         assert response.headers["Content-Type"] == "image/svg+xml"
-    assert lire(f"{server}/static/../app.py")[0] == 404
-    assert lire(f"{server}/static/absent.css")[0] == 404
+    assert read(f"{server}/static/../app.py")[0] == 404
+    assert read(f"{server}/static/absent.css")[0] == 404
 
 
 def test_text_not_found_and_unknown_route(server):
-    assert lire(f"{server}/textes/INCONNU/projection")[0] == 404
-    assert lire(f"{server}/autre")[0] == 404
+    assert read(f"{server}/textes/INCONNU/projection")[0] == 404
+    assert read(f"{server}/autre")[0] == 404
 
 
 def test_tricoteuses_unreachable(server, monkeypatch):
-    def outage(chemin, params=None):
+    def outage(path, params=None):
         raise requests.ConnectionError("hors ligne")
 
     monkeypatch.setattr(tricoteuses, "get", outage)
-    assert lire(f"{server}/textes/PIONTEST/projection")[0] == 502
+    assert read(f"{server}/textes/PIONTEST/projection")[0] == 502

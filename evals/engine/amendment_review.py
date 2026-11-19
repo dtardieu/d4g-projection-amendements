@@ -8,8 +8,8 @@ bilan : lit le CSV exporté par la page et donne la métrique, avec sa marge d'e
 
 Une série d'amendements identiques compte pour un : c'est un seul texte à montrer.
 
-Usage : uv run python -m evals.engine.revue_amendements lancer
-        uv run python -m evals.engine.revue_amendements bilan chemin/vers/revue_verdicts.csv
+Usage : uv run python -m evals.engine.amendment_review lancer
+        uv run python -m evals.engine.amendment_review bilan chemin/vers/revue_verdicts.csv
 """
 
 import argparse
@@ -20,46 +20,46 @@ import random
 from collections import Counter
 from pathlib import Path
 
-from evals.engine.llm_openai import PlafondDepasse
-from evals.engine.run import RESULTATS, etapes_du_split, version_d_entree
-from evals.engine.score import lire_resultats
-from evals.engine.visu.app import ARTICLE_ABSENT, _operations, effet_amendement
+from evals.engine.llm_openai import BudgetExceeded
+from evals.engine.run import RESULTS, split_steps, input_version
+from evals.engine.score import read_results
+from evals.engine.viewer.app import MISSING_ARTICLE, _operations, amendment_effect
 from engine.application import apply
 from engine.resolution import TargetError
 
 VERSION = "V2-gram+llm"
-DOSSIER = RESULTATS / "revue_amendements"
-PAGE = DOSSIER / "revue.html"
-CLE = DOSSIER / "cle.jsonl"
-COUVERTURE = DOSSIER / "couverture.json"
-PAR_STRATE = 75
+DIRECTORY = RESULTS / "revue_amendements"
+PAGE = DIRECTORY / "revue.html"
+KEY_FILE = DIRECTORY / "cle.jsonl"
+COVERAGE = DIRECTORY / "couverture.json"
+PER_STRATUM = 75
 VERDICTS = {"juste", "mineur", "faux", "indetermine"}
-UTILISABLES = {"juste", "mineur"}  # « mineur » : le lecteur comprend le bon effet, malgré un défaut de forme
+USABLE = {"juste", "mineur"}  # « mineur » : le lecteur comprend le bon effet, malgré un défaut de forme
 
 
-def strate_de(amendment):
+def stratum_of(amendment):
     return "adopté" if amendment["sort"] == "Adopté" else "non adopté"
 
 
-def issue(step, amendment, initial, par_uid):
+def issue(step, amendment, initial, by_uid):
     """Ce que le produit afficherait : « affiché » ou la raison de l'absence. Le LLM ne sert qu'aux réponses déjà payées."""
     try:
-        operations, scope, auteur = _operations(step, amendment, initial, par_uid, True)
+        operations, scope, auteur = _operations(step, amendment, initial, by_uid, True)
         apply(operations, scope, initial, initial, auteur)
     except ValueError:
         return "non analysé"
     except TargetError:
         return "cible introuvable"
-    except PlafondDepasse:
+    except BudgetExceeded:
         return "non analysé"
     return "affiché"
 
 
-def parcourir():
+def walk():
     """Tous les amendements à montrer : hors sous-amendements (vus à travers leur parent), un seul par série identique."""
-    for step in etapes_du_split("dev"):
-        initial = version_d_entree(step)
-        par_uid = {a["uid"]: a for a in step["amendements"]}
+    for step in split_steps("dev"):
+        initial = input_version(step)
+        by_uid = {a["uid"]: a for a in step["amendements"]}
         series = set()
         for a in step["amendements"]:
             if a["parent_uid"] or not (a["dispositif"] or "").strip():
@@ -68,90 +68,90 @@ def parcourir():
                 if a["id_identique"] in series:
                     continue
                 series.add(a["id_identique"])
-            yield step, a, issue(step, a, initial, par_uid)
+            yield step, a, issue(step, a, initial, by_uid)
 
 
-def wilson(succes, total, z=1.96):
+def wilson(successes, total, z=1.96):
     if not total:
         return None
-    p = succes / total
-    centre = (p + z * z / (2 * total)) / (1 + z * z / total)
-    marge = z * math.sqrt(p * (1 - p) / total + z * z / (4 * total * total)) / (1 + z * z / total)
-    return round(100 * (centre - marge), 1), round(100 * (centre + marge), 1)
+    p = successes / total
+    center = (p + z * z / (2 * total)) / (1 + z * z / total)
+    margin = z * math.sqrt(p * (1 - p) / total + z * z / (4 * total * total)) / (1 + z * z / total)
+    return round(100 * (center - margin), 1), round(100 * (center + margin), 1)
 
 
-def lancer(_args):
-    DOSSIER.mkdir(parents=True, exist_ok=True)
+def launch(_args):
+    DIRECTORY.mkdir(parents=True, exist_ok=True)
     counts = {"adopté": Counter(), "non adopté": Counter()}
-    affiches = {"adopté": [], "non adopté": []}
-    for step, a, result in parcourir():
-        strate = strate_de(a)
-        counts[strate][result] += 1
+    displayed = {"adopté": [], "non adopté": []}
+    for step, a, result in walk():
+        stratum = stratum_of(a)
+        counts[stratum][result] += 1
         if result == "affiché":
-            affiches[strate].append((step["id"], a["uid"]))
-    COUVERTURE.write_text(json.dumps(counts, ensure_ascii=False, indent=1), encoding="utf-8")
-    for strate, compte in counts.items():
-        total = sum(compte.values())
-        print(f"{strate} : {total} amendements, affichés {100 * compte['affiché'] / total:.1f} %, {dict(compte)}")
+            displayed[stratum].append((step["id"], a["uid"]))
+    COVERAGE.write_text(json.dumps(counts, ensure_ascii=False, indent=1), encoding="utf-8")
+    for stratum, counted in counts.items():
+        total = sum(counted.values())
+        print(f"{stratum} : {total} amendements, affichés {100 * counted['affiché'] / total:.1f} %, {dict(counted)}")
 
-    alea = random.Random(822)
-    tirage = []
-    for strate, items in affiches.items():
-        tirage += [(strate, *x) for x in alea.sample(sorted(items), PAR_STRATE)]
-    alea.shuffle(tirage)
-    steps = {e["id"]: e for e in etapes_du_split("dev")}
-    _, resultats = lire_resultats(VERSION, "dev")
-    fiches = []
-    with CLE.open("w", encoding="utf-8") as f:
-        for numero, (strate, etape_id, uid) in enumerate(tirage, 1):
-            effect = effet_amendement(steps[etape_id], uid, ARTICLE_ABSENT, resultats[etape_id]["statuts"], True)
+    rng = random.Random(822)
+    draw = []
+    for stratum, items in displayed.items():
+        draw += [(stratum, *x) for x in rng.sample(sorted(items), PER_STRATUM)]
+    rng.shuffle(draw)
+    steps = {e["id"]: e for e in split_steps("dev")}
+    _, results = read_results(VERSION, "dev")
+    records = []
+    with KEY_FILE.open("w", encoding="utf-8") as f:
+        for numero, (stratum, step_id, uid) in enumerate(draw, 1):
+            effect = amendment_effect(steps[step_id], uid, MISSING_ARTICLE, results[step_id]["statuts"], True)
             sources = sorted({i["source"] for i in effect["analyse"]})
-            f.write(json.dumps({"numero": numero, "strate": strate, "etape": etape_id, "uid": uid, "amendement": effect["numero"],
+            f.write(json.dumps({"numero": numero, "strate": stratum, "etape": step_id, "uid": uid, "amendement": effect["numero"],
                                 "sort": effect["sort"], "sources": sources}, ensure_ascii=False) + "\n")
-            fiches.append({"numero": numero, "vise": effect["article_vise"] or "", "dispositif": effect["dispositif"] or "",
+            records.append({"numero": numero, "vise": effect["article_vise"] or "", "dispositif": effect["dispositif"] or "",
                            "article": effect["article_produit"] or "", "effet": effect["effet"]})
-    donnees = json.dumps(fiches, ensure_ascii=False).replace("</", "<\\/")
-    PAGE.write_text(MODELE_PAGE.replace("__FICHES__", donnees), encoding="utf-8")
+    data = json.dumps(records, ensure_ascii=False).replace("</", "<\\/")
+    PAGE.write_text(PAGE_TEMPLATE.replace("__FICHES__", data), encoding="utf-8")
     print(f"page : {PAGE}")
 
 
-def calculer(lignes, counts):
+def compute(lignes, counts):
     """lignes : [(strate, verdict)]. La couverture vient de tous les amendements, la justesse de l'échantillon affiché."""
     total = sum(sum(c.values()) for c in counts.values())
     report = {"strates": {}}
-    utilisable = serieux = 0.0
-    for strate, compte in counts.items():
-        n_strate = sum(compte.values())
-        verdicts = [v for s, v in lignes if s == strate and v != "indetermine"]
-        bons, faux = sum(v in UTILISABLES for v in verdicts), sum(v == "faux" for v in verdicts)
-        couverture = compte["affiché"] / n_strate
-        justesse = bons / len(verdicts) if verdicts else 0.0
-        report["strates"][strate] = {
-            "amendements": n_strate, "couverture %": round(100 * couverture, 1), "revus": len(verdicts),
-            "justes parmi les affichés %": round(100 * justesse, 1), "marge à 95 %": wilson(bons, len(verdicts)),
-            "faux": faux, "effet juste au total %": round(100 * couverture * justesse, 1)}
-        utilisable += n_strate / total * couverture * justesse
-        serieux += n_strate / total * couverture * (faux / len(verdicts) if verdicts else 0.0)
-    report["effet juste, tous amendements %"] = round(100 * utilisable, 1)
+    usable = serieux = 0.0
+    for stratum, counted in counts.items():
+        stratum_size = sum(counted.values())
+        verdicts = [v for s, v in lignes if s == stratum and v != "indetermine"]
+        correct, wrong = sum(v in USABLE for v in verdicts), sum(v == "faux" for v in verdicts)
+        coverage = counted["affiché"] / stratum_size
+        accuracy = correct / len(verdicts) if verdicts else 0.0
+        report["strates"][stratum] = {
+            "amendements": stratum_size, "couverture %": round(100 * coverage, 1), "revus": len(verdicts),
+            "justes parmi les affichés %": round(100 * accuracy, 1), "marge à 95 %": wilson(correct, len(verdicts)),
+            "faux": wrong, "effet juste au total %": round(100 * coverage * accuracy, 1)}
+        usable += stratum_size / total * coverage * accuracy
+        serieux += stratum_size / total * coverage * (wrong / len(verdicts) if verdicts else 0.0)
+    report["effet juste, tous amendements %"] = round(100 * usable, 1)
     report["effet affiché mais faux, tous amendements %"] = round(100 * serieux, 1)
     return report
 
 
 def report(args):
-    keys = {d["numero"]: d for d in map(json.loads, CLE.open(encoding="utf-8"))}
+    keys = {d["numero"]: d for d in map(json.loads, KEY_FILE.open(encoding="utf-8"))}
     with Path(args.verdicts).open(encoding="utf-8-sig", newline="") as f:
         verdicts = [(int(l["numero"]), l["verdict"].strip()) for l in csv.DictReader(f) if l["verdict"].strip()]
-    inconnus = {v for _, v in verdicts} - VERDICTS
-    if inconnus:
-        raise SystemExit(f"verdicts inconnus : {inconnus}. Attendus : {sorted(VERDICTS)}")
+    unknown_ones = {v for _, v in verdicts} - VERDICTS
+    if unknown_ones:
+        raise SystemExit(f"verdicts inconnus : {unknown_ones}. Attendus : {sorted(VERDICTS)}")
     print(f"{len(verdicts)} verdicts sur {len(keys)}")
-    counts = {s: Counter(c) for s, c in json.loads(COUVERTURE.read_text(encoding="utf-8")).items()}
-    print(json.dumps(calculer([(keys[n]["strate"], v) for n, v in verdicts], counts), ensure_ascii=False, indent=1))
+    counts = {s: Counter(c) for s, c in json.loads(COVERAGE.read_text(encoding="utf-8")).items()}
+    print(json.dumps(compute([(keys[n]["strate"], v) for n, v in verdicts], counts), ensure_ascii=False, indent=1))
     print("par sort :", dict(Counter((keys[n]["sort"], v) for n, v in verdicts)))
     print("par source :", dict(Counter(("+".join(keys[n]["sources"]), v) for n, v in verdicts)))
 
 
-MODELE_PAGE = """<!doctype html>
+PAGE_TEMPLATE = """<!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Revue des amendements</title>
 <style>
@@ -224,7 +224,7 @@ afficher();
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="commande", required=True)
-    sub.add_parser("lancer").set_defaults(function=lancer)
+    sub.add_parser("lancer").set_defaults(function=launch)
     output = sub.add_parser("bilan")
     output.add_argument("verdicts")
     output.set_defaults(function=report)

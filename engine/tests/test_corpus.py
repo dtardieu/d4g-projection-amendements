@@ -6,7 +6,7 @@ from collections import Counter
 import pytest
 
 from evals.engine import corpus
-from evals.engine.run import amendements_de, version_d_entree
+from evals.engine.run import amendments_of, input_version
 from datasources import tricoteuses
 
 ARTICLES = (tricoteuses.Article("PREMIER", ("Le premier alinéa.",)),)
@@ -39,20 +39,20 @@ def api(monkeypatch, tmp_path):
 def test_dossier_steps(api):
     excluded = Counter()
     reading = tricoteuses.FirstReading("DL1", depose="B1", commission="BTC1", adopte="BTA1")
-    steps = corpus.etapes_du_dossier(reading, excluded)
+    steps = corpus.dossier_steps(reading, excluded)
     assert [e["id"] for e in steps] == ["DL1:commission"]
     assert excluded == {"texte de sortie introuvable": 1}
     step = steps[0]
     assert step["titre"] == "Texte B1" and step["sortie"]["ref"] == "BTC1"
     assert "auteur" not in step["amendements"][0]
     # Le format est celui que run.py lit.
-    assert [a.uid for a in amendements_de(step)] == ["AM1"]
-    assert [a.numero for a in version_d_entree(step).articles] == ["PREMIER"]
+    assert [a.uid for a in amendments_of(step)] == ["AM1"]
+    assert [a.numero for a in input_version(step).articles] == ["PREMIER"]
 
 
 def test_missing_act_and_cache(api):
     excluded = Counter()
-    assert corpus.etapes_du_dossier(tricoteuses.FirstReading("DL2", depose="B1"), excluded) == []
+    assert corpus.dossier_steps(tricoteuses.FirstReading("DL2", depose="B1"), excluded) == []
     assert excluded == {"acte manquant": 2}
     corpus.text("B1")
     corpus.text("B1")
@@ -61,5 +61,5 @@ def test_missing_act_and_cache(api):
 
 def test_corpus_fields():
     expected_items = {f.name for f in dataclasses.fields(tricoteuses.Amendment)} - {"auteur"}
-    assert set(corpus.CHAMPS) == expected_items
+    assert set(corpus.FIELDS) == expected_items
 

@@ -66,9 +66,9 @@ class TextNotFound(Exception):
     """Le texte demandé n'existe pas chez Tricoteuses, ou n'a aucun article."""
 
 
-def get(chemin, params=None):
+def get(path, params=None):
     """GET sur l'API, renvoie la réponse (lève requests.HTTPError si le statut n'est pas 2xx)."""
-    response = requests.get(f"{URL}{chemin}", params=params, timeout=TIMEOUT)
+    response = requests.get(f"{URL}{path}", params=params, timeout=TIMEOUT)
     response.raise_for_status()
     return response
 
@@ -128,28 +128,28 @@ def version_from_document(document):
     )
 
 
-def amendment_from(donnees):
+def amendment_from(data):
     """Un amendement de /amendements/json → Amendement."""
-    identical = donnees.get("idDiscussionIdentique")
-    date_sort = donnees.get("dateSort")
+    identical = data.get("idDiscussionIdentique")
+    date_sort = data.get("dateSort")
     return Amendment(
-        uid=donnees["uid"],
-        numero=donnees.get("numeroLong") or "",
-        texte_ref=donnees.get("documentRefUid") or "",
-        article_vise=donnees.get("divisionArticleDesignationCourte"),
-        alinea=donnees.get("alineaDesignation"),
+        uid=data["uid"],
+        numero=data.get("numeroLong") or "",
+        texte_ref=data.get("documentRefUid") or "",
+        article_vise=data.get("divisionArticleDesignationCourte"),
+        alinea=data.get("alineaDesignation"),
         # Le HTML garde un <p> par alinéa ; la version texte coupe les lignes à 80 caractères.
-        dispositif=donnees.get("dispositifHtml") or donnees.get("dispositif") or "",
-        parent_uid=donnees.get("amendementParentRefUid"),
-        tri_amendement=donnees.get("triAmendement"),
+        dispositif=data.get("dispositifHtml") or data.get("dispositif") or "",
+        parent_uid=data.get("amendementParentRefUid"),
+        tri_amendement=data.get("triAmendement"),
         # Seul l'ordre compte : on garde l'heure UTC, sans millisecondes ni fuseau.
         date_sort=date_sort[:19] if date_sort else None,
-        sort=donnees.get("sortAmendement"),
+        sort=data.get("sortAmendement"),
         id_identique=str(identical) if identical is not None else None,
         # Les noms arrivent parfois avec des entités HTML (« Barth&#232;s »).
-        auteur=html.unescape(donnees.get("signatairesLibelle") or "") or None,
+        auteur=html.unescape(data.get("signatairesLibelle") or "") or None,
         # Arrive en texte ou en entier selon les amendements.
-        numero_ordre=int(order) if (order := str(donnees.get("numeroOrdreDepot") or "")).isdigit() else None,
+        numero_ordre=int(order) if (order := str(data.get("numeroOrdreDepot") or "")).isdigit() else None,
     )
 
 
@@ -164,27 +164,27 @@ def document(uid):
     return response.json().get("data") or {}
 
 
-def document_title(donnees):
-    return donnees.get("titrePrincipal") or donnees.get("uid")
+def document_title(data):
+    return data.get("titrePrincipal") or data.get("uid")
 
 
 def read_text(uid):
     """Le Texte uid, découpé en articles (lève TexteIntrouvable s'il n'existe pas ou n'a aucun article)."""
-    donnees = document(uid)
-    return Text(uid, document_title(donnees), articles_from_document(donnees))
+    data = document(uid)
+    return Text(uid, document_title(data), articles_from_document(data))
 
 
 def text(uid):
     """(titre, Version) du texte uid."""
-    donnees = document(uid)
-    return document_title(donnees), version_from_document(donnees)
+    data = document(uid)
+    return document_title(data), version_from_document(data)
 
 
-def all_pages(chemin, params):
+def all_pages(path, params):
     """Tous les éléments d'une liste paginée de l'API."""
     page, pages = 1, 1
     while page <= pages:
-        response = get(chemin, {**params, "page": page, "perPage": PER_PAGE})
+        response = get(path, {**params, "page": page, "perPage": PER_PAGE})
         yield from response.json().get("data") or []
         pages = int(response.headers.get("total-page") or 1)
         page += 1

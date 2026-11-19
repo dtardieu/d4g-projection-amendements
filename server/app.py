@@ -59,12 +59,12 @@ def projection(uid):
 
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        chemin = self.path.split("?")[0]
-        if chemin == "/":
+        path = self.path.split("?")[0]
+        if path == "/":
             return self.file(STATIC / "index.html")
-        if chemin.startswith("/static/"):
-            return self.file(STATIC / chemin.removeprefix("/static/"))
-        route = ROUTE.match(chemin)
+        if path.startswith("/static/"):
+            return self.file(STATIC / path.removeprefix("/static/"))
+        route = ROUTE.match(path)
         if not route:
             return self.respond(404, {"erreur": "route inconnue : GET /textes/{uid}/projection"})
         try:
@@ -74,13 +74,13 @@ class Handler(BaseHTTPRequestHandler):
         except requests.RequestException as error:
             return self.respond(502, {"erreur": f"Tricoteuses injoignable : {error}"})
 
-    def file(self, chemin):
+    def file(self, path):
         """Un fichier de static/, et rien en dehors (pas de « ../ »)."""
-        chemin = chemin.resolve()
-        if not chemin.is_relative_to(STATIC.resolve()) or not chemin.is_file():
+        path = path.resolve()
+        if not path.is_relative_to(STATIC.resolve()) or not path.is_file():
             return self.respond(404, {"erreur": "fichier introuvable"})
-        type_ = TYPES.get(chemin.suffix, "application/octet-stream")
-        return self.send(200, chemin.read_bytes(), type_)
+        type_ = TYPES.get(path.suffix, "application/octet-stream")
+        return self.send(200, path.read_bytes(), type_)
 
     def respond(self, status, body):
         content = json.dumps(body, ensure_ascii=False).encode("utf-8")

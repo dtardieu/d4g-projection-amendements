@@ -14,35 +14,35 @@ import time
 from datetime import datetime
 from pathlib import Path
 
-from evals.engine.corpus import CORPUS, MANIFESTE, NOM
-from evals.engine.versions import APPEL_LLM, MODELE_LLM, VERSIONS
+from evals.engine.corpus import CORPUS, MANIFEST, NAME
+from evals.engine.versions import LLM_CALL, LLM_MODEL, VERSIONS
 from engine.analysis import RawAmendment
 from engine.text import create_version, is_blank, normalize, numbers
 
-RESULTATS = Path(__file__).parent / "resultats" / NOM
-CHAMPS = {f.name for f in dataclasses.fields(RawAmendment)} | {"numero_ordre"}
-MAX_PAIRES_COMMUTATION = 300
+RESULTS = Path(__file__).parent / "resultats" / NAME
+FIELDS = {f.name for f in dataclasses.fields(RawAmendment)} | {"numero_ordre"}
+MAX_COMMUTATION_PAIRS = 300
 
 
 @dataclasses.dataclass
-class AmendementEval(RawAmendment):
+class EvalAmendment(RawAmendment):
     numero_ordre: int | None = None
 
 
-def amendements_de(step):
+def amendments_of(step):
     """Sans ceux du titre : le texte du titre n'est pas dans le corpus, il n'y a rien à quoi les appliquer."""
-    return [AmendementEval(**{k: v for k, v in a.items() if k in CHAMPS})
+    return [EvalAmendment(**{k: v for k, v in a.items() if k in FIELDS})
             for a in step["amendements"] if not (a["article_vise"] or "").upper().startswith("TITRE")]
 
 
-def version_d_entree(step):
+def input_version(step):
     version = create_version([(a["numero"], "\n".join(a["lignes"])) for a in step["entree"]["articles"]])
     flags = {a["numero"]: a["supprime"] for a in step["entree"]["articles"]}
     return dataclasses.replace(version, articles=tuple(
         dataclasses.replace(a, supprime=flags[a.numero]) for a in version.articles))
 
 
-def article_sortie(article, view):
+def output_article(article, view):
     """Le texte produit, en mots, avec pour chaque mot s'il vient d'un amendement (¶ sépare les alinéas)."""
     words, authors = [], []
     for rank, alinea in enumerate(article.paragraphs):
@@ -58,22 +58,22 @@ def article_sortie(article, view):
             "origines": sorted({j.origin for a in article.paragraphs for j in a.tokens} - {"T0"})}
 
 
-def executer(step, name):
-    initial = version_d_entree(step)
-    amendments = amendements_de(step)
+def execute(step, name):
+    initial = input_version(step)
+    amendments = amendments_of(step)
     beginning = time.time()
     result = VERSIONS[name](initial, amendments)
     view = numbers(result.version)
     return {
         "id": step["id"],
         "duree": round(time.time() - beginning, 3),
-        "articles": [article_sortie(a, view) for a in result.version.articles],
+        "articles": [output_article(a, view) for a in result.version.articles],
         "statuts": {u: {"numero": s.numero, "sort": s.sort, "etat": s.etat, "detail": s.detail[:160]}
                     for u, s in result.statuses.items()},
     }
 
 
-def etapes_du_split(split):
+def split_steps(split):
     with CORPUS.open(encoding="utf-8") as f:
         for line in f:
             step = json.loads(line)
@@ -90,28 +90,28 @@ def main():
     parser.add_argument("--version", required=True, choices=sorted(VERSIONS))
     parser.add_argument("--split", default="dev", choices=["dev", "test"])
     args = parser.parse_args()
-    dossier = RESULTATS / args.version
+    dossier = RESULTS / args.version
     dossier.mkdir(parents=True, exist_ok=True)
-    manifeste = json.loads(MANIFESTE.read_text(encoding="utf-8"))
-    chemin = dossier / f"{args.split}.jsonl"
-    provisoire = chemin.with_suffix(".en_cours")
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    path = dossier / f"{args.split}.jsonl"
+    temporary = path.with_suffix(".en_cours")
     n = 0
     # Un résultat n'apparaît que complet : un plantage ne laisse jamais un fichier partiel à scorer.
-    chemin.unlink(missing_ok=True)
-    with provisoire.open("w", encoding="utf-8") as output:
+    path.unlink(missing_ok=True)
+    with temporary.open("w", encoding="utf-8") as output:
         output.write(json.dumps({"entete": True, "version": args.version, "split": args.split, "commit": commit(),
                                  "date": datetime.now().isoformat(timespec="seconds"),
-                                 "corpus": NOM, "corpus_sha256": manifeste["sha256"],
-                                 "modele": MODELE_LLM if "llm" in args.version else None}) + "\n")
-        for step in etapes_du_split(args.split):
-            output.write(json.dumps(executer(step, args.version), ensure_ascii=False) + "\n")
+                                 "corpus": NAME, "corpus_sha256": manifest["sha256"],
+                                 "modele": LLM_MODEL if "llm" in args.version else None}) + "\n")
+        for step in split_steps(args.split):
+            output.write(json.dumps(execute(step, args.version), ensure_ascii=False) + "\n")
             n += 1
-    provisoire.replace(chemin)
-    print(f"{args.version} {args.split} : {n} étapes → {chemin}")
+    temporary.replace(path)
+    print(f"{args.version} {args.split} : {n} étapes → {path}")
     if "llm" in args.version:
-        a = APPEL_LLM
-        print(f"LLM {MODELE_LLM} : {a.calls} appels, {a.en_cache} lus en cache, entrée {a.entree}, sortie {a.output} "
-              f"(réflexion {a.reflexion}), invalides {a.invalides}, coût {a.cout:.3f} $")
+        a = LLM_CALL
+        print(f"LLM {LLM_MODEL} : {a.calls} appels, {a.cached} lus en cache, entrée {a.input_}, sortie {a.output} "
+              f"(réflexion {a.reasoning}), invalides {a.invalid}, coût {a.cost:.3f} $")
 
 
 if __name__ == "__main__":
