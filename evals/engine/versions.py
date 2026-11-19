@@ -19,7 +19,7 @@ import os
 from concurrent.futures import ThreadPoolExecutor
 
 from evals.engine.llm_openai import OpenAICall
-from engine.analysis import analyze_amendment, analyze_scope
+from engine.analysis import analyze_amendement, analyze_scope
 from engine.consolidation import Consolidation, consolidate
 from engine.text import text_of, find_article
 
@@ -29,42 +29,42 @@ LLM_THREADS = 8
 LLM_CALL = OpenAICall(LLM_MODEL, budget=LLM_BUDGET)
 
 
-def _by_sort_key(amendments):
-    return sorted(amendments, key=lambda a: (a.tri_amendement is None, a.tri_amendement or "", a.uid))
+def _by_sort_key(amendements):
+    return sorted(amendements, key=lambda a: (a.tri_amendement is None, a.tri_amendement or "", a.uid))
 
 
-def _by_deposit(amendments):
-    return sorted(amendments, key=lambda a: (a.numero_ordre is None, a.numero_ordre or 0, a.uid))
+def _by_deposit(amendements):
+    return sorted(amendements, key=lambda a: (a.numero_ordre is None, a.numero_ordre or 0, a.uid))
 
 
-def _article_text(initial, amendment):
+def _article_text(initial, amendement):
     try:
-        article = find_article(initial, analyze_scope(amendment.article_vise).article)
+        article = find_article(initial, analyze_scope(amendement.article_vise).article)
     except ValueError:
         return None
-    return "\n".join(text_of(a) for a in article.paragraphs) if article else None
+    return "\n".join(text_of(a) for a in article.alineas) if article else None
 
 
-def _grammar_llm(initial, amendments):
+def _grammar_llm(initial, amendements):
     def analyzer(a):
-        return analyze_amendment(a, _article_text(initial, a), LLM_CALL if a.sort == "Adopté" else None)
+        return analyze_amendement(a, _article_text(initial, a), LLM_CALL if a.sort == "Adopté" else None)
     # Les appels se font en parallèle et remplissent le cache ; la consolidation relit ensuite ce cache, dans l'ordre.
     with ThreadPoolExecutor(LLM_THREADS) as threads:
-        list(threads.map(analyzer, [a for a in amendments if a.sort == "Adopté"]))
-    return consolidate(initial, amendments, analyzer=analyzer)
+        list(threads.map(analyzer, [a for a in amendements if a.sort == "Adopté"]))
+    return consolidate(initial, amendements, analyzer=analyzer)
 
 
-def _nothing(initial, amendments):
+def _nothing(initial, amendements):
     return Consolidation(initial, {}, {}, {})
 
 
 VERSIONS = {
     "V0-noop": _nothing,
-    "V1-gram": lambda initial, amendments: consolidate(initial, amendments),
-    "V1-gram-tri": lambda initial, amendments: consolidate(initial, amendments, order=_by_sort_key),
-    "V1-gram-depot": lambda initial, amendments: consolidate(initial, amendments, order=_by_deposit),
+    "V1-gram": lambda initial, amendements: consolidate(initial, amendements),
+    "V1-gram-tri": lambda initial, amendements: consolidate(initial, amendements, order=_by_sort_key),
+    "V1-gram-depot": lambda initial, amendements: consolidate(initial, amendements, order=_by_deposit),
     "V2-gram+llm": _grammar_llm,
-    "V3-gram-tolerant": lambda initial, amendments: consolidate(initial, amendments),
-    "V5-gram-etendue": lambda initial, amendments: consolidate(initial, amendments),
+    "V3-gram-tolerant": lambda initial, amendements: consolidate(initial, amendements),
+    "V5-gram-etendue": lambda initial, amendements: consolidate(initial, amendements),
     "V6-gram-etendue+llm": _grammar_llm,
 }

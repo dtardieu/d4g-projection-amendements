@@ -12,17 +12,17 @@ import pytest
 
 from engine.analysis import Target, Instruction, Operation, Scope, analyze_with_grammar, split_instructions
 
-AMENDMENTS = {a["numero"]: a for a in json.loads((Path(__file__).parent / "fixtures/debut_amendements.json")
+AMENDEMENTS = {a["numero"]: a for a in json.loads((Path(__file__).parent / "fixtures/debut_amendements.json")
                                                      .read_text(encoding="utf-8"))}
 SCOPE = Scope("article", "PREMIER")
 
 
 def analyze(numero):
-    (instruction,) = split_instructions(AMENDMENTS[numero]["dispositif"].split("\n\n"))
+    (instruction,) = split_instructions(AMENDEMENTS[numero]["dispositif"].split("\n\n"))
     return analyze_with_grammar(instruction, SCOPE)
 
 
-def test_at_start_add_following_paragraph():
+def test_at_start_add_following_alinea():
     # Le « I. – » du texte cité ne doit pas être pris pour une nouvelle instruction : il suit un guillemet.
     (op,) = analyze("337")
     assert (op.verb, op.target) == ("insert_node", Target(node="article", position="debut"))
@@ -35,7 +35,7 @@ def test_at_start_add_following_paragraph():
     ("AS83", "insert", Target(alinea=1, position="debut")),                          # ajouter les mots
     ("I-1137", "insert", Target(alinea=2, position="debut")),                        # insérer les mots
     ("CF14", "substitute", Target(alinea=20, position="debut")),
-    ("619", "delete", Target(alinea=18, sentence=1, node="phrase", position="debut")),
+    ("619", "delete", Target(alinea=18, phrase=1, node="phrase", position="debut")),
     ("1356", "insert_node", Target(node="article", position="debut")),              # les deux alinéas suivants
     ("CS1192", "insert_node", Target(alinea=1, position="avant")),                   # Avant l'alinéa 1, ajouter
     ("II-889", "insert_node", Target(alinea=15, position="apres")),                  # un alinéa ainsi rédigé
@@ -51,7 +51,7 @@ def test_insert_words_without_anchor_rejected():
     assert analyze_with_grammar(instruction, SCOPE) is None
 
 
-def test_at_paragraph_start_insert_words():
+def test_at_alinea_start_insert_words():
     instruction = Instruction(None, "Au début de l’alinéa 3, insérer les mots : « Sauf exception, ».", [])
     assert analyze_with_grammar(instruction, SCOPE) == \
         [Operation("insert", Target(alinea=3, position="debut"), text="Sauf exception,")]

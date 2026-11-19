@@ -14,13 +14,13 @@ from fastapi.responses import FileResponse
 
 from evals.engine.corpus import MANIFEST
 from evals.engine.llm_openai import OpenAICall, BudgetExceeded
-from evals.engine.run import RESULTS, EvalAmendment, FIELDS, output_article, split_steps, input_version
+from evals.engine.run import RESULTS, EvalAmendement, FIELDS, output_article, split_steps, input_version
 from evals.engine.score import (adopted_by_article, match_articles, classify_gaps, diagnose_article, step_failures,
                                 read_results, official_words, without_mentions)
 from evals.engine.versions import LLM_MODEL
-from engine.analysis import (Instruction, analyze_amendment, analyze_with_grammar, analyze_with_llm, analyze_scope,
+from engine.analysis import (Instruction, analyze_amendement, analyze_with_grammar, analyze_with_llm, analyze_scope,
                             split_instructions, clean_dispositif)
-from engine.application import apply, integrate_subamendments
+from engine.application import apply, integrate_sous_amendements
 from engine.resolution import TargetError, resolve
 from engine.text import article_by_id, number_key, lines_of, numbers, text_of, find_article
 
@@ -122,11 +122,11 @@ def analyze_step(version, step_id):
         official = without_mentions(official_words(o["lignes"])) if o is not None else []
         if input_article is None and o is None and not predicted:
             continue
-        targeted_amendments, gaps, category = diagnose_article(p, o, predicted, flags, official, r["statuts"], adopted)
+        targeted_amendements, gaps, category = diagnose_article(p, o, predicted, flags, official, r["statuts"], adopted)
         articles[p["id"]] = {
             "numero": p["numero"], "numero_officiel": o["numero"] if o else None, "categorie": category,
             "exact": predicted == official, "touche": input_ != official or input_ != predicted, "supprime": p["supprime"],
-            "officiel_supprime": bool(o and o["supprime"]), "uids": [a["uid"] for a in targeted_amendments],
+            "officiel_supprime": bool(o and o["supprime"]), "uids": [a["uid"] for a in targeted_amendements],
             "entree": input_, "predit": predicted, "drapeaux": flags, "officiel": official, "ecarts": gaps,
         }
     return articles, [o["numero"] for o in missing], r["statuts"]
@@ -141,7 +141,7 @@ def page():
 def review_page():
     path = RESULTS / "revue_amendements" / "revue.html"
     if not path.exists():
-        raise HTTPException(404, "lancez d'abord : python -m evals.engine.amendment_review lancer")
+        raise HTTPException(404, "lancez d'abord : python -m evals.engine.amendement_review lancer")
     return FileResponse(path)
 
 
@@ -239,21 +239,21 @@ def article_detail(version: str, step: str, article: str):
         "effet": segments_diff(a["entree"], a["predit"], a["drapeaux"]),
         "reel": segments_diff(a["entree"], a["officiel"]),
         "ecart": segments_ecarts(a["predit"], a["officiel"], a["drapeaux"], a["ecarts"]),
-        "amendements": _amendments(a, by_uid, statuses),
+        "amendements": _amendements(a, by_uid, statuses),
         "autres_adoptes": len(a["uids"]),
     }
 
 
 @app.get("/api/amendement")
-def amendment_detail(version: str, step: str, uid: str, article: str | None = None):
+def amendement_detail(version: str, step: str, uid: str, article: str | None = None):
     articles, _, statuses = analyze_step(version, step)
     a = articles.get(article) if article else MISSING_ARTICLE
     if a is None:
         raise HTTPException(404, "article inconnu")
-    return amendment_effect(steps()[step], uid, a, statuses, "llm" in version)
+    return amendement_effect(steps()[step], uid, a, statuses, "llm" in version)
 
 
-def amendment_effect(step, uid, article, statuses, with_llm=False):
+def amendement_effect(step, uid, article, statuses, with_llm=False):
     """Ce que produit cet amendement seul sur le texte d'entrée, comparé au texte officiel de l'article.
 
     Avec ses sous-amendements adoptés ; un sous-amendement est montré à travers son parent. Marche aussi pour un
@@ -301,13 +301,13 @@ def detailed_analysis(raw, initial, with_llm=False):
         scope = analyze_scope(raw["article_vise"])
     except ValueError as error:
         return [{"texte": raw["article_vise"] or "", "source": "non reconnu", "operations": [], "erreur": str(error)}]
-    paragraphs = clean_dispositif(raw["dispositif"] or "")
+    alineas = clean_dispositif(raw["dispositif"] or "")
     if scope.node == "article_additionnel":
-        instructions = [Instruction(None, paragraphs[0], paragraphs[1:])] if paragraphs else []
+        instructions = [Instruction(None, alineas[0], alineas[1:])] if alineas else []
     else:
-        instructions = split_instructions(paragraphs)
+        instructions = split_instructions(alineas)
     article = None if scope.node == "titre" else find_article(initial, scope.article)
-    contexte = "\n".join(text_of(a) for a in article.paragraphs) if article else None
+    contexte = "\n".join(text_of(a) for a in article.alineas) if article else None
     # Le LLM ne sert qu'aux amendements adoptés, comme dans V2-gram+llm.
     llm = with_llm and raw["sort"] == "Adopté"
     output, preceding, last_one = [], None, None
@@ -331,7 +331,7 @@ def detailed_analysis(raw, initial, with_llm=False):
 
 def _describe_operation(op, scope, initial, sous_amendement):
     target = op.target
-    described = {"verbe": op.verb, "alinea": target.alinea, "jusqua": target.until, "phrase": target.sentence, "noeud": target.node,
+    described = {"verbe": op.verb, "alinea": target.alinea, "jusqua": target.until, "phrase": target.phrase, "noeud": target.node,
               "position": target.position, "mots": target.words, "occurrence": target.occurrence,
               "anciens_mots": op.old_words, "texte": op.text, "trouve": None, "erreur": None, "note": None}
     if sous_amendement:
@@ -350,11 +350,11 @@ def _describe_operation(op, scope, initial, sous_amendement):
 def _excerpt(place, initial):
     """Où la cible a été trouvée dans le texte d'entrée : le rang de l'alinéa et les mots visés."""
     article = article_by_id(initial, place.article_id)
-    if not place.paragraph_ids:
+    if not place.alinea_ids:
         return {"lieu": "tout l'article", "extrait": None}
-    ranks = [i for i, a in enumerate(article.paragraphs, 1) if a.id in place.paragraph_ids]
+    ranks = [i for i, a in enumerate(article.alineas, 1) if a.id in place.alinea_ids]
     location = f"alinéa {ranks[0]}" if len(ranks) == 1 else f"alinéas {ranks[0]} à {ranks[-1]}"
-    alinea = next(a for a in article.paragraphs if a.id == place.paragraph_ids[0])
+    alinea = next(a for a in article.alineas if a.id == place.alinea_ids[0])
     if place.beginning is None or len(ranks) > 1:
         return {"lieu": location, "extrait": None}
     if place.beginning == 0 and place.end == len(alinea.tokens):
@@ -374,21 +374,21 @@ def _operations(step, raw, initial, by_uid, with_llm):
     if analysis.errors:
         raise ValueError("; ".join(analysis.errors))
     with_sub = [(x["uid"], _analyze(x, initial, with_llm).operations) for x in sub]
-    return (integrate_subamendments(analysis.operations, analysis.scope, principal["uid"], with_sub), analysis.scope,
+    return (integrate_sous_amendements(analysis.operations, analysis.scope, principal["uid"], with_sub), analysis.scope,
             principal["uid"])
 
 
 def _analyze(raw, initial, with_llm):
-    amendment = EvalAmendment(**{k: v for k, v in raw.items() if k in FIELDS})
+    amendement = EvalAmendement(**{k: v for k, v in raw.items() if k in FIELDS})
     if not with_llm or raw["sort"] != "Adopté":
-        return analyze_amendment(amendment)
+        return analyze_amendement(amendement)
     scope = analyze_scope(raw["article_vise"])
     article = find_article(initial, scope.article)
-    text = "\n".join(text_of(a) for a in article.paragraphs) if article else None
-    return analyze_amendment(amendment, text, LLM_CACHE_ONLY)
+    text = "\n".join(text_of(a) for a in article.alineas) if article else None
+    return analyze_amendement(amendement, text, LLM_CACHE_ONLY)
 
 
-def _amendments(article, by_uid, statuses):
+def _amendements(article, by_uid, statuses):
     """Les amendements adoptés qui visent l'article, puis les autres amendements déposés sur le même article."""
     uids = list(article["uids"])
     targeted_one = number_key(article["numero"])
@@ -404,9 +404,9 @@ def _amendments(article, by_uid, statuses):
     return sorted(output, key=lambda x: (x["sort"] != "Adopté", x["tri"]))
 
 
-def _same_article(amendment, targeted_one):
+def _same_article(amendement, targeted_one):
     try:
-        scope = analyze_scope(amendment["article_vise"])
+        scope = analyze_scope(amendement["article_vise"])
     except ValueError:
         return False
     return scope.node == "article" and number_key(scope.article) == targeted_one

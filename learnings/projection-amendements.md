@@ -140,6 +140,9 @@ des textes différent.
   (`numero`, `dispositif`, `sort`…), clés JSON du corpus, des résultats, des scores et des API, dossiers de données
   (`donnees/`, `resultats/`), noms de versions, règles de grammaire (et les méthodes du Transformer qui les portent),
   clés du JSON du LLM (converties par `LLM_TARGET_KEYS` dans `engine/analysis.py`).
+- 19 novembre 2026 : les notions du droit et de la procédure parlementaire française reprennent leur nom français
+  dans les identifiants (`alinea`, `phrase`, `amendement`, `sous_amendement`, `seance`, `lecture`, `loi`,
+  `article_additionnel`, `PremiereLecture`) : `paragraph` ou `sentence` trompaient. Module `engine/lois.py`.
 - Le rapport annexé d'une loi de programmation est rattaché à l'article qui l'approuve (voir plus haut). Fait dans
   l'ancien corpus seulement : à refaire sur Tricoteuses.
 - Chaque changement du moteur prend un nouveau nom de version : relancer un ancien nom donne le moteur actuel.

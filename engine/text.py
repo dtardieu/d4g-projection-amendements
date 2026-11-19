@@ -32,7 +32,7 @@ class Token:
 
 
 @dataclass(frozen=True)
-class Paragraph:
+class Alinea:
     id: str
     tokens: tuple
     origin: str
@@ -42,7 +42,7 @@ class Paragraph:
 class Article:
     id: str
     numero: str | None    # numéro dans le texte de départ ; None pour un article additionnel
-    paragraphs: tuple
+    alineas: tuple
     origin: str
     supprime: bool = False
     anchor: str | None = None   # article après lequel un article additionnel a été inséré
@@ -85,12 +85,12 @@ def create_tokens(text, ids):
     return tuple(Token(ids.new(), t, ids.origin) for t in split_tokens(text))
 
 
-def create_paragraph(text, ids):
-    return Paragraph(ids.new(), create_tokens(text, ids), ids.origin)
+def create_alinea(text, ids):
+    return Alinea(ids.new(), create_tokens(text, ids), ids.origin)
 
 
 def create_article(numero, lignes, ids, anchor=None):
-    return Article(ids.new(), numero, tuple(create_paragraph(l, ids) for l in lignes), ids.origin, anchor=anchor)
+    return Article(ids.new(), numero, tuple(create_alinea(l, ids) for l in lignes), ids.origin, anchor=anchor)
 
 
 def create_version(articles, titre=None, origin="T0"):
@@ -107,7 +107,7 @@ def text_of(alinea):
 
 
 def lines_of(article):
-    return [text_of(a) for a in article.paragraphs]
+    return [text_of(a) for a in article.alineas]
 
 
 def number_key(numero):
@@ -197,7 +197,7 @@ def provenance(alinea):
     return [(origin, "".join(t).strip()) for origin, t in pieces]
 
 
-def sentences(tokens):
+def phrases(tokens):
     """Découpe des jetons en phrases : [(début, fin)], fin exclue.
 
     Coupe sur . ! ? hors citation quand la suite commence par une majuscule : « L. 251-10 » ne coupe donc pas,

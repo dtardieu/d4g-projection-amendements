@@ -16,7 +16,7 @@ import random
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 
-from evals.engine.judge import (SENTENCE_GUIDELINES, CONTEXT, DecisionsJudge, SENTENCE_QUESTION, a_first, message, same_effect_probability, rule)
+from evals.engine.judge import (PHRASE_GUIDELINES, CONTEXT, DecisionsJudge, PHRASE_QUESTION, a_first, message, same_effect_probability, rule)
 from evals.engine.run import RESULTS, split_steps
 from evals.engine.score import (_passages, match_articles, classify_gaps, read_results, official_words, without_accents,
                                 without_mentions)
@@ -28,9 +28,9 @@ DIRECTORY = RESULTS / "juge_pilote"
 SHEET = DIRECTORY / "feuille_annotation.csv"
 KEY_FILE = DIRECTORY / "cle_et_reponses.jsonl"
 INJECTIONS = DIRECTORY / "erreurs_injectees.json"
-SENTENCES = DIRECTORY / "phrases_entieres.json"
+PHRASES = DIRECTORY / "phrases_entieres.json"
 MAX_SIZE = 600  # mots : au-delà, un écart est une réécriture entière, à examiner autrement
-MAX_SENTENCE = 80  # mots de chaque côté
+MAX_PHRASE = 80  # mots de chaque côté
 THRESHOLDS = (0.5, 0.7, 0.8, 0.9, 0.95, 0.99)
 HUMAN_LABELS = {"forme", "meme", "renumerotation", "different", "indetermine"}
 EQUIVALENT_VERDICTS = {"forme", "meme", "renumerotation"}  # une renumérotation ne change pas le fond
@@ -40,15 +40,15 @@ def text(words):
     return "".join(pieces(words)).strip()
 
 
-def sentence_bounds(words, i1, i2):
+def phrase_bounds(words, i1, i2):
     """Début et fin de la phrase autour de [i1, i2[ : un point après une lettre seule (« L. ») n'en termine pas une."""
     def cut(k):
         return words[k] in (";", ":", "¶") or (words[k] == "." and not (k > 0 and len(words[k - 1]) == 1))
     beginning = i1
-    while beginning > max(0, i1 - MAX_SENTENCE) and not cut(beginning - 1):
+    while beginning > max(0, i1 - MAX_PHRASE) and not cut(beginning - 1):
         beginning -= 1
     end = i2
-    while end < min(len(words), i2 + MAX_SENTENCE) and not cut(end):
+    while end < min(len(words), i2 + MAX_PHRASE) and not cut(end):
         end += 1
     return beginning, min(end + 1, len(words))
 
@@ -57,9 +57,9 @@ def difference(identifier, predicted, official, i1, i2, j1, j2):
     """Un écart prêt pour le juge : le moteur est A ou B selon l'identifiant, le contexte vient du texte du moteur."""
     engine, reference = predicted[i1:i2], official[j1:j2]
     a, b = (engine, reference) if a_first(identifier) else (reference, engine)
-    beginning, end = sentence_bounds(predicted, i1, i2)
-    sentences = [text(predicted[beginning:i1] + side + predicted[i2:end]) for side in (a, b)]
-    return {"id": identifier, "phrase_a": sentences[0], "phrase_b": sentences[1], "contexte_avant": text(predicted[max(0, i1 - CONTEXT):i1]), "passage_a": text(a),
+    beginning, end = phrase_bounds(predicted, i1, i2)
+    phrases = [text(predicted[beginning:i1] + side + predicted[i2:end]) for side in (a, b)]
+    return {"id": identifier, "phrase_a": phrases[0], "phrase_b": phrases[1], "contexte_avant": text(predicted[max(0, i1 - CONTEXT):i1]), "passage_a": text(a),
             "passage_b": text(b), "contexte_apres": text(predicted[i2:i2 + CONTEXT]), "regle": rule(engine, reference),
             "taille": max(i2 - i1, j2 - j1)}
 
@@ -243,7 +243,7 @@ def report(_args):
     print("règles « effet différent » selon l'humain :", dict(Counter(a for _, a in rules)))
 
 
-def sentence_message(d):
+def phrase_message(d):
     return f"Phrase A :\n<<<{d['phrase_a']}>>>\n\nPhrase B :\n<<<{d['phrase_b']}>>>"
 
 
@@ -255,7 +255,7 @@ def auc_of(lignes, key):
     return auc([key(x) for x, equivalent in lignes if equivalent], [key(x) for x, equivalent in lignes if not equivalent])
 
 
-def sentences(_args):
+def phrases(_args):
     """Mêmes tirages que « lancer » (même graine), jugés sur la phrase entière. La feuille annotée n'est pas touchée."""
     rng = random.Random(822)
     to_model, _, _ = draw_gaps(rng)
@@ -263,10 +263,10 @@ def sentences(_args):
     keys = {d["id"]: d for d in map(json.loads, KEY_FILE.open(encoding="utf-8"))}
     if any(d["id"] not in keys for d in to_model):
         raise SystemExit("le tirage ne correspond plus à la feuille annotée")
-    judge = DecisionsJudge(guidelines=SENTENCE_GUIDELINES, question=SENTENCE_QUESTION)
+    judge = DecisionsJudge(guidelines=PHRASE_GUIDELINES, question=PHRASE_QUESTION)
     def assess(differences):
         with ThreadPoolExecutor(8) as pool:
-            return list(pool.map(lambda d: judge(sentence_message(d)), differences))
+            return list(pool.map(lambda d: judge(phrase_message(d)), differences))
     for d, judgment in zip(to_model, assess(to_model)):
         d["jugement_phrase"] = judgment
     to_judge = [d for c in cases for d in c["differences"] if d["regle"] != "forme_seule"]
@@ -283,7 +283,7 @@ def sentences(_args):
         if annotation:
             d["annotation"], d["jugement_fragment"] = annotation, keys[d["id"]]["jugement"]
             lignes.append(d)
-    SENTENCES.write_text(json.dumps({"ecarts": lignes, "injections": injection_report(cases)}, ensure_ascii=False, indent=1), encoding="utf-8")
+    PHRASES.write_text(json.dumps({"ecarts": lignes, "injections": injection_report(cases)}, ensure_ascii=False, indent=1), encoding="utf-8")
     slices = [(d, d["annotation"] in EQUIVALENT_VERDICTS) for d in lignes if d["annotation"] != "indetermine"]
     new = lambda d: same_effect_probability(d["jugement_phrase"])
     old = lambda d: same_effect_probability(d["jugement_fragment"])
@@ -319,7 +319,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("commande", choices=["lancer", "bilan", "phrases"])
     args = parser.parse_args()
-    {"lancer": launch, "bilan": report, "phrases": sentences}[args.commande](args)
+    {"lancer": launch, "bilan": report, "phrases": phrases}[args.commande](args)
 
 
 if __name__ == "__main__":

@@ -8,8 +8,8 @@ disparu, soit ils entrent en conflit avec un amendement adopté avant eux, sur l
 
 from dataclasses import dataclass, field
 
-from engine.analysis import analyze_amendment
-from engine.application import apply, integrate_subamendments
+from engine.analysis import analyze_amendement
+from engine.application import apply, integrate_sous_amendements
 from engine.comparison import conflict
 from engine.resolution import AmbiguousTarget, DanglingTarget, TargetError
 from engine.text import diff_versions
@@ -39,21 +39,21 @@ class Consolidation:
     effects: dict
 
 
-def call_order(amendments):
+def call_order(amendements):
     """Date du vote, puis clé de discussion. Un amendement sans date passe après les autres."""
-    return sorted(amendments, key=lambda a: (a.date_sort is None, a.date_sort or "", a.tri_amendement or "", a.uid))
+    return sorted(amendements, key=lambda a: (a.date_sort is None, a.date_sort or "", a.tri_amendement or "", a.uid))
 
 
-def consolidate(initial_text, amendments, analyzer=analyze_amendment, order=call_order):
+def consolidate(initial_text, amendements, analyzer=analyze_amendement, order=call_order):
     """texte_depart : Version sur laquelle les amendements ont été écrits ; amendements : AmendementBrut.
 
     ordre : fonction qui trie les amendements, remplaçable pour mesurer ce qu'apporte l'ordre réel des votes.
     """
-    analyses = {a.uid: analyzer(a) for a in amendments}
-    sub = _adopted_subamendments(amendments, analyses, order)
+    analyses = {a.uid: analyzer(a) for a in amendements}
+    sub = _adopted_sous_amendements(amendements, analyses, order)
     statuses = {}
     main_ones = []
-    for a in order(amendments):
+    for a in order(amendements):
         if a.sort not in VOTED_OUTCOMES:
             statuses[a.uid] = Status(a.uid, a.numero, a.sort, "ignore")
         elif a.parent_uid:
@@ -74,7 +74,7 @@ def consolidate(initial_text, amendments, analyzer=analyze_amendment, order=call
             statuses[a.uid] = Status(a.uid, a.numero, a.sort, etat, "; ".join(analysis.errors))
             continue
         try:
-            operations = integrate_subamendments(analysis.operations, analysis.scope, a.uid, sub.get(a.uid, []))
+            operations = integrate_sous_amendements(analysis.operations, analysis.scope, a.uid, sub.get(a.uid, []))
         except TargetError as error:
             etat = "pendant" if adopte else "indetermine"
             statuses[a.uid] = Status(a.uid, a.numero, a.sort, etat, f"sous-amendement : {error}")
@@ -99,10 +99,10 @@ def consolidate(initial_text, amendments, analyzer=analyze_amendment, order=call
     return Consolidation(version, statuses, diff_versions(initial_text, version), effects)
 
 
-def _adopted_subamendments(amendments, analyses, order):
+def _adopted_sous_amendements(amendements, analyses, order):
     """{parent : [(uid, operations)]} dans l'ordre d'appel, une seule fois par série identique."""
     sub, seen = {}, set()
-    for a in order(amendments):
+    for a in order(amendements):
         if not a.parent_uid or a.sort != "Adopté" or analyses[a.uid].errors:
             continue
         if a.id_identique and (a.parent_uid, a.id_identique) in seen:

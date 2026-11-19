@@ -22,7 +22,7 @@ from collections import Counter
 from datetime import date
 from pathlib import Path
 
-from engine.analysis import RawAmendment
+from engine.analysis import RawAmendement
 from datasources import tricoteuses
 
 HERE = Path(__file__).parent
@@ -32,7 +32,7 @@ CORPUS = DATA / f"{NAME}.jsonl"
 MANIFEST = HERE / f"{NAME}_manifeste.json"
 CACHE = DATA / "tricoteuses"
 LEGISLATURE = 17
-FIELDS = [f.name for f in dataclasses.fields(RawAmendment)] + ["numero_ordre"]
+FIELDS = [f.name for f in dataclasses.fields(RawAmendement)] + ["numero_ordre"]
 DEV_SHARE = 70
 SALT = "moteur-v1"
 # Dossiers vus pendant la construction du moteur (exemples, fixtures, tests) : ni développement ni test.
@@ -71,22 +71,22 @@ def text(ref):
     return cached(f"textes/{ref}", read)
 
 
-def amendments(ref):
+def amendements(ref):
     """Amendements déposés sur le texte, au format du corpus (sans l'auteur, inutile à l'évaluation)."""
     def read():
-        return [{c: getattr(a, c) for c in FIELDS} for a in tricoteuses.text_amendments(ref)]
+        return [{c: getattr(a, c) for c in FIELDS} for a in tricoteuses.text_amendements(ref)]
     return cached(f"amendements/{ref}", read)
 
 
-def dossier_steps(reading, excluded):
+def dossier_steps(lecture, excluded):
     """Les étapes retenues d'une PremiereLecture ; chaque étape écartée est comptée dans exclus, avec sa raison."""
-    steps, dossier = [], reading.dossier
-    for name, input_, output in (("commission", reading.depose, reading.commission),
-                                ("seance", reading.commission, reading.adopte)):
+    steps, dossier = [], lecture.dossier
+    for name, input_, output in (("commission", lecture.depose, lecture.commission),
+                                ("seance", lecture.commission, lecture.adopte)):
         if not input_ or not output:
             excluded["acte manquant"] += 1
             continue
-        deposited = amendments(input_)
+        deposited = amendements(input_)
         if not any(a["sort"] == "Adopté" for a in deposited):
             excluded["aucun amendement adopté"] += 1
             continue
@@ -108,11 +108,11 @@ def dossier_steps(reading, excluded):
 
 def build():
     excluded, steps = Counter(), []
-    readings = cached(f"premiere_lecture_{LEGISLATURE}", lambda: [
-        dataclasses.asdict(reading) for reading in tricoteuses.first_reading_texts(LEGISLATURE)])
-    for reading in (tricoteuses.FirstReading(**d) for d in readings):
-        steps += dossier_steps(reading, excluded)
-        print(f"{reading.dossier} : {len(steps)} étapes retenues", flush=True)
+    lectures = cached(f"premiere_lecture_{LEGISLATURE}", lambda: [
+        dataclasses.asdict(lecture) for lecture in tricoteuses.premiere_lecture_texts(LEGISLATURE)])
+    for lecture in (tricoteuses.PremiereLecture(**d) for d in lectures):
+        steps += dossier_steps(lecture, excluded)
+        print(f"{lecture.dossier} : {len(steps)} étapes retenues", flush=True)
     return steps, excluded
 
 

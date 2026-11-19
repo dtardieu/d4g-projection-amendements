@@ -30,7 +30,7 @@ Source = Literal["grammar", "llm"]
 
 
 @dataclass
-class RawAmendment:
+class RawAmendement:
     """Ce qu'on lit de la table amendements de CLAIR (source [DB-A])."""
     uid: str
     numero: str                       # "CE11", "3 (Rect)"
@@ -57,7 +57,7 @@ class Target:
     """
     alinea: int | None = None
     until: int | None = None
-    sentence: int | None = None
+    phrase: int | None = None
     words: str | None = None
     occurrence: int | None = None
     position: Literal["dans", "debut", "fin", "avant", "apres"] = "dans"
@@ -84,7 +84,7 @@ class Scope:
 
 
 @dataclass
-class AmendmentAnalysis:
+class AmendementAnalysis:
     uid: str
     parent_uid: str | None
     scope: Scope
@@ -111,7 +111,7 @@ COLUMNS = ("uid, numero, texte_ref, article_vise, alinea, dispositif, amendement
             "to_char(date_sort, 'YYYY-MM-DD\"T\"HH24:MI:SS'), sort, id_discussion_identique")
 
 
-def load_amendment(conn, uid):
+def load_amendement(conn, uid):
     """Lit un amendement dans CLAIR et renvoie un AmendementBrut. Lève KeyError si l'uid est absent.
 
     CLAIR ne garde qu'une ligne par amendement : celle de la dernière rectification.
@@ -119,10 +119,10 @@ def load_amendment(conn, uid):
     line = conn.execute(f"SELECT {COLUMNS} FROM amendements WHERE uid = %s", (uid,)).fetchone()
     if line is None:
         raise KeyError(uid)
-    return RawAmendment(*line)
+    return RawAmendement(*line)
 
 
-ADDITIONAL_FORM = re.compile(r"^(APRÈS|AVANT)\s+(?:L['’]\s*)?ART(?:ICLE)?\.?\s*(.+)$", re.I)
+ADDITIONNEL_FORM = re.compile(r"^(APRÈS|AVANT)\s+(?:L['’]\s*)?ART(?:ICLE)?\.?\s*(.+)$", re.I)
 ARTICLE_FORM = re.compile(r"^ART(?:ICLE)?\.?\s+(.+)$", re.I)
 
 
@@ -135,9 +135,9 @@ def analyze_scope(article_vise):
     targeted = (article_vise or "").strip()
     if targeted.upper().startswith("TITRE"):
         return Scope("titre", None)
-    if additional := ADDITIONAL_FORM.match(targeted):
-        direction = "apres" if additional.group(1).upper() == "APRÈS" else "avant"
-        return Scope("article_additionnel", additional.group(2).strip().upper(), direction)
+    if additionnel := ADDITIONNEL_FORM.match(targeted):
+        direction = "apres" if additionnel.group(1).upper() == "APRÈS" else "avant"
+        return Scope("article_additionnel", additionnel.group(2).strip().upper(), direction)
     if article := ARTICLE_FORM.match(targeted):
         return Scope("article", article.group(1).strip().upper())
     raise ValueError(f"article_vise inconnu : {article_vise!r}")
@@ -156,8 +156,8 @@ def clean_dispositif(dispositif):
     """
     dispositif = unicodedata.normalize("NFC", dispositif)
     pieces = PARAGRAPH.findall(dispositif) or dispositif.split("\n\n")
-    paragraphs = (html.unescape(TAG.sub("", m)).strip() for m in pieces)
-    return [a for a in paragraphs if a]
+    alineas = (html.unescape(TAG.sub("", m)).strip() for m in pieces)
+    return [a for a in alineas if a]
 
 
 INSTRUCTION_NUMBER = re.compile(r"^([IVXLC]+)\.?\s*[–-]\s*")
@@ -170,7 +170,7 @@ CARRIES_ITS_TARGET = re.compile(r"^(?:à|a|au|aux|après\s+l['’]\s*alinéa|ava
 CONSEQUENTLY = re.compile(r"^en\s+conséquence\s*,\s*", re.I)
 
 
-def split_instructions(paragraphs):
+def split_instructions(alineas):
     """Regroupe les alinéas du dispositif en Instructions.
 
     Coupe sur « I. – », « II. – »… ; rattache à chaque chapeau les alinéas cités qui le suivent
@@ -178,7 +178,7 @@ def split_instructions(paragraphs):
     instructions qui commencent par « En conséquence ».
     """
     instructions, header, items = [], None, False
-    for alinea in (a.strip() for a in paragraphs):
+    for alinea in (a.strip() for a in alineas):
         if not alinea:
             continue
         numero = INSTRUCTION_NUMBER.match(alinea)
@@ -357,12 +357,12 @@ class _ToOperations(Transformer):
         return rank
 
     def phrase_de(self, rank, alinea=None):
-        return replace(_one(alinea) if alinea else self._alinea_implicite(), sentence=rank, node="phrase")
+        return replace(_one(alinea) if alinea else self._alinea_implicite(), phrase=rank, node="phrase")
 
     def meme_phrase(self, alinea=None):
-        if self.preceding is None or self.preceding.sentence is None:
+        if self.preceding is None or self.preceding.phrase is None:
             raise _Rejection("« même phrase » sans phrase précédente")
-        return self.phrase_de(self.preceding.sentence, alinea)
+        return self.phrase_de(self.preceding.phrase, alinea)
 
     def _alinea_implicite(self):
         """« À la seconde phrase, … » : l'alinéa de l'instruction précédente ; sinon alinea reste None et l'étape 3
@@ -436,7 +436,7 @@ class _ToOperations(Transformer):
                 for numero in range(targeted_one.alinea, targeted_one.until + 1) if targeted_one.until else [targeted_one.alinea]:
                     edge = targeted_one.position in ("fin", "debut") and model.target.position in ("dans", "fin", "debut")
                     operations.append(replace(model, provenance=None, target=replace(
-                        model.target, alinea=numero, sentence=targeted_one.sentence, node=targeted_one.node, until=None,
+                        model.target, alinea=numero, phrase=targeted_one.phrase, node=targeted_one.node, until=None,
                         position=targeted_one.position if edge else model.target.position)))
             return operations
         return operation
@@ -643,7 +643,7 @@ def llm_message(instruction, scope, article_text, preceding=None):
     """Le message propre à une instruction : les alinéas sont numérotés comme le cite l'amendement."""
     lignes = [f"Portée : {scope.node} {scope.article or ''}".strip()]
     if preceding is not None:
-        lignes.append(f"Cible précédente : alinéa {preceding.alinea}, phrase {preceding.sentence}")
+        lignes.append(f"Cible précédente : alinéa {preceding.alinea}, phrase {preceding.phrase}")
     if article_text:
         lignes += ["", "Article visé :"] + [f"({i}) {l}" for i, l in enumerate(article_text.split("\n"), 1)]
     lignes += ["", "Instruction :", instruction.heading, *instruction.quotes]
@@ -699,7 +699,7 @@ def validate_operations(operations, scope):
     return errors
 
 
-def analyze_amendment(amendment, article_text=None, llm_call=None):
+def analyze_amendement(amendement, article_text=None, llm_call=None):
     """Point d'entrée de l'étape 1 : AmendementBrut → AnalyseAmendement.
 
     nettoyer_dispositif → decouper_instructions → grammaire pour chaque instruction, puis LLM si appel_llm est
@@ -708,15 +708,15 @@ def analyze_amendment(amendment, article_text=None, llm_call=None):
     moitié appliqué. source vaut "llm" dès qu'une instruction passe par le LLM ; confiance = minimum des instructions.
     """
     try:
-        scope = analyze_scope(amendment.article_vise)
+        scope = analyze_scope(amendement.article_vise)
     except ValueError as error:
-        return AmendmentAnalysis(amendment.uid, amendment.parent_uid, Scope("article", None), [], "grammar", 0.0,
+        return AmendementAnalysis(amendement.uid, amendement.parent_uid, Scope("article", None), [], "grammar", 0.0,
                                  [str(error)])
-    paragraphs = clean_dispositif(amendment.dispositif or "")
+    alineas = clean_dispositif(amendement.dispositif or "")
     if scope.node == "article_additionnel":
-        instructions = [Instruction(None, paragraphs[0], paragraphs[1:])] if paragraphs else []
+        instructions = [Instruction(None, alineas[0], alineas[1:])] if alineas else []
     else:
-        instructions = split_instructions(paragraphs)
+        instructions = split_instructions(alineas)
     operations, preceding, errors = [], None, []
     source, confidence = "grammar", 1.0
     for instruction in instructions:
@@ -732,5 +732,5 @@ def analyze_amendment(amendment, article_text=None, llm_call=None):
     errors += validate_operations(operations, scope)
     if not instructions:
         errors.append("dispositif vide")
-    return AmendmentAnalysis(amendment.uid, amendment.parent_uid, scope, [] if errors else operations, source,
+    return AmendementAnalysis(amendement.uid, amendement.parent_uid, scope, [] if errors else operations, source,
                              0.0 if errors else confidence, errors)

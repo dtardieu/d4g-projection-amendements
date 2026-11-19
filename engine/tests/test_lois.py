@@ -2,7 +2,7 @@
 
 import pytest
 
-from engine.laws import consolidate_article, neutralize_references, replace_subdivisions
+from engine.lois import consolidate_article, neutralize_references, replace_subdivisions
 
 ARTICLE = "Premier alinéa a, la dernière semaine d'août, à Mayotte, ici. Seconde phrase.\nDeuxième alinéa b.\nTroisième."
 SUBDIVIDED = "I. - Premier.\n1° Un a ;\n2° Deux b ;\nSuite du 2°.\nII. - Second c.\n1° Autre d."

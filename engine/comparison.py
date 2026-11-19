@@ -14,8 +14,8 @@ from engine.text import split_tokens, fingerprint, normalize
 
 def conflict(effect_a, effect_b):
     return bool(effect_a.writings & effect_b.writings
-                or effect_a.writings & effect_b.readings
-                or effect_b.writings & effect_a.readings)
+                or effect_a.writings & effect_b.lectures
+                or effect_b.writings & effect_a.lectures)
 
 
 def commute(a, b, reference):
@@ -79,9 +79,9 @@ def smith_waterman(a, b, mapping=2, gap=-1):
     return best / (mapping * min(len(a), len(b)))
 
 
-def near_duplicates(amendments, minhash_threshold=0.5, alignment_threshold=0.8):
+def near_duplicates(amendements, minhash_threshold=0.5, alignment_threshold=0.8):
     """amendements : {uid : operations}. Paires de textes proches : MinHash d'abord, puis confirmation par alignement."""
-    signatures = {uid: text_signature(ops) for uid, ops in amendments.items()}
+    signatures = {uid: text_signature(ops) for uid, ops in amendements.items()}
     fingerprints = {uid: minhash(words) for uid, words in signatures.items() if words}
     uids = sorted(fingerprints)
     pairs = []

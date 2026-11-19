@@ -27,7 +27,7 @@ DOCUMENT = {
         {"articleRefHash": "hx", "numero": 0, "texte": "Mesdames, Messieurs,"},
     ],
 }
-AMENDMENT = {
+AMENDEMENT = {
     "uid": "AM1",
     "numeroLong": "CE1",
     "documentRefUid": "PIONTEST",
@@ -43,7 +43,7 @@ AMENDMENT = {
     "signatairesLibelle": "Mme Barth&#232;s",
 }
 DELETION = dict(
-    AMENDMENT,
+    AMENDEMENT,
     uid="AM3",
     numeroLong="CE3",
     dispositifHtml="<p>Supprimer l’alinéa 1.</p>",
@@ -72,8 +72,8 @@ def api(monkeypatch):
         if path.startswith("/documents/"):
             raise tricoteuses.TextNotFound(path)
         if path == "/amendements/json":
-            removed = dict(AMENDMENT, uid="AM2", sortAmendement="Retiré")
-            page = [AMENDMENT, DELETION] if params["page"] == 1 else [removed]
+            removed = dict(AMENDEMENT, uid="AM2", sortAmendement="Retiré")
+            page = [AMENDEMENT, DELETION] if params["page"] == 1 else [removed]
             return Response(page, pages=2)
         raise AssertionError(path)
 
@@ -97,29 +97,29 @@ def test_version_drops_mentions_and_keeps_order(api):
     assert [a.numero for a in version.articles] == ["PREMIER", "2"]
     assert [a.supprime for a in version.articles] == [False, True]
     first = version.articles[0]
-    texts = ["".join(j.text for j in alinea.tokens) for alinea in first.paragraphs]
+    texts = ["".join(j.text for j in alinea.tokens) for alinea in first.alineas]
     assert texts == ["Le premier alinéa.", "Le second alinéa."]
 
 
-def test_amendment_from():
-    amendment = tricoteuses.amendment_from(dict(AMENDMENT, idDiscussionIdentique=42))
-    assert amendment.article_vise == "ART. PREMIER"
-    assert amendment.dispositif.startswith("<p>")
-    assert amendment.date_sort == "2025-02-19T14:21:18"
-    assert amendment.id_identique == "42"
-    assert amendment.auteur == "Mme Barthès"
+def test_amendement_from():
+    amendement = tricoteuses.amendement_from(dict(AMENDEMENT, idDiscussionIdentique=42))
+    assert amendement.article_vise == "ART. PREMIER"
+    assert amendement.dispositif.startswith("<p>")
+    assert amendement.date_sort == "2025-02-19T14:21:18"
+    assert amendement.id_identique == "42"
+    assert amendement.auteur == "Mme Barthès"
 
 
-def test_amendments_reads_all_pages(api):
-    amendments = tricoteuses.text_amendments("PIONTEST")
-    assert [a.uid for a in amendments] == ["AM1", "AM3", "AM2"]
+def test_amendements_reads_all_pages(api):
+    amendements = tricoteuses.text_amendements("PIONTEST")
+    assert [a.uid for a in amendements] == ["AM1", "AM3", "AM2"]
     assert [p["page"] for c, p in api if c == "/amendements/json"] == [1, 2]
 
 
 def test_deposit_order_number():
-    assert tricoteuses.amendment_from(dict(AMENDMENT, numeroOrdreDepot="393")).numero_ordre == 393
-    assert tricoteuses.amendment_from(dict(AMENDMENT, numeroOrdreDepot=393)).numero_ordre == 393
-    assert tricoteuses.amendment_from(AMENDMENT).numero_ordre is None
+    assert tricoteuses.amendement_from(dict(AMENDEMENT, numeroOrdreDepot="393")).numero_ordre == 393
+    assert tricoteuses.amendement_from(dict(AMENDEMENT, numeroOrdreDepot=393)).numero_ordre == 393
+    assert tricoteuses.amendement_from(AMENDEMENT).numero_ordre is None
 
 
 def test_articles_from_document():
@@ -136,13 +136,13 @@ def test_read_text(api):
     assert [a.numero for a in text.articles] == ["PREMIER", "2"]
 
 
-def test_flattened_table_stays_one_paragraph():
+def test_flattened_table_stays_one_alinea():
     table = {"articleRefHash": "h1", "numero": 3, "texte": "«\tPopulation\tTaux\t\t\n\tMoins de 500\t28,1\t\t\n"}
     articles = tricoteuses.articles_from_document(dict(DOCUMENT, alineas=DOCUMENT["alineas"] + [table]))
     assert articles[0].lignes[-1] == "« Population Taux Moins de 500 28,1"
 
 
-def test_first_reading_texts(monkeypatch):
+def test_premiere_lecture_texts(monkeypatch):
     acts = {
         "AN1-DEPOT": [{"dossierRefUid": "DL1", "texteAssocieRefUid": "PIONB1"}],
         "AN1-COM-FOND-RAPPORT": [{"dossierRefUid": "DL1", "texteAdopteRefUid": "PIONBTC1"},
@@ -157,8 +157,8 @@ def test_first_reading_texts(monkeypatch):
         return Response(acts[params["codeActe"]])
 
     monkeypatch.setattr(tricoteuses, "get", get)
-    assert tricoteuses.first_reading_texts(17) == [
-        tricoteuses.FirstReading("DL1", depose="PIONB1", commission="PIONBTC1", adopte="PIONBTA1")]
+    assert tricoteuses.premiere_lecture_texts(17) == [
+        tricoteuses.PremiereLecture("DL1", depose="PIONB1", commission="PIONBTC1", adopte="PIONBTA1")]
 
 
 def readable(alinea):

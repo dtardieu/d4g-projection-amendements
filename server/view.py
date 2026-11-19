@@ -13,38 +13,38 @@ from engine.text import number_key, lines_of, numbers
 START_ORIGIN = "T0"
 
 
-def articles(initial, projected, effects, amendments, statuses):
+def articles(initial, projected, effects, amendements, statuses):
     """[{numero, numero_depart, etat, depart, alineas, amendements}], dans l'ordre projeté."""
     old_items = {a.id: a for a in initial.articles}
     authors = _writing_authors(effects)
-    targeted_amendments = _amendments_by_article(amendments)
+    targeted_amendements = _amendements_by_article(amendements)
     view = numbers(projected)
     result = []
     for article in projected.articles:
         old = old_items.get(article.id)
-        paragraphs = _paragraphs(old, article, authors)
-        touched = {s["amendement"] for a in paragraphs for s in a["segments"] if s["amendement"]}
+        alineas = _alineas(old, article, authors)
+        touched = {s["amendement"] for a in alineas for s in a["segments"] if s["amendement"]}
         key = number_key(old.numero) if old and old.numero else None
-        linked = touched | set(targeted_amendments.get(key, []))
+        linked = touched | set(targeted_amendements.get(key, []))
         result.append(
             {
                 "numero": view[article.id],
                 "numero_depart": old.numero if old else None,
-                "etat": _state(old, article, paragraphs),
+                "etat": _state(old, article, alineas),
                 "depart": [] if old is None or old.supprime else lines_of(old),
-                "alineas": paragraphs,
-                "amendements": [a.uid for a in amendments if a.uid in linked and a.uid in statuses],
+                "alineas": alineas,
+                "amendements": [a.uid for a in amendements if a.uid in linked and a.uid in statuses],
             }
         )
     return result
 
 
-def _state(old, article, paragraphs):
+def _state(old, article, alineas):
     if old is None:
         return "nouveau"
     if article.supprime and not old.supprime:
         return "supprime"
-    if any(s["type"] != "eq" for a in paragraphs for s in a["segments"]):
+    if any(s["type"] != "eq" for a in alineas for s in a["segments"]):
         return "modifie"
     return "inchange"
 
@@ -58,33 +58,33 @@ def _writing_authors(effects):
     return authors
 
 
-def _amendments_by_article(amendments):
+def _amendements_by_article(amendements):
     """{clé du numéro d'article visé : [uid]}, « APRÈS ART. 3 » compris dans l'article 3."""
-    targeted_amendments = {}
-    for amendment in amendments:
+    targeted_amendements = {}
+    for amendement in amendements:
         try:
-            article = analyze_scope(amendment.article_vise).article
+            article = analyze_scope(amendement.article_vise).article
         except ValueError:
             continue
         if article:
-            targeted_amendments.setdefault(number_key(article), []).append(amendment.uid)
-    return targeted_amendments
+            targeted_amendements.setdefault(number_key(article), []).append(amendement.uid)
+    return targeted_amendements
 
 
-def _paragraphs(old, article, authors):
+def _alineas(old, article, authors):
     """Alinéas affichés : [{numero, segments}] ; un alinéa supprimé en entier n'a pas de numéro."""
     if article.supprime:
         if old is None or old.supprime:
             return []
-        return [_deleted_paragraph(a, old, authors) for a in old.paragraphs]
-    alive = {j.id for a in article.paragraphs for j in a.tokens}
+        return [_deleted_alinea(a, old, authors) for a in old.alineas]
+    alive = {j.id for a in article.alineas for j in a.tokens}
     before, after, end = _deletions(old, alive, authors) if old else ({}, {}, [])
     result = []
-    for numero, alinea in enumerate(article.paragraphs, 1):
+    for numero, alinea in enumerate(article.alineas, 1):
         segments = []
         for token in alinea.tokens:
-            removed_paragraphs, removed_words = before.pop(token.id, ([], []))
-            result += removed_paragraphs
+            removed_alineas, removed_words = before.pop(token.id, ([], []))
+            result += removed_alineas
             # Le texte retiré se lit avant ce qui le remplace : on le place devant les insertions
             # qui précèdent immédiatement ce jeton.
             beginning = len(segments)
@@ -97,7 +97,7 @@ def _paragraphs(old, article, authors):
                 segments.append(_segment("ins", token.text, token.origin))
             segments += after.pop(token.id, [])
         result.append({"numero": numero, "segments": _merge(segments)})
-    if old and len(end) == len(old.paragraphs):
+    if old and len(end) == len(old.alineas):
         return end + result  # article réécrit en entier : l'ancien texte d'abord, puis le nouveau
     return result + end
 
@@ -109,26 +109,26 @@ def _deletions(old, alive, authors):
     apres[id] : mots supprimés en fin d'alinéa, après le dernier jeton vivant ;
     fin : alinéas supprimés après le dernier jeton vivant de l'article.
     """
-    before, after, removed_paragraphs = {}, {}, []
-    for alinea in old.paragraphs:
+    before, after, removed_alineas = {}, {}, []
+    for alinea in old.alineas:
         if not any(j.id in alive for j in alinea.tokens):
-            removed_paragraphs.append(_deleted_paragraph(alinea, old, authors))
+            removed_alineas.append(_deleted_alinea(alinea, old, authors))
             continue
         words, last = [], None
         for token in alinea.tokens:
             if token.id not in alive:
                 words.append(_deleted(token, alinea, old, authors))
             else:
-                if words or removed_paragraphs:
-                    before[token.id] = (removed_paragraphs, words)
-                    words, removed_paragraphs = [], []
+                if words or removed_alineas:
+                    before[token.id] = (removed_alineas, words)
+                    words, removed_alineas = [], []
                 last = token.id
         if words:
             after[last] = words
-    return before, after, removed_paragraphs
+    return before, after, removed_alineas
 
 
-def _deleted_paragraph(alinea, article, authors):
+def _deleted_alinea(alinea, article, authors):
     segments = [_deleted(j, alinea, article, authors) for j in alinea.tokens]
     return {"numero": None, "segments": _merge(segments)}
 
@@ -138,8 +138,8 @@ def _deleted(token, alinea, article, authors):
     return _segment("del", token.text, auteur)
 
 
-def _segment(type_, text, amendment):
-    return {"type": type_, "texte": text, "amendement": amendment}
+def _segment(type_, text, amendement):
+    return {"type": type_, "texte": text, "amendement": amendement}
 
 
 def _merge(segments):

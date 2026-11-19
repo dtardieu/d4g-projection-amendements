@@ -8,8 +8,8 @@ bilan : lit le CSV exporté par la page et donne la métrique, avec sa marge d'e
 
 Une série d'amendements identiques compte pour un : c'est un seul texte à montrer.
 
-Usage : uv run python -m evals.engine.amendment_review lancer
-        uv run python -m evals.engine.amendment_review bilan chemin/vers/revue_verdicts.csv
+Usage : uv run python -m evals.engine.amendement_review lancer
+        uv run python -m evals.engine.amendement_review bilan chemin/vers/revue_verdicts.csv
 """
 
 import argparse
@@ -23,7 +23,7 @@ from pathlib import Path
 from evals.engine.llm_openai import BudgetExceeded
 from evals.engine.run import RESULTS, split_steps, input_version
 from evals.engine.score import read_results
-from evals.engine.viewer.app import MISSING_ARTICLE, _operations, amendment_effect
+from evals.engine.viewer.app import MISSING_ARTICLE, _operations, amendement_effect
 from engine.application import apply
 from engine.resolution import TargetError
 
@@ -37,14 +37,14 @@ VERDICTS = {"juste", "mineur", "faux", "indetermine"}
 USABLE = {"juste", "mineur"}  # « mineur » : le lecteur comprend le bon effet, malgré un défaut de forme
 
 
-def stratum_of(amendment):
-    return "adopté" if amendment["sort"] == "Adopté" else "non adopté"
+def stratum_of(amendement):
+    return "adopté" if amendement["sort"] == "Adopté" else "non adopté"
 
 
-def issue(step, amendment, initial, by_uid):
+def issue(step, amendement, initial, by_uid):
     """Ce que le produit afficherait : « affiché » ou la raison de l'absence. Le LLM ne sert qu'aux réponses déjà payées."""
     try:
-        operations, scope, auteur = _operations(step, amendment, initial, by_uid, True)
+        operations, scope, auteur = _operations(step, amendement, initial, by_uid, True)
         apply(operations, scope, initial, initial, auteur)
     except ValueError:
         return "non analysé"
@@ -104,7 +104,7 @@ def launch(_args):
     records = []
     with KEY_FILE.open("w", encoding="utf-8") as f:
         for numero, (stratum, step_id, uid) in enumerate(draw, 1):
-            effect = amendment_effect(steps[step_id], uid, MISSING_ARTICLE, results[step_id]["statuts"], True)
+            effect = amendement_effect(steps[step_id], uid, MISSING_ARTICLE, results[step_id]["statuts"], True)
             sources = sorted({i["source"] for i in effect["analyse"]})
             f.write(json.dumps({"numero": numero, "strate": stratum, "etape": step_id, "uid": uid, "amendement": effect["numero"],
                                 "sort": effect["sort"], "sources": sources}, ensure_ascii=False) + "\n")

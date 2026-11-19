@@ -1,8 +1,8 @@
 {
  "version": "V5-gram-etendue",
  "split": "dev",
- "commit": "f015653",
- "date": "2026-11-19T12:09:45",
+ "commit": "cc82e32",
+ "date": "2026-11-19T12:34:34",
  "corpus": "4633bcbfaf20e6f8646ecd9bcef35c5e238eb4356c54c6ee929c1a944c078927",
  "consolidation": {
   "touches": 2517,
