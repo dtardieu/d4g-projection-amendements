@@ -62,10 +62,10 @@ class Response:
 @pytest.fixture
 def api(monkeypatch):
     """Remplace l'API : le document de test, et ses amendements sur deux pages."""
-    appels = []
+    calls = []
 
     def get(chemin, params=None):
-        appels.append((chemin, params))
+        calls.append((chemin, params))
         if chemin == "/documents/PIONTEST":
             assert params == {"include": "subdivisions,alineas"}
             return Response(DOCUMENT)
@@ -79,7 +79,7 @@ def api(monkeypatch):
 
     monkeypatch.setattr(tricoteuses, "get", get)
     app.projection.cache_clear()
-    return appels
+    return calls
 
 
 def test_numbers_from_title():
@@ -92,27 +92,27 @@ def test_numbers_from_title():
 
 
 def test_version_drops_mentions_and_keeps_order(api):
-    titre, version = tricoteuses.texte("PIONTEST")
+    titre, version = tricoteuses.text("PIONTEST")
     assert titre == "Proposition de loi de test"
     assert [a.numero for a in version.articles] == ["PREMIER", "2"]
     assert [a.supprime for a in version.articles] == [False, True]
-    premier = version.articles[0]
-    textes = ["".join(j.texte for j in alinea.jetons) for alinea in premier.alineas]
-    assert textes == ["Le premier alinéa.", "Le second alinéa."]
+    first = version.articles[0]
+    texts = ["".join(j.text for j in alinea.tokens) for alinea in first.paragraphs]
+    assert texts == ["Le premier alinéa.", "Le second alinéa."]
 
 
 def test_amendment_from():
-    amendement = tricoteuses.amendment_from(dict(AMENDMENT, idDiscussionIdentique=42))
-    assert amendement.article_vise == "ART. PREMIER"
-    assert amendement.dispositif.startswith("<p>")
-    assert amendement.date_sort == "2025-02-19T14:21:18"
-    assert amendement.id_identique == "42"
-    assert amendement.auteur == "Mme Barthès"
+    amendment = tricoteuses.amendment_from(dict(AMENDMENT, idDiscussionIdentique=42))
+    assert amendment.article_vise == "ART. PREMIER"
+    assert amendment.dispositif.startswith("<p>")
+    assert amendment.date_sort == "2025-02-19T14:21:18"
+    assert amendment.id_identique == "42"
+    assert amendment.auteur == "Mme Barthès"
 
 
 def test_amendments_reads_all_pages(api):
-    amendements = tricoteuses.text_amendments("PIONTEST")
-    assert [a.uid for a in amendements] == ["AM1", "AM3", "AM2"]
+    amendments = tricoteuses.text_amendments("PIONTEST")
+    assert [a.uid for a in amendments] == ["AM1", "AM3", "AM2"]
     assert [p["page"] for c, p in api if c == "/amendements/json"] == [1, 2]
 
 
@@ -131,9 +131,9 @@ def test_articles_from_document():
 
 
 def test_read_text(api):
-    texte = tricoteuses.lire_texte("PIONTEST")
-    assert (texte.uid, texte.titre) == ("PIONTEST", "Proposition de loi de test")
-    assert [a.numero for a in texte.articles] == ["PREMIER", "2"]
+    text = tricoteuses.read_text("PIONTEST")
+    assert (text.uid, text.titre) == ("PIONTEST", "Proposition de loi de test")
+    assert [a.numero for a in text.articles] == ["PREMIER", "2"]
 
 
 def test_flattened_table_stays_one_paragraph():
@@ -171,17 +171,17 @@ def readable(alinea):
 
 
 def test_projection_attributed_segments(api):
-    resultat = app.projection("PIONTEST")
-    assert resultat["titre"] == "Proposition de loi de test"
-    premier, second = resultat["articles"]
-    assert premier["etat"] == "modifie"
-    assert premier["depart"] == ["Le premier alinéa.", "Le second alinéa."]
-    assert [a["numero"] for a in premier["alineas"]] == [None, 1]
-    assert [readable(a) for a in premier["alineas"]] == [
+    result = app.projection("PIONTEST")
+    assert result["titre"] == "Proposition de loi de test"
+    first, second = result["articles"]
+    assert first["etat"] == "modifie"
+    assert first["depart"] == ["Le premier alinéa.", "Le second alinéa."]
+    assert [a["numero"] for a in first["alineas"]] == [None, 1]
+    assert [readable(a) for a in first["alineas"]] == [
         "[-Le premier alinéa.-]@AM3",
         "Le [-second-]@AM1{+dernier+}@AM1 alinéa.",
     ]
-    assert set(premier["amendements"]) == {"AM1", "AM2", "AM3"}
+    assert set(first["amendements"]) == {"AM1", "AM2", "AM3"}
     assert second == {
         "numero": "2",
         "numero_depart": "2",
@@ -190,10 +190,10 @@ def test_projection_attributed_segments(api):
         "alineas": [],
         "amendements": [],
     }
-    etats = {uid: s["etat"] for uid, s in resultat["amendements"].items()}
+    etats = {uid: s["etat"] for uid, s in result["amendements"].items()}
     assert etats == {"AM1": "applique", "AM3": "applique", "AM2": "ignore"}
-    assert resultat["amendements"]["AM1"]["auteur"] == "Mme Barthès"
-    assert resultat["amendements"]["AM3"]["dispositif"] == ["Supprimer l’alinéa 1."]
+    assert result["amendements"]["AM1"]["auteur"] == "Mme Barthès"
+    assert result["amendements"]["AM3"]["dispositif"] == ["Supprimer l’alinéa 1."]
 
 
 @pytest.fixture
@@ -206,24 +206,24 @@ def server(api):
 
 def lire(url):
     try:
-        with urllib.request.urlopen(url) as reponse:
-            return reponse.status, json.load(reponse)
-    except urllib.error.HTTPError as erreur:
-        return erreur.code, json.load(erreur)
+        with urllib.request.urlopen(url) as response:
+            return response.status, json.load(response)
+    except urllib.error.HTTPError as error:
+        return error.code, json.load(error)
 
 
 def test_route_projection(server):
-    statut, corps = lire(f"{server}/textes/PIONTEST/projection")
-    assert statut == 200
-    assert corps["resume"] == {"applique": 2, "ignore": 1}
+    status, body = lire(f"{server}/textes/PIONTEST/projection")
+    assert status == 200
+    assert body["resume"] == {"applique": 2, "ignore": 1}
 
 
 def test_interface_and_static_files(server):
-    with urllib.request.urlopen(f"{server}/") as reponse:
-        assert reponse.headers["Content-Type"].startswith("text/html")
-        assert b"Texte projet" in reponse.read()
-    with urllib.request.urlopen(f"{server}/static/assets/chevron.svg") as reponse:
-        assert reponse.headers["Content-Type"] == "image/svg+xml"
+    with urllib.request.urlopen(f"{server}/") as response:
+        assert response.headers["Content-Type"].startswith("text/html")
+        assert b"Texte projet" in response.read()
+    with urllib.request.urlopen(f"{server}/static/assets/chevron.svg") as response:
+        assert response.headers["Content-Type"] == "image/svg+xml"
     assert lire(f"{server}/static/../app.py")[0] == 404
     assert lire(f"{server}/static/absent.css")[0] == 404
 

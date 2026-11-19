@@ -6,8 +6,8 @@ __pycache__/
 node_modules/
 dist/
 *.jsonl
-evals/moteur/donnees/textes/
-evals/moteur/donnees/cache_llm/
-evals/moteur/donnees/cache_decisions/
+evals/engine/donnees/textes/
+evals/engine/donnees/cache_llm/
+evals/engine/donnees/cache_decisions/
 evals/doctrine/donnees/
-evals/moteur/donnees/tricoteuses/
+evals/engine/donnees/tricoteuses/

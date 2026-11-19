@@ -20,8 +20,8 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 import requests
-from moteur.analyse import nettoyer_dispositif
-from moteur.consolidation import consolider
+from engine.analysis import clean_dispositif
+from engine.consolidation import consolidate
 
 from server import view
 from datasources import tricoteuses
@@ -34,25 +34,25 @@ TYPES = {".html": "text/html; charset=utf-8", ".svg": "image/svg+xml"}
 @lru_cache(maxsize=32)
 def projection(uid):
     """Projection d'un texte, gardée en mémoire : un texte long demande plusieurs secondes."""
-    titre, depart = tricoteuses.texte(uid)
-    amendements = tricoteuses.text_amendments(uid)
-    resultat = consolider(depart, amendements)
-    statuts = resultat.statuts
+    titre, initial = tricoteuses.text(uid)
+    amendments = tricoteuses.text_amendments(uid)
+    result = consolidate(initial, amendments)
+    statuses = result.statuses
     return {
         "texte": uid,
         "titre": titre,
         "source": tricoteuses.URL,
-        "resume": dict(Counter(s.etat for s in statuts.values())),
-        "articles": view.articles(depart, resultat.version, resultat.effets, amendements, statuts),
+        "resume": dict(Counter(s.etat for s in statuses.values())),
+        "articles": view.articles(initial, result.version, result.effects, amendments, statuses),
         "amendements": {
-            a.uid: asdict(statuts[a.uid])
+            a.uid: asdict(statuses[a.uid])
             | {
                 "article_vise": a.article_vise,
                 "auteur": a.auteur,
-                "dispositif": nettoyer_dispositif(a.dispositif or ""),
+                "dispositif": clean_dispositif(a.dispositif or ""),
             }
-            for a in amendements
-            if a.uid in statuts
+            for a in amendments
+            if a.uid in statuses
         },
     }
 
@@ -69,10 +69,10 @@ class Handler(BaseHTTPRequestHandler):
             return self.respond(404, {"erreur": "route inconnue : GET /textes/{uid}/projection"})
         try:
             return self.respond(200, projection(route[1]))
-        except tricoteuses.TextNotFound as erreur:
-            return self.respond(404, {"erreur": f"texte introuvable : {erreur}"})
-        except requests.RequestException as erreur:
-            return self.respond(502, {"erreur": f"Tricoteuses injoignable : {erreur}"})
+        except tricoteuses.TextNotFound as error:
+            return self.respond(404, {"erreur": f"texte introuvable : {error}"})
+        except requests.RequestException as error:
+            return self.respond(502, {"erreur": f"Tricoteuses injoignable : {error}"})
 
     def file(self, chemin):
         """Un fichier de static/, et rien en dehors (pas de « ../ »)."""
@@ -82,17 +82,17 @@ class Handler(BaseHTTPRequestHandler):
         type_ = TYPES.get(chemin.suffix, "application/octet-stream")
         return self.send(200, chemin.read_bytes(), type_)
 
-    def respond(self, statut, corps):
-        contenu = json.dumps(corps, ensure_ascii=False).encode("utf-8")
-        return self.send(statut, contenu, "application/json; charset=utf-8")
+    def respond(self, status, body):
+        content = json.dumps(body, ensure_ascii=False).encode("utf-8")
+        return self.send(status, content, "application/json; charset=utf-8")
 
-    def send(self, statut, contenu, type_):
-        self.send_response(statut)
+    def send(self, status, content, type_):
+        self.send_response(status)
         self.send_header("Content-Type", type_)
-        self.send_header("Content-Length", str(len(contenu)))
+        self.send_header("Content-Length", str(len(content)))
         self.send_header("Access-Control-Allow-Origin", "*")
         self.end_headers()
-        self.wfile.write(contenu)
+        self.wfile.write(content)
 
 
 def main():

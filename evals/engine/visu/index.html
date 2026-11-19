@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visionneuse du moteur</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --fond: #fff; --fond2: #f6f6f6; --trait: #ddd; --texte: #161616; --discret: #666; --action: #000091; --choisi: #e3e3fd;
+  --plus: #b8f0c8; --moins: #fbc9c9; --amdt: #1f7a3d;
+  --c-effet: #f9b4b4; --c-guillemets: #f7c98b; --c-retouche: #fdeb9c; --c-typo: #dcdcdc; --c-mention: #d6d0f5; --c-hors: #bcdcf7; --c-renum: #c4ead6;
+}
+@media (prefers-color-scheme: dark) { :root {
+  --fond: #1c1c1e; --fond2: #27272a; --trait: #3f3f46; --texte: #eee; --discret: #aaa; --action: #a9a9ff; --choisi: #33335e;
+  --plus: #1d5a33; --moins: #6b2424; --amdt: #7ddf9b;
+  --c-effet: #7a2b2b; --c-guillemets: #75501c; --c-retouche: #6b5d17; --c-typo: #4a4a4f; --c-mention: #463d7a; --c-hors: #234d70; --c-renum: #1f5a48;
+} }
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--fond); color: var(--texte); font: 14px/1.5 system-ui, sans-serif; display: flex; flex-direction: column; }
+header { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; padding: 8px 16px; border-bottom: 1px solid var(--trait); }
+h1 { font-size: 15px; margin: 0; }
+h2 { font-size: 14px; margin: 16px 0 6px; }
+.note { color: var(--discret); font-size: 12px; }
+select, input, button { font: inherit; color: inherit; background: var(--fond); border: 1px solid var(--trait); border-radius: 4px; padding: 3px 6px; }
+main { flex: 1; display: grid; grid-template-columns: 260px 160px 170px minmax(0, 1fr); min-height: 0; }
+.col { overflow: auto; border-right: 1px solid var(--trait); min-height: 0; }
+.filtres { position: sticky; top: 0; background: var(--fond); padding: 8px; border-bottom: 1px solid var(--trait); display: flex; flex-direction: column; gap: 6px; }
+.filtres input[type=search] { width: 100%; }
+ul { list-style: none; margin: 0; padding: 0; }
+li button { display: block; width: 100%; text-align: left; border: 0; border-bottom: 1px solid var(--trait); border-radius: 0; padding: 6px 8px; background: none; cursor: pointer; }
+li button:hover { background: var(--fond2); }
+li button[aria-current=true] { background: var(--choisi); }
+.onglets { display: flex; gap: 4px; padding: 8px 8px 0; }
+.onglets button { flex: 1; cursor: pointer; font-size: 12px; }
+.onglets button[aria-pressed=true] { background: var(--choisi); border-color: var(--action); }
+.sous { display: block; color: var(--discret); font-size: 12px; }
+.badge { display: inline-block; border-radius: 3px; padding: 0 5px; font-size: 11px; background: var(--fond2); }
+#detail { padding: 12px 16px; overflow: auto; min-height: 0; }
+.panneaux { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.texte { white-space: pre-wrap; overflow-wrap: anywhere; border: 1px solid var(--trait); border-radius: 4px; padding: 8px; font-family: Georgia, serif; line-height: 1.6; }
+ins { background: var(--plus); text-decoration: none; }
+del { background: var(--moins); }
+.amdt { color: var(--amdt); border-bottom: 1px dotted var(--amdt); }
+.ecart { border-radius: 2px; }
+.ecart-del { text-decoration: line-through; }
+[data-cat="effet absent"] { background: var(--c-effet); }
+[data-cat="guillemets ou alinéas"] { background: var(--c-guillemets); }
+[data-cat="retouche"] { background: var(--c-retouche); }
+[data-cat="renumérotation"] { background: var(--c-renum); }
+[data-cat="typographie"] { background: var(--c-typo); }
+[data-cat="mention"] { background: var(--c-mention); }
+[data-cat="hors amendement"] { background: var(--c-hors); }
+.legende { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; font-size: 12px; }
+.legende span { padding: 0 6px; border-radius: 3px; }
+.replie { color: var(--action); cursor: pointer; background: none; border: 0; padding: 0; font-family: system-ui, sans-serif; font-size: 12px; }
+.analyse { border: 1px solid var(--trait); border-radius: 4px; padding: 8px 12px; margin: 8px 0; }
+.instruction { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 13px; color: var(--discret); margin: 4px 0; }
+.operation { border-top: 1px solid var(--trait); padding: 6px 0; overflow-wrap: anywhere; }
+.operation b { font-weight: 600; }
+.badge.grammaire { background: var(--plus); }
+.badge.LLM { background: var(--c-mention); }
+.badge.nonreconnu { background: var(--moins); }
+.trouve { color: var(--amdt); }
+details { border: 1px solid var(--trait); border-radius: 4px; padding: 4px 8px; margin-bottom: 4px; }
+summary { cursor: pointer; }
+.dispositif { white-space: pre-wrap; overflow-wrap: anywhere; font-family: Georgia, serif; margin: 6px 0; border-left: 3px solid var(--action); padding: 8px 12px; background: var(--fond2); border-radius: 0 4px 4px 0; }
+.erreur { color: #c9191e; }
+.comparaison { border-collapse: collapse; margin: 8px 0; }
+.comparaison th, .comparaison td { border-bottom: 1px solid var(--trait); padding: 4px 10px; text-align: right; white-space: nowrap; }
+.comparaison th:first-child, .comparaison td:first-child { text-align: left; }
+.comparaison tbody tr { cursor: pointer; }
+.comparaison tbody tr:hover { background: var(--fond2); }
+.comparaison tr[aria-current=true] { background: var(--choisi); }
+.comparaison .meilleur { font-weight: 700; }
+.defile { overflow-x: auto; }
+@media (max-width: 900px) {
+  main { display: block; overflow: auto; }
+  .col { max-height: 40vh; border-right: 0; border-bottom: 1px solid var(--trait); }
+  .panneaux { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Visionneuse du moteur</h1>
+  <label>Version <select id="version"></select></label>
+  <button id="voir-comparaison">Comparer les versions</button>
+  <span class="note">Jeu de développement seulement. Mots comparés sans espaces ni mentions de service.</span>
+</header>
+<main>
+  <div class="col">
+    <div class="onglets" role="group" aria-label="Que parcourir">
+      <button id="onglet-textes" aria-pressed="true">Textes</button>
+      <button id="onglet-echecs" aria-pressed="false">Amendements en échec</button>
+    </div>
+    <div id="vue-echecs" hidden>
+      <div class="filtres">
+        <select id="filtre-echec" aria-label="Filtrer par type d'échec"></select>
+        <label><input id="echecs-hors-moteur" type="checkbox"> Renumérotation, typographie, mention, hors amendement</label>
+        <span id="compte-echecs" class="note"></span>
+      </div>
+      <ul id="echecs"></ul>
+    </div>
+    <div id="vue-textes">
+    <div class="filtres">
+      <input id="recherche" type="search" placeholder="Chercher un texte…" aria-label="Chercher un texte">
+      <select id="filtre-etape" aria-label="Filtrer par étape">
+        <option value="">Commission et séance</option><option value="commission">Commission</option><option value="seance">Séance</option>
+      </select>
+    </div>
+    <ul id="etapes"></ul>
+    </div>
+  </div>
+  <div class="col">
+    <div class="filtres">
+      <select id="filtre-categorie" aria-label="Filtrer par résultat"></select>
+      <label><input id="touches" type="checkbox" checked> Articles touchés</label>
+    </div>
+    <ul id="articles"></ul>
+    <p id="manquants" class="note" style="padding:0 8px"></p>
+  </div>
+  <div class="col">
+    <div class="filtres">
+      <select id="filtre-sort" aria-label="Filtrer par sort">
+        <option value="">Tous les amendements</option><option value="Adopté">Adoptés</option><option value="Tombé">Tombés</option><option value="Rejeté">Rejetés</option>
+      </select>
+    </div>
+    <ul id="amendements"></ul>
+  </div>
+  <div id="detail"><p class="note">Choisissez un texte, puis un article.</p></div>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const CONTEXTE = 25;  // mots gardés autour d'un changement quand un long passage inchangé est replié
+const CATEGORIES = ["effet absent", "guillemets ou alinéas", "retouche", "renumérotation", "typographie", "mention", "hors amendement"];
+const ETIQUETTES_HORS_MOTEUR = ["renumérotation", "typographie", "mention", "hors amendement"];  // ne désignent pas une erreur du moteur
+const etat = {etapes: [], etape: null, articles: [], article: null, amendements: [], amendement: null, jeton: 0, echecs: null, echec: null, ouverture: 0};
+
+async function api(chemin, params) {
+  const reponse = await fetch(`${chemin}?${new URLSearchParams(params)}`);
+  if (!reponse.ok) throw new Error(`${reponse.status} ${await reponse.text()}`);
+  return reponse.json();
+}
+function el(tag, attributs = {}, ...enfants) {
+  const noeud = document.createElement(tag);
+  for (const [k, v] of Object.entries(attributs)) {
+    if (k === "onclick") noeud.onclick = v;
+    else if (k === "text") noeud.textContent = v;
+    else if (v !== null && v !== undefined) noeud.setAttribute(k, v);
+  }
+  noeud.append(...enfants);
+  return noeud;
+}
+// Sans cela, une requête en échec laisse la page sur « Calcul… », comme si le calcul durait.
+const erreur = e => { $("detail").replaceChildren(el("p", {class: "erreur", text: `Erreur du serveur : ${e.message || e}. S'il a démarré avant la dernière mise à jour du code, relancez-le.`})); };
+
+function repliable(texte, debut, fin) {
+  // Un long passage inchangé : on garde ses bords près des changements, le reste s'ouvre d'un clic.
+  const mots = texte.split(/(?<=\s)/);
+  const limite = (debut ? 0 : CONTEXTE) + (fin ? 0 : CONTEXTE);
+  if (mots.length <= limite + 20) return [document.createTextNode(texte)];
+  const avant = debut ? "" : mots.slice(0, CONTEXTE).join("");
+  const apres = fin ? "" : mots.slice(-CONTEXTE).join("");
+  const milieu = mots.slice(debut ? 0 : CONTEXTE, fin ? mots.length : -CONTEXTE).join("");
+  const bouton = el("button", {class: "replie", text: `[… ${mots.length - limite} mots inchangés …]`});
+  bouton.onclick = () => bouton.replaceWith(document.createTextNode(milieu));
+  return [document.createTextNode(avant), bouton, document.createTextNode(apres)];
+}
+function rendreSegments(segments) {
+  const boite = el("div", {class: "texte"});
+  if (!segments.length) boite.append(el("span", {class: "note", text: "(vide)"}));
+  segments.forEach((s, i) => {
+    if (s.t === "=") {
+      const noeuds = repliable(s.s, i === 0, i === segments.length - 1);
+      if (s.amdt) boite.append(el("span", {class: "amdt", title: "Écrit par un amendement"}, ...noeuds));
+      else boite.append(...noeuds);
+    } else if (s.cat) {
+      boite.append(el(s.t === "+" ? "span" : "span", {class: `ecart ${s.t === "-" ? "ecart-del" : ""}`, "data-cat": s.cat,
+        title: `${s.cat} : ${s.t === "+" ? "dans le texte officiel" : "dans le texte du moteur"}`, text: s.s}));
+    } else {
+      boite.append(el(s.t === "+" ? "ins" : "del", {text: s.s}));
+    }
+  });
+  return boite;
+}
+function libelleArticle(a) {
+  if (a.exact) return "exact";
+  return a.categorie || "écart";
+}
+
+// [clé, intitulé, vrai si plus grand = mieux, faux si plus petit = mieux, null si ni l'un ni l'autre]
+const COLONNES_COMPARAISON = [
+  ["touches", "articles touchés", null], ["exacts_%", "exacts %", true], ["exacts_indulgents_%", "exacts indulgents %", true],
+  ["f1_ajouts_%", "F1 ajouts", true], ["f1_retraits_%", "F1 retraits", true], ["f1_tombes_%", "F1 tombés", true],
+  ["applique", "appliqués", true], ["pendant", "pendants", false], ["non_analyse", "non analysés", false], ["ambigu", "ambigus", false]];
+async function afficherComparaison() {
+  const lignes = await api("/api/comparaison", {});
+  const meilleur = Object.fromEntries(COLONNES_COMPARAISON.filter(c => c[2] !== null).map(([cle, , haut]) => {
+    const valeurs = lignes.map(l => l[cle]).filter(v => v != null);
+    return [cle, valeurs.length > 1 ? (haut ? Math.max(...valeurs) : Math.min(...valeurs)) : null];
+  }));
+  const date = l => new Date(l.date).toLocaleString("fr-FR", {dateStyle: "short", timeStyle: "short"}) + (l.date_fichier ? " *" : "");
+  const table = el("table", {class: "comparaison"},
+    el("thead", {}, el("tr", {}, ...["version", "run du", "commit", ...COLONNES_COMPARAISON.map(c => c[1])].map(t => el("th", {text: t})))),
+    el("tbody", {}, ...lignes.map(l => el("tr", {"aria-current": l.version === $("version").value,
+        onclick: () => { $("version").value = l.version; $("version").onchange(); afficherComparaison().catch(erreur); }},
+      el("td", {text: l.version + (l.score_perime ? " †" : "") + (l.corpus_ancien ? " ‡" : "")}), el("td", {text: date(l)}), el("td", {text: l.commit || "—"}),
+      ...COLONNES_COMPARAISON.map(([cle]) => el("td", {text: l[cle] ?? "—", class: l[cle] != null && l[cle] === meilleur[cle] ? "meilleur" : ""}))))));
+  const notes = ["Jeu de développement. En gras, la meilleure valeur de la colonne. Cliquer une ligne choisit la version."];
+  if (lignes.some(l => l.date_fichier)) notes.push("* run d'avant l'ajout de la date : date du fichier de résultats.");
+  if (lignes.some(l => l.score_perime)) notes.push("† score plus ancien que le résultat : relancer evals.engine.score.");
+  if (lignes.some(l => l.corpus_ancien)) notes.push("‡ run fait sur un corpus antérieur (textes relus depuis) : à relancer pour comparer.");
+  if (lignes.some(l => l["exacts_%"] == null)) notes.push("— : pas de score, lancer evals.engine.score sur cette version.");
+  $("detail").replaceChildren(el("h2", {text: "Comparaison des versions"}), el("div", {class: "defile"}, table),
+    ...notes.map(n => el("p", {class: "note", text: n})));
+}
+
+async function chargerVersions() {
+  const versions = await api("/api/versions", {});
+  $("version").replaceChildren(...versions.map(v => el("option", {value: v, text: v})));
+  if (versions.includes("V2-gram+llm")) $("version").value = "V2-gram+llm";
+  await chargerEtapes();
+  await afficherComparaison();
+}
+async function chargerEtapes() {
+  etat.etapes = await api("/api/etapes", {version: $("version").value});
+  afficherEtapes();
+  if (etat.etape) await choisirEtape(etat.etape);
+}
+function afficherEtapes() {
+  const q = $("recherche").value.toLowerCase(), f = $("filtre-etape").value;
+  const lignes = etat.etapes.filter(e => (!f || e.etape === f) && (!q || (e.titre || "").toLowerCase().includes(q) || e.id.toLowerCase().includes(q)));
+  $("etapes").replaceChildren(...lignes.map(e => el("li", {}, el("button", {"aria-current": e.id === etat.etape, onclick: () => choisirEtape(e.id).catch(erreur)},
+    document.createTextNode((e.titre || e.id).slice(0, 90)),
+    el("span", {class: "sous", text: `${e.etape} · ${e.adoptes} adoptés · ${e.touches ?? "?"} touchés · ${e["exacts_%"] ?? "?"} % exacts`})))));
+}
+async function choisirEtape(id) {
+  etat.etape = id; etat.article = null; etat.amendements = []; etat.amendement = null;
+  afficherEtapes();
+  afficherAmendements();
+  $("articles").replaceChildren(el("li", {class: "note", text: "Calcul…"}));
+  const jeton = ++etat.jeton;
+  const d = await api("/api/etape", {version: $("version").value, etape: id});
+  if (jeton !== etat.jeton) return;
+  etat.articles = d.articles;
+  const presentes = [...new Set(d.articles.map(libelleArticle))].sort();
+  const avant = $("filtre-categorie").value;
+  $("filtre-categorie").replaceChildren(el("option", {value: "", text: "Tous les résultats"}), ...presentes.map(c => el("option", {value: c, text: c})));
+  if (presentes.includes(avant)) $("filtre-categorie").value = avant;
+  $("manquants").textContent = d.manquants.length ? `Sans correspondance côté moteur : ${d.manquants.join(", ")}` : "";
+  $("detail").replaceChildren(el("h2", {text: d.titre || id}), el("p", {class: "note", text: `${d.entree} → ${d.sortie}`}));
+  afficherArticles();
+}
+function afficherArticles() {
+  const cat = $("filtre-categorie").value, seuls = $("touches").checked;
+  const lignes = etat.articles.filter(a => (!seuls || a.touche) && (!cat || libelleArticle(a) === cat));
+  $("articles").replaceChildren(...lignes.map(a => el("li", {}, el("button", {"aria-current": a.id === etat.article, onclick: () => choisirArticle(a.id).catch(erreur)},
+    document.createTextNode(`Art. ${a.numero}`),
+    el("span", {class: "sous"}, el("span", {class: "badge", "data-cat": a.categorie, text: libelleArticle(a)})),
+    el("span", {class: "sous", text: `${a.nb_amendements} amendement(s) adopté(s)`})))));
+}
+function panneaux(gauche, titreGauche, noteGauche, reel) {
+  return el("div", {class: "panneaux"},
+    el("section", {}, el("h2", {text: titreGauche}), el("p", {class: "note", text: noteGauche}), gauche),
+    el("section", {}, el("h2", {text: "Ce qui a changé en réalité"}), el("p", {class: "note", text: "Texte d'entrée → texte officiel"}), rendreSegments(reel)));
+}
+function blocEcart(note, segments) {
+  return [el("h2", {text: "Écart restant"}), el("p", {class: "note", text: `${note} Barré : seulement chez le moteur. Non barré : seulement dans le texte officiel.`}),
+    el("div", {class: "legende"}, ...CATEGORIES.map(c => el("span", {"data-cat": c, text: c}))), rendreSegments(segments)];
+}
+const VERBES = {substitute: "Remplacer", insert: "Insérer", delete: "Supprimer des mots", complete: "Compléter", rewrite: "Réécrire", insert_node: "Insérer des alinéas ou un article", delete_node: "Supprimer le nœud"};
+const POSITIONS = {fin: "à la fin", debut: "au début", avant: "avant", apres: "après"};
+const ORDINAL = n => n === -1 ? "dernier" : n === -2 ? "avant-dernier" : String(n);
+function decrireCible(o) {
+  const morceaux = [];
+  if (o.noeud === "titre") morceaux.push("titre");
+  if (o.alinea !== null) morceaux.push(o.jusqua ? `alinéas ${o.alinea} à ${o.jusqua}` : `alinéa ${ORDINAL(o.alinea)}`);
+  else if (o.noeud === "article") morceaux.push("article");
+  if (o.phrase !== null) morceaux.push(`phrase ${ORDINAL(o.phrase)}`);
+  if (POSITIONS[o.position]) morceaux.push(POSITIONS[o.position] + (o.mots ? ` de « ${o.mots} »` : ""));
+  if (o.occurrence !== null) morceaux.push(`occurrence ${ORDINAL(o.occurrence)}`);
+  return morceaux.join(", ");
+}
+function ligneOperation(o) {
+  const lignes = [el("div", {}, el("b", {text: VERBES[o.verbe] || o.verbe}), document.createTextNode(` (${o.verbe}) · ${decrireCible(o)}`))];
+  if (o.anciens_mots) lignes.push(el("div", {}, el("del", {text: o.anciens_mots})));
+  if (o.texte) lignes.push(el("div", {style: "white-space:pre-wrap"}, el("ins", {text: o.texte})));
+  if (o.note) lignes.push(el("div", {class: "note", text: o.note}));
+  if (o.trouve) lignes.push(el("div", {class: "trouve", text: `Trouvé dans le texte d'entrée : ${o.trouve.lieu}${o.trouve.extrait ? ` : « ${o.trouve.extrait} »` : ""}`}));
+  if (o.erreur) lignes.push(el("div", {class: "erreur", text: `Cible non trouvée dans le texte d'entrée : ${o.erreur}`}));
+  return el("div", {class: "operation"}, ...lignes);
+}
+function blocAnalyse(analyse) {
+  return [el("h2", {text: "Ce que l'algorithme a compris"}),
+    ...analyse.map((i, rang) => el("div", {class: "analyse"},
+      el("span", {class: `badge ${i.source.replace(" ", "")}`, text: i.source + (i.confiance !== null && i.confiance !== undefined ? ` · confiance ${i.confiance}` : "")}),
+      analyse.length > 1 ? document.createTextNode(` Instruction ${rang + 1}`) : "",
+      el("div", {class: "instruction", text: i.texte.length > 400 ? i.texte.slice(0, 400) + "…" : i.texte}),
+      ...i.operations.map(ligneOperation),
+      i.erreur ? el("div", {class: "erreur", text: i.erreur}) : ""))];
+}
+function afficherAmendements() {
+  const sort = $("filtre-sort").value;
+  const tous = etat.article ? [el("li", {}, el("button", {"aria-current": etat.amendement === null, onclick: () => choisirArticle(etat.article).catch(erreur), text: "Tous les adoptés, ensemble"}))] : [];
+  const lignes = etat.amendements.filter(x => !sort || x.sort === sort);
+  $("amendements").replaceChildren(...tous, ...lignes.map(x => el("li", {}, el("button", {"aria-current": x.uid === etat.amendement, onclick: () => choisirAmendement(x.uid).catch(erreur)},
+    document.createTextNode(x.numero + (x.parent ? " (sous-am.)" : "")),
+    el("span", {class: "sous", text: x.sort || "?"})))));
+  if (etat.article && !etat.amendements.length) $("amendements").append(el("li", {class: "note", style: "padding:8px", text: "Aucun amendement sur cet article."}));
+}
+function textesAdoptes(amendements) {
+  const adoptes = amendements.filter(x => x.sort === "Adopté");
+  if (!adoptes.length) return [];
+  return [el("h2", {text: `Texte des amendements adoptés (${adoptes.length})`}),
+    ...adoptes.map(x => el("details", adoptes.length <= 3 ? {open: true} : {},
+      el("summary", {text: x.numero + (x.parent ? " (sous-am.)" : "")}),
+      el("div", {class: "dispositif", text: x.dispositif || "(sans dispositif)"})))];
+}
+async function choisirArticle(id) {
+  etat.article = id; etat.amendement = null;
+  afficherArticles();
+  $("detail").replaceChildren(el("p", {class: "note", text: "Calcul…"}));
+  const jeton = ++etat.jeton;
+  const a = await api("/api/article", {version: $("version").value, etape: etat.etape, article: id});
+  if (jeton !== etat.jeton) return;  // un autre clic a suivi : on n'écrase pas sa réponse
+  etat.amendements = a.amendements;
+  afficherAmendements();
+  $("detail").replaceChildren(
+    el("h2", {text: `Article ${a.numero} : ${libelleArticle(a)}`}),
+    a.numero_officiel ? el("p", {class: "note", text: `Apparié à l'article officiel ${a.numero_officiel}${a.officiel_supprime ? " (supprimé)" : ""}.`}) : el("p", {class: "note", text: "Aucun article officiel apparié."}),
+    ...textesAdoptes(a.amendements),
+    panneaux(rendreSegments(a.effet), "Ce que le moteur a changé", "Texte d'entrée → texte du moteur, tous les amendements adoptés", a.reel),
+    ...blocEcart("Texte du moteur → texte officiel.", a.ecart));
+}
+async function choisirAmendement(uid) {
+  etat.amendement = uid;
+  afficherAmendements();
+  $("detail").replaceChildren(el("p", {class: "note", text: "Calcul…"}));
+  const jeton = ++etat.jeton;
+  const params = {version: $("version").value, etape: etat.etape, uid};
+  if (etat.article) params.article = etat.article;
+  const x = await api("/api/amendement", params);
+  if (jeton !== etat.jeton) return;
+  const gauche = x.erreur ? el("div", {class: "texte erreur", text: `Cet amendement ne s'applique pas au texte d'entrée : ${x.erreur}`}) : rendreSegments(x.effet);
+  const avertissement = x.autres_adoptes ? `${x.autres_adoptes} autre(s) amendement(s) adopté(s) sur cet article : le texte officiel contient aussi leurs effets.` : "";
+  $("detail").replaceChildren(
+    el("h2", {text: `Amendement ${x.numero}${x.parent ? `, sous-amendement du ${x.parent}` : ""} · ${x.sort || "?"}`}),
+    el("p", {class: "note", text: `${x.article_vise || ""}${x.etat ? " · moteur : " + x.etat : ""}${x.detail ? " · " + x.detail : ""}`}),
+    el("div", {class: "dispositif", text: x.dispositif || "(sans dispositif)"}),
+    ...blocAnalyse(x.analyse || []),
+    panneaux(gauche, "Ce que cet amendement change", x.parent ? "Texte d'entrée → texte avec le parent et ce sous-amendement" : "Texte d'entrée → texte avec cet amendement seul", x.reel),
+    avertissement ? el("p", {class: "note", text: avertissement}) : "",
+    ...(x.erreur ? [] : blocEcart("Texte avec cet amendement seul → texte officiel.", x.ecart)));
+}
+function echecsVisibles() {
+  return etat.echecs.filter(e => $("echecs-hors-moteur").checked || !ETIQUETTES_HORS_MOTEUR.includes(e.type));
+}
+function afficherEchecs() {
+  if (!etat.echecs) return;
+  const visibles = echecsVisibles(), avant = $("filtre-echec").value, comptes = {};
+  for (const e of visibles) comptes[e.type] = (comptes[e.type] || 0) + 1;
+  const types = Object.keys(comptes).sort((a, b) => comptes[b] - comptes[a]);
+  $("filtre-echec").replaceChildren(el("option", {value: "", text: `Tous les échecs (${visibles.length})`}), ...types.map(t => el("option", {value: t, text: `${t} (${comptes[t]})`})));
+  if (types.includes(avant)) $("filtre-echec").value = avant;
+  const lignes = visibles.filter(e => !$("filtre-echec").value || e.type === $("filtre-echec").value);
+  $("compte-echecs").textContent = "Attribution certaine : le moteur a échoué sur cet amendement. Probable : seul vote sur un article inexact.";
+  // Une longue liste reste fluide : on n'en dessine que le début.
+  $("echecs").replaceChildren(...lignes.slice(0, 500).map(e => el("li", {}, el("button", {"aria-current": `${e.etape}/${e.uid}` === etat.echec, onclick: () => ouvrirEchec(e).catch(erreur)},
+    document.createTextNode(`Am. ${e.numero}${e.numero_article ? ` · art. ${e.numero_article}` : ""}`),
+    el("span", {class: "sous"}, el("span", {class: "badge", "data-cat": e.type, text: e.type}), document.createTextNode(` ${e.attribution}`)),
+    el("span", {class: "sous", text: `${e.stade} · ${(e.titre || e.etape).slice(0, 60)}`})))));
+  if (lignes.length > 500) $("echecs").append(el("li", {class: "note", style: "padding:8px", text: `500 premiers sur ${lignes.length}. Filtrez par type pour voir les autres.`}));
+}
+async function chargerEchecs() {
+  etat.echecs = null;
+  $("echecs").replaceChildren(el("li", {class: "note", style: "padding:8px", text: "Calcul sur tout le corpus : une dizaine de secondes la première fois."}));
+  const version = $("version").value;
+  const echecs = await api("/api/echecs", {version});
+  if (version !== $("version").value) return;
+  etat.echecs = echecs;
+  afficherEchecs();
+}
+async function ouvrirEchec(e) {
+  const ouverture = ++etat.ouverture;
+  etat.echec = `${e.etape}/${e.uid}`;
+  afficherEchecs();
+  $("filtre-categorie").value = ""; $("touches").checked = false; $("filtre-sort").value = "";
+  await choisirEtape(e.etape);
+  if (ouverture !== etat.ouverture) return;
+  if (e.article) await choisirArticle(e.article);
+  if (ouverture !== etat.ouverture) return;
+  await choisirAmendement(e.uid);
+}
+function changerVue(echecs) {
+  $("vue-echecs").hidden = !echecs; $("vue-textes").hidden = echecs;
+  $("onglet-echecs").setAttribute("aria-pressed", echecs); $("onglet-textes").setAttribute("aria-pressed", !echecs);
+  if (echecs && !etat.echecs) chargerEchecs().catch(erreur);
+}
+$("voir-comparaison").onclick = () => afficherComparaison().catch(erreur);
+$("onglet-textes").onclick = () => changerVue(false);
+$("onglet-echecs").onclick = () => changerVue(true);
+$("filtre-echec").onchange = afficherEchecs;
+$("echecs-hors-moteur").onchange = afficherEchecs;
+$("version").onchange = () => { etat.echecs = null; if (!$("vue-echecs").hidden) chargerEchecs().catch(erreur); chargerEtapes().catch(erreur); };
+$("recherche").oninput = afficherEtapes;
+$("filtre-etape").onchange = afficherEtapes;
+$("filtre-categorie").onchange = afficherArticles;
+$("touches").onchange = afficherArticles;
+$("filtre-sort").onchange = afficherAmendements;
+chargerVersions().catch(erreur);
+</script>
+</body>
+</html>

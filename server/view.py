@@ -7,139 +7,139 @@ Un jeton du départ absent de la version projetée a été supprimé ; un jeton 
 effets des amendements adoptés (ce qu'ils écrivent : jeton, alinéa ou article).
 """
 
-from moteur.analyse import analyser_portee
-from moteur.texte import cle_numero, lignes_de, numeros
+from engine.analysis import analyze_scope
+from engine.text import number_key, lines_of, numbers
 
 START_ORIGIN = "T0"
 
 
-def articles(depart, projected, effets, amendements, statuts):
+def articles(initial, projected, effects, amendments, statuses):
     """[{numero, numero_depart, etat, depart, alineas, amendements}], dans l'ordre projeté."""
-    anciens = {a.id: a for a in depart.articles}
-    auteurs = _writing_authors(effets)
-    vises = _amendments_by_article(amendements)
-    view = numeros(projected)
-    resultat = []
+    old_items = {a.id: a for a in initial.articles}
+    authors = _writing_authors(effects)
+    vises = _amendments_by_article(amendments)
+    view = numbers(projected)
+    result = []
     for article in projected.articles:
-        ancien = anciens.get(article.id)
-        alineas = _paragraphs(ancien, article, auteurs)
-        touches = {s["amendement"] for a in alineas for s in a["segments"] if s["amendement"]}
-        cle = cle_numero(ancien.numero) if ancien and ancien.numero else None
-        linked = touches | set(vises.get(cle, []))
-        resultat.append(
+        old = old_items.get(article.id)
+        paragraphs = _paragraphs(old, article, authors)
+        touches = {s["amendement"] for a in paragraphs for s in a["segments"] if s["amendement"]}
+        key = number_key(old.numero) if old and old.numero else None
+        linked = touches | set(vises.get(key, []))
+        result.append(
             {
                 "numero": view[article.id],
-                "numero_depart": ancien.numero if ancien else None,
-                "etat": _state(ancien, article, alineas),
-                "depart": [] if ancien is None or ancien.supprime else lignes_de(ancien),
-                "alineas": alineas,
-                "amendements": [a.uid for a in amendements if a.uid in linked and a.uid in statuts],
+                "numero_depart": old.numero if old else None,
+                "etat": _state(old, article, paragraphs),
+                "depart": [] if old is None or old.supprime else lines_of(old),
+                "alineas": paragraphs,
+                "amendements": [a.uid for a in amendments if a.uid in linked and a.uid in statuses],
             }
         )
-    return resultat
+    return result
 
 
-def _state(ancien, article, alineas):
-    if ancien is None:
+def _state(old, article, paragraphs):
+    if old is None:
         return "nouveau"
-    if article.supprime and not ancien.supprime:
+    if article.supprime and not old.supprime:
         return "supprime"
-    if any(s["type"] != "eq" for a in alineas for s in a["segments"]):
+    if any(s["type"] != "eq" for a in paragraphs for s in a["segments"]):
         return "modifie"
     return "inchange"
 
 
-def _writing_authors(effets):
+def _writing_authors(effects):
     """{identifiant écrit (jeton, alinéa, article) : uid de l'amendement adopté qui l'écrit}."""
-    auteurs = {}
-    for uid, effet in effets.items():
-        for identifiant in effet.ecritures:
-            auteurs.setdefault(identifiant, uid)
-    return auteurs
+    authors = {}
+    for uid, effect in effects.items():
+        for identifiant in effect.writings:
+            authors.setdefault(identifiant, uid)
+    return authors
 
 
-def _amendments_by_article(amendements):
+def _amendments_by_article(amendments):
     """{clé du numéro d'article visé : [uid]}, « APRÈS ART. 3 » compris dans l'article 3."""
     vises = {}
-    for amendement in amendements:
+    for amendment in amendments:
         try:
-            article = analyser_portee(amendement.article_vise).article
+            article = analyze_scope(amendment.article_vise).article
         except ValueError:
             continue
         if article:
-            vises.setdefault(cle_numero(article), []).append(amendement.uid)
+            vises.setdefault(number_key(article), []).append(amendment.uid)
     return vises
 
 
-def _paragraphs(ancien, article, auteurs):
+def _paragraphs(old, article, authors):
     """Alinéas affichés : [{numero, segments}] ; un alinéa supprimé en entier n'a pas de numéro."""
     if article.supprime:
-        if ancien is None or ancien.supprime:
+        if old is None or old.supprime:
             return []
-        return [_deleted_paragraph(a, ancien, auteurs) for a in ancien.alineas]
-    alive = {j.id for a in article.alineas for j in a.jetons}
-    avant, apres, fin = _deletions(ancien, alive, auteurs) if ancien else ({}, {}, [])
-    resultat = []
-    for numero, alinea in enumerate(article.alineas, 1):
+        return [_deleted_paragraph(a, old, authors) for a in old.paragraphs]
+    alive = {j.id for a in article.paragraphs for j in a.tokens}
+    before, after, end = _deletions(old, alive, authors) if old else ({}, {}, [])
+    result = []
+    for numero, alinea in enumerate(article.paragraphs, 1):
         segments = []
-        for jeton in alinea.jetons:
-            removed_paragraphs, removed_words = avant.pop(jeton.id, ([], []))
-            resultat += removed_paragraphs
+        for token in alinea.tokens:
+            removed_paragraphs, removed_words = before.pop(token.id, ([], []))
+            result += removed_paragraphs
             # Le texte retiré se lit avant ce qui le remplace : on le place devant les insertions
             # qui précèdent immédiatement ce jeton.
-            debut = len(segments)
-            while debut and segments[debut - 1]["type"] == "ins":
-                debut -= 1
-            segments[debut:debut] = removed_words
-            if jeton.origine == START_ORIGIN:
-                segments.append(_segment("eq", jeton.texte, None))
+            beginning = len(segments)
+            while beginning and segments[beginning - 1]["type"] == "ins":
+                beginning -= 1
+            segments[beginning:beginning] = removed_words
+            if token.origin == START_ORIGIN:
+                segments.append(_segment("eq", token.text, None))
             else:
-                segments.append(_segment("ins", jeton.texte, jeton.origine))
-            segments += apres.pop(jeton.id, [])
-        resultat.append({"numero": numero, "segments": _merge(segments)})
-    if ancien and len(fin) == len(ancien.alineas):
-        return fin + resultat  # article réécrit en entier : l'ancien texte d'abord, puis le nouveau
-    return resultat + fin
+                segments.append(_segment("ins", token.text, token.origin))
+            segments += after.pop(token.id, [])
+        result.append({"numero": numero, "segments": _merge(segments)})
+    if old and len(end) == len(old.paragraphs):
+        return end + result  # article réécrit en entier : l'ancien texte d'abord, puis le nouveau
+    return result + end
 
 
-def _deletions(ancien, alive, auteurs):
+def _deletions(old, alive, authors):
     """Place les jetons supprimés du départ dans le texte projeté.
 
     avant[id] : (alinéas supprimés en entier, mots supprimés) à montrer avant le jeton vivant id ;
     apres[id] : mots supprimés en fin d'alinéa, après le dernier jeton vivant ;
     fin : alinéas supprimés après le dernier jeton vivant de l'article.
     """
-    avant, apres, removed_paragraphs = {}, {}, []
-    for alinea in ancien.alineas:
-        if not any(j.id in alive for j in alinea.jetons):
-            removed_paragraphs.append(_deleted_paragraph(alinea, ancien, auteurs))
+    before, after, removed_paragraphs = {}, {}, []
+    for alinea in old.paragraphs:
+        if not any(j.id in alive for j in alinea.tokens):
+            removed_paragraphs.append(_deleted_paragraph(alinea, old, authors))
             continue
-        mots, dernier = [], None
-        for jeton in alinea.jetons:
-            if jeton.id not in alive:
-                mots.append(_deleted(jeton, alinea, ancien, auteurs))
+        words, last = [], None
+        for token in alinea.tokens:
+            if token.id not in alive:
+                words.append(_deleted(token, alinea, old, authors))
             else:
-                if mots or removed_paragraphs:
-                    avant[jeton.id] = (removed_paragraphs, mots)
-                    mots, removed_paragraphs = [], []
-                dernier = jeton.id
-        if mots:
-            apres[dernier] = mots
-    return avant, apres, removed_paragraphs
+                if words or removed_paragraphs:
+                    before[token.id] = (removed_paragraphs, words)
+                    words, removed_paragraphs = [], []
+                last = token.id
+        if words:
+            after[last] = words
+    return before, after, removed_paragraphs
 
 
-def _deleted_paragraph(alinea, article, auteurs):
-    segments = [_deleted(j, alinea, article, auteurs) for j in alinea.jetons]
+def _deleted_paragraph(alinea, article, authors):
+    segments = [_deleted(j, alinea, article, authors) for j in alinea.tokens]
     return {"numero": None, "segments": _merge(segments)}
 
 
-def _deleted(jeton, alinea, article, auteurs):
-    auteur = auteurs.get(jeton.id) or auteurs.get(alinea.id) or auteurs.get(article.id)
-    return _segment("del", jeton.texte, auteur)
+def _deleted(token, alinea, article, authors):
+    auteur = authors.get(token.id) or authors.get(alinea.id) or authors.get(article.id)
+    return _segment("del", token.text, auteur)
 
 
-def _segment(type_, texte, amendement):
-    return {"type": type_, "texte": texte, "amendement": amendement}
+def _segment(type_, text, amendment):
+    return {"type": type_, "texte": text, "amendement": amendment}
 
 
 def _merge(segments):

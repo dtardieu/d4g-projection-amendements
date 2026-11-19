@@ -16,8 +16,8 @@ import html
 import re
 
 import requests
-from moteur.analyse import AmendementBrut
-from moteur.texte import creer_version
+from engine.analysis import RawAmendment
+from engine.text import create_version
 
 URL = "https://parlement.tricoteuses.fr"
 TIMEOUT = 120  # secondes : un texte long pèse plusieurs Mo
@@ -29,7 +29,7 @@ RANGE = re.compile(r"^(\d+) À (\d+)$")
 
 
 @dataclasses.dataclass
-class Amendment(AmendementBrut):
+class Amendment(RawAmendment):
     """AmendementBrut et ce que l'interface affiche en plus."""
 
     auteur: str | None = None
@@ -68,9 +68,9 @@ class TextNotFound(Exception):
 
 def get(chemin, params=None):
     """GET sur l'API, renvoie la réponse (lève requests.HTTPError si le statut n'est pas 2xx)."""
-    reponse = requests.get(f"{URL}{chemin}", params=params, timeout=TIMEOUT)
-    reponse.raise_for_status()
-    return reponse
+    response = requests.get(f"{URL}{chemin}", params=params, timeout=TIMEOUT)
+    response.raise_for_status()
+    return response
 
 
 def numbers_from_title(titre):
@@ -79,35 +79,35 @@ def numbers_from_title(titre):
     « Article 1er » → [PREMIER] ; « Article 5 bis (nouveau) » → [5 BIS] ;
     « Articles 2 à 4 » → [2, 3, 4].
     """
-    corps = re.sub(r"\(.*?\)", "", titre).replace("\xa0", " ")
-    corps = re.sub(r"^\s*Articles?\s+", "", corps, flags=re.I)
-    corps = re.sub(r"\s+", " ", corps).strip().upper()
-    range_ = RANGE.match(corps)
+    body = re.sub(r"\(.*?\)", "", titre).replace("\xa0", " ")
+    body = re.sub(r"^\s*Articles?\s+", "", body, flags=re.I)
+    body = re.sub(r"\s+", " ", body).strip().upper()
+    range_ = RANGE.match(body)
     if range_:
         return [str(n) for n in range(int(range_[1]), int(range_[2]) + 1)]
-    morceaux = [m.strip() for m in re.split(r",| ET ", corps) if m.strip()]
-    return ["PREMIER" if re.fullmatch(r"1 ?ER|PREMIER", m) else m for m in morceaux]
+    pieces = [m.strip() for m in re.split(r",| ET ", body) if m.strip()]
+    return ["PREMIER" if re.fullmatch(r"1 ?ER|PREMIER", m) else m for m in pieces]
 
 
 def articles_from_document(document):
     """Réponse de /documents/{uid} (avec subdivisions et alinéas) → les Article, dans l'ordre du texte."""
-    alineas = {}
+    paragraphs = {}
     for alinea in document.get("alineas") or []:
-        alineas.setdefault(alinea["articleRefHash"], []).append(alinea)
+        paragraphs.setdefault(alinea["articleRefHash"], []).append(alinea)
     articles = []
     subdivisions = sorted(document.get("subdivisions") or [], key=lambda s: s.get("sequence") or 0)
     for subdivision in subdivisions:
         if subdivision["type"] != "Article":
             continue
         lignes, supprime = [], "supprim" in subdivision["titre"].lower()
-        for alinea in sorted(alineas.get(subdivision["hash"], []), key=lambda a: a["numero"]):
+        for alinea in sorted(paragraphs.get(subdivision["hash"], []), key=lambda a: a["numero"]):
             # Un tableau arrive aplati en un seul alinéa, cellules séparées par des tabulations et lignes par des
             # retours : sans ce remplacement, chaque ligne du tableau deviendrait un faux alinéa.
-            texte = re.sub(r"[ \t]*[\t\n][ \t\n]*", " ", alinea["texte"] or "").strip()
-            if MENTION.fullmatch(texte):
-                supprime = supprime or "suppr" in texte.lower()
-            elif texte:
-                lignes.append(texte)
+            text = re.sub(r"[ \t]*[\t\n][ \t\n]*", " ", alinea["texte"] or "").strip()
+            if MENTION.fullmatch(text):
+                supprime = supprime or "suppr" in text.lower()
+            elif text:
+                lignes.append(text)
         for numero in numbers_from_title(subdivision["titre"]):
             articles.append(Article(numero, tuple(lignes), supprime))
     if not articles:
@@ -119,7 +119,7 @@ def version_from_document(document):
     """Réponse de /documents/{uid} (avec subdivisions et alinéas) → Version du moteur (articles dans l'ordre du texte)."""
     articles = articles_from_document(document)
     deleted = {a.numero for a in articles if a.supprime}
-    version = creer_version([(a.numero, "\n".join(a.lignes)) for a in articles])
+    version = create_version([(a.numero, "\n".join(a.lignes)) for a in articles])
     return dataclasses.replace(
         version,
         articles=tuple(
@@ -149,32 +149,32 @@ def amendment_from(donnees):
         # Les noms arrivent parfois avec des entités HTML (« Barth&#232;s »).
         auteur=html.unescape(donnees.get("signatairesLibelle") or "") or None,
         # Arrive en texte ou en entier selon les amendements.
-        numero_ordre=int(ordre) if (ordre := str(donnees.get("numeroOrdreDepot") or "")).isdigit() else None,
+        numero_ordre=int(order) if (order := str(donnees.get("numeroOrdreDepot") or "")).isdigit() else None,
     )
 
 
 def document(uid):
     """Réponse brute de /documents/{uid}, avec subdivisions et alinéas."""
     try:
-        reponse = get(f"/documents/{uid}", {"include": "subdivisions,alineas"})
-    except requests.HTTPError as erreur:
-        if erreur.response is not None and erreur.response.status_code == 404:
-            raise TextNotFound(uid) from erreur
+        response = get(f"/documents/{uid}", {"include": "subdivisions,alineas"})
+    except requests.HTTPError as error:
+        if error.response is not None and error.response.status_code == 404:
+            raise TextNotFound(uid) from error
         raise
-    return reponse.json().get("data") or {}
+    return response.json().get("data") or {}
 
 
 def document_title(donnees):
     return donnees.get("titrePrincipal") or donnees.get("uid")
 
 
-def lire_texte(uid):
+def read_text(uid):
     """Le Texte uid, découpé en articles (lève TexteIntrouvable s'il n'existe pas ou n'a aucun article)."""
     donnees = document(uid)
     return Text(uid, document_title(donnees), articles_from_document(donnees))
 
 
-def texte(uid):
+def text(uid):
     """(titre, Version) du texte uid."""
     donnees = document(uid)
     return document_title(donnees), version_from_document(donnees)
@@ -184,9 +184,9 @@ def all_pages(chemin, params):
     """Tous les éléments d'une liste paginée de l'API."""
     page, pages = 1, 1
     while page <= pages:
-        reponse = get(chemin, {**params, "page": page, "perPage": PER_PAGE})
-        yield from reponse.json().get("data") or []
-        pages = int(reponse.headers.get("total-page") or 1)
+        response = get(chemin, {**params, "page": page, "perPage": PER_PAGE})
+        yield from response.json().get("data") or []
+        pages = int(response.headers.get("total-page") or 1)
         page += 1
 
 
@@ -204,9 +204,9 @@ def first_reading_texts(legislature):
     acts = (("depose", "AN1-DEPOT", "texteAssocieRefUid"),
              ("commission", "AN1-COM-FOND-RAPPORT", "texteAdopteRefUid"),
              ("adopte", "AN1-DEBATS-DEC", "texteAssocieRefUid"))
-    for cle, code, field in acts:
+    for key, code, field in acts:
         for act in all_pages("/actesLegislatifs/json", {"codeActe": code, "legislature": legislature}):
             ref = act.get(field)
-            if act.get("dossierRefUid") and ref and (cle != "adopte" or "BTA" in ref):
-                dossiers.setdefault(act["dossierRefUid"], {})[cle] = ref
-    return [FirstReading(dossier, **textes) for dossier, textes in sorted(dossiers.items())]
+            if act.get("dossierRefUid") and ref and (key != "adopte" or "BTA" in ref):
+                dossiers.setdefault(act["dossierRefUid"], {})[key] = ref
+    return [FirstReading(dossier, **texts) for dossier, texts in sorted(dossiers.items())]
