@@ -4,19 +4,19 @@ import unicodedata
 
 import pytest
 
-from engine.analysis import (RawAmendment, Target, Operation, Scope, _quoted_text, analyze_amendment, analyze_scope,
+from engine.analysis import (RawAmendement, Target, Operation, Scope, _quoted_text, analyze_amendement, analyze_scope,
                             clean_dispositif)
 from engine.application import apply
 from engine.consolidation import consolidate
-from engine.resolution import APPROXIMATE, OTHER_PARAGRAPH, NOT_AT_EDGE, TYPOGRAPHY, AmbiguousTarget, DanglingTarget
-from engine.text import number_key, create_version, fingerprint, lines_of, sentences, create_tokens, Identifiers
+from engine.resolution import APPROXIMATE, OTHER_ALINEA, NOT_AT_EDGE, TYPOGRAPHY, AmbiguousTarget, DanglingTarget
+from engine.text import number_key, create_version, fingerprint, lines_of, phrases, create_tokens, Identifiers
 
 SCOPE = Scope("article", "PREMIER")
 TEXT = create_version([("PREMIER", "Un alinéa un.\nLe mot cible et le mot cible.\nDernier alinéa. Seconde phrase.")])
 
 
 def operations(dispositif):
-    analysis = analyze_amendment(RawAmendment("a", "1", "T", "ART. PREMIER", None, dispositif, None, None, None))
+    analysis = analyze_amendement(RawAmendement("a", "1", "T", "ART. PREMIER", None, dispositif, None, None, None))
     assert not analysis.errors, analysis.errors
     return analysis.operations
 
@@ -70,12 +70,12 @@ def test_block_quoted_entirely_keeps_its_closing():
         "Le code est complété par un article L. 1 ainsi rédigé :", "« Art. L. 1. – Texte. »"]
 
 
-def test_amendment_double_quote():
+def test_amendement_double_quote():
     assert _quoted_text(["« Un article ainsi rédigé :", "« « Art. L. 1. – Texte. » »"]).split("\n") == [
         "Un article ainsi rédigé :", "« Art. L. 1. – Texte. »"]
 
 
-def test_single_quoted_paragraph_loses_quotes():
+def test_single_quoted_alinea_loses_quotes():
     assert _quoted_text(["« Texte simple. »"]) == "Texte simple."
     assert _quoted_text(["« Un.", "« Deux. »"]) == "Un.\nDeux."
 
@@ -86,18 +86,18 @@ def test_insertion_after_quote_announcement():
     assert lines_of(apply(ops, SCOPE, text, text, "a")[0].articles[0])[1] == "« Art. L. 0. – Avant."
 
 
-def test_replacing_last_quoted_paragraph_restores_closing():
+def test_replacing_last_quoted_alinea_restores_closing():
     text = create_version([("PREMIER", "Article ainsi rédigé :\n« Art. L. 1. – Texte. » ;\nFin.")])
     ops = operations("Rédiger ainsi l'alinéa 2 :\n\n« Art. L. 1. – Nouveau. »")
     assert lines_of(apply(ops, SCOPE, text, text, "a")[0].articles[0])[1] == "« Art. L. 1. – Nouveau. » ;"
 
 
-def test_paragraph_missing_from_reference():
+def test_alinea_missing_from_reference():
     with pytest.raises(DanglingTarget):
         apply_to("Supprimer l'alinéa 9.")
 
 
-def test_paragraph_deleted_in_between():
+def test_alinea_deleted_in_between():
     without, _ = apply(operations("Supprimer l'alinéa 1."), SCOPE, TEXT, TEXT, "x")
     with pytest.raises(DanglingTarget):
         apply_to("À l'alinéa 1, supprimer le mot : « alinéa ».", without)
@@ -141,8 +141,8 @@ def apply_with_gap(dispositif, current=GAPS_TEXT):
     ("À l'alinéa 1, supprimer les mots : « au delà ».", 0, "Le délai va de 4 000 euros.", TYPOGRAPHY),
     ("À l'alinéa 2, substituer aux mots : « substante létale », les mots : « dose ».", 1,
      "La dose est administrée par le médecin.", APPROXIMATE),
-    ("À l'alinéa 3, supprimer le mot : « médecin ».", 1, "La substance létale est administrée par le.", OTHER_PARAGRAPH),
-    ("À l'alinéa 9, supprimer le mot : « médecin ».", 1, "La substance létale est administrée par le.", OTHER_PARAGRAPH),
+    ("À l'alinéa 3, supprimer le mot : « médecin ».", 1, "La substance létale est administrée par le.", OTHER_ALINEA),
+    ("À l'alinéa 9, supprimer le mot : « médecin ».", 1, "La substance létale est administrée par le.", OTHER_ALINEA),
 ])
 def test_quote_found_despite_a_gap(dispositif, rank, expected, tolerance):
     lignes, tolerances = apply_with_gap(dispositif)
@@ -175,25 +175,25 @@ def test_words_removed_by_adopted_not_searched_elsewhere():
 
 
 def test_status_says_what_was_tolerated():
-    amendment = RawAmendment("a", "1", "T", "ART. PREMIER", None,
+    amendement = RawAmendement("a", "1", "T", "ART. PREMIER", None,
                                 "À l'alinéa 1, supprimer les mots : « au delà ».", None, None, None, "Adopté")
-    status = consolidate(GAPS_TEXT, [amendment]).statuses["a"]
+    status = consolidate(GAPS_TEXT, [amendement]).statuses["a"]
     assert (status.etat, status.detail) == ("applique", TYPOGRAPHY)
 
 
-def test_paragraph_range():
+def test_alinea_range():
     assert apply_to("Supprimer les alinéas 1 à 2.") == ["Dernier alinéa. Seconde phrase."]
     assert apply_to("Supprimer les alinéas 2 et 3.") == ["Un alinéa un."]
     assert apply_to("Substituer aux alinéas 1 à 2 l'alinéa suivant :\n\n« Fusion. »")[0] == "Fusion."
 
 
-def test_targeted_sentence():
+def test_targeted_phrase():
     assert apply_to("Supprimer la seconde phrase de l'alinéa 3.")[2] == "Dernier alinéa."
     assert apply_to("Compléter la première phrase de l'alinéa 3 par les mots : « bis ».")[2] == \
         "Dernier alinéa bis. Seconde phrase."
 
 
-def test_word_searched_in_sentence_only():
+def test_word_searched_in_phrase_only():
     text = create_version([("PREMIER", "Le mot ici. Encore le mot là.")])
     ops = operations("À la seconde phrase de l'alinéa 1, substituer au mot : « mot », le mot : « terme ».")
     new_value, _ = apply(ops, SCOPE, text, text, "a")
@@ -241,9 +241,9 @@ def test_same_content_same_fingerprint():
     ("Les mots : « a. B » sont retirés. Fin.", ["Les mots : « a. B » sont retirés.", "Fin."]),
     ("Le règlement n° 1408/2013 s’applique.", ["Le règlement n° 1408/2013 s’applique."]),
 ])
-def test_sentences(text, expected):
+def test_phrases(text, expected):
     tokens = create_tokens(text, Identifiers("t"))
-    assert ["".join(j.text for j in tokens[d:f]) for d, f in sentences(tokens)] == expected
+    assert ["".join(j.text for j in tokens[d:f]) for d, f in phrases(tokens)] == expected
 
 
 @pytest.mark.parametrize("targeted, expected", [
@@ -278,13 +278,13 @@ def test_clean_dispositif():
     assert clean_dispositif("Un.\n\nDeux.\n") == ["Un.", "Deux."]
 
 
-def test_sentence_without_paragraph_in_single_paragraph_article():
+def test_phrase_without_alinea_in_single_alinea_article():
     unique = create_version([("PREMIER", "Première phrase. Seconde phrase.")])
     version, _ = apply(operations("À la seconde phrase, supprimer le mot : « Seconde »."), SCOPE, unique, unique, "a")
     assert lines_of(version.articles[0]) == ["Première phrase. phrase."]
 
 
-def test_sentence_without_paragraph_in_multi_paragraph_article():
+def test_phrase_without_alinea_in_multi_alinea_article():
     with pytest.raises(DanglingTarget):
         apply_to("Supprimer la seconde phrase.")
 
@@ -293,7 +293,7 @@ def test_sentence_without_paragraph_in_multi_paragraph_article():
     ("« mot »", "Dernier mot. Seconde phrase."),               # la ponctuation de la phrase reste
     ("« mot final. »", "Dernier mot final. Seconde phrase."),  # le texte nouveau apporte la sienne
 ])
-def test_rewrite_sentence_end_keeps_following(new, expected):
+def test_rewrite_phrase_end_keeps_following(new, expected):
     lignes = apply_to(f"À la première phrase de l'alinéa 3, après le mot : « Dernier », "
                            f"rédiger ainsi la fin de la première phrase : {new}.")
     assert lignes[2] == expected

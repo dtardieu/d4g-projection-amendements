@@ -39,7 +39,7 @@ def prepare(step):
     def status(a, etat, detail=""):
         statuses[a.uid] = {"numero": a.numero, "sort": a.sort, "etat": etat, "detail": detail}
 
-    for a in call_order(run.amendments_of(step)):
+    for a in call_order(run.amendements_of(step)):
         if a.sort != "Adopté":
             status(a, "ignore", "non adopté : cette chaîne ne prédit rien" if a.sort in VOTED_OUTCOMES else "")
         elif a.parent_uid:

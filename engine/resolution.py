@@ -14,7 +14,7 @@ import re
 import unicodedata
 from dataclasses import dataclass
 
-from engine.text import (article_by_id, split_tokens, terminal_beginning, is_blank, normalize, sentences, find_article)
+from engine.text import (article_by_id, split_tokens, terminal_beginning, is_blank, normalize, phrases, find_article)
 
 
 class TargetError(Exception):
@@ -36,16 +36,16 @@ LABEL = re.compile(r"^[«\s]*(Art\.[^–-]*[–-]\s*)?([IVXLCDM]+\.\s*[–-]\s*)
 @dataclass(frozen=True)
 class Location:
     article_id: str
-    paragraph_ids: tuple = ()          # vide : l'article entier
+    alinea_ids: tuple = ()          # vide : l'article entier
     beginning: int | None = None        # portion de jetons dans alinea_ids[0], fin exclue
     end: int | None = None
-    readings: frozenset = frozenset()
+    lectures: frozenset = frozenset()
     tolerances: frozenset = frozenset()   # écarts acceptés entre la citation et le texte (TYPOGRAPHIE…)
 
 
 TYPOGRAPHY = "typographie"          # mêmes lettres et chiffres, à la ponctuation, aux tirets et aux accents près
 APPROXIMATE = "mots approchés"          # une coquille dans la citation
-OTHER_PARAGRAPH = "autre alinéa"        # mots absents de l'alinéa cité, uniques ailleurs dans l'article
+OTHER_ALINEA = "autre alinéa"        # mots absents de l'alinéa cité, uniques ailleurs dans l'article
 NOT_AT_EDGE = "pas au bord"          # « à la fin », « au début » : les mots n'y sont pas exactement
 APPROXIMATE_RATIO = 0.9
 APPROXIMATE_LENGTH = 12               # lettres : en dessous, une coquille change trop facilement de mot
@@ -56,46 +56,46 @@ def resolve(op, scope, reference, current):
     target = op.target
     words = op.old_words if op.old_words else target.words
     article_ref, article = _article(op, scope, reference, current)
-    readings, tolerances = {article.id}, set()
+    lectures, tolerances = {article.id}, set()
     if target.alinea is None and not words:
         if op.verb in ("complete", "insert"):
             # « Compléter le titre », « à la fin, ajouter » : le bord de l'article est celui de son dernier alinéa.
-            if not article.paragraphs:
+            if not article.alineas:
                 raise DanglingTarget("article sans alinéa")
-            alinea = article.paragraphs[0 if target.position == "debut" else -1]
-            return Location(article.id, (alinea.id,), 0, len(alinea.tokens), frozenset(readings | {alinea.id}))
-        return Location(article.id, readings=frozenset(readings))
+            alinea = article.alineas[0 if target.position == "debut" else -1]
+            return Location(article.id, (alinea.id,), 0, len(alinea.tokens), frozenset(lectures | {alinea.id}))
+        return Location(article.id, lectures=frozenset(lectures))
     if target.alinea is None:
-        paragraphs = _article_edge(article, target.position)
-        portions = [(a, 0, len(a.tokens)) for a in paragraphs]
-        readings |= {a.id for a in paragraphs}
+        alineas = _article_edge(article, target.position)
+        portions = [(a, 0, len(a.tokens)) for a in alineas]
+        lectures |= {a.id for a in alineas}
     else:
         try:
-            targeted_items = _reference_paragraphs(article_ref, target)
+            targeted_items = _reference_alineas(article_ref, target)
         except DanglingTarget:
-            elsewhere = _paragraph_by_content(article_ref, target, words)
+            elsewhere = _alinea_by_content(article_ref, target, words)
             if elsewhere is None:
                 raise
             targeted_items = [elsewhere]
-            tolerances.add(OTHER_PARAGRAPH)
-        paragraphs = [_current_paragraph(article, a) for a in targeted_items]
-        readings |= {a.id for a in paragraphs}
-        if target.sentence is not None:
-            beginning, end = _sentence_portion(targeted_items[0], paragraphs[0], target.sentence)
-            portions = [(paragraphs[0], beginning, end)]
+            tolerances.add(OTHER_ALINEA)
+        alineas = [_current_alinea(article, a) for a in targeted_items]
+        lectures |= {a.id for a in alineas}
+        if target.phrase is not None:
+            beginning, end = _phrase_portion(targeted_items[0], alineas[0], target.phrase)
+            portions = [(alineas[0], beginning, end)]
         else:
-            portions = [(a, 0, len(a.tokens)) for a in paragraphs]
+            portions = [(a, 0, len(a.tokens)) for a in alineas]
     if not words:
         alinea, beginning, end = portions[0]
-        return Location(article.id, tuple(a.id for a in paragraphs), beginning, end, frozenset(readings))
+        return Location(article.id, tuple(a.id for a in alineas), beginning, end, frozenset(lectures))
     found, gap = _occurrences(portions, words)
     if not found and target.alinea is not None and not tolerances:
-        elsewhere = _paragraph_by_content(article_ref, target, words, unless=targeted_items)
+        elsewhere = _alinea_by_content(article_ref, target, words, unless=targeted_items)
         if elsewhere is not None:
-            alinea = _current_paragraph(article, elsewhere)
+            alinea = _current_alinea(article, elsewhere)
             portions = [(alinea, 0, len(alinea.tokens))]
-            readings.add(alinea.id)
-            tolerances.add(OTHER_PARAGRAPH)
+            lectures.add(alinea.id)
+            tolerances.add(OTHER_ALINEA)
             found, gap = _occurrences(portions, words)
     (alinea, beginning, end), at_edge = _choose(found, portions, words, target)
     if not at_edge and _at_edge_in_reference(article_ref, alinea.id, target, words):
@@ -103,49 +103,49 @@ def resolve(op, scope, reference, current):
         edge = "à la fin" if target.position == "fin" else "au début"
         raise DanglingTarget(f"mots qui ne sont plus {edge} : « {words[:60]} »")
     tolerances |= {t for t in (gap, None if at_edge else NOT_AT_EDGE) if t}
-    readings |= {j.id for j in alinea.tokens[beginning:end] if not is_blank(j)}
+    lectures |= {j.id for j in alinea.tokens[beginning:end] if not is_blank(j)}
     if target.position == "fin":
-        readings.add(f"{alinea.id}.fin")
+        lectures.add(f"{alinea.id}.fin")
     if target.position == "debut":
-        readings.add(f"{alinea.id}.debut")
-    return Location(article.id, (alinea.id,), beginning, end, frozenset(readings), frozenset(tolerances))
+        lectures.add(f"{alinea.id}.debut")
+    return Location(article.id, (alinea.id,), beginning, end, frozenset(lectures), frozenset(tolerances))
 
 
-def _at_edge_in_reference(article_ref, paragraph_id, target, words):
+def _at_edge_in_reference(article_ref, alinea_id, target, words):
     """Les mots étaient-ils au bord annoncé dans le texte sur lequel l'amendement a été écrit ?
 
     Oui : « à la fin » est une condition, et la perdre fait tomber l'amendement. Non : c'était une approximation
     du rédacteur, qu'on tolère. Dans le doute (alinéa ou mots absents de la référence), on reste strict.
     """
-    targeted_one = next((a for a in article_ref.paragraphs if a.id == paragraph_id), None)
+    targeted_one = next((a for a in article_ref.alineas if a.id == alinea_id), None)
     if targeted_one is None:
         return True
-    beginning, end = (0, len(targeted_one.tokens)) if target.sentence is None else _sentence_portion(targeted_one, targeted_one, target.sentence)
+    beginning, end = (0, len(targeted_one.tokens)) if target.phrase is None else _phrase_portion(targeted_one, targeted_one, target.phrase)
     found, _ = _occurrences([(targeted_one, beginning, end)], words)
     return not found or _choose(found, [(targeted_one, beginning, end)], words, target)[1]
 
 
-def _paragraph_by_content(article_ref, target, words, unless=()):
+def _alinea_by_content(article_ref, target, words, unless=()):
     """L'alinéa de la référence qui porte les mots, quand le numéro cité est faux. None s'il n'y en a pas un seul.
 
     On cherche dans la référence, le texte sur lequel l'amendement a été écrit : si les mots étaient bien dans
     l'alinéa cité (sauf) et n'y sont plus, un amendement adopté les a retirés et l'amendement est tombé.
     Une coquille et un mauvais numéro à la fois, c'est trop d'écarts pour conclure.
     """
-    if not words or target.sentence is not None or target.until is not None:
+    if not words or target.phrase is not None or target.until is not None:
         return None
     if unless and _occurrences([(a, 0, len(a.tokens)) for a in unless], words)[0]:
         return None
-    found, gap = _occurrences([(a, 0, len(a.tokens)) for a in article_ref.paragraphs], words)
+    found, gap = _occurrences([(a, 0, len(a.tokens)) for a in article_ref.alineas], words)
     return found[0][0] if len(found) == 1 and gap != APPROXIMATE else None
 
 
-def portion_bounds(alinea, target, reference_article, current_paragraph_=None):
+def portion_bounds(alinea, target, reference_article, current_alinea_=None):
     """Portion de la phrase visée, ou tout l'alinéa, pour une opération qui écrit après une ancre."""
-    if target.sentence is None:
+    if target.phrase is None:
         return 0, len(alinea.tokens)
-    targeted_one = _reference_paragraphs(reference_article, target)[0]
-    return _sentence_portion(targeted_one, alinea, target.sentence)
+    targeted_one = _reference_alineas(reference_article, target)[0]
+    return _phrase_portion(targeted_one, alinea, target.phrase)
 
 
 def article_reference(scope, target, reference):
@@ -167,35 +167,35 @@ def _article(op, scope, reference, current):
 
 
 def _article_edge(article, position):
-    if not article.paragraphs:
+    if not article.alineas:
         raise DanglingTarget("article sans alinéa")
     if position == "fin":
-        return [article.paragraphs[-1]]
+        return [article.alineas[-1]]
     if position == "debut":
-        return [article.paragraphs[0]]
-    return list(article.paragraphs)
+        return [article.alineas[0]]
+    return list(article.alineas)
 
 
-def _reference_paragraphs(article, target):
+def _reference_alineas(article, target):
     """Les alinéas visés, lus dans la version de référence (numéro → identifiant). -1 compte depuis la fin."""
-    total = len(article.paragraphs)
+    total = len(article.alineas)
     first = target.alinea if target.alinea > 0 else total + target.alinea + 1
     last = target.until or first
     if not 1 <= first <= last <= total:
         raise DanglingTarget(f"alinéa {target.alinea} absent de la référence ({total} alinéas)")
-    return list(article.paragraphs[first - 1:last])
+    return list(article.alineas[first - 1:last])
 
 
-def _current_paragraph(article, targeted_one):
-    alinea = next((a for a in article.paragraphs if a.id == targeted_one.id), None)
+def _current_alinea(article, targeted_one):
+    alinea = next((a for a in article.alineas if a.id == targeted_one.id), None)
     if alinea is None:
         raise DanglingTarget("alinéa supprimé par un amendement adopté")
     return alinea
 
 
-def _sentence_portion(targeted_one, alinea, rank):
+def _phrase_portion(targeted_one, alinea, rank):
     """La phrase se compte dans la référence ; on la retrouve dans l'alinéa courant par les identifiants."""
-    bounds = sentences(targeted_one.tokens)
+    bounds = phrases(targeted_one.tokens)
     index = rank - 1 if rank > 0 else len(bounds) + rank
     if not 0 <= index < len(bounds):
         raise DanglingTarget(f"phrase {rank} absente de la référence ({len(bounds)} phrases)")

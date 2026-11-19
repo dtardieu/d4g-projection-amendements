@@ -10,9 +10,9 @@ import random
 from collections import Counter
 
 from evals.engine.llm_openai import PRICES, OpenAICall
-from evals.engine.run import amendments_of, split_steps, input_version
+from evals.engine.run import amendements_of, split_steps, input_version
 from evals.engine.score import changes, official_words, without_mentions
-from engine.analysis import analyze_amendment, analyze_scope
+from engine.analysis import analyze_amendement, analyze_scope
 from engine.application import apply
 from engine.resolution import AmbiguousTarget, TargetError
 from engine.text import article_by_id, number_key, find_article
@@ -23,8 +23,8 @@ SEED = 822
 def candidates():
     """Amendements adoptés, hors sous-amendements, sur un article existant, dont une instruction est rejetée."""
     for step in split_steps("dev"):
-        for a in amendments_of(step):
-            if a.sort != "Adopté" or a.parent_uid or not analyze_amendment(a).errors:
+        for a in amendements_of(step):
+            if a.sort != "Adopté" or a.parent_uid or not analyze_amendement(a).errors:
                 continue
             try:
                 scope = analyze_scope(a.article_vise)
@@ -53,8 +53,8 @@ def main():
     for step, a, scope in all_items[:args.n]:
         initial = input_version(step)
         article = find_article(initial, scope.article)
-        lignes = [] if article is None else ["".join(j.text for j in al.tokens) for al in article.paragraphs]
-        analysis = analyze_amendment(a, "\n".join(lignes), call)
+        lignes = [] if article is None else ["".join(j.text for j in al.tokens) for al in article.alineas]
+        analysis = analyze_amendement(a, "\n".join(lignes), call)
         if analysis.errors or not analysis.operations:
             report["rejeté ou invalide"] += 1
             examples.append((a.numero, "rejet", a.dispositif[:90]))
@@ -72,13 +72,13 @@ def main():
             continue
         report["s'exécute"] += 1
         official = {number_key(x["numero"]): x for x in step["sortie"]["articles"]}.get(number_key(scope.article))
-        others = [b for b in amendments_of(step) if b.sort == "Adopté" and not b.parent_uid and b.uid != a.uid
+        others = [b for b in amendements_of(step) if b.sort == "Adopté" and not b.parent_uid and b.uid != a.uid
                   and (b.article_vise or "").strip().upper() == (a.article_vise or "").strip().upper()]
         if official is None or others:
             continue
         report["seul adopté sur son article"] += 1
         product = article_by_id(new_value, article.id)
-        after = words(["".join(j.text for j in al.tokens) for al in product.paragraphs])
+        after = words(["".join(j.text for j in al.tokens) for al in product.alineas])
         target, before = words(official["lignes"]), words(lignes)
         report["exact"] += after == target
         actual, predicted = changes(before, target), changes(before, after)

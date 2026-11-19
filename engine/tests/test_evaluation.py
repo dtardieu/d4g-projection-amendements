@@ -12,15 +12,15 @@ from evals.engine.run import execute
 from evals.engine.score import (Tally, match_articles, article_category, changes, classify_gaps, official_words,
                                 without_mentions)
 from evals.engine.run import input_version
-from evals.engine.amendment_review import compute, wilson
+from evals.engine.amendement_review import compute, wilson
 from evals.engine.judge import DecisionsJudge, same_effect_probability, rule
-from evals.engine.judge_pilot import sentence_bounds, rate_by_threshold
+from evals.engine.judge_pilot import phrase_bounds, rate_by_threshold
 from evals.engine.score import step_failures
-from evals.engine.viewer.app import detailed_analysis, amendment_effect, pieces, segments_diff, segments_ecarts
+from evals.engine.viewer.app import detailed_analysis, amendement_effect, pieces, segments_diff, segments_ecarts
 from engine.text import number_key
 
 FIXTURES = Path(__file__).parent / "fixtures"
-AMENDMENTS = json.loads((FIXTURES / "ppl822_amendements.json").read_text(encoding="utf-8"))
+AMENDEMENTS = json.loads((FIXTURES / "ppl822_amendements.json").read_text(encoding="utf-8"))
 TEXTS = json.loads((FIXTURES / "ppl822_textes.json").read_text(encoding="utf-8"))
 COMMISSION, ADOPTED = "PIONANR5L17BTC1003", "PIONANR5L17BTA0062"
 
@@ -75,15 +75,15 @@ def labels(predicted, flags, official):
     return [e[0] for e in classify_gaps(predicted.split(), flags, official.split())]
 
 
-def test_gap_far_from_an_amendment():
+def test_gap_far_from_an_amendement():
     assert labels("a b c d e", [0, 0, 0, 0, 1], "z b c d e") == ["hors amendement"]
 
 
-def test_touch_up_in_amendment_passage():
+def test_touch_up_in_amendement_passage():
     assert labels("a b c d e f", [0, 1, 1, 1, 1, 1], "a b c z e f") == ["retouche"]
 
 
-def test_amendment_passage_missing_from_official_text():
+def test_amendement_passage_missing_from_official_text():
     assert labels("a x y z b", [0, 1, 1, 1, 0], "a p q r b") == ["effet absent"]
 
 
@@ -136,11 +136,11 @@ def ppl_step():
     output = [article(n, c) for n, c in TEXTS[ADOPTED]["articles"]]
     output += [{"numero": n, "lignes": [], "supprime": True} for n in TEXTS[ADOPTED]["supprimes"]]
     return {"id": "ppl822:seance", "entree": {"articles": [article(n, c) for n, c in TEXTS[COMMISSION]["articles"]]},
-            "sortie": {"articles": output}, "amendements": [dict(a) for a in AMENDMENTS if a["texte_ref"] == COMMISSION]}
+            "sortie": {"articles": output}, "amendements": [dict(a) for a in AMENDEMENTS if a["texte_ref"] == COMMISSION]}
 
 
 @pytest.mark.parametrize("name, exact_ones", [("V1-gram", {"2", "3", "4", "5", "6"}), ("V0-noop", set())])
-def test_run_on_sitting(name, exact_ones):
+def test_run_on_seance(name, exact_ones):
     step = ppl_step()
     result = execute(step, name)
     pairs, missing = match_articles(result["articles"], step["sortie"]["articles"])
@@ -150,7 +150,7 @@ def test_run_on_sitting(name, exact_ones):
     assert obtained_items == exact_ones
 
 
-def test_title_amendments_excluded_from_run():
+def test_title_amendements_excluded_from_run():
     result = execute(ppl_step(), "V1-gram")
     numbers = {s["numero"] for s in result["statuts"].values()}
     assert "15" not in numbers and "6" in numbers
@@ -165,7 +165,7 @@ def test_viewer_reassembles_text():
         "Le code, (modifié) de l'article L. 5\nSuite"
 
 
-def test_viewer_diffs_and_marks_amendment_words():
+def test_viewer_diffs_and_marks_amendement_words():
     segments = segments_diff(["a", "b"], ["a", "c", "d"], [0, 1, 1])
     assert [(s["t"], s["s"]) for s in segments] == [("=", "a"), ("-", " b"), ("+", " c d")]
     assert segments_diff(["a", "b"], ["a", "b"], [0, 1])[1] == {"t": "=", "s": " b", "amdt": True}
@@ -183,10 +183,10 @@ def commission_step():
     return {"id": "ppl822:commission",
             "entree": {"articles": [article(n, c) for n, c in TEXTS["PIONANR5L17B0822"]["articles"]]},
             "sortie": {"articles": [article(n, c) for n, c in TEXTS[COMMISSION]["articles"]]},
-            "amendements": [{"numero_ordre": None, **a} for a in AMENDMENTS if a["texte_ref"] == "PIONANR5L17B0822"]}
+            "amendements": [{"numero_ordre": None, **a} for a in AMENDEMENTS if a["texte_ref"] == "PIONANR5L17B0822"]}
 
 
-def amendment_of(step, numero):
+def amendement_of(step, numero):
     return next(a["uid"] for a in step["amendements"] if a["numero"] == numero)
 
 
@@ -200,49 +200,49 @@ def segment_text(segments, *types):
     return "".join(s["s"] for s in segments if s["t"] in types)
 
 
-def test_effect_of_single_amendment():
+def test_effect_of_single_amendement():
     step = ppl_step()
-    x = amendment_effect(step, amendment_of(step, "8"), article_view(step, "PREMIER"), {})
+    x = amendement_effect(step, amendement_of(step, "8"), article_view(step, "PREMIER"), {})
     assert x["erreur"] is None and x["sort"] == "Adopté"
     assert "impartissant" in segment_text(x["effet"], "-")
     assert "dans un délai" in segment_text(x["effet"], "+")
     assert "Article" not in segment_text(x["effet"], "+", "-")
 
 
-def test_effect_of_fallen_amendment_on_input_text():
+def test_effect_of_fallen_amendement_on_input_text():
     # CE10 est tombé, mais son texte s'applique au texte d'entrée : on voit ce qu'il aurait donné.
     step = commission_step()
-    x = amendment_effect(step, amendment_of(step, "CE10"), article_view(step, "UNIQUE"), {})
+    x = amendement_effect(step, amendement_of(step, "CE10"), article_view(step, "UNIQUE"), {})
     assert x["erreur"] is None and x["sort"] == "Tombé"
     assert "puni" in segment_text(x["effet"], "-") and "passible" in segment_text(x["effet"], "+")
 
 
-def test_subamendment_shown_through_parent():
+def test_sous_amendement_shown_through_parent():
     step = commission_step()
-    x = amendment_effect(step, amendment_of(step, "CE12"), article_view(step, "UNIQUE"), {})
+    x = amendement_effect(step, amendement_of(step, "CE12"), article_view(step, "UNIQUE"), {})
     assert x["parent"] == "CE11" and x["erreur"] is None
     assert "au préalable" in segment_text(x["effet"], "+", "=")
 
 
-def test_parent_includes_its_adopted_subamendments():
+def test_parent_includes_its_adopted_sous_amendements():
     step = commission_step()
-    x = amendment_effect(step, amendment_of(step, "CE11"), article_view(step, "UNIQUE"), {})
+    x = amendement_effect(step, amendement_of(step, "CE11"), article_view(step, "UNIQUE"), {})
     assert "au préalable" in segment_text(x["effet"], "+", "=")
 
 
-def test_amendment_that_does_not_apply_reports_the_error():
+def test_amendement_that_does_not_apply_reports_the_error():
     step = ppl_step()
-    uid = amendment_of(step, "6")
+    uid = amendement_of(step, "6")
     for a in step["amendements"]:
         if a["uid"] == uid:
             a["dispositif"] = "À l’alinéa 10, supprimer les mots : « absents du texte »."
-    x = amendment_effect(step, uid, article_view(step, "PREMIER"), {})
+    x = amendement_effect(step, uid, article_view(step, "PREMIER"), {})
     assert "mots absents" in x["erreur"] and x["effet"] == []
 
 
-def test_additional_article_alone():
+def test_article_additionnel_alone():
     step = commission_step()
-    x = amendment_effect(step, amendment_of(step, "CE2"), article_view(step, "UNIQUE"), {})
+    x = amendement_effect(step, amendement_of(step, "CE2"), article_view(step, "UNIQUE"), {})
     assert "Le Gouvernement remet chaque année" in segment_text(x["effet"], "+")
 
 
@@ -274,19 +274,19 @@ def test_analysis_flags_unknown_wording_and_missing_target():
     assert "mots absents" in detailed_analysis(raw, input_version(step))[0]["operations"][0]["erreur"]
 
 
-def test_analysis_additional_article_and_subamendment():
+def test_analysis_article_additionnel_and_sous_amendement():
     step = commission_step()
     assert "Nouvel article" in analysis_of(step, "CE2")[0]["operations"][0]["note"]
     assert "amendement parent" in analysis_of(step, "CE12")[0]["operations"][0]["note"]
 
 
-def test_failures_attributed_to_an_amendment():
-    amendments = [{"uid": u, "numero": u, "sort": "Adopté"} for u in ("pendant", "seul", "a", "b", "serie1", "serie2", "juste")]
+def test_failures_attributed_to_an_amendement():
+    amendements = [{"uid": u, "numero": u, "sort": "Adopté"} for u in ("pendant", "seul", "a", "b", "serie1", "serie2", "juste")]
     statuses = {"pendant": {"etat": "pendant", "detail": "mots absents"}, "seul": {"etat": "applique"}, "a": {"etat": "applique"},
                "b": {"etat": "applique"}, "serie1": {"etat": "applique"}, "serie2": {"etat": "identique"}, "juste": {"etat": "applique"}}
     article = lambda uids, exact=False: {"uids": uids, "exact": exact, "categorie": None if exact else "effet absent"}
     articles = {"1": article(["seul"]), "2": article(["a", "b"]), "3": article(["serie1", "serie2"]), "4": article(["juste"], True)}
-    failures = {e["uid"]: e for e in step_failures(amendments, articles, statuses)}
+    failures = {e["uid"]: e for e in step_failures(amendements, articles, statuses)}
     assert set(failures) == {"pendant", "seul", "serie1"}  # plusieurs votes ou article exact : rien à attribuer
     assert (failures["pendant"]["type"], failures["pendant"]["attribution"], failures["pendant"]["article"]) == ("résolution", "certaine", None)
     assert (failures["seul"]["type"], failures["seul"]["attribution"]) == ("effet absent", "probable")
@@ -315,7 +315,7 @@ def test_pilot_thresholds():
     assert result[0.5]["vrais même effet retrouvés"] == 2 and result[0.5]["sur"] == 2
 
 
-def test_renumbering_at_paragraph_start_only():
+def test_renumbering_at_alinea_start_only():
     official = "la phrase . ¶ 2 ° Le texte".split()
     assert labels("la phrase . ¶ b ) Le texte", [0] * 8, " ".join(official)) == ["renumérotation"]
     assert labels("a ) Le texte", [0] * 4, "1 ° Le texte") == ["renumérotation"]
@@ -325,12 +325,12 @@ def test_renumbering_at_paragraph_start_only():
     assert labels("¶ a Le texte", [0] * 4, "¶ b Le texte") == ["hors amendement"]
 
 
-def test_sentence_bounds():
+def test_phrase_bounds():
     words = "Fin . Selon l' article L . 12 , le maire peut agir . Autre".split()
-    assert " ".join(words[slice(*sentence_bounds(words, 11, 12))]) == "Selon l' article L . 12 , le maire peut agir ."
+    assert " ".join(words[slice(*phrase_bounds(words, 11, 12))]) == "Selon l' article L . 12 , le maire peut agir ."
 
 
-def test_product_metric_per_amendment():
+def test_product_metric_per_amendement():
     counts = {"adopté": Counter({"affiché": 80, "non analysé": 20}), "non adopté": Counter({"affiché": 150, "cible introuvable": 150})}
     lignes = [("adopté", "juste")] * 3 + [("adopté", "faux")] + [("non adopté", "mineur"), ("non adopté", "faux"), ("non adopté", "indetermine")]
     report = compute(lignes, counts)
@@ -373,15 +373,15 @@ def test_run_is_dated(tmp_path, monkeypatch):
 
 
 def _tisseuse_step():
-    def amendment(uid, sort="Adopté", **fields):
+    def amendement(uid, sort="Adopté", **fields):
         return {"uid": uid, "numero": uid, "texte_ref": "T", "article_vise": "ART. PREMIER", "alinea": "Alinéa 2",
                 "dispositif": "d", "parent_uid": None, "tri_amendement": uid, "date_sort": None, "sort": sort,
                 "id_identique": None, **fields}
 
     return {"id": "e", "entree": {"articles": [{"numero": "PREMIER", "lignes": ["Un mot ancien."], "supprime": False}]},
-            "amendements": [amendment("a", id_identique="s"), amendment("b", id_identique="s"),
-                            amendment("c", parent_uid="a"), amendment("d", sort="Rejeté"),
-                            amendment("e", article_vise="APRÈS ART. PREMIER"), amendment("f", article_vise="ART. 9")]}
+            "amendements": [amendement("a", id_identique="s"), amendement("b", id_identique="s"),
+                            amendement("c", parent_uid="a"), amendement("d", sort="Rejeté"),
+                            amendement("e", article_vise="APRÈS ART. PREMIER"), amendement("f", article_vise="ART. 9")]}
 
 
 def test_tisseuse_what_goes_to_bridge():

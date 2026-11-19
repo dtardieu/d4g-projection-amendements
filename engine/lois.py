@@ -66,7 +66,7 @@ CONTEXT = re.compile(r"(?:ainsi\s+modifiée?s?|modifiée?s?\s+(?:ainsi\s+qu['’
 
 
 @dataclass
-class LawInstruction:
+class LoiInstruction:
     level: int
     mark: str | None
     heading: str
@@ -84,7 +84,7 @@ class Context:
 @dataclass
 class SectionAnalysis:
     operations: list[Operation]
-    instructions: list[LawInstruction]
+    instructions: list[LoiInstruction]
     unparsed: list[str]
 
 
@@ -102,7 +102,7 @@ def _tree(text, start):
     return None if any(tree.find_data("_ambig")) else tree
 
 
-class _ToLawOperations(_ToOperations):
+class _ToLoiOperations(_ToOperations):
     """Les alias de lois.lark sont ceux de amendements.lark, plus quelques-uns propres aux lois."""
 
     @v_args(inline=True)
@@ -153,7 +153,7 @@ def neutralize_references(text):
     return _outside_quotes(TEXT_SUBJECT.sub("L'article", text), neutralize)
 
 
-def _paragraph_level(line):
+def _alinea_level(line):
     for level, pattern in ARTICLE_MARKS:
         m = pattern.match(line)
         if m:
@@ -170,12 +170,12 @@ def locate_subdivision(lignes, mark, bound=None):
     est absente ou s'y trouve plusieurs fois (le 1° du I et le 1° du II : il faut le parent pour choisir)."""
     first, last = bound or (1, len(lignes))
     mark, level = re.sub(r"\s+", " ", mark), _mark_level(mark)
-    found_items = [i for i in range(first, last + 1) if _paragraph_level(lignes[i - 1]) == (level, mark)]
+    found_items = [i for i in range(first, last + 1) if _alinea_level(lignes[i - 1]) == (level, mark)]
     if len(found_items) != 1:
         return None
     beginning = end = found_items[0]
     while end < last:
-        following, _ = _paragraph_level(lignes[end])
+        following, _ = _alinea_level(lignes[end])
         if following is not None and following <= level:
             break
         end += 1
@@ -240,7 +240,7 @@ def split_section(section):
         announcement = INLINE_ANNOUNCEMENT.match(line)
         quotes = [announcement.group(2)] if announcement else []
         heading = announcement.group(1) if announcement else line
-        instructions.append(LawInstruction(level, mark, heading, quotes))
+        instructions.append(LoiInstruction(level, mark, heading, quotes))
     return instructions
 
 
@@ -275,7 +275,7 @@ def analyze_instruction(instruction, contexte=None, previous_operation=None, lig
                 return [_in_context(op, preceding, relative) for op in ops], None
         tree = _tree(heading.strip(), "bloc")
         if tree:
-            output = _ToLawOperations(SCOPE, preceding, quotes).transform(tree)
+            output = _ToLoiOperations(SCOPE, preceding, quotes).transform(tree)
             if isinstance(output, Target):
                 target = _in_context(Operation("rewrite", output), preceding, relative).target
                 new_bound = (target.alinea, target.until or target.alinea) if target.alinea and target.alinea > 0 else None
@@ -318,7 +318,7 @@ def _transform_inline(text, preceding, previous_operation):
     tree = _tree(text, "en_ligne")
     if not tree:
         return None
-    output = _ToLawOperations(SCOPE, preceding, previous_operation=previous_operation).transform(tree)
+    output = _ToLoiOperations(SCOPE, preceding, previous_operation=previous_operation).transform(tree)
     return output if isinstance(output, list) else [output]
 
 
@@ -335,9 +335,9 @@ def _in_context(op, contexte, relative=None):
         return op
     if target.node == "article" and op.verb in ("rewrite", "delete_node"):
         return op
-    sentence = target.sentence if target.sentence is not None else contexte.sentence
-    node = "phrase" if sentence is not None else "alinea"
-    return replace(op, target=replace(target, alinea=contexte.alinea, until=contexte.until, sentence=sentence, node=node))
+    phrase = target.phrase if target.phrase is not None else contexte.phrase
+    node = "phrase" if phrase is not None else "alinea"
+    return replace(op, target=replace(target, alinea=contexte.alinea, until=contexte.until, phrase=phrase, node=node))
 
 
 def analyze_section(section, article=""):

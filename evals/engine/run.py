@@ -16,22 +16,22 @@ from pathlib import Path
 
 from evals.engine.corpus import CORPUS, MANIFEST, NAME
 from evals.engine.versions import LLM_CALL, LLM_MODEL, VERSIONS
-from engine.analysis import RawAmendment
+from engine.analysis import RawAmendement
 from engine.text import create_version, is_blank, normalize, numbers
 
 RESULTS = Path(__file__).parent / "resultats" / NAME
-FIELDS = {f.name for f in dataclasses.fields(RawAmendment)} | {"numero_ordre"}
+FIELDS = {f.name for f in dataclasses.fields(RawAmendement)} | {"numero_ordre"}
 MAX_COMMUTATION_PAIRS = 300
 
 
 @dataclasses.dataclass
-class EvalAmendment(RawAmendment):
+class EvalAmendement(RawAmendement):
     numero_ordre: int | None = None
 
 
-def amendments_of(step):
+def amendements_of(step):
     """Sans ceux du titre : le texte du titre n'est pas dans le corpus, il n'y a rien à quoi les appliquer."""
-    return [EvalAmendment(**{k: v for k, v in a.items() if k in FIELDS})
+    return [EvalAmendement(**{k: v for k, v in a.items() if k in FIELDS})
             for a in step["amendements"] if not (a["article_vise"] or "").upper().startswith("TITRE")]
 
 
@@ -45,7 +45,7 @@ def input_version(step):
 def output_article(article, view):
     """Le texte produit, en mots, avec pour chaque mot s'il vient d'un amendement (¶ sépare les alinéas)."""
     words, authors = [], []
-    for rank, alinea in enumerate(article.paragraphs):
+    for rank, alinea in enumerate(article.alineas):
         if rank:
             words.append("¶")
             authors.append(0)
@@ -55,14 +55,14 @@ def output_article(article, view):
                 authors.append(0 if token.origin == "T0" else 1)
     return {"id": article.id, "numero": view[article.id], "numero_depart": article.numero, "supprime": article.supprime,
             "mots": words, "amendement": authors,
-            "origines": sorted({j.origin for a in article.paragraphs for j in a.tokens} - {"T0"})}
+            "origines": sorted({j.origin for a in article.alineas for j in a.tokens} - {"T0"})}
 
 
 def execute(step, name):
     initial = input_version(step)
-    amendments = amendments_of(step)
+    amendements = amendements_of(step)
     beginning = time.time()
-    result = VERSIONS[name](initial, amendments)
+    result = VERSIONS[name](initial, amendements)
     view = numbers(result.version)
     return {
         "id": step["id"],

@@ -16,7 +16,7 @@ import html
 import re
 
 import requests
-from engine.analysis import RawAmendment
+from engine.analysis import RawAmendement
 from engine.text import create_version
 
 URL = "https://parlement.tricoteuses.fr"
@@ -29,7 +29,7 @@ RANGE = re.compile(r"^(\d+) À (\d+)$")
 
 
 @dataclasses.dataclass
-class Amendment(RawAmendment):
+class Amendement(RawAmendement):
     """AmendementBrut et ce que l'interface affiche en plus."""
 
     auteur: str | None = None
@@ -53,7 +53,7 @@ class Text:
 
 
 @dataclasses.dataclass(frozen=True)
-class FirstReading:
+class PremiereLecture:
     """Textes de la première lecture à l'Assemblée d'un dossier ; None quand l'acte manque."""
 
     dossier: str
@@ -91,16 +91,16 @@ def numbers_from_title(titre):
 
 def articles_from_document(document):
     """Réponse de /documents/{uid} (avec subdivisions et alinéas) → les Article, dans l'ordre du texte."""
-    paragraphs = {}
+    alineas = {}
     for alinea in document.get("alineas") or []:
-        paragraphs.setdefault(alinea["articleRefHash"], []).append(alinea)
+        alineas.setdefault(alinea["articleRefHash"], []).append(alinea)
     articles = []
     subdivisions = sorted(document.get("subdivisions") or [], key=lambda s: s.get("sequence") or 0)
     for subdivision in subdivisions:
         if subdivision["type"] != "Article":
             continue
         lignes, supprime = [], "supprim" in subdivision["titre"].lower()
-        for alinea in sorted(paragraphs.get(subdivision["hash"], []), key=lambda a: a["numero"]):
+        for alinea in sorted(alineas.get(subdivision["hash"], []), key=lambda a: a["numero"]):
             # Un tableau arrive aplati en un seul alinéa, cellules séparées par des tabulations et lignes par des
             # retours : sans ce remplacement, chaque ligne du tableau deviendrait un faux alinéa.
             text = re.sub(r"[ \t]*[\t\n][ \t\n]*", " ", alinea["texte"] or "").strip()
@@ -128,11 +128,11 @@ def version_from_document(document):
     )
 
 
-def amendment_from(data):
+def amendement_from(data):
     """Un amendement de /amendements/json → Amendement."""
     identical = data.get("idDiscussionIdentique")
     date_sort = data.get("dateSort")
-    return Amendment(
+    return Amendement(
         uid=data["uid"],
         numero=data.get("numeroLong") or "",
         texte_ref=data.get("documentRefUid") or "",
@@ -190,12 +190,12 @@ def all_pages(path, params):
         page += 1
 
 
-def text_amendments(uid):
+def text_amendements(uid):
     """Tous les amendements déposés sur le texte, toutes pages lues."""
-    return [amendment_from(a) for a in all_pages("/amendements/json", {"documentRefUid": uid})]
+    return [amendement_from(a) for a in all_pages("/amendements/json", {"documentRefUid": uid})]
 
 
-def first_reading_texts(legislature):
+def premiere_lecture_texts(legislature):
     """Les PremiereLecture des dossiers de la législature, triées par dossier.
 
     Pour la décision en séance, `texteAssocieRefUid` donne le texte adopté (BTA) ; `documentRefUid` donnerait le TAP.
@@ -209,4 +209,4 @@ def first_reading_texts(legislature):
             ref = act.get(field)
             if act.get("dossierRefUid") and ref and (key != "adopte" or "BTA" in ref):
                 dossiers.setdefault(act["dossierRefUid"], {})[key] = ref
-    return [FirstReading(dossier, **texts) for dossier, texts in sorted(dossiers.items())]
+    return [PremiereLecture(dossier, **texts) for dossier, texts in sorted(dossiers.items())]

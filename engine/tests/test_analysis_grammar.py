@@ -9,10 +9,10 @@ from pathlib import Path
 
 import pytest
 
-from engine.analysis import (RawAmendment, Target, Instruction, Operation, Scope, analyze_amendment,
+from engine.analysis import (RawAmendement, Target, Instruction, Operation, Scope, analyze_amendement,
                             analyze_with_grammar, split_instructions, llm_message)
 
-AMENDMENTS = {a["numero"]: a for a in json.loads((Path(__file__).parent / "fixtures/ppl822_amendements.json")
+AMENDEMENTS = {a["numero"]: a for a in json.loads((Path(__file__).parent / "fixtures/ppl822_amendements.json")
                                                      .read_text(encoding="utf-8"))}
 
 
@@ -27,17 +27,17 @@ def scope(article_vise):
 
 def analyze(numero):
     """Opérations de toutes les instructions, chaque instruction recevant la cible de la précédente."""
-    amendment, operations, preceding = AMENDMENTS[numero], [], None
-    for instruction in split_instructions(amendment["dispositif"].split("\n\n")):
-        ops = analyze_with_grammar(instruction, scope(amendment["article_vise"]), preceding)
+    amendement, operations, preceding = AMENDEMENTS[numero], [], None
+    for instruction in split_instructions(amendement["dispositif"].split("\n\n")):
+        ops = analyze_with_grammar(instruction, scope(amendement["article_vise"]), preceding)
         assert ops is not None, f"{numero} : instruction {instruction.numero} non reconnue"
         operations += ops
         preceding = ops[-1].target
     return operations
 
 
-def test_all_amendments_recognized():
-    for numero in AMENDMENTS:
+def test_all_amendements_recognized():
+    for numero in AMENDEMENTS:
         assert analyze(numero)
 
 
@@ -72,12 +72,12 @@ def test_identicals_same_analysis():
     assert analyze("17") == analyze("18")
 
 
-def test_subamendment_keeps_parent_number():
+def test_sous_amendement_keeps_parent_number():
     # « le dixième alinéa » de CE11 : le numéro reste tel quel, le décompte chapeau compris se fait à l'étape 2.
     assert analyze("CE12")[0].target == Target(alinea=10)
 
 
-def test_same_paragraph_reuses_previous_target():
+def test_same_alinea_reuses_previous_target():
     substitute, complete = analyze("CE10")
     assert (substitute.verb, substitute.target, substitute.old_words, substitute.text) == \
         ("substitute", Target(alinea=2), "puni", "passible")
@@ -85,13 +85,13 @@ def test_same_paragraph_reuses_previous_target():
     assert complete.text.startswith("L’autorité administrative compétente")
 
 
-def test_consequently_same_numbered_paragraph():
-    instructions = split_instructions(AMENDMENTS["1"]["dispositif"].split("\n\n"))
+def test_consequently_same_numbered_alinea():
+    instructions = split_instructions(AMENDEMENTS["1"]["dispositif"].split("\n\n"))
     assert [i.consequently for i in instructions] == [False, True]
     assert [op.target for op in analyze("1")] == [Target(alinea=10), Target(alinea=10)]
 
 
-def test_rewrite_article_keeps_paragraphs_without_quotes():
+def test_rewrite_article_keeps_alineas_without_quotes():
     (op,) = analyze("CE11")
     lignes = op.text.split("\n")
     assert (op.verb, op.target, len(lignes)) == ("rewrite", Target(node="article"), 9)
@@ -99,7 +99,7 @@ def test_rewrite_article_keeps_paragraphs_without_quotes():
     assert lignes[-1].startswith("« Art. L. 251‑22.")
 
 
-def test_quoted_paragraph_blocks():
+def test_quoted_alinea_blocks():
     (rewrite,) = analyze("4")
     assert (rewrite.verb, rewrite.target, rewrite.text.count("\n") + 1) == ("rewrite", Target(alinea=3), 3)
     assert rewrite.text.startswith("Art. L. 250‑10. –") and not rewrite.text.endswith("»")
@@ -111,7 +111,7 @@ def test_quoted_paragraph_blocks():
         ("insert_node", Target(node="article", position="fin"))
 
 
-def test_additional_article():
+def test_article_additionnel():
     (op,) = analyze("CE2")
     assert (op.verb, op.target) == ("insert_node", Target(node="article", position="apres"))
     assert op.text.startswith("Le Gouvernement remet chaque année au Parlement")
@@ -177,20 +177,20 @@ LLM_OPERATION = {"verbe": "substitute", "cible": {"alinea": 2, "jusqua": None, "
                  "anciens_mots": "a", "texte": "b"}
 
 
-def raw_amendment(dispositif, targeted="ART. PREMIER"):
-    return RawAmendment("u", "1", "T", targeted, None, dispositif, None, None, None)
+def raw_amendement(dispositif, targeted="ART. PREMIER"):
+    return RawAmendement("u", "1", "T", targeted, None, dispositif, None, None, None)
 
 
 def test_llm_only_if_grammar_rejects():
     def forbidden(*args):
         raise AssertionError("le LLM ne doit pas être appelé")
-    analysis = analyze_amendment(raw_amendment("Supprimer cet article."), llm_call=forbidden)
+    analysis = analyze_amendement(raw_amendement("Supprimer cet article."), llm_call=forbidden)
     assert analysis.source == "grammar" and analysis.confidence == 1.0
 
 
 def test_llm_takes_over():
     output = {"operations": [LLM_OPERATION], "confiance": 0.8, "rejet": None}
-    analysis = analyze_amendment(raw_amendment("Formule inconnue du légiste."), "Un.", fake_model(output))
+    analysis = analyze_amendement(raw_amendement("Formule inconnue du légiste."), "Un.", fake_model(output))
     assert analysis.source == "llm" and analysis.confidence == 0.8 and not analysis.errors
     assert analysis.operations == [Operation("substitute", Target(alinea=2), old_words="a", text="b")]
 
@@ -202,23 +202,23 @@ def test_llm_takes_over():
     {"operations": [{"verbe": "substitute"}], "confiance": 0.9, "rejet": None},
 ])
 def test_invalid_llm_output_reported(output):
-    analysis = analyze_amendment(raw_amendment("Formule inconnue du légiste."), "Un.", fake_model(output))
+    analysis = analyze_amendement(raw_amendement("Formule inconnue du légiste."), "Un.", fake_model(output))
     assert analysis.errors and analysis.operations == []
 
 
-def test_llm_message_numbers_paragraphs():
+def test_llm_message_numbers_alineas():
     message = llm_message(Instruction(None, "Formule", ["« x »"]), Scope("article", "2"), "Un.\nDeux.", Target(alinea=3))
     assert "(2) Deux." in message and "Cible précédente : alinéa 3" in message and message.endswith("« x »")
 
 
 def _analyze(dispositif):
-    analysis = analyze_amendment(RawAmendment("a", "1", "T", "ART. PREMIER", None, dispositif, None, None, None))
+    analysis = analyze_amendement(RawAmendement("a", "1", "T", "ART. PREMIER", None, dispositif, None, None, None))
     assert not analysis.errors, analysis.errors
     return analysis.operations
 
 
 def _targets(dispositif):
-    return [(op.verb, op.target.alinea, op.target.sentence, op.target.position) for op in _analyze(dispositif)]
+    return [(op.verb, op.target.alinea, op.target.phrase, op.target.position) for op in _analyze(dispositif)]
 
 
 @pytest.mark.parametrize("continuation, expected", [
@@ -238,7 +238,7 @@ def test_references_to_previous_instruction(continuation, expected):
     assert _targets(f"{first_item}\n\nII. – En conséquence, {continuation}")[1] == expected
 
 
-def test_sentence_without_paragraph_or_antecedent():
+def test_phrase_without_alinea_or_antecedent():
     assert _targets("À la seconde phrase, supprimer le mot : « b ».") == [("delete", None, 2, "dans")]
 
 
@@ -246,12 +246,12 @@ def test_sentence_without_paragraph_or_antecedent():
     ("Supprimer les alinéas 4, 9 et 12.", [4, 9, 12]),          # épars : une suppression par alinéa
     ("Supprimer les alinéas 4 et 7.", [4, 7]),
 ])
-def test_deleting_scattered_paragraphs(dispositif, expected):
+def test_deleting_scattered_alineas(dispositif, expected):
     assert [(op.verb, op.target.alinea, op.target.until) for op in _analyze(dispositif)] == \
         [("delete_node", n, None) for n in expected]
 
 
-def test_contiguous_paragraphs_stay_a_range():
+def test_contiguous_alineas_stay_a_range():
     (op,) = _analyze("Supprimer les alinéas 4, 5 et 6.")
     assert (op.target.alinea, op.target.until) == (4, 6)
 
@@ -262,7 +262,7 @@ def test_contiguous_paragraphs_stay_a_range():
     ("à la fin des alinéas 41 et 71", [(41, "fin"), (71, "fin")]),
     ("au début de l'alinéa 6", [(6, "debut")]),
 ])
-def test_reference_to_several_paragraphs(renvoi, expected):
+def test_reference_to_several_alineas(renvoi, expected):
     operations = _analyze("I. – À l'alinéa 2, substituer au mot : « a » le mot : « b ».\n\n"
                            f"II. – En conséquence, procéder à la même substitution {renvoi}.")
     assert [(op.verb, op.old_words, op.text) for op in operations[1:]] == [("substitute", "a", "b")] * len(expected)
@@ -281,7 +281,7 @@ def test_punctuation_and_object_variants(dispositif):
     assert (op.verb, op.target.alinea, op.old_words, op.text) == ("substitute", 2, "a", "b")
 
 
-def test_mention_at_paragraph_start():
+def test_mention_at_alinea_start():
     (op,) = _analyze("Au début de l'alinéa 1, insérer la mention : « I. – »")
     assert (op.verb, op.target.alinea, op.target.position, op.text) == ("insert", 1, "debut", "I. –")
 
@@ -292,7 +292,7 @@ def test_sub_instructions_under_header():
     assert [(op.verb, op.target.alinea) for op in operations] == [("delete", 3), ("complete", 3)]
 
 
-def test_numbered_quoted_paragraph_is_not_a_sub_instruction():
+def test_numbered_quoted_alinea_is_not_a_sub_instruction():
     # « 1° Après… » dans le texte cité d'un article qui modifie un code : un alinéa inséré, pas une instruction.
     (op,) = _analyze("Après l'alinéa 1, insérer les deux alinéas suivants :\n\n« I. – Le code est ainsi modifié :\n\n"
                       "1° Après le mot : « a », sont insérés les mots : « b ». »")

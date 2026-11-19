@@ -35,15 +35,15 @@ TYPES = {".html": "text/html; charset=utf-8", ".svg": "image/svg+xml"}
 def projection(uid):
     """Projection d'un texte, gardée en mémoire : un texte long demande plusieurs secondes."""
     titre, initial = tricoteuses.text(uid)
-    amendments = tricoteuses.text_amendments(uid)
-    result = consolidate(initial, amendments)
+    amendements = tricoteuses.text_amendements(uid)
+    result = consolidate(initial, amendements)
     statuses = result.statuses
     return {
         "texte": uid,
         "titre": titre,
         "source": tricoteuses.URL,
         "resume": dict(Counter(s.etat for s in statuses.values())),
-        "articles": view.articles(initial, result.version, result.effects, amendments, statuses),
+        "articles": view.articles(initial, result.version, result.effects, amendements, statuses),
         "amendements": {
             a.uid: asdict(statuses[a.uid])
             | {
@@ -51,7 +51,7 @@ def projection(uid):
                 "auteur": a.auteur,
                 "dispositif": clean_dispositif(a.dispositif or ""),
             }
-            for a in amendments
+            for a in amendements
             if a.uid in statuses
         },
     }

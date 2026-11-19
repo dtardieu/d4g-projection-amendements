@@ -16,12 +16,12 @@ from collections import Counter, defaultdict
 
 from evals.engine.corpus import MANIFEST
 from evals.engine.run import RESULTS, split_steps
-from engine.analysis import RawAmendment, analyze_scope
+from engine.analysis import RawAmendement, analyze_scope
 from engine.text import number_key, split_tokens, normalize
 
 FAILED_ADOPTED_STATES = {"pendant": "résolution", "ambigu": "résolution", "non_analyse": "analyse"}
 APPLIED_STATES = {"applique", "identique", "sous_amendement"}
-FIELDS = set(RawAmendment.__dataclass_fields__)
+FIELDS = set(RawAmendement.__dataclass_fields__)
 
 
 def official_words(lignes):
@@ -60,9 +60,9 @@ def match_articles(predicted_items, official_ones):
         if o is not None and id(o) in free:
             pairs[p["id"]] = o
             del free[id(o)]
-    additional_ones = [p for p in predicted_items if p["numero_depart"] is None]
+    additionnels = [p for p in predicted_items if p["numero_depart"] is None]
     candidates = []
-    for p in additional_ones:
+    for p in additionnels:
         a = without_mentions(p["mots"])
         for o in free.values():
             ratio = difflib.SequenceMatcher(None, a, official_words(o["lignes"]), autojunk=False).quick_ratio()
@@ -288,14 +288,14 @@ def length_stratum(n):
 
 def diagnose_article(p, o, predicted, flags, official, statuses, adopted, other_order=None):
     """(amendements qui visent l'article, écarts étiquetés, catégorie). Catégorie None si l'article est exact."""
-    targeted_amendments = adopted.get(number_key(p["numero_depart"] or "\0"), [])
+    targeted_amendements = adopted.get(number_key(p["numero_depart"] or "\0"), [])
     if p["numero_depart"] is None:
-        targeted_amendments = [{"uid": u} for u in p["origines"]]
-    states = [statuses.get(a["uid"], {}).get("etat") for a in targeted_amendments]
+        targeted_amendements = [{"uid": u} for u in p["origines"]]
+    states = [statuses.get(a["uid"], {}).get("etat") for a in targeted_amendements]
     reasons = [FAILED_ADOPTED_STATES.get(e, "non appliqué") for e in states if e not in APPLIED_STATES]
     gaps = classify_gaps(predicted, flags, official) if o is not None else []
     if predicted == official:
-        return targeted_amendments, gaps, None
+        return targeted_amendements, gaps, None
     if o is None:
         category = "article en trop"
     elif reasons:
@@ -304,10 +304,10 @@ def diagnose_article(p, o, predicted, flags, official, statuses, adopted, other_
         category = "ordre"
     else:
         category = article_category(gaps)
-    return targeted_amendments, gaps, category
+    return targeted_amendements, gaps, category
 
 
-def step_failures(amendments, articles, statuses):
+def step_failures(amendements, articles, statuses):
     """Les échecs qu'on peut attribuer à un amendement précis. articles : {id : {uids, exact, categorie}}.
 
     Certain : le moteur n'a pas pu analyser ou appliquer cet amendement adopté.
@@ -316,13 +316,13 @@ def step_failures(amendments, articles, statuses):
     """
     article_of = {u: i for i, a in articles.items() for u in a["uids"]}
     failures = []
-    for a in amendments:
+    for a in amendements:
         etat = statuses.get(a["uid"], {}).get("etat")
         if a["sort"] == "Adopté" and etat in FAILED_ADOPTED_STATES:
             failures.append({"uid": a["uid"], "numero": a["numero"], "article": article_of.get(a["uid"]),
                            "type": FAILED_ADOPTED_STATES[etat], "attribution": "certaine",
                            "detail": statuses[a["uid"]].get("detail", "")})
-    by_uid = {a["uid"]: a for a in amendments}
+    by_uid = {a["uid"]: a for a in amendements}
     for i, article in articles.items():
         votes = [u for u in article["uids"] if statuses.get(u, {}).get("etat") != "identique"]
         if article["exact"] or len(votes) != 1 or votes[0] not in by_uid:

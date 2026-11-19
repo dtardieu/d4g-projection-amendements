@@ -55,10 +55,10 @@ QUESTION = {
 
 
 # Variante : deux versions complètes de la phrase, qui ne diffèrent qu'à l'endroit de l'écart.
-SENTENCE_GUIDELINES = GUIDELINES.split("\n\n", 1)[1].replace("Deux passages ont", "Deux phrases ont")
-SENTENCE_GUIDELINES = ("Tu compares deux versions d'une même phrase d'un article de loi français. "
-                    "Elles ne diffèrent qu'à un seul endroit.\n\n" + SENTENCE_GUIDELINES.replace("Si le contexte ne suffit pas", "Si la phrase ne suffit pas"))
-SENTENCE_QUESTION = {**QUESTION, "instructions": "Quelle relation y a-t-il entre l'effet juridique de la phrase A et celui de la phrase B ?"}
+PHRASE_GUIDELINES = GUIDELINES.split("\n\n", 1)[1].replace("Deux passages ont", "Deux phrases ont")
+PHRASE_GUIDELINES = ("Tu compares deux versions d'une même phrase d'un article de loi français. "
+                    "Elles ne diffèrent qu'à un seul endroit.\n\n" + PHRASE_GUIDELINES.replace("Si le contexte ne suffit pas", "Si la phrase ne suffit pas"))
+PHRASE_QUESTION = {**QUESTION, "instructions": "Quelle relation y a-t-il entre l'effet juridique de la phrase A et celui de la phrase B ?"}
 
 
 class BudgetExceeded(Exception):
